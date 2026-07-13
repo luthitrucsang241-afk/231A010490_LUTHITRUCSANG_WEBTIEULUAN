@@ -1,0 +1,1669 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family:
+        "Segoe UI",
+        sans-serif;
+
+}
+
+
+
+body {
+
+    background:
+        linear-gradient(135deg,
+            #dff6ff,
+            #89cff0);
+
+    color: #334155;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+
+/* HEADER */
+
+
+.header {
+    position:relative;
+    
+    height: 80px;
+
+    width: 100%;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 80px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, .08);
+
+}
+
+
+
+.logo {
+
+    font-size: 27px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+
+}
+
+
+
+.menu {
+
+    display: flex;
+
+    gap: 35px;
+
+    align-items: center;
+
+}
+
+
+
+.menu a {
+
+    text-decoration: none;
+
+    color: #334155;
+
+    font-weight: 500;
+
+}
+
+
+
+.menu a:hover {
+
+    color: #2563eb;
+
+}
+
+
+
+.menu .btn {
+
+    padding: 10px 22px;
+
+    border-radius: 20px;
+
+    background:
+
+        linear-gradient(135deg,
+            #2563eb,
+            #38bdf8);
+
+    color: white;
+
+}
+
+
+
+
+
+
+/* DASHBOARD */
+
+
+.dashboard-layout {
+
+    display: flex;
+
+    flex: 1;
+
+}
+
+
+
+/* SIDEBAR */
+
+
+.sidebar {
+
+    width: 240px;
+
+    background: white;
+
+    padding: 25px 15px;
+
+    box-shadow:
+        5px 0 20px rgba(0, 0, 0, .08);
+
+}
+
+
+
+.sidebar h2 {
+
+    text-align: center;
+
+    color: #2563eb;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.sidebar a {
+
+    display: block;
+
+    padding: 12px 18px;
+
+    margin-bottom: 5px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    color: #475569;
+
+}
+
+
+
+.sidebar a:hover,
+.sidebar .active {
+
+
+    background: #dff6ff;
+
+    color: #2563eb;
+
+}
+
+
+
+
+
+
+/* MAIN */
+
+
+.main {
+
+    flex: 1;
+
+    padding: 25px;
+
+}
+
+
+
+
+.hero {
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, .15);
+
+}
+
+
+
+.hero h1 {
+
+    color: #2563eb;
+
+    margin-bottom: 8px;
+
+}
+
+
+
+.hero img {
+
+    width: 90px;
+
+    height: 90px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+}
+
+
+
+
+
+
+.card {
+
+    background: white;
+
+    margin-top: 15px;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, .12);
+
+}
+
+
+
+.card h2 {
+
+    color: #2563eb;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.timer {
+
+    font-size: 45px;
+
+    font-weight: 700;
+
+    color: #2563eb;
+
+    margin: 10px 0;
+
+}
+
+
+
+button {
+
+    border: none;
+
+    padding: 10px 20px;
+
+    border-radius: 20px;
+
+    background:
+
+        linear-gradient(135deg,
+            #2563eb,
+            #38bdf8);
+
+    color: white;
+
+    cursor: pointer;
+
+    margin-right: 5px;
+
+}
+
+
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    border: 1px solid #cbd5e1;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+textarea {
+
+    height: 100px;
+
+    resize: none;
+
+}
+
+
+
+ul {
+
+    padding-left: 20px;
+
+}
+
+
+
+video {
+
+    width: 100%;
+
+    max-height: 350px;
+
+    border-radius: 15px;
+
+}
+
+
+
+
+.quote {
+
+    text-align: center;
+
+    font-style: italic;
+
+}
+
+
+
+
+/* FOOTER */
+
+
+footer {
+
+    background: white;
+
+    margin-top: auto;
+
+    padding: 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 -5px 20px rgba(0, 0, 0, .08);
+
+}
+
+
+
+.footer-links {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    margin: 10px;
+
+}
+
+
+
+.footer-links a {
+
+    text-decoration: none;
+
+    color: #2563eb;
+
+}
+
+
+
+footer hr {
+
+    border: none;
+
+    border-top: 1px solid #ddd;
+
+    margin: 15px 0;
+
+}
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:900px) {
+
+
+    .header {
+
+        padding: 0 25px;
+
+    }
+
+
+    .menu {
+
+        gap: 12px;
+
+    }
+
+
+    .dashboard-layout {
+
+        flex-direction: column;
+
+    }
+
+
+
+    .sidebar {
+
+        width: 100%;
+
+        display: flex;
+
+        overflow: auto;
+
+    }
+
+
+
+    .sidebar h2 {
+
+        display: none;
+
+    }
+
+
+    .sidebar a {
+
+        white-space: nowrap;
+
+    }
+
+
+
+    .hero {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+    }
+
+
+}
+
+
+/* ================= KHUNG 2 POMODORO + TODO ================= */
+
+
+.double-card {
+
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 25px;
+
+    width: 100%;
+
+
+}
+
+
+
+
+
+
+/* ================= CARD CHUNG ================= */
+
+
+.card {
+
+
+    background: white;
+
+
+    border-radius: 25px;
+
+
+    padding: 25px;
+
+
+    box-shadow:
+
+        0 15px 35px rgba(37, 99, 235, .15);
+
+
+}
+
+
+
+
+
+
+.card h2 {
+
+
+    text-align: center;
+
+
+    color: #2563eb;
+
+
+    margin-bottom: 20px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= POMODORO ================= */
+
+
+.pomodoro-box {
+
+
+    display: flex;
+
+
+    flex-direction: column;
+
+
+    align-items: center;
+
+
+    justify-content: center;
+
+
+}
+
+
+
+
+
+.timer {
+
+
+    width: 180px;
+
+
+    height: 180px;
+
+
+    border-radius: 50%;
+
+
+    display: flex;
+
+
+    align-items: center;
+
+
+    justify-content: center;
+
+
+    background:
+
+        linear-gradient(135deg,
+
+            #2563eb,
+
+            #38bdf8);
+
+
+    color: white;
+
+
+    font-size: 45px;
+
+
+    font-weight: bold;
+
+
+    margin: 20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.time-control {
+
+
+    display: flex;
+
+
+    align-items: center;
+
+
+    gap: 15px;
+
+
+    font-size: 20px;
+
+
+    margin-bottom: 20px;
+
+
+}
+
+
+
+
+.time-control button {
+
+
+    width: 40px;
+
+
+    height: 40px;
+
+
+    border: none;
+
+
+    border-radius: 50%;
+
+
+    cursor: pointer;
+
+
+    color: white;
+
+
+    background: #2563eb;
+
+
+    font-size: 20px;
+
+
+}
+
+
+
+
+.pomodoro-buttons {
+
+
+    display: flex;
+
+
+    gap: 10px;
+
+
+}
+
+
+
+
+.pomodoro-buttons button {
+
+
+    border: none;
+
+
+    padding: 10px 20px;
+
+
+    border-radius: 20px;
+
+
+    color: white;
+
+
+    cursor: pointer;
+
+
+    background:
+
+        linear-gradient(135deg,
+
+            #2563eb,
+
+            #38bdf8);
+
+
+}
+
+
+
+
+.pomodoro-buttons button:hover {
+
+
+    transform: translateY(-2px);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ================= TODO ================= */
+
+
+
+.todo-box {
+
+
+    min-height: 350px;
+
+
+}
+
+
+
+
+
+.todo-input {
+
+
+    display: flex;
+
+
+    gap: 10px;
+
+
+    margin-bottom: 20px;
+
+
+}
+
+
+
+
+.todo-input input {
+
+
+    flex: 1;
+
+
+    padding: 12px;
+
+
+    border-radius: 15px;
+
+
+    border: 1px solid #cbd5e1;
+
+
+    outline: none;
+
+
+}
+
+
+
+
+.todo-input button {
+
+
+    width: 80px;
+
+
+    border: none;
+
+
+    border-radius: 15px;
+
+
+    color: white;
+
+
+    cursor: pointer;
+
+
+    background: #2563eb;
+
+
+}
+
+
+
+
+
+
+#todoList {
+
+
+    list-style: none;
+
+
+    display: flex;
+
+
+    flex-direction: column;
+
+
+    gap: 12px;
+
+
+}
+
+
+
+
+
+#todoList li {
+
+
+    display: flex;
+
+
+    align-items: center;
+
+
+    justify-content: space-between;
+
+
+    padding: 12px;
+
+
+    border-radius: 15px;
+
+
+    background: #f1f5f9;
+
+
+}
+
+
+
+
+
+#todoList label {
+
+
+    display: flex;
+
+
+    align-items: center;
+
+
+    gap: 10px;
+
+
+}
+
+
+
+
+
+
+
+#todoList span {
+
+
+    color: #334155;
+
+
+}
+
+
+
+
+
+#todoList button {
+
+
+    width: auto;
+
+
+    padding: 7px 15px;
+
+
+    border-radius: 15px;
+
+
+    background: #ef4444;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= DARK MODE ================= */
+
+
+body.dark .card {
+
+
+    background: #0f172a;
+
+
+    color: white;
+
+
+}
+
+
+
+body.dark #todoList li {
+
+
+    background: #1e293b;
+
+
+}
+
+
+
+body.dark #todoList span {
+
+
+    color: white;
+
+
+}
+
+
+
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+@media(max-width:900px) {
+
+
+
+    .double-card {
+
+
+        grid-template-columns: 1fr;
+
+
+    }
+
+
+
+}
+
+
+/* ================= THEME ================= */
+
+
+body.light {
+
+
+    background: #dff6ff;
+
+    color: #1e293b;
+
+
+}
+
+
+
+body.dark {
+
+
+    background: #020617;
+
+    color: white;
+
+
+}
+
+
+
+
+
+
+/* DARK CARD */
+
+
+body.dark .card,
+body.dark .hero,
+body.dark .sidebar {
+
+
+    background: #0f172a;
+
+    color: white;
+
+
+}
+
+
+
+
+body.dark .sidebar a {
+
+
+    color: #e2e8f0;
+
+
+}
+
+
+
+body.dark .sidebar a:hover,
+body.dark .sidebar .active {
+
+
+    background: #2563eb;
+
+    color: white;
+
+
+}
+
+
+
+
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+
+
+    background: #1e293b;
+
+    color: white;
+
+    border-color: #475569;
+
+
+}
+
+
+
+
+body.dark button {
+
+
+    background: #2563eb;
+
+    color: white;
+
+
+}
+
+
+
+
+body.light button {
+
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #38bdf8);
+
+
+}
+
+
+
+
+
+/* TEXT */
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p {
+
+
+    color: white;
+
+
+}
+
+
+
+
+
+body.dark footer {
+
+
+    background: #020617;
+
+
+}
+
+
+
+/* ================= SETTING MENU ================= */
+
+
+.setting-menu{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+.setting-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:0;
+
+    line-height:1;
+
+    font-size:20px;
+
+    background:
+    linear-gradient(
+    135deg,
+    #2563eb,
+    #38bdf8
+    );
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.setting-dropdown {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 50px;
+
+    width: 210px;
+
+    background: white;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .15);
+
+    display: none;
+
+    z-index: 9999;
+
+}
+
+
+
+.setting-dropdown.show {
+
+    display: block;
+
+}
+
+
+
+
+
+.setting-dropdown button {
+
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    background: none;
+
+    text-align: left;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+}
+
+
+
+.setting-dropdown button:hover {
+
+    background: #dbeafe;
+
+}
+
+
+
+
+
+.dropdown-title {
+
+    font-weight: bold;
+
+    color: #2563eb;
+
+    padding: 8px;
+
+    font-size: 14px;
+
+}
+
+
+
+
+
+.setting-dropdown hr {
+
+    border: none;
+
+    border-top: 1px solid #ddd;
+
+    margin: 8px 0;
+
+}
+
+
+
+
+
+
+
+/* DARK MENU */
+
+
+body.dark .setting-dropdown {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+
+body.dark .setting-dropdown button {
+
+    color: white;
+
+}
+
+
+
+body.dark .setting-dropdown button:hover {
+
+    background: #1e40af;
+
+}
+
+
+/* ================= LIGHT THEME ================= */
+
+body.light {
+
+    background:
+    linear-gradient(
+        135deg,
+        #dff6ff,
+        #89cff0
+    );
+
+    color:#334155;
+
+}
+
+
+body.light .header,
+body.light .sidebar,
+body.light .card,
+body.light .hero,
+body.light .profile-card,
+body.light .stat-card,
+body.light .badge,
+body.light footer {
+
+    background:white;
+
+    color:#334155;
+
+}
+
+
+
+body.light h1,
+body.light h2,
+body.light h3 {
+
+    color:#2563eb;
+
+}
+
+
+
+body.light p,
+body.light label {
+
+    color:#475569;
+
+}
+
+
+
+body.light input,
+body.light select,
+body.light textarea {
+
+    background:white;
+
+    color:#334155;
+
+    border-color:#cbd5e1;
+
+}
+
+
+/* ================= DARK THEME ================= */
+
+
+body.dark {
+
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #1e293b
+    );
+
+
+    color:white;
+
+}
+
+
+
+body.dark .header,
+body.dark .sidebar,
+body.dark .card,
+body.dark .hero,
+body.dark .profile-card,
+body.dark .stat-card,
+body.dark .badge,
+body.dark footer {
+
+
+    background:#0f172a;
+
+    color:white;
+
+
+}
+
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3 {
+
+
+    color:#38bdf8;
+
+
+}
+
+
+
+body.dark p,
+body.dark label {
+
+
+    color:#cbd5e1;
+
+
+}
+
+
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+
+
+    background:#1e293b;
+
+    color:white;
+
+    border-color:#475569;
+
+
+}
+
+
+body.dark .sidebar a {
+
+
+    color:#cbd5e1;
+
+}
+
+
+
+body.dark .sidebar a:hover,
+body.dark .sidebar .active {
+
+
+    background:#1e40af;
+
+    color:white;
+
+}
+
+/* ================= SETTING DROPDOWN FIX ================= */
+
+
+/* Theme sáng */
+
+body.light .setting-dropdown {
+
+    background:white;
+
+    color:#334155;
+
+}
+
+
+
+body.light .setting-dropdown button {
+
+    background:white;
+
+    color:#334155;
+
+}
+
+
+
+body.light .setting-dropdown button:hover {
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+}
+
+
+
+body.light .dropdown-title {
+
+    color:#2563eb;
+
+}
+
+
+
+
+/* Theme tối */
+
+body.dark .setting-dropdown {
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+body.dark .setting-dropdown button {
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+body.dark .setting-dropdown button:hover {
+
+    background:#1e40af;
+
+    color:white;
+
+}
+
+/* FIX SETTING MENU DASHBOARD */
+
+.setting-menu{
+    position:relative;
+    z-index:10000;
+}
+
+
+.setting-dropdown{
+
+    position:absolute;
+
+    right:0;
+
+    top:50px;
+
+    width:220px;
+
+    background:white;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.25);
+
+    display:none;
+
+    z-index:99999;
+
+}
+
+
+
+.setting-dropdown.show{
+
+    display:block !important;
+
+}
+
+
+
+.setting-dropdown .dropdown-title{
+
+    color:#2563eb;
+
+    font-weight:bold;
+
+}
+
+
+
+.setting-dropdown button{
+
+    display:block;
+
+    width:100%;
+
+    color:#334155;
+
+    background:white;
+
+    border:none;
+
+    padding:10px;
+
+    border-radius:10px;
+
+}
+
+
+
+.setting-dropdown button:hover{
+
+    background:#dbeafe;
+
+}

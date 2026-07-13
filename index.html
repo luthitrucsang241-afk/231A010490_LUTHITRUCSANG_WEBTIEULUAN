@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Focus - Website Hỗ Trợ Học Tập</title>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="css/responsive.css">
+
+
+</head>
+
+<body>
+
+    <header>
+
+    <div class="container">
+
+
+        <div class="logo">
+
+            <h1>
+                Study Focus
+            </h1>
+
+        </div>
+
+
+
+        <nav>
+
+            <ul class="menu">
+
+                <li>
+                    <a href="index.html"
+                    data-vn="Trang chủ"
+                    data-en="Home">
+                        Trang chủ
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#features"
+                    data-vn="Tính năng"
+                    data-en="Features">
+                        Tính năng
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="about.html"
+                    data-vn="Giới thiệu"
+                    data-en="About">
+                        Giới thiệu
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="contact.html"
+                    data-vn="Liên hệ"
+                    data-en="Contact">
+                        Liên hệ
+                    </a>
+                </li>
+
+
+            </ul>
+
+        </nav>
+
+
+
+
+        <div class="account">
+
+
+            <a href="login.html"
+            class="btn-login"
+            data-vn="Đăng nhập"
+            data-en="Login">
+
+                Đăng nhập
+
+            </a>
+
+
+            <a href="register.html"
+            class="btn-register"
+            data-vn="Đăng ký"
+            data-en="Register">
+
+                Đăng ký
+
+            </a>
+
+
+        </div>
+
+
+
+
+
+        <div class="setting-menu">
+
+
+            <button type="button" class="setting-btn">
+
+                ⚙
+
+            </button>
+
+
+
+
+            <div class="setting-dropdown">
+
+
+                <div class="dropdown-title"
+                data-vn="Giao diện"
+                data-en="Theme">
+
+                    Giao diện
+
+                </div>
+
+
+
+
+                <button type="button" onclick="changeTheme('light')">
+            
+                    <span
+                    data-vn="Sáng"
+                    data-en="Light">
+
+                        Sáng
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <button type="button" onclick="changeTheme('dark')">
+
+                    <span
+                    data-vn="Tối"
+                    data-en="Dark">
+
+                        Tối
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <hr>
+
+
+
+
+
+                <div class="dropdown-title"
+                data-vn="Ngôn ngữ"
+                data-en="Language">
+
+                    Ngôn ngữ
+
+                </div>
+
+
+
+
+
+                <button type="button" onclick="changeLanguage('vi')">
+
+                    🇻🇳
+
+                    <span
+                    data-vn="Tiếng Việt"
+                    data-en="Vietnamese">
+
+                        Tiếng Việt
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <button type="button" onclick="changeLanguage('en')">
+
+                    🇺🇸
+
+                    <span
+                    data-vn="Tiếng Anh"
+                    data-en="English">
+
+                        Tiếng Anh
+
+                    </span>
+
+                </button>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+    
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+
+
+                <article class="hero-content">
+
+
+
+                    <h2
+                    data-vn="Học tập cùng Study Focus"
+                    data-en="Study With Study Focus">
+
+                        Học tập cùng Study Focus
+
+                    </h2>
+
+
+
+
+                    <p
+                    data-vn="Quản lý thời gian học tập bằng Pomodoro. Tăng tập trung và theo dõi tiến độ."
+                    data-en="Manage study time with Pomodoro. Improve focus and track progress.">
+
+                        Quản lý thời gian học tập bằng Pomodoro.
+
+                        <br>
+
+                        Tăng tập trung và theo dõi tiến độ.
+
+
+                    </p>
+
+
+
+
+
+                    <div class="hero-button">
+
+
+                        <a href="register.html"
+                        class="btn-start"
+                        data-vn="Bắt đầu ngay"
+                        data-en="Start Now">
+
+                            Bắt đầu ngay
+
+                        </a>
+
+
+
+
+                        <a href="#features"
+                        class="btn-more"
+                        data-vn="Khám phá"
+                        data-en="Explore">
+
+                            Khám phá
+
+                        </a>
+
+
+                    </div>
+
+
+
+                </article>
+
+
+
+
+
+                <aside class="hero-image">
+
+
+                    <img src="images/hero.png" alt="Study">
+
+
+                </aside>
+
+
+
+
+            </div>
+
+        </section>
+
+        <section class="features" id="features">
+
+            <div class="container">
+
+                <h2 class="section-title"
+                data-vn="Tính năng nổi bật"
+                data-en="Featured Features">
+
+                ```
+                Tính năng nổi bật
+                ```
+
+                </h2>
+
+                <p class="section-description"
+                data-vn="Study Focus giúp bạn học tập hiệu quả, quản lý thời gian và tăng khả năng tập trung."
+                data-en="Study Focus helps you study effectively, manage time and improve concentration.">
+
+                ```
+                Study Focus giúp bạn học tập hiệu quả, quản lý thời gian và tăng khả năng tập trung.
+                ```
+
+                </p>
+
+                <div class="feature-grid">
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-clock"></i>
+
+                        <h3>
+                        Pomodoro Timer
+                        </h3>
+
+                        <p
+                        data-vn="Quản lý thời gian học tập với phương pháp Pomodoro."
+                        data-en="Manage study time with the Pomodoro method.">
+
+                        Quản lý thời gian học tập với phương pháp Pomodoro.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-list-check"></i>
+
+                        <h3>
+                        To-do List
+                        </h3>
+
+                        <p
+                        data-vn="Quản lý công việc mỗi ngày và theo dõi tiến độ."
+                        data-en="Manage daily tasks and track progress.">
+
+                        Quản lý công việc mỗi ngày và theo dõi tiến độ.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-calendar-days"></i>
+
+                        <h3>
+                        Calendar
+                        </h3>
+
+                        <p
+                        data-vn="Lập kế hoạch học tập và ghi chú lịch học."
+                        data-en="Plan study schedules and take notes.">
+
+                        Lập kế hoạch học tập và ghi chú lịch học.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-chart-line"></i>
+
+                        <h3>
+                        Statistics
+                        </h3>
+
+                        <p
+                        data-vn="Theo dõi thời gian học và kết quả đạt được."
+                        data-en="Track study time and achievements.">
+
+                        Theo dõi thời gian học và kết quả đạt được.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-headphones"></i>
+
+                        <h3>
+                        White Noise
+                        </h3>
+
+                        <p
+                        data-vn="Tiếng ồn trắng giúp tăng khả năng tập trung."
+                        data-en="White noise helps improve concentration.">
+
+                        Tiếng ồn trắng giúp tăng khả năng tập trung.
+
+                        </p>
+
+                    </article>
+
+                    <article class="feature-card">
+
+                        <i class="fa-solid fa-video"></i>
+
+                        <h3>
+                        Study Video
+                        </h3>
+
+                        <p
+                        data-vn="Video Study With Me tạo cảm giác học cùng mọi người."
+                        data-en="Study With Me videos create a learning environment.">
+
+                        Video Study With Me tạo cảm giác học cùng mọi người.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="about" id="about">
+
+            <div class="container about-center">
+
+                <aside class="about-image">
+
+                    <img src="images/about.png" alt="About StudyFocus">
+
+                </aside>
+
+                <article class="about-content">
+
+                    <h2>
+                    Study Focus
+                    </h2>
+
+                    <p
+                    data-vn="Study Focus là website hỗ trợ học tập dựa trên phương pháp Pomodoro, giúp người dùng tập trung, quản lý thời gian và theo dõi tiến độ học tập."
+                    data-en="Study Focus is a learning support website based on the Pomodoro method, helping users focus, manage time and track progress.">
+
+                    Study Focus là website hỗ trợ học tập dựa trên phương pháp Pomodoro, giúp người dùng tập trung, quản lý thời gian và theo dõi tiến độ học tập.
+
+                    </p>
+
+                    <ul>
+
+                    <li
+                    data-vn="✔ Pomodoro Timer thông minh"
+                    data-en="✔ Smart Pomodoro Timer">
+
+                    ✔ Pomodoro Timer thông minh
+
+                    </li>
+
+                    <li
+                    data-vn="✔ Quản lý công việc hằng ngày"
+                    data-en="✔ Daily task management">
+
+                    ✔ Quản lý công việc hằng ngày
+
+                    </li>
+
+                    <li
+                    data-vn="✔ Theo dõi tiến độ học tập"
+                    data-en="✔ Track study progress">
+
+                    ✔ Theo dõi tiến độ học tập
+
+                    </li>
+
+                    <li
+                    data-vn="✔ White Noise và Video Study"
+                    data-en="✔ White Noise and Study Video">
+
+                    ✔ White Noise và Video Study
+
+                    </li>
+
+                    <li
+                    data-vn="✔ Thống kê và Achievement"
+                    data-en="✔ Statistics and Achievement">
+
+                    ✔ Thống kê và Achievement
+
+                    </li>
+
+                    </ul>
+
+                    <div class="about-button">
+
+                        <a href="register.html"
+                        class="btn-start"
+                        data-vn="Khám phá ngay"
+                        data-en="Explore Now">
+
+                        Khám phá ngay
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <section class="quote">
+
+            <div class="container">
+
+                <article class="quote-box">
+
+
+                    <h2
+                    data-vn="Câu nói truyền cảm hứng"
+                    data-en="Inspirational Quote">
+
+                        Câu nói truyền cảm hứng
+
+                    </h2>
+
+
+
+                    <blockquote
+                    id="quote-text"
+                    data-vn="&quot;Don't watch the clock. Do what it does. Keep going.&quot;;"
+                    data-en="&quot;Don't watch the clock. Do what it does. Keep going.&quot;">
+
+                        "Don't watch the clock. Do what it does. Keep going."
+
+                    </blockquote>
+
+
+
+
+                    <p class="quote-author">
+
+                        — Sam Levenson
+
+                    </p>
+
+
+
+
+                    <div class="quote-buttons">
+
+
+                        <button id="random-quote"
+                                class="quote-btn">
+
+                            <span
+                            data-vn="Câu nói khác"
+                            data-en="Random Quote">
+
+                                Random Quote
+
+                            </span>
+
+                        </button>
+
+
+
+
+                        <button id="favorite-quote"
+                                class="quote-btn">
+
+                            <span
+                            data-vn="Yêu thích"
+                            data-en="Favorite">
+
+                                Favorite
+
+                            </span>
+
+                        </button>
+
+
+
+
+                        <button id="copy-quote"
+                                class="quote-btn">
+
+                            <span
+                            data-vn="Sao chép"
+                            data-en="Copy Quote">
+
+                                Copy Quote
+
+                            </span>
+
+                        </button>
+
+
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <div class="container">
+
+            <h3>
+            Study Focus
+            </h3>
+
+            <p
+            data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+            data-en="Study effectively with Pomodoro, manage time and improve concentration.">
+
+            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+            </p>
+
+            <div class="footer-links">
+
+            <a href="index.html"
+            data-vn="Trang chủ"
+            data-en="Home">
+
+            Trang chủ
+
+            </a>
+
+            <a href="#features"
+            data-vn="Tính năng"
+            data-en="Features">
+
+            Tính năng
+
+            </a>
+
+            <a href="#about"
+            data-vn="Giới thiệu"
+            data-en="About">
+
+            Giới thiệu
+
+            </a>
+
+            </div>
+
+            <hr>
+
+            <p class="copyright">
+
+            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+
+            </p>
+
+        </div>
+
+    </footer>
+
+    <script src="js/main.js" defer></script>
+
+</body>
+
+</html>

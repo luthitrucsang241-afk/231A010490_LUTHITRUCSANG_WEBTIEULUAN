@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings - Study Focus</title>
+
+<link rel="stylesheet" href="css/settings.css">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="logo">
+Study Focus
+</div>
+
+
+<nav class="menu">
+
+<a href="index.html" data-vn="Trang chủ" data-en="Home">Trang chủ</a>
+
+<a href="about.html" data-vn="Giới thiệu" data-en="About">Giới thiệu</a>
+
+<a href="contact.html" data-vn="Liên hệ" data-en="Contact">Liên hệ</a>
+
+<a href="login.html" data-vn="Đăng nhập" data-en="Login">Đăng nhập</a>
+
+<a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+Đăng ký
+</a>
+
+</nav>
+
+
+
+<div class="setting-menu">
+
+<button class="setting-btn">
+⚙
+</button>
+
+
+<div class="setting-dropdown">
+
+
+<div class="dropdown-title"
+data-vn="Giao diện"
+data-en="Theme">
+Giao diện
+</div>
+
+
+<button onclick="changeTheme('light')">
+<span data-vn="Sáng" data-en="Light">
+Sáng
+</span>
+</button>
+
+
+<button onclick="changeTheme('dark')">
+<span data-vn="Tối" data-en="Dark">
+Tối
+</span>
+</button>
+
+
+<hr>
+
+
+<div class="dropdown-title"
+data-vn="Ngôn ngữ"
+data-en="Language">
+Ngôn ngữ
+</div>
+
+
+<button onclick="changeLanguage('vi')">
+🇻🇳
+<span data-vn="Tiếng Việt" data-en="Vietnamese">
+Tiếng Việt
+</span>
+</button>
+
+
+<button onclick="changeLanguage('en')">
+🇺🇸
+<span data-vn="Tiếng Anh" data-en="English">
+Tiếng Anh
+</span>
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</header>
+
+
+
+
+
+<div class="layout">
+
+
+<aside class="sidebar">
+
+
+<h2>
+Study Focus
+</h2>
+
+
+<a href="dashboard.html">Dashboard</a>
+
+<a href="calendar.html" data-vn="Lịch" data-en="Calendar">
+Lịch
+</a>
+
+<a href="statistics.html" data-vn="Thống kê" data-en="Statistics">
+Thống kê
+</a>
+
+<a href="achievement.html" data-vn="Thành tích" data-en="Achievement">
+Thành tích
+</a>
+
+<a href="profile.html" data-vn="Hồ sơ" data-en="Profile">
+Hồ sơ
+</a>
+
+<a class="active" href="settings.html"
+data-vn="Cài đặt"
+data-en="Settings">
+Cài đặt
+</a>
+
+
+<a href="login.html"
+data-vn="Đăng xuất"
+data-en="Logout">
+Đăng xuất
+</a>
+
+
+</aside>
+
+
+
+
+
+<main class="main">
+
+
+<section class="hero">
+
+
+<h1 data-vn="Cài đặt"
+data-en="Settings">
+Cài đặt
+</h1>
+
+
+<p data-vn="Tùy chỉnh trải nghiệm học tập của bạn."
+data-en="Customize your learning experience.">
+Tùy chỉnh trải nghiệm học tập của bạn.
+</p>
+
+
+</section>
+
+
+
+
+
+<section class="card">
+
+
+<h2 data-vn="Thông tin tài khoản"
+data-en="Account Information">
+Thông tin tài khoản
+</h2>
+
+
+
+<div class="avatar-box">
+
+<img id="avatarPreview"
+src="https://via.placeholder.com/120"
+alt="avatar">
+
+
+<input type="file"
+id="avatarInput"
+accept="image/*">
+
+
+<button onclick="document.getElementById('avatarInput').click()"
+data-vn="Đổi avatar"
+data-en="Change Avatar">
+Đổi avatar
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label data-vn="Tên"
+data-en="Name">
+Tên
+</label>
+
+
+<input id="userName"
+type="text">
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label data-vn="Email"
+data-en="Email">
+Email
+</label>
+
+
+<input id="userEmail"
+type="email">
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label data-vn="Mật khẩu"
+data-en="Password">
+Mật khẩu
+</label>
+
+
+<input id="userPassword"
+type="password">
+
+</div>
+
+
+
+<button id="saveProfile"
+data-vn="Lưu thay đổi"
+data-en="Save Changes">
+Lưu thay đổi
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="card">
+
+
+<h2 data-vn="Giao diện"
+data-en="Appearance">
+Giao diện
+</h2>
+
+
+
+<div class="option">
+
+
+<label data-vn="Chủ đề"
+data-en="Theme">
+Chủ đề
+</label>
+
+
+<select id="themeSelect">
+
+
+<option value="light"
+data-vn="Sáng"
+data-en="Light">
+Sáng
+</option>
+
+
+<option value="dark"
+data-vn="Tối"
+data-en="Dark">
+Tối
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="option">
+
+
+<label data-vn="Ngôn ngữ"
+data-en="Language">
+Ngôn ngữ
+</label>
+
+
+<select id="languageSelect">
+
+
+<option value="vi"
+data-vn="Tiếng Việt"
+data-en="Vietnamese">
+Tiếng Việt
+</option>
+
+
+<option value="en"
+data-vn="Tiếng Anh"
+data-en="English">
+Tiếng Anh
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+<button id="saveSettings"
+data-vn="Lưu"
+data-en="Save">
+Lưu
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+<section class="card">
+
+
+<h2 data-vn="Âm thanh và thông báo"
+data-en="Sound and Notification">
+Âm thanh và thông báo
+</h2>
+
+
+
+<div class="switch">
+
+
+<label data-vn="Âm lượng"
+data-en="Volume">
+Âm lượng
+</label>
+
+
+<input id="volume"
+type="range"
+min="1"
+max="100">
+
+
+<span id="volumeValue">
+50
+</span>
+
+
+</div>
+
+
+
+
+
+<div class="switch">
+
+
+<label data-vn="Thông báo"
+data-en="Notification">
+Thông báo
+</label>
+
+
+<input id="notification"
+type="checkbox">
+
+
+</div>
+
+
+
+<p id="notificationStatus"></p>
+
+
+
+</section>
+
+
+</main>
+
+
+</div>
+
+
+
+
+
+
+
+<footer>
+
+
+<h3>
+Study Focus
+</h3>
+
+
+<p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+data-en="Study effectively with Pomodoro, manage time and improve concentration.">
+
+Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+</p>
+
+
+<hr>
+
+
+<p>
+© 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+</p>
+
+
+</footer>
+
+
+
+
+
+<script src="js/main.js"></script>
+<script src="js/settings.js"></script>
+
+<script src="js/setting-menu.js"></script>
+</body>
+
+</html>

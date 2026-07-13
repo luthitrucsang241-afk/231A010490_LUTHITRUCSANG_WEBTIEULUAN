@@ -1,0 +1,767 @@
+/* ================= HEADER ================= */
+
+
+.header{
+
+    position:relative;
+
+    width:100%;
+
+    height:80px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    padding:0 80px;
+
+
+    background:white;
+
+
+    box-shadow:
+
+    0 5px 20px rgba(0,0,0,0.08);
+
+
+}
+
+
+
+
+
+/* ================= LOGO ================= */
+
+
+.logo{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    font-size:27px;
+
+
+    font-weight:700;
+
+
+    color:#2563eb;
+
+
+}
+
+
+
+.logo i{
+
+
+    color:#38bdf8;
+
+
+    font-size:28px;
+
+
+}
+
+
+
+
+
+
+/* ================= MENU ================= */
+
+
+.menu{
+
+
+    display:flex;
+
+
+    gap:40px;
+
+
+}
+
+
+
+.menu a{
+
+
+    text-decoration:none;
+
+
+    color:#334155;
+
+
+    font-weight:500;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+.menu a:hover{
+
+
+    color:#2563eb;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= REGISTER ================= */
+
+
+body{
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #dff6ff,
+
+    #89cff0
+
+    );
+
+
+}
+
+
+
+
+
+
+.register-page{
+
+
+    min-height:auto;
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+    padding:50px 30px;
+
+
+}
+
+
+
+
+
+
+@media(max-width:800px){
+
+
+    .register-container{
+
+
+        width:90%;
+
+
+        grid-template-columns:1fr;
+
+
+        height:auto;
+
+
+    }
+
+
+
+    .register-image{
+
+
+        height:250px;
+
+
+    }
+
+
+
+    .header{
+
+
+        padding:0 25px;
+
+
+    }
+
+
+
+    .menu{
+
+
+        gap:15px;
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= IMAGE ================= */
+
+
+.register-image{
+
+
+    background:
+
+
+    linear-gradient(
+
+    rgba(37,99,235,.25),
+
+    rgba(56,189,248,.35)
+
+    ),
+
+
+    url("../images/login.png");
+
+
+
+    background-size:cover;
+
+
+    background-position:center;
+
+
+    position:relative;
+
+
+}
+
+
+
+
+
+.image-text{
+
+
+    position:absolute;
+
+
+    bottom:35px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+    width:90%;
+
+
+    text-align:center;
+
+
+    color:white;
+
+
+}
+
+
+
+
+.image-text h2{
+
+
+    font-size:32px;
+
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+
+.image-text p{
+
+
+    font-size:14px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= FORM ================= */
+
+
+.register-box{
+
+
+    padding:35px;
+
+
+    overflow-y:auto;
+
+
+}
+
+
+
+
+
+
+
+.register-box h1{
+
+    text-align: center;
+
+    font-size:28px;
+
+
+    color:#2563eb;
+
+
+    margin-bottom:5px;
+
+
+}
+
+
+
+
+.register-box p{
+
+
+    color:#64748b;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+
+
+
+
+.input-group{
+
+
+    margin-top:8px;
+
+
+}
+
+
+
+
+
+.input-group label{
+
+
+    display:block;
+
+
+    margin-bottom:5px;
+
+
+    color:#334155;
+
+
+}
+
+
+
+
+
+
+
+.input-group input{
+
+
+    width:100%;
+
+
+    padding:8px;
+
+
+    border-radius:10px;
+
+
+    border:1px solid #cbd5e1;
+
+
+    outline:none;
+
+
+}
+
+
+
+
+.input-group input:focus{
+
+
+    border-color:#38bdf8;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= SHOW PASSWORD ================= */
+
+
+.show-pass{
+
+
+    margin:12px 0;
+
+
+    color:#475569;
+
+
+}
+
+
+
+
+
+.show-pass input{
+
+
+    cursor:pointer;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= BUTTON ================= */
+
+
+.register-box button{
+
+
+    width:100%;
+
+
+    padding:12px;
+
+
+    margin-top:10px;
+
+
+    border:none;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    linear-gradient(
+
+    135deg,
+
+    #2563eb,
+
+    #38bdf8
+
+    );
+
+
+    color:white;
+
+
+    font-size:16px;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.register-box button:hover{
+
+
+    transform:translateY(-2px);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= LOGIN LINK ================= */
+
+
+.login-link{
+
+
+    text-align:center;
+
+
+    margin-top:15px;
+
+
+}
+
+
+
+
+
+.login-link a{
+
+
+    color:#2563eb;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+@media(max-width:800px){
+
+
+
+    .register-container{
+
+
+        width:820px;
+
+
+        min-height:520px;
+
+
+        display:grid;
+
+
+        grid-template-columns:0.9fr 1fr;
+
+
+        background:white;
+
+
+        border-radius:25px;
+
+
+        overflow:hidden;
+
+
+        box-shadow:
+
+
+        0 20px 40px rgba(37,99,235,.2);
+
+
+    }
+
+
+
+
+    .register-image{
+
+
+        height:250px;
+
+
+    }
+
+
+
+
+    .header{
+
+
+        padding:0 25px;
+
+
+    }
+
+
+
+
+    .menu{
+
+
+        gap:15px;
+
+
+    }
+
+
+}
+
+/* ================= REGISTER THEME ================= */
+
+
+body.dark .register-page{
+
+    background:#020617;
+
+}
+
+
+body.dark .register-box{
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+body.dark .register-box h1{
+
+    color:white;
+
+}
+
+
+body.dark .register-box p{
+
+    color:#cbd5e1;
+
+}
+
+
+
+body.dark .input-group label{
+
+    color:#e2e8f0;
+
+}
+
+
+
+body.dark .input-group input{
+
+    background:#1e293b;
+
+    color:white;
+
+    border-color:#475569;
+
+}
+
+
+
+body.dark .input-group input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+
+
+body.dark .show-pass,
+body.dark .login-link{
+
+    color:#cbd5e1;
+
+}
+
+
+
+body.dark .login-link a{
+
+    color:#38bdf8;
+
+}
+
+
+
+body.dark .register-box button{
+
+    background:#2563eb;
+
+    color:white;
+
+}

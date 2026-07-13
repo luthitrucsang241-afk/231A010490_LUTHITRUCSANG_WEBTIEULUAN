@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Achievement - Study Focus</title>
+
+    <link rel="stylesheet" href="css/achievement.css">
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+
+
+        <div class="logo">
+            Study Focus
+        </div>
+
+
+
+        <nav class="menu">
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+
+                Trang chủ
+
+            </a>
+
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+
+                Giới thiệu
+
+            </a>
+
+
+
+            <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+
+                Liên hệ
+
+            </a>
+
+
+
+            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
+
+                Đăng nhập
+
+            </a>
+
+
+
+            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+
+                Đăng ký
+
+            </a>
+
+
+
+        </nav>
+
+
+
+
+
+        <div class="setting-menu">
+
+
+            <button class="setting-btn">
+                ⚙
+            </button>
+
+
+
+
+
+            <div class="setting-dropdown">
+
+
+                <div class="dropdown-title" data-vn="Giao diện" data-en="Theme">
+
+                    Giao diện
+
+                </div>
+
+
+
+                <button onclick="changeTheme('light')">
+
+                    <span data-vn="Sáng" data-en="Light">
+
+                        Sáng
+
+                    </span>
+
+                </button>
+
+
+
+
+                <button onclick="changeTheme('dark')">
+
+                    <span data-vn="Tối" data-en="Dark">
+
+                        Tối
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <hr>
+
+
+
+
+
+                <div class="dropdown-title" data-vn="Ngôn ngữ" data-en="Language">
+
+                    Ngôn ngữ
+
+                </div>
+
+
+
+
+
+                <button onclick="changeLanguage('vi')">
+
+                    🇻🇳
+
+                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
+
+                        Tiếng Việt
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <button onclick="changeLanguage('en')">
+
+                    🇺🇸
+
+                    <span data-vn="Tiếng Anh" data-en="English">
+
+                        Tiếng Anh
+
+                    </span>
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+
+
+
+
+
+
+    <div class="layout">
+
+
+
+        <aside class="sidebar">
+
+
+            <h2>
+                Study Focus
+            </h2>
+
+
+
+
+            <a href="dashboard.html" data-vn="Dashboard" data-en="Dashboard">
+
+                Dashboard
+
+            </a>
+
+
+
+
+            <a href="calendar.html" data-vn="Lịch" data-en="Calendar">
+
+                Calendar
+
+            </a>
+
+
+
+
+            <a href="statistics.html" data-vn="Thống kê" data-en="Statistics">
+
+                Statistics
+
+            </a>
+
+
+
+
+            <a class="active" href="achievement.html" data-vn="Thành tích" data-en="Achievement">
+
+                Achievement
+
+            </a>
+
+
+
+
+            <a href="profile.html" data-vn="Hồ sơ" data-en="Profile">
+
+                Profile
+
+            </a>
+
+
+
+
+            <a href="settings.html" data-vn="Cài đặt" data-en="Settings">
+
+                Settings
+
+            </a>
+
+
+
+
+            <a href="login.html" data-vn="Đăng xuất" data-en="Logout">
+
+                Logout
+
+            </a>
+
+
+
+        </aside>
+
+
+
+
+
+
+
+
+
+        <main class="main">
+
+
+
+            <section class="hero">
+
+
+                <h1 data-vn="Thành tích học tập" data-en="Learning Achievements">
+
+                    Thành tích học tập
+
+                </h1>
+
+
+
+
+                <p data-vn="Theo dõi các huy hiệu đạt được trong quá trình học."
+                    data-en="Track badges earned during your learning journey.">
+
+                    Theo dõi các huy hiệu đạt được trong quá trình học.
+
+                </p>
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <section class="achievement-list">
+
+
+
+
+
+                <div class="badge">
+
+
+                    <div class="icon">
+                        🥉
+                    </div>
+
+
+
+                    <h2>
+                        Beginner
+                    </h2>
+
+
+
+                    <p data-vn="Hoàn thành 10 Pomodoro đầu tiên." data-en="Complete your first 10 Pomodoros.">
+
+                        Hoàn thành 10 Pomodoro đầu tiên.
+
+                    </p>
+
+
+
+                    <span data-vn="Đã đạt" data-en="Unlocked">
+
+                        Đã đạt
+
+                    </span>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="badge">
+
+
+                    <div class="icon">
+                        🥈
+                    </div>
+
+
+
+                    <h2>
+                        Silver
+                    </h2>
+
+
+
+                    <p data-vn="Duy trì học tập liên tục 7 ngày." data-en="Maintain continuous learning for 7 days.">
+
+                        Duy trì học tập liên tục 7 ngày.
+
+                    </p>
+
+
+
+                    <span data-vn="Đã đạt" data-en="Unlocked">
+
+                        Đã đạt
+
+                    </span>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="badge locked">
+
+
+                    <div class="icon">
+                        🥇
+                    </div>
+
+
+
+                    <h2>
+                        Gold
+                    </h2>
+
+
+
+                    <p data-vn="Hoàn thành 100 Pomodoro." data-en="Complete 100 Pomodoros.">
+
+                        Hoàn thành 100 Pomodoro.
+
+                    </p>
+
+
+
+                    <span data-vn="Chưa mở khóa" data-en="Locked">
+
+                        Chưa mở khóa
+
+                    </span>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                <div class="badge locked">
+
+
+                    <div class="icon">
+                        🏆
+                    </div>
+
+
+
+                    <h2>
+                        Master
+                    </h2>
+
+
+
+                    <p data-vn="Đạt 500 giờ học tập." data-en="Reach 500 study hours.">
+
+                        Đạt 500 giờ học tập.
+
+                    </p>
+
+
+
+                    <span data-vn="Chưa mở khóa" data-en="Locked">
+
+                        Chưa mở khóa
+
+                    </span>
+
+
+
+                </div>
+
+
+            </section>
+            <!-- TIẾP THEO achievement.html -->
+
+
+            <section class="card">
+
+
+                <h2 data-vn="Tiến trình hiện tại" data-en="Current Progress">
+
+                    Tiến trình hiện tại
+
+                </h2>
+
+
+
+
+
+                <div class="progress">
+
+
+
+                    <div class="bar">
+
+
+                        <span data-vn="Pomodoro" data-en="Pomodoro">
+
+                            Pomodoro
+
+                        </span>
+
+
+
+                        <div>
+
+                            <i style="width:70%">
+
+                            </i>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="bar">
+
+
+                        <span data-vn="Thời gian học" data-en="Study Time">
+
+                            Study Time
+
+                        </span>
+
+
+
+
+                        <div>
+
+                            <i style="width:50%">
+
+                            </i>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="bar">
+
+
+                        <span data-vn="Mục tiêu hàng ngày" data-en="Daily Goals">
+
+                            Daily Goals
+
+                        </span>
+
+
+
+
+                        <div>
+
+                            <i style="width:85%">
+
+                            </i>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+
+
+        </main>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer>
+
+
+
+        <h3>
+            Study Focus
+        </h3>
+
+
+
+
+
+        <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+            data-en="Study effectively with Pomodoro, manage time and improve concentration.">
+
+            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+        </p>
+
+
+
+
+
+
+
+        <div class="footer-links">
+
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+
+                Trang chủ
+
+            </a>
+
+
+
+
+            <a href="#" data-vn="Tính năng" data-en="Features">
+
+                Tính năng
+
+            </a>
+
+
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+
+                Giới thiệu
+
+            </a>
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <hr>
+
+
+
+
+
+        <p>
+
+            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+
+        </p>
+
+
+
+
+
+    </footer>
+
+
+
+
+
+
+
+    <script src="js/main.js"></script>
+
+    <script src="js/achievement.js"></script>
+
+</body>
+
+
+</html>

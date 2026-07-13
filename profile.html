@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Profile - Study Focus</title>
+
+    <link rel="stylesheet" href="css/profile.css">
+
+</head>
+
+
+<body>
+
+
+
+    <header class="header">
+
+
+        <div class="logo">
+            Study Focus
+        </div>
+
+
+
+
+        <nav class="menu">
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+                Trang chủ
+            </a>
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+                Giới thiệu
+            </a>
+
+
+            <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+                Liên hệ
+            </a>
+
+
+            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
+                Đăng nhập
+            </a>
+
+
+            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+                Đăng ký
+            </a>
+
+
+        </nav>
+
+
+
+
+
+        <div class="setting-menu">
+
+
+            <button class="setting-btn">
+                ⚙
+            </button>
+
+
+
+            <div class="setting-dropdown">
+
+
+
+                <div class="dropdown-title" data-vn="Giao diện" data-en="Theme">
+
+                    Giao diện
+
+                </div>
+
+
+
+                <button onclick="changeTheme('light')">
+
+                    <span data-vn="Sáng" data-en="Light">
+
+                        Sáng
+
+                    </span>
+
+                </button>
+
+
+
+
+                <button onclick="changeTheme('dark')">
+
+                    <span data-vn="Tối" data-en="Dark">
+
+                        Tối
+
+                    </span>
+
+                </button>
+
+
+
+
+                <hr>
+
+
+
+
+                <div class="dropdown-title" data-vn="Ngôn ngữ" data-en="Language">
+
+                    Ngôn ngữ
+
+                </div>
+
+
+
+
+                <button onclick="changeLanguage('vi')">
+
+                    🇻🇳
+
+                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
+
+                        Tiếng Việt
+
+                    </span>
+
+                </button>
+
+
+
+
+                <button onclick="changeLanguage('en')">
+
+                    🇺🇸
+
+                    <span data-vn="Tiếng Anh" data-en="English">
+
+                        Tiếng Anh
+
+                    </span>
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+
+
+
+
+
+    <div class="layout">
+
+
+
+        <aside class="sidebar">
+
+
+            <h2>
+                Study Focus
+            </h2>
+
+
+
+            <a href="dashboard.html">
+                Dashboard
+            </a>
+
+
+            <a href="calendar.html">
+                Calendar
+            </a>
+
+
+            <a href="statistics.html">
+                Statistics
+            </a>
+
+
+            <a href="achievement.html">
+                Achievement
+            </a>
+
+
+            <a class="active" href="profile.html">
+                Profile
+            </a>
+
+
+            <a href="settings.html">
+                Settings
+            </a>
+
+
+            <a href="login.html">
+                Logout
+            </a>
+
+
+
+        </aside>
+
+
+
+
+
+
+
+
+
+        <main class="main">
+
+
+
+
+
+
+            <section class="profile-card">
+
+
+
+                <div class="avatar">
+
+
+
+                    <img id="avatarImage" src="images/avatar.png" alt="Avatar">
+
+
+
+                    <input type="file" id="avatarInput" accept="image/*" hidden>
+
+
+
+                    <button onclick="document.getElementById('avatarInput').click()" data-vn="Đổi avatar"
+                        data-en="Change Avatar">
+
+                        Đổi avatar
+
+                    </button>
+
+
+                </div>
+
+
+
+
+
+
+
+                <div class="info">
+
+
+
+                    <h1 data-vn="Thông tin cá nhân" data-en="Personal Information">
+
+                        Thông tin cá nhân
+
+                    </h1>
+
+
+
+
+
+                    <div class="item">
+
+
+                        <label data-vn="Tên" data-en="Name">
+
+                            Tên
+
+                        </label>
+
+
+                        <input id="profileName">
+
+
+                    </div>
+
+
+
+
+
+                    <div class="item">
+
+
+                        <label data-vn="Email" data-en="Email">
+
+                            Email
+
+                        </label>
+
+
+                        <input id="profileEmail">
+
+
+                    </div>
+
+
+
+
+
+                    <div class="item">
+
+
+                        <label data-vn="Username" data-en="Username">
+
+                            Username
+
+                        </label>
+
+
+                        <input id="profileUsername">
+
+
+                    </div>
+
+
+
+
+
+                    <button class="save" onclick="saveProfile()" data-vn="Lưu thay đổi" data-en="Save Changes">
+
+                        Lưu thay đổi
+
+                    </button>
+
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+
+            <section class="card">
+
+
+                <h2 data-vn="Bảo mật" data-en="Security">
+
+                    Bảo mật
+
+                </h2>
+
+
+
+
+
+                <div class="item">
+
+
+                    <label data-vn="Email mới" data-en="New Email">
+
+                        Email mới
+
+                    </label>
+
+
+                    <input id="newEmail" placeholder="Email mới" data-vn-placeholder="Email mới"
+                        data-en-placeholder="New Email">
+
+
+                </div>
+
+
+
+
+
+
+                <div class="item">
+
+
+                    <label data-vn="Mật khẩu mới" data-en="New Password">
+
+                        Mật khẩu mới
+
+                    </label>
+
+
+                    <input type="password" id="newPassword" placeholder="Mật khẩu mới"
+                        data-vn-placeholder="Mật khẩu mới" data-en-placeholder="New Password">
+
+
+                </div>
+
+
+
+
+
+                <button onclick="updateSecurity()" data-vn="Cập nhật mật khẩu" data-en="Update Password">
+
+                    Cập nhật mật khẩu
+
+                </button>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <section class="card">
+
+
+                <h2 data-vn="Hoạt động học tập" data-en="Learning Activity">
+
+                    Hoạt động học tập
+
+                </h2>
+
+
+
+
+
+                <div class="stats">
+
+
+
+
+
+                    <div class="stat-item">
+
+
+                        <h3 id="pomodoroCount">
+                            0
+                        </h3>
+
+
+                        <p data-vn="🍅 Pomodoro" data-en="🍅 Pomodoro">
+
+                            🍅 Pomodoro
+
+                        </p>
+
+
+                    </div>
+
+
+
+
+
+
+                    <div class="stat-item">
+
+
+                        <h3 id="studyDays">
+                            0
+                        </h3>
+
+
+                        <p data-vn="📅 Ngày học" data-en="📅 Study Days">
+
+                            📅 Ngày học
+
+                        </p>
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="stat-item">
+
+
+                        <h3 id="studyHours">
+                            0h
+                        </h3>
+
+
+                        <p data-vn="⏰ Giờ học" data-en="⏰ Study Time">
+
+                            ⏰ Giờ học
+
+                        </p>
+
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+
+
+        </main>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <footer>
+
+
+
+        <h3>
+            Study Focus
+        </h3>
+
+
+
+        <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+            data-en="Study effectively with Pomodoro, manage time and improve focus.">
+
+            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+        </p>
+
+
+
+
+
+        <div class="footer-links">
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+
+                Trang chủ
+
+            </a>
+
+
+            <a href="#" data-vn="Tính năng" data-en="Features">
+
+                Tính năng
+
+            </a>
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+
+                Giới thiệu
+
+            </a>
+
+
+
+        </div>
+
+
+
+
+
+        <hr>
+
+
+
+
+        <p>
+            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+        </p>
+
+
+
+
+    </footer>
+
+
+
+
+
+
+
+    <script src="js/main.js"></script>
+
+    <script src="js/profile.js"></script>
+
+
+
+</body>
+
+
+</html>

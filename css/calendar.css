@@ -1,0 +1,1382 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+body {
+
+    background:
+    linear-gradient(
+        135deg,
+        #dff6ff,
+        #89cff0
+    );
+
+    min-height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    color:#334155;
+
+}
+
+
+/* ================= HEADER ================= */
+
+
+.header {
+
+    height:80px;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 80px;
+
+    box-shadow:
+    0 5px 20px rgba(0,0,0,.08);
+
+}
+
+
+.logo {
+
+    font-size:27px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+}
+
+
+
+.menu {
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+
+
+.menu a {
+
+    text-decoration:none;
+
+    color:#334155;
+
+}
+
+
+
+.menu .btn {
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    padding:10px 22px;
+
+    border-radius:20px;
+
+}
+
+
+
+/* ================= SETTING ================= */
+
+
+.setting-menu {
+
+    position:relative;
+
+}
+
+
+
+.setting-btn {
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+
+
+.setting-dropdown {
+
+    position:absolute;
+
+    right:0;
+
+    top:50px;
+
+    width:210px;
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+    display:none;
+
+    z-index:999;
+
+}
+
+
+.setting-dropdown.show {
+
+    display:block;
+
+}
+
+
+.setting-dropdown button {
+
+    width:100%;
+
+    padding:10px;
+
+    border:none;
+
+    background:white;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    border-radius:10px;
+
+}
+
+
+.setting-dropdown button:hover {
+
+    background:#dbeafe;
+
+}
+
+
+
+
+/* ================= LAYOUT ================= */
+
+
+.layout {
+
+    display:flex;
+
+    flex:1;
+
+}
+
+
+
+.sidebar {
+
+    width:240px;
+
+    background:white;
+
+    padding:25px 15px;
+
+    box-shadow:
+    5px 0 20px rgba(0,0,0,.08);
+
+}
+
+
+
+.sidebar h2 {
+
+    text-align:center;
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.sidebar a {
+
+    display:block;
+
+    padding:12px 18px;
+
+    margin-bottom:5px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:#475569;
+
+}
+
+
+
+.sidebar a:hover,
+.sidebar .active {
+
+    background:#dff6ff;
+
+    color:#2563eb;
+
+}
+
+
+
+
+
+/* ================= MAIN ================= */
+
+
+.main {
+
+    flex:1;
+
+    padding:25px;
+
+}
+
+
+
+.hero,
+.card {
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.12);
+
+}
+
+
+
+.hero h1,
+.card h2 {
+
+    color:#2563eb;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.card:hover {
+
+    transform:translateY(-3px);
+
+    transition:.3s;
+
+}
+
+
+
+
+/* ================= FORM ================= */
+
+
+.schedule-form {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+
+input,
+select,
+textarea {
+
+    width:100%;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    border:1px solid #cbd5e1;
+
+    outline:none;
+
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color:#2563eb;
+
+}
+
+
+
+textarea {
+
+    min-height:100px;
+
+}
+
+
+
+
+button {
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:10px 20px;
+
+    border-radius:20px;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+}
+
+
+button:hover {
+
+    opacity:.85;
+
+    transform:translateY(-2px);
+
+    transition:.2s;
+
+}
+
+ 
+/* ===============================
+   WEEK CALENDAR
+================================ */
+
+
+.week-calendar {
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+
+.schedule-grid {
+
+    display:grid;
+
+    grid-template-columns:
+    120px repeat(7,1fr);
+
+    gap:10px;
+
+    min-width:900px;
+
+}
+
+
+
+.schedule-head {
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    padding:15px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    font-weight:600;
+
+}
+
+
+
+.schedule-day {
+
+    background:#dff6ff;
+
+    color:#2563eb;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+
+
+.schedule-cell {
+
+    min-height:150px;
+
+    background:#f8fafc;
+
+    padding:10px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+
+
+.event-box {
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:15px;
+
+    font-size:14px;
+
+    box-shadow:
+    0 5px 15px rgba(37,99,235,.25);
+
+}
+
+
+
+.event-box p {
+
+    margin:7px 0;
+
+}
+
+
+
+.event-box button {
+
+    background:white;
+
+    color:#2563eb;
+
+    padding:6px 12px;
+
+    margin-right:5px;
+
+    font-size:12px;
+
+}
+
+
+
+
+
+
+/* ===============================
+   WEEKLY STUDY SCHEDULE TABLE
+================================ */
+
+
+.schedule-table {
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+
+
+.schedule-table table {
+
+    width:100%;
+
+    min-width:700px;
+
+    border-collapse:separate;
+
+    border-spacing:8px;
+
+}
+
+
+
+.schedule-table th {
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+}
+
+
+
+.schedule-table td {
+
+    background:#f1faff;
+
+    padding:15px;
+
+    min-height:80px;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    color:#334155;
+
+}
+
+
+
+.schedule-table td:hover {
+
+    background:#dff6ff;
+
+    transform:scale(1.03);
+
+    transition:.2s;
+
+}
+
+
+
+
+
+
+/* ===============================
+   MONTH CALENDAR
+================================ */
+
+
+.month-control {
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.month-control h3 {
+
+    color:#2563eb;
+
+}
+
+
+
+.month-calendar {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(7,1fr);
+
+    gap:10px;
+
+}
+
+
+
+.month-calendar .day {
+
+    min-height:80px;
+
+    background:#f1faff;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    font-weight:bold;
+
+}
+
+
+
+.month-calendar .day.event {
+
+    background:
+    linear-gradient(
+        135deg,
+        #38bdf8,
+        #2563eb
+    );
+
+    color:white;
+
+}
+
+
+
+
+
+
+
+/* ===============================
+   STUDY STREAK
+================================ */
+
+
+.streak {
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+
+
+.streak div {
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+    font-weight:bold;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.08);
+
+}
+
+
+
+#streakFire {
+
+    font-size:35px;
+
+    color:#ea580c;
+
+}
+
+
+
+
+/* ===============================
+   STUDY TIME
+================================ */
+
+
+.time-box {
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+
+
+.time-box div {
+
+    background:#f1faff;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+}
+
+
+
+.time-box h3 {
+
+    color:#2563eb;
+
+}
+
+
+
+.time-box p {
+
+    font-size:25px;
+
+    font-weight:bold;
+
+}
+
+
+
+
+
+
+/* ===============================
+   EDIT MODAL
+================================ */
+
+
+.modal {
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.45);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+
+
+.modal.show {
+
+    display:flex;
+
+}
+
+
+
+.modal-content {
+
+    width:90%;
+
+    max-width:450px;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.2);
+
+}
+
+
+
+.modal-content h2 {
+
+    color:#2563eb;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+
+    margin-bottom:12px;
+
+}
+
+
+ 
+/* ===============================
+   FOOTER
+================================ */
+
+
+footer {
+
+    background:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    margin-top:auto;
+
+    box-shadow:
+    0 -5px 20px rgba(0,0,0,.08);
+
+}
+
+
+
+.footer-links {
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    margin:15px 0;
+
+}
+
+
+
+.footer-links a {
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+}
+
+
+
+footer hr {
+
+    border:none;
+
+    border-top:1px solid #ddd;
+
+    margin:15px 0;
+
+}
+
+
+
+
+
+/* ===============================
+   LIGHT THEME
+================================ */
+
+
+body.light {
+
+    background:
+    linear-gradient(
+        135deg,
+        #dff6ff,
+        #89cff0
+    );
+
+    color:#334155;
+
+}
+
+
+
+body.light .header,
+body.light .sidebar,
+body.light .card,
+body.light .hero,
+body.light footer {
+
+    background:white;
+
+}
+
+
+
+
+
+/* ===============================
+   DARK MODE
+================================ */
+
+
+body.dark {
+
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #1e293b
+    );
+
+    color:white;
+
+}
+
+
+
+body.dark .header,
+body.dark .sidebar,
+body.dark .card,
+body.dark .hero,
+body.dark footer,
+body.dark .modal-content {
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3 {
+
+    color:#38bdf8;
+
+}
+
+
+
+body.dark p {
+
+    color:#cbd5e1;
+
+}
+
+
+
+body.dark .menu a {
+
+    color:#e2e8f0;
+
+}
+
+
+
+body.dark .sidebar a {
+
+    color:#cbd5e1;
+
+}
+
+
+
+body.dark .sidebar a:hover,
+body.dark .sidebar .active {
+
+    background:#1e40af;
+
+    color:white;
+
+}
+
+
+
+
+/* INPUT DARK */
+
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+
+    background:#1e293b;
+
+    color:white;
+
+    border-color:#475569;
+
+}
+
+
+
+
+/* CALENDAR DARK */
+
+
+body.dark .schedule-cell,
+body.dark .schedule-table td,
+body.dark .month-calendar .day,
+body.dark .time-box div {
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+
+
+body.dark .schedule-day {
+
+    background:#1e3a8a;
+
+    color:white;
+
+}
+
+
+
+body.dark .event-box {
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+}
+
+
+
+body.dark .streak div {
+
+    background:#451a03;
+
+    color:#fdba74;
+
+}
+
+
+
+
+/* SETTING DROPDOWN DARK */
+
+
+body.dark .setting-dropdown {
+
+    background:#0f172a;
+
+}
+
+
+
+body.dark .setting-dropdown button {
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+body.dark .setting-dropdown button:hover {
+
+    background:#1e40af;
+
+}
+
+
+
+
+
+
+/* ===============================
+   RESPONSIVE TABLET
+================================ */
+
+
+@media(max-width:1000px){
+
+
+    .header {
+
+        padding:0 30px;
+
+    }
+
+
+
+    .menu {
+
+        gap:15px;
+
+    }
+
+
+
+    .layout {
+
+        flex-direction:column;
+
+    }
+
+
+
+    .sidebar {
+
+        width:100%;
+
+        display:flex;
+
+        overflow-x:auto;
+
+    }
+
+
+
+    .sidebar h2 {
+
+        display:none;
+
+    }
+
+
+
+    .sidebar a {
+
+        white-space:nowrap;
+
+    }
+
+
+
+    .schedule-grid {
+
+        min-width:900px;
+
+    }
+
+
+
+}
+
+
+
+
+
+
+/* ===============================
+   RESPONSIVE MOBILE
+================================ */
+
+
+@media(max-width:600px){
+
+
+
+    .header {
+
+        height:auto;
+
+        padding:15px;
+
+        flex-wrap:wrap;
+
+        gap:15px;
+
+    }
+
+
+
+    .logo {
+
+        font-size:22px;
+
+    }
+
+
+
+    .menu a:not(.btn){
+
+        display:none;
+
+    }
+
+
+
+    .main {
+
+        padding:15px;
+
+    }
+
+
+
+    .card {
+
+        padding:15px;
+
+    }
+
+
+
+    .month-calendar {
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+
+
+    .time-box {
+
+        grid-template-columns:1fr;
+
+    }
+
+
+
+    .schedule-table table {
+
+        min-width:700px;
+
+    }
+
+
+
+    .modal-content {
+
+        width:95%;
+
+    }
+
+
+
+}
+
+
+
+
+
+
+
+/* ===============================
+   ANIMATION
+================================ */
+
+
+.card,
+.event-box,
+.month-calendar .day,
+.schedule-table td {
+
+    transition:.3s;
+
+}
+
+
+
+.card:hover {
+
+    box-shadow:
+
+    0 15px 35px rgba(37,99,235,.2);
+
+}
+
+
+
+.event-box:hover {
+
+    transform:translateY(-5px);
+
+}
+
+
+
+.month-calendar .day:hover {
+
+    transform:scale(1.05);
+
+}
+
+
+
+

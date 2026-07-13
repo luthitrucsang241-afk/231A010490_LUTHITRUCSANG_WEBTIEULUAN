@@ -1,0 +1,500 @@
+<!-- statistics.html -->
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-vn="Thống kê - Study Focus" data-en="Statistics - Study Focus">
+        Thống kê - Study Focus
+    </title>
+
+    <link rel="stylesheet" href="css/statistics.css">
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+
+
+        <div class="logo">
+            Study Focus
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+                Trang chủ
+            </a>
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+                Giới thiệu
+            </a>
+
+
+            <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+                Liên hệ
+            </a>
+
+
+            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
+                Đăng nhập
+            </a>
+
+
+            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+                Đăng ký
+            </a>
+
+
+        </nav>
+
+
+
+        <div class="setting-menu">
+
+
+            <button class="setting-btn">
+                ⚙
+            </button>
+
+
+
+            <div class="setting-dropdown">
+
+
+                <div class="dropdown-title" data-vn="Giao diện" data-en="Theme">
+                    Giao diện
+                </div>
+
+
+
+                <button onclick="changeTheme('light')">
+
+                    <span data-vn="Sáng" data-en="Light">
+                        Sáng
+                    </span>
+
+                </button>
+
+
+
+                <button onclick="changeTheme('dark')">
+
+                    <span data-vn="Tối" data-en="Dark">
+                        Tối
+                    </span>
+
+                </button>
+
+
+
+                <hr>
+
+
+
+                <div class="dropdown-title" data-vn="Ngôn ngữ" data-en="Language">
+                    Ngôn ngữ
+                </div>
+
+
+
+                <button onclick="changeLanguage('vi')">
+
+                    🇻🇳
+
+                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
+                        Tiếng Việt
+                    </span>
+
+                </button>
+
+
+
+                <button onclick="changeLanguage('en')">
+
+                    🇺🇸
+
+                    <span data-vn="Tiếng Anh" data-en="English">
+                        Tiếng Anh
+                    </span>
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+
+
+    <div class="layout">
+
+
+
+        <aside class="sidebar">
+
+
+            <h2>
+                Study Focus
+            </h2>
+
+
+
+            <a href="dashboard.html" data-vn="Dashboard" data-en="Dashboard">
+                Dashboard
+            </a>
+
+
+
+            <a href="calendar.html" data-vn="Lịch" data-en="Calendar">
+                Lịch
+            </a>
+
+
+
+            <a class="active" href="statistics.html" data-vn="Thống kê" data-en="Statistics">
+                Thống kê
+            </a>
+
+
+
+            <a href="achievement.html" data-vn="Thành tích" data-en="Achievement">
+                Thành tích
+            </a>
+
+
+
+            <a href="profile.html" data-vn="Hồ sơ" data-en="Profile">
+                Hồ sơ
+            </a>
+
+
+
+            <a href="settings.html" data-vn="Cài đặt" data-en="Settings">
+                Cài đặt
+            </a>
+
+
+
+            <a href="login.html" data-vn="Đăng xuất" data-en="Logout">
+                Đăng xuất
+            </a>
+
+
+
+        </aside>
+
+
+
+
+
+        <main class="main">
+
+
+            <section class="hero">
+
+
+                <h1 data-vn="Thống kê học tập theo dõi quá trình học tập tiến bộ của bạn"
+                    data-en="Learning statistics track your learning progress">
+
+                    Thống kê học tập theo dõi quá trình học tập tiến bộ của bạn
+
+                </h1>
+
+
+
+                <p data-vn="Phân tích lịch học, thời gian học và sự tiến bộ của bạn."
+                    data-en="Analyze your schedule, study time and your progress.">
+
+                    Phân tích lịch học, thời gian học và sự tiến bộ của bạn.
+
+                </p>
+
+
+            </section>
+
+
+
+
+
+            <section class="statistics-grid">
+
+
+                <section class="card chart-card">
+
+
+                    <h2 data-vn="Biểu đồ ngày học" data-en="Daily Study Chart">
+
+                        Biểu đồ ngày học
+
+                    </h2>
+
+
+                    <div id="dailyEmpty" class="empty-message" data-vn="Chưa có dữ liệu học tập"
+                        data-en="No study data available">
+
+                        Chưa có dữ liệu học tập
+
+                    </div>
+
+
+                    <div id="dailyChart" class="vertical-chart"></div>
+
+
+                </section>
+
+                <section class="card chart-card">
+
+
+                    <h2 data-vn="Thống kê số ngày học" data-en="Study Days Statistics">
+
+                        Thống kê số ngày học
+
+                    </h2>
+
+
+
+                    <div id="dayEmpty" class="empty-message" data-vn="Chưa có dữ liệu" data-en="No data available">
+
+                        Chưa có dữ liệu
+
+                    </div>
+
+
+
+                    <div id="dayChart" class="horizontal-chart"></div>
+
+
+
+                </section>
+
+
+
+
+
+                <section class="card chart-card monthly-card">
+
+
+                    <h2 data-vn="Thống kê học tập theo tháng" data-en="Monthly Learning Statistics">
+
+                        Thống kê học tập theo tháng
+
+                    </h2>
+
+
+
+                    <div class="filter-box">
+
+
+
+                        <select id="yearSelect" data-vn="Chọn năm" data-en="Select Year">
+
+                        </select>
+
+
+
+                        <select id="monthSelect">
+
+                            <option value="" data-vn="Chọn tháng" data-en="Select Month">
+
+                                Chọn tháng
+
+                            </option>
+
+
+
+                            <option value="1" data-vn="Tháng 1" data-en="January">
+                                Tháng 1
+                            </option>
+
+
+
+                            <option value="2" data-vn="Tháng 2" data-en="February">
+                                Tháng 2
+                            </option>
+
+
+
+                            <option value="3" data-vn="Tháng 3" data-en="March">
+                                Tháng 3
+                            </option>
+
+
+
+                            <option value="4" data-vn="Tháng 4" data-en="April">
+                                Tháng 4
+                            </option>
+
+
+
+                            <option value="5" data-vn="Tháng 5" data-en="May">
+                                Tháng 5
+                            </option>
+
+
+
+                            <option value="6" data-vn="Tháng 6" data-en="June">
+                                Tháng 6
+                            </option>
+
+
+
+                            <option value="7" data-vn="Tháng 7" data-en="July">
+                                Tháng 7
+                            </option>
+
+
+
+                            <option value="8" data-vn="Tháng 8" data-en="August">
+                                Tháng 8
+                            </option>
+
+
+
+                            <option value="9" data-vn="Tháng 9" data-en="September">
+                                Tháng 9
+                            </option>
+
+
+
+                            <option value="10" data-vn="Tháng 10" data-en="October">
+                                Tháng 10
+                            </option>
+
+
+
+                            <option value="11" data-vn="Tháng 11" data-en="November">
+                                Tháng 11
+                            </option>
+
+
+
+                            <option value="12" data-vn="Tháng 12" data-en="December">
+                                Tháng 12
+                            </option>
+
+
+                        </select>
+
+
+
+                    </div>
+
+
+
+
+
+                    <div id="monthEmpty" class="empty-message" data-vn="Không có dữ liệu trong thời gian này"
+                        data-en="No data available for this period">
+
+                        Không có dữ liệu trong thời gian này
+
+                    </div>
+
+
+
+
+                    <div id="monthChart" class="monthly-chart"></div>
+
+
+
+                </section>
+
+
+            </section>
+
+
+
+        </main>
+
+
+    </div>
+
+
+
+
+
+    <footer>
+
+
+        <h3>
+            Study Focus
+        </h3>
+
+
+
+        <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+            data-en="Study effectively with Pomodoro, time management and improve concentration.">
+
+            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+        </p>
+
+
+
+
+        <div class="footer-links">
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+                Trang chủ
+            </a>
+
+
+
+            <a href="#" data-vn="Tính năng" data-en="Features">
+                Tính năng
+            </a>
+
+
+
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+                Giới thiệu
+            </a>
+
+
+        </div>
+
+
+
+
+        <hr>
+
+
+
+
+        <p>
+            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+        </p>
+
+
+
+    </footer>
+
+
+
+
+
+    <script src="js/main.js"></script>
+
+    <script src="js/statistics.js"></script>
+
+
+</body>
+
+</html>
