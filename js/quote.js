@@ -571,6 +571,7 @@ const quotes = [
 
 
 
+
 /* ===============================
    CURRENT QUOTE
 ================================ */
@@ -581,85 +582,115 @@ let currentQuote = quotes[0];
 
 
 
+
+/* ===============================
+   INITIALIZE QUOTE
+================================ */
+
+
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
 
-const quoteText =
-document.getElementById(
-"quoteText"
-);
+    const quoteText =
+    document.getElementById(
+        "quote-text"
+    );
+
+
+    const quoteAuthor =
+    document.getElementById(
+        "quote-author"
+    );
+
+
+    const randomButton =
+    document.getElementById(
+        "random-quote"
+    );
+
+
+    const favoriteButton =
+    document.getElementById(
+        "favorite-quote"
+    );
+
+
+    const copyButton =
+    document.getElementById(
+        "copy-quote"
+    );
 
 
 
-const randomButton =
-document.getElementById(
-"randomQuote"
-);
+    if(
+        !quoteText ||
+        !quoteAuthor ||
+        !randomButton ||
+        !favoriteButton ||
+        !copyButton
+    ){
+
+        return;
+
+    }
 
 
 
-const favoriteButton =
-document.getElementById(
-"favoriteQuote"
-);
+    currentQuote = {
+
+        text:
+        quoteText.textContent.trim()
+        .replace(/^["“]|["”]$/g,""),
+
+        author:
+        quoteAuthor.textContent
+        .replace(/^—\s*/,"")
+        .trim()
+
+    };
 
 
 
-
-if(!quoteText || !randomButton || !favoriteButton)
-    return;
-
-
-
-
-currentQuote =
-{
-    text:
-    quoteText.textContent
-    .replace(/^["“]|["”]$/g,"")
-    .trim(),
-
-    author:""
-};
-
-
-
-
-
-randomButton.onclick=()=>{
-
-
-    showRandomQuote(
-        quoteText,
+    updateFavoriteButton(
         favoriteButton
     );
 
 
-};
 
-
-
-
-
-favoriteButton.onclick=()=>{
-
-
-    toggleFavoriteQuote(
-        favoriteButton
+    randomButton.addEventListener(
+        "click",
+        ()=>{
+            showRandomQuote(
+                quoteText,
+                quoteAuthor,
+                favoriteButton
+            );
+        }
     );
 
 
-};
+
+    favoriteButton.addEventListener(
+        "click",
+        ()=>{
+            toggleFavoriteQuote(
+                favoriteButton
+            );
+        }
+    );
 
 
 
-
-
-updateFavoriteButton(
-    favoriteButton
-);
+    copyButton.addEventListener(
+        "click",
+        ()=>{
+            copyCurrentQuote(
+                copyButton
+            );
+        }
+    );
 
 
 
@@ -669,61 +700,60 @@ updateFavoriteButton(
 
 
 
-
+/* ===============================
+   RANDOM QUOTE
+================================ */
 
 
 function showRandomQuote(
     quoteText,
+    quoteAuthor,
     favoriteButton
 ){
 
 
-
-let random;
-
-
-
-do{
-
-
-random =
-Math.floor(
-Math.random()*quotes.length
-);
+    let randomIndex;
 
 
 
-}
-while(
-quotes[random].text === currentQuote.text
-);
+    do{
+
+
+        randomIndex =
+        Math.floor(
+            Math.random()
+            *
+            quotes.length
+        );
+
+
+    }
+    while(
+        quotes[randomIndex].text
+        ===
+        currentQuote.text
+    );
 
 
 
-
-currentQuote =
-quotes[random];
-
+    currentQuote =
+    quotes[randomIndex];
 
 
 
-quoteText.innerHTML =
-
-`
-"${currentQuote.text}"
-<br>
-<small>
-— ${currentQuote.author}
-</small>
-`;
+    quoteText.textContent =
+    `"${currentQuote.text}"`;
 
 
 
+    quoteAuthor.textContent =
+    `— ${currentQuote.author}`;
 
-updateFavoriteButton(
-    favoriteButton
-);
 
+
+    updateFavoriteButton(
+        favoriteButton
+    );
 
 
 }
@@ -733,130 +763,304 @@ updateFavoriteButton(
 
 
 
+
+/* ===============================
+   FAVORITE QUOTE
+================================ */
 
 
 function toggleFavoriteQuote(
-    button
+    favoriteButton
 ){
 
 
-
-let favorites =
-JSON.parse(
-localStorage.getItem("favoriteQuotes")
-)
-||
-[];
+    let favorites =
+    getFavoriteQuotes();
 
 
 
+    const quoteIndex =
+    favorites.findIndex(
+        quote =>
+        quote.text
+        ===
+        currentQuote.text
+        &&
+        quote.author
+        ===
+        currentQuote.author
+    );
 
-let index =
-favorites.findIndex(
-item=>
-item.text===currentQuote.text
-);
+
+
+    if(
+        quoteIndex !== -1
+    ){
+
+
+        favorites.splice(
+            quoteIndex,
+            1
+        );
+
+
+    }
+    else{
+
+
+        favorites.push(
+            currentQuote
+        );
+
+
+    }
 
 
 
-if(index!==-1){
+    saveFavoriteQuotes(
+        favorites
+    );
 
 
-favorites.splice(
-index,
-1
-);
+
+    updateFavoriteButton(
+        favoriteButton
+    );
 
 
 }
-else{
-
-
-favorites.push(
-currentQuote
-);
-
-
-}
-
-
-
-
-localStorage.setItem(
-"favoriteQuotes",
-JSON.stringify(favorites)
-);
-
-
-
-updateFavoriteButton(
-button
-);
-
-
-
-}
 
 
 
 
 
 
+
+/* ===============================
+   UPDATE FAVORITE BUTTON
+================================ */
 
 
 function updateFavoriteButton(
-button
+    favoriteButton
 ){
 
 
-
-let favorites =
-JSON.parse(
-localStorage.getItem("favoriteQuotes")
-)
-||
-[];
+    if(!favoriteButton)
+        return;
 
 
 
-
-let active =
-favorites.some(
-item=>
-item.text===currentQuote.text
-);
+    const favorites =
+    getFavoriteQuotes();
 
 
 
+    const isFavorite =
+    favorites.some(
+        quote =>
+        quote.text
+        ===
+        currentQuote.text
+        &&
+        quote.author
+        ===
+        currentQuote.author
+    );
 
-if(active){
 
 
-button.innerHTML =
-"❤️ Đã yêu thích";
+    const span =
+    favoriteButton.querySelector(
+        "span"
+    );
 
 
-button.classList.add(
-"active"
-);
+
+    const language =
+    localStorage.getItem(
+        "language"
+    )
+    ||
+    "vi";
+
+
+
+    if(isFavorite){
+
+
+        favoriteButton.classList.add(
+            "active"
+        );
+
+
+        if(span){
+
+
+            span.textContent =
+            language === "en"
+            ?
+            "Unfavorite"
+            :
+            "Bỏ yêu thích";
+
+
+        }
+
+
+    }
+    else{
+
+
+        favoriteButton.classList.remove(
+            "active"
+        );
+
+
+        if(span){
+
+
+            span.textContent =
+            language === "en"
+            ?
+            "Favorite"
+            :
+            "Yêu thích";
+
+
+        }
+
+
+    }
 
 
 }
-else{
 
 
-button.innerHTML =
-"♡ Yêu thích";
 
 
-button.classList.remove(
-"active"
-);
+
+
+
+/* ===============================
+   COPY QUOTE
+================================ */
+
+
+function copyCurrentQuote(
+    copyButton
+){
+
+
+    const textToCopy =
+    `"${currentQuote.text}" — ${currentQuote.author}`;
+
+
+
+    navigator.clipboard
+    .writeText(
+        textToCopy
+    )
+    .then(
+        ()=>{
+            showCopySuccess(
+                copyButton
+            );
+        }
+    )
+    .catch(
+        ()=>{
+            fallbackCopy(
+                textToCopy,
+                copyButton
+            );
+        }
+    );
 
 
 }
 
 
+
+
+
+
+
+/* ===============================
+   COPY FALLBACK
+================================ */
+
+
+function fallbackCopy(
+    text,
+    copyButton
+){
+
+
+    const textarea =
+    document.createElement(
+        "textarea"
+    );
+
+
+
+    textarea.value =
+    text;
+
+
+
+    textarea.style.position =
+    "fixed";
+
+
+
+    textarea.style.opacity =
+    "0";
+
+
+
+    document.body.appendChild(
+        textarea
+    );
+
+
+
+    textarea.select();
+
+
+
+    try{
+
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        showCopySuccess(
+            copyButton
+        );
+
+
+    }
+    catch(error){
+
+
+        console.error(
+            "Không thể sao chép câu nói:",
+            error
+        );
+
+
+    }
+
+
+
+    document.body.removeChild(
+        textarea
+    );
+
+
 }
 
 
@@ -865,22 +1069,98 @@ button.classList.remove(
 
 
 
-
-function copyQuote(){
-
-
-
-let text =
-
-`
-"${currentQuote.text}"
-— ${currentQuote.author}
-`;
+/* ===============================
+   COPY SUCCESS
+================================ */
 
 
+function showCopySuccess(
+    copyButton
+){
 
-navigator.clipboard.writeText(text);
 
+    const span =
+    copyButton.querySelector(
+        "span"
+    );
+
+
+
+    if(!span)
+        return;
+
+
+
+    const language =
+    localStorage.getItem(
+        "language"
+    )
+    ||
+    "vi";
+
+
+
+    const originalText =
+    language === "en"
+    ?
+    "Copy Quote"
+    :
+    "Sao chép";
+
+
+
+    span.textContent =
+    language === "en"
+    ?
+    "Copied!"
+    :
+    "Đã sao chép!";
+
+
+
+    setTimeout(
+        ()=>{
+            span.textContent =
+            originalText;
+        },
+        1500
+    );
 
 
 }
+
+
+
+
+
+
+
+/* ===============================
+   SYNC LANGUAGE
+================================ */
+
+
+window.addEventListener(
+"languageChanged",
+()=>{
+
+
+    const favoriteButton =
+    document.getElementById(
+        "favorite-quote"
+    );
+
+
+
+    if(favoriteButton){
+
+
+        updateFavoriteButton(
+            favoriteButton
+        );
+
+
+    }
+
+
+});
