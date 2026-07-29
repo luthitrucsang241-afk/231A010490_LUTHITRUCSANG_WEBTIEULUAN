@@ -4,1006 +4,713 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>
+    Calendar - Study Focus
+</title>
 
-    <title>
-        Calendar - Study Focus
-    </title>
-
-
-    <link rel="stylesheet" href="css/calendar.css">
-
+<link rel="stylesheet" href="css/calendar.css">
 
 </head>
 
-
-
 <body>
 
+<!-- ================= HEADER ================= -->
 
+<header class="header">
 
-    <header class="header">
+    <div class="logo">
+        Study Focus
+    </div>
 
 
+    <nav class="menu">
 
-        <div class="logo">
+        <a href="index.html"
+           data-vn="Trang chủ"
+           data-en="Home">
 
-            Study Focus
+            Trang chủ
 
-        </div>
+        </a>
 
 
+        <a href="about.html"
+           data-vn="Giới thiệu"
+           data-en="About">
 
+            Giới thiệu
 
+        </a>
 
-        <nav class="menu">
 
+        <a href="contact.html"
+           data-vn="Liên hệ"
+           data-en="Contact">
 
-            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+            Liên hệ
 
-                Trang chủ
+        </a>
 
-            </a>
 
+        <a href="login.html"
+           data-vn="Đăng nhập"
+           data-en="Login">
 
+            Đăng nhập
 
-            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+        </a>
 
-                Giới thiệu
 
-            </a>
+        <a class="btn"
+           href="register.html"
+           data-vn="Đăng ký"
+           data-en="Register">
 
+            Đăng ký
 
+        </a>
 
-            <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+    </nav>
 
-                Liên hệ
 
-            </a>
+    <!-- ================= SETTING ================= -->
 
+    <div class="setting-menu">
 
+        <button class="setting-btn">
+            ⚙
+        </button>
 
-            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
 
-                Đăng nhập
+        <div class="setting-dropdown">
 
-            </a>
+            <div class="dropdown-title"
+                 data-vn="Giao diện"
+                 data-en="Theme">
 
-
-
-            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
-
-                Đăng ký
-
-            </a>
-
-
-        </nav>
-
-
-
-
-
-        <div class="setting-menu">
-
-
-            <button class="setting-btn">
-
-                ⚙
-
-            </button>
-
-
-
-            <div class="setting-dropdown">
-
-
-
-                <div class="dropdown-title" data-vn="Giao diện" data-en="Theme">
-
-                    Giao diện
-
-                </div>
-
-
-
-
-                <button onclick="changeTheme('light')">
-
-                    <span data-vn="Sáng" data-en="Light">
-
-                        Sáng
-
-                    </span>
-
-                </button>
-
-
-
-
-
-                <button onclick="changeTheme('dark')">
-
-
-                    <span data-vn="Tối" data-en="Dark">
-
-                        Tối
-
-                    </span>
-
-
-                </button>
-
-
-
-
-
-                <hr>
-
-
-
-
-
-                <div class="dropdown-title" data-vn="Ngôn ngữ" data-en="Language">
-
-                    Ngôn ngữ
-
-                </div>
-
-
-
-
-
-                <button onclick="changeLanguage('vi')">
-
-                    🇻🇳
-
-                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
-
-                        Tiếng Việt
-
-                    </span>
-
-
-                </button>
-
-
-
-
-
-                <button onclick="changeLanguage('en')">
-
-
-                    🇺🇸
-
-
-                    <span data-vn="Tiếng Anh" data-en="English">
-
-                        Tiếng Anh
-
-                    </span>
-
-
-                </button>
-
-
-
+                Giao diện
 
             </div>
 
 
+            <button onclick="changeTheme('light')">
+
+                <span data-vn="Sáng"
+                      data-en="Light">
+
+                    Sáng
+
+                </span>
+
+            </button>
+
+
+            <button onclick="changeTheme('dark')">
+
+                <span data-vn="Tối"
+                      data-en="Dark">
+
+                    Tối
+
+                </span>
+
+            </button>
+
+
+            <hr>
+
+
+            <div class="dropdown-title"
+                 data-vn="Ngôn ngữ"
+                 data-en="Language">
+
+                Ngôn ngữ
+
+            </div>
+
+
+            <button onclick="changeLanguage('vi')">
+
+                🇻🇳
+
+                <span data-vn="Tiếng Việt"
+                      data-en="Vietnamese">
+
+                    Tiếng Việt
+
+                </span>
+
+            </button>
+
+
+            <button onclick="changeLanguage('en')">
+
+                🇺🇸
+
+                <span data-vn="Tiếng Anh"
+                      data-en="English">
+
+                    Tiếng Anh
+
+                </span>
+
+            </button>
+
         </div>
 
+    </div>
 
-    </header>
-
-
-
+</header>
 
 
 
+<!-- ================= LAYOUT ================= -->
+
+<div class="layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <h2>
+            Study Focus
+        </h2>
+
+
+        <a href="dashboard.html"
+           data-vn="Bảng điều khiển"
+           data-en="Dashboard">
+
+            Dashboard
+
+        </a>
+
+
+        <a class="active"
+           href="calendar.html"
+           data-vn="Lịch học"
+           data-en="Calendar">
+
+            Calendar
+
+        </a>
+
+
+        <a href="statistics.html"
+           data-vn="Thống kê"
+           data-en="Statistics">
+
+            Statistics
+
+        </a>
+
+
+        <a href="achievement.html"
+           data-vn="Thành tích"
+           data-en="Achievement">
+
+            Achievement
+
+        </a>
+
+
+        <a href="profile.html"
+           data-vn="Hồ sơ"
+           data-en="Profile">
+
+            Profile
+
+        </a>
+
+
+        <a href="settings.html"
+           data-vn="Cài đặt"
+           data-en="Settings">
+
+            Settings
+
+        </a>
+
+
+        <a href="login.html"
+           data-vn="Đăng xuất"
+           data-en="Logout">
+
+            Logout
+
+        </a>
+
+    </aside>
 
 
 
-    <div class="layout">
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <h1
+                data-vn="Lịch học tập quản lý thời gian và kế hoạch học tập"
+                data-en="Study schedule, time management and learning plan">
+
+                Lịch học tập quản lý thời gian và kế hoạch học tập
+
+            </h1>
+
+
+            <p
+                data-vn="Theo dõi lịch học, lập kế hoạch và duy trì thói quen học tập."
+                data-en="Track your schedule, create plans and maintain your learning habits.">
+
+                Theo dõi lịch học, lập kế hoạch và duy trì thói quen học tập.
+
+            </p>
+
+        </section>
 
 
 
+        <!-- ================= ADD SCHEDULE ================= -->
 
+        <section class="card">
 
+            <h2
+                data-vn="Thêm lịch học"
+                data-en="Add Study Schedule">
 
-        <aside class="sidebar">
-
-
-
-            <h2>
-
-                Study Focus
+                Thêm lịch học
 
             </h2>
 
 
+            <div class="schedule-form">
 
+                <input
+                    type="date"
+                    id="studyDate">
 
 
-            <a href="dashboard.html" data-vn="Bảng điều khiển" data-en="Dashboard">
+                <select id="studySession">
 
-                Dashboard
+                    <option
+                        value="Sáng"
+                        data-vn="Buổi sáng"
+                        data-en="Morning">
 
-            </a>
+                        Buổi sáng
 
+                    </option>
 
 
+                    <option
+                        value="Chiều"
+                        data-vn="Buổi chiều"
+                        data-en="Afternoon">
 
+                        Buổi chiều
 
-            <a class="active" href="calendar.html" data-vn="Lịch học" data-en="Calendar">
+                    </option>
 
-                Calendar
 
-            </a>
+                    <option
+                        value="Tối"
+                        data-vn="Buổi tối"
+                        data-en="Evening">
 
+                        Buổi tối
 
+                    </option>
 
+                </select>
 
 
-            <a href="statistics.html" data-vn="Thống kê" data-en="Statistics">
+                <input
+                    id="subject"
+                    data-vn-placeholder="Môn học"
+                    data-en-placeholder="Subject"
+                    placeholder="Môn học">
 
-                Statistics
 
-            </a>
+                <input
+                    id="content"
+                    data-vn-placeholder="Nội dung học"
+                    data-en-placeholder="Study Content"
+                    placeholder="Nội dung học">
 
 
+                <textarea
+                    id="note"
+                    data-vn-placeholder="Ghi chú"
+                    data-en-placeholder="Note"
+                    placeholder="Ghi chú"></textarea>
 
 
+                <input
+                    id="studyTime"
+                    type="number"
+                    min="0"
+                    step="0.5"
+                    data-vn-placeholder="Số giờ học"
+                    data-en-placeholder="Study Time"
+                    placeholder="Số giờ học">
 
-            <a href="achievement.html" data-vn="Thành tích" data-en="Achievement">
 
-                Achievement
+                <button
+                    id="scheduleSubmitButton"
+                    onclick="addSchedule()"
+                    data-vn="Thêm lịch"
+                    data-en="Add Schedule">
 
-            </a>
+                    Thêm lịch
 
+                </button>
 
+            </div>
 
+        </section>
 
 
-            <a href="profile.html" data-vn="Hồ sơ" data-en="Profile">
 
-                Profile
+        <!-- ================= WEEKLY STUDY SCHEDULE ================= -->
 
-            </a>
+        <section class="card">
 
+            <h2
+                data-vn="Thời khóa biểu học tập tuần"
+                data-en="Weekly Study Schedule">
 
+                Thời khóa biểu học tập tuần
 
+            </h2>
 
 
-            <a href="settings.html" data-vn="Cài đặt" data-en="Settings">
+            <div
+                id="weeklyStudyTable"
+                class="schedule-table">
 
-                Settings
+            </div>
 
-            </a>
+        </section>
 
 
 
+        <!-- ================= MONTH CALENDAR ================= -->
 
+        <section class="card">
 
-            <a href="login.html" data-vn="Đăng xuất" data-en="Logout">
+            <h2
+                data-vn="Lịch theo dõi ngày học"
+                data-en="Monthly Study History">
 
-                Logout
+                Lịch theo dõi ngày học
 
-            </a>
+            </h2>
 
 
+            <div class="month-control">
 
-        </aside>
+                <button onclick="changeMonth(-1)">
+                    ◀
+                </button>
 
 
+                <h3 id="monthTitle">
+                </h3>
 
 
+                <button onclick="changeMonth(1)">
+                    ▶
+                </button>
 
+            </div>
 
 
+            <div
+                id="monthCalendar"
+                class="month-calendar">
 
+            </div>
 
-        <main class="main">
+        </section>
 
 
 
+        <!-- ================= STUDY STREAK ================= -->
 
+        <section class="card">
 
-            <section class="hero">
+            <h2
+                data-vn="Chuỗi ngày học"
+                data-en="Study Streak">
 
+                Chuỗi ngày học
 
-                <h1 data-vn="Lịch học tập quản lý thời gian và kế hoạch học tập"
-                    data-en="Study schedule, time management and learning plan">
+            </h2>
 
 
-                    Lịch học tập quản lý thời gian và kế hoạch học tập
+            <div class="streak">
 
-
-                </h1>
-
-
-
-
-
-                <p data-vn="Theo dõi lịch học, lập kế hoạch và duy trì thói quen học tập."
-                    data-en="Track your schedule, create plans and maintain your learning habits.">
-
-
-                    Theo dõi lịch học, lập kế hoạch và duy trì thói quen học tập.
-
-
+                <p id="streakFire">
                 </p>
 
 
+                <p id="streakText">
+                </p>
 
-            </section>
+            </div>
 
+        </section>
 
 
 
+        <!-- ================= STUDY TIME ================= -->
 
+        <section class="card">
 
+            <h2
+                data-vn="Thời gian học"
+                data-en="Study Time">
 
+                Thời gian học
 
-            <section class="card">
+            </h2>
 
 
-                <h2 data-vn="Thêm lịch học" data-en="Add Study Schedule">
+            <div class="time-box">
 
 
-                    Thêm lịch học
+                <div>
 
+                    <h3
+                        data-vn="Hôm nay"
+                        data-en="Today">
 
-                </h2>
-
-
-
-
-
-                <div class="schedule-form">
-
-
-
-
-
-                    <input type="date" id="studyDate">
-
-
-
-
-
-
-
-                    <select id="studySession">
-
-
-
-                        <option value="Sáng" data-vn="Buổi sáng" data-en="Morning">
-
-                            Buổi sáng
-
-                        </option>
-
-
-
-
-
-                        <option value="Chiều" data-vn="Buổi chiều" data-en="Afternoon">
-
-                            Buổi chiều
-
-                        </option>
-
-
-
-
-
-                        <option value="Tối" data-vn="Buổi tối" data-en="Evening">
-
-                            Buổi tối
-
-                        </option>
-
-
-
-                    </select>
-
-
-
-
-
-                    <input id="subject" data-vn-placeholder="Môn học" data-en-placeholder="Subject"
-                        placeholder="Môn học">
-
-
-
-
-
-                    <input id="content" data-vn-placeholder="Nội dung học" data-en-placeholder="Study Content"
-                        placeholder="Nội dung học">
-
-
-
-
-
-                    <textarea id="note" data-vn-placeholder="Ghi chú" data-en-placeholder="Note" placeholder="Ghi chú">
-
-</textarea>
-
-
-
-
-
-                    <input id="studyTime" type="number" data-vn-placeholder="Số giờ học"
-                        data-en-placeholder="Study Time" placeholder="Số giờ học">
-
-
-
-
-
-                    <button onclick="addSchedule()" data-vn="Thêm lịch" data-en="Add Schedule">
-
-
-                        Thêm lịch
-
-
-                    </button>
-
-
-
-
-
-                </div>
-
-
-            </section>
-
-            <section class="card">
-
-
-                <h2 data-vn="Lịch học theo tuần" data-en="Weekly Study Calendar">
-
-
-                    Lịch học theo tuần
-
-
-                </h2>
-
-
-
-                <div id="weekCalendar" class="week-calendar">
-
-
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-
-
-
-
-            <section class="card" id="weeklyScheduleContainer">
-
-
-
-                <h2 data-vn="Thời khóa biểu học tập tuần" data-en="Weekly Study Schedule">
-
-
-                    Thời khóa biểu học tập tuần
-
-
-                </h2>
-
-
-
-                <div id="weeklyStudyTable">
-
-
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-
-
-
-
-            <section class="card">
-
-
-
-                <h2 data-vn="Lịch theo dõi ngày học" data-en="Monthly Study History">
-
-
-                    Lịch theo dõi ngày học
-
-
-                </h2>
-
-
-
-
-
-                <div class="month-control">
-
-
-
-                    <button onclick="changeMonth(-1)">
-
-                        ◀
-
-                    </button>
-
-
-
-
-
-                    <h3 id="monthTitle">
+                        Hôm nay
 
                     </h3>
 
 
-
-
-
-                    <button onclick="changeMonth(1)">
-
-                        ▶
-
-                    </button>
-
-
-
-
-                </div>
-
-
-
-
-
-                <div id="monthCalendar" class="month-calendar">
-
-
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-
-
-
-
-            <section class="card">
-
-
-
-                <h2 data-vn="Chuỗi ngày học" data-en="Study Streak">
-
-
-                    Chuỗi ngày học
-
-
-                </h2>
-
-
-
-
-
-
-                <div class="streak">
-
-
-
-                    <p id="streakFire">
-
-
+                    <p id="todayStudy">
                     </p>
 
+                </div>
 
 
 
+                <div>
 
-                    <p id="streakText">
+                    <h3
+                        data-vn="Tổng thời gian học"
+                        data-en="Total Study Time">
+
+                        Tổng thời gian học
+
+                    </h3>
 
 
+                    <p id="totalStudy">
                     </p>
 
-
-
                 </div>
 
 
+            </div>
 
+        </section>
 
-            </section>
 
+    </main>
 
+</div>
 
 
 
+<!-- ================= EDIT MODAL ================= -->
 
+<div id="editModal" class="modal">
 
+    <div class="modal-content">
 
+        <h2
+            data-vn="Sửa lịch học"
+            data-en="Edit Schedule">
 
-            <section class="card">
+            Sửa lịch học
 
+        </h2>
 
 
-                <h2 data-vn="Thời gian học" data-en="Study Time">
+        <input
+            id="editDate"
+            type="date">
 
 
-                    Thời gian học
+        <select id="editSession">
 
+            <option
+                value="Sáng"
+                data-vn="Buổi sáng"
+                data-en="Morning">
 
-                </h2>
+                Buổi sáng
 
+            </option>
 
 
+            <option
+                value="Chiều"
+                data-vn="Buổi chiều"
+                data-en="Afternoon">
 
+                Buổi chiều
 
+            </option>
 
 
-                <div class="time-box">
+            <option
+                value="Tối"
+                data-vn="Buổi tối"
+                data-en="Evening">
 
+                Buổi tối
 
+            </option>
 
+        </select>
 
 
+        <input
+            id="editSubject"
+            data-vn-placeholder="Môn học"
+            data-en-placeholder="Subject"
+            placeholder="Môn học">
 
-                    <div>
 
+        <input
+            id="editContent"
+            data-vn-placeholder="Nội dung học"
+            data-en-placeholder="Study Content"
+            placeholder="Nội dung học">
 
-                        <h3 data-vn="Hôm nay" data-en="Today">
 
+        <textarea
+            id="editNote"
+            data-vn-placeholder="Ghi chú"
+            data-en-placeholder="Note"
+            placeholder="Ghi chú"></textarea>
 
-                            Hôm nay
 
+        <input
+            id="editTime"
+            type="number"
+            min="0"
+            step="0.5"
+            data-vn-placeholder="Số giờ học"
+            data-en-placeholder="Study Time"
+            placeholder="Số giờ học">
 
-                        </h3>
 
+        <button
+            onclick="saveEdit()"
+            data-vn="Lưu"
+            data-en="Save">
 
+            Lưu
 
+        </button>
 
-                        <p id="todayStudy">
 
+        <button
+            onclick="closeEdit()"
+            data-vn="Đóng"
+            data-en="Close">
 
-                        </p>
+            Đóng
 
-
-                    </div>
-
-
-
-
-
-
-
-
-                    <div>
-
-
-                        <h3 data-vn="Tổng thời gian học" data-en="Total Study Time">
-
-
-                            Tổng thời gian học
-
-
-                        </h3>
-
-
-
-
-                        <p id="totalStudy">
-
-
-                        </p>
-
-
-
-                    </div>
-
-
-
-
-
-
-
-                </div>
-
-
-
-            </section>
-
-
-
-
-
-
-
-
-
-        </main>
-
+        </button>
 
     </div>
 
-    <!-- ================= EDIT MODAL ================= -->
+</div>
 
 
-    <div id="editModal" class="modal">
 
+<!-- ================= FOOTER ================= -->
 
+<footer>
 
-        <div class="modal-content">
+    <h3>
+        Study Focus
+    </h3>
 
 
+    <p
+        data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+        data-en="Study effectively with Pomodoro, manage time and improve concentration.">
 
-            <h2 data-vn="Sửa lịch học" data-en="Edit Schedule">
+        Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
 
+    </p>
 
-                Sửa lịch học
 
+    <div class="footer-links">
 
-            </h2>
+        <a
+            href="index.html"
+            data-vn="Trang chủ"
+            data-en="Home">
 
+            Trang chủ
 
+        </a>
 
 
+        <a
+            href="#"
+            data-vn="Tính năng"
+            data-en="Features">
 
-            <input id="editDate" type="date">
+            Tính năng
 
+        </a>
 
 
+        <a
+            href="about.html"
+            data-vn="Giới thiệu"
+            data-en="About">
 
+            Giới thiệu
 
-            <select id="editSession">
-
-
-                <option value="Sáng" data-vn="Buổi sáng" data-en="Morning">
-
-                    Buổi sáng
-
-                </option>
-
-
-
-                <option value="Chiều" data-vn="Buổi chiều" data-en="Afternoon">
-
-                    Buổi chiều
-
-                </option>
-
-
-
-                <option value="Tối" data-vn="Buổi tối" data-en="Evening">
-
-                    Buổi tối
-
-                </option>
-
-
-
-            </select>
-
-
-
-
-
-
-
-            <input id="editSubject" data-vn-placeholder="Môn học" data-en-placeholder="Subject" placeholder="Môn học">
-
-
-
-
-
-
-            <input id="editContent" data-vn-placeholder="Nội dung học" data-en-placeholder="Study Content"
-                placeholder="Nội dung học">
-
-
-
-
-
-
-            <textarea id="editNote" data-vn-placeholder="Ghi chú" data-en-placeholder="Note" placeholder="Ghi chú">
-
-</textarea>
-
-
-
-
-
-
-
-
-            <input id="editTime" type="number" data-vn-placeholder="Số giờ học" data-en-placeholder="Study Time"
-                placeholder="Số giờ học">
-
-
-
-
-
-
-            <button onclick="saveEdit()" data-vn="Lưu" data-en="Save">
-
-
-                Lưu
-
-
-            </button>
-
-
-
-
-
-
-
-            <button onclick="closeEdit()" data-vn="Đóng" data-en="Close">
-
-
-                Đóng
-
-
-            </button>
-
-
-
-
-
-        </div>
-
-
+        </a>
 
     </div>
 
 
+    <hr>
 
 
+    <p>
+        © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+    </p>
 
+</footer>
 
 
 
+<script src="js/main.js"></script>
 
-    <!-- ================= FOOTER ================= -->
-
-
-
-    <footer>
-
-
-
-
-        <h3>
-
-            Study Focus
-
-        </h3>
-
-
-
-
-
-        <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
-            data-en="Study effectively with Pomodoro, manage time and improve concentration.">
-
-
-            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
-
-
-        </p>
-
-
-
-
-
-
-
-        <div class="footer-links">
-
-
-
-
-
-            <a href="index.html" data-vn="Trang chủ" data-en="Home">
-
-
-                Trang chủ
-
-
-            </a>
-
-
-
-
-
-            <a href="#" data-vn="Tính năng" data-en="Features">
-
-
-                Tính năng
-
-
-            </a>
-
-
-
-
-
-            <a href="about.html" data-vn="Giới thiệu" data-en="About">
-
-
-                Giới thiệu
-
-
-            </a>
-
-
-
-
-
-        </div>
-
-
-
-
-
-
-        <hr>
-
-
-
-
-
-
-        <p>
-
-            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
-
-        </p>
-
-
-
-
-
-    </footer>
-
-
-
-
-
-
-
-
-
-    <script src="js/main.js"></script>
-
-
-    <script src="js/calendar.js"></script>
-
-
-
+<script src="js/calendar.js"></script>
 
 </body>
-
 
 </html>

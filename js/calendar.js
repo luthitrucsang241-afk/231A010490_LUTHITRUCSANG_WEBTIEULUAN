@@ -1,20 +1,38 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* =========================
+       USER & STORAGE
+    ========================= */
+
     const user =
         localStorage.getItem("currentUser") || "guest";
+
 
     const storageKey =
         "studyCalendar_" + user;
 
 
     let calendarData =
-        JSON.parse(localStorage.getItem(storageKey)) || {
+        JSON.parse(
+            localStorage.getItem(storageKey)
+        ) || {
             schedules: []
         };
 
 
+    if (
+        !calendarData.schedules ||
+        !Array.isArray(calendarData.schedules)
+    ) {
+
+        calendarData.schedules = [];
+
+    }
+
+
     let currentMonth =
         new Date().getMonth();
+
 
     let currentYear =
         new Date().getFullYear();
@@ -23,54 +41,83 @@ document.addEventListener("DOMContentLoaded", () => {
     let editId = null;
 
 
+    /* =========================
+       TUẦN ĐANG XEM
+    ========================= */
+
+    let currentWeekStart =
+        getMonday(
+            new Date()
+        );
+
+
+    /* =========================
+       DATA
+    ========================= */
+
     const sessions = [
+
         {
             vn: "Sáng",
             en: "Morning"
         },
+
         {
             vn: "Chiều",
             en: "Afternoon"
         },
+
         {
             vn: "Tối",
             en: "Evening"
         }
+
     ];
 
 
     const weekDays = [
+
         {
             vn: "Thứ 2",
             en: "Monday"
         },
+
         {
             vn: "Thứ 3",
             en: "Tuesday"
         },
+
         {
             vn: "Thứ 4",
             en: "Wednesday"
         },
+
         {
             vn: "Thứ 5",
             en: "Thursday"
         },
+
         {
             vn: "Thứ 6",
             en: "Friday"
         },
+
         {
             vn: "Thứ 7",
             en: "Saturday"
         },
+
         {
             vn: "Chủ nhật",
             en: "Sunday"
         }
+
     ];
 
 
+    /* =========================
+       STORAGE
+    ========================= */
 
     function saveData() {
 
@@ -82,25 +129,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-
-
     function createId() {
 
-        return Date.now();
+        return Date.now() +
+            Math.random();
 
     }
 
 
-
+    /* =========================
+       LANGUAGE
+    ========================= */
 
     function getLanguage() {
 
-        return localStorage.getItem("language") || "vi";
+        return (
+            localStorage.getItem("language")
+            || "vi"
+        );
 
     }
-
-
-
 
 
     function text(vn, en) {
@@ -112,59 +160,342 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    function updateLanguage() {
+
+        const lang =
+            getLanguage();
 
 
+        document
+            .querySelectorAll("[data-vn]")
+            .forEach(el => {
 
-    function formatDate(date) {
-
-
-        if (!date)
-            return "";
-
-
-        const d =
-            new Date(date);
+                const value =
+                    lang === "en"
+                        ? el.dataset.en
+                        : el.dataset.vn;
 
 
-        return `${String(d.getDate()).padStart(2, "0")}/${String(d.getMonth() + 1).padStart(2, "0")
-            }/${d.getFullYear()}`;
+                if (
+                    value !== undefined
+                ) {
+
+                    el.innerText = value;
+
+                }
+
+            });
+
+
+        document
+            .querySelectorAll("[data-vn-placeholder]")
+            .forEach(el => {
+
+                el.placeholder =
+                    lang === "en"
+                        ? el.dataset.enPlaceholder
+                        : el.dataset.vnPlaceholder;
+
+            });
 
     }
 
 
+    window.changeLanguage =
+        function (lang) {
+
+            localStorage.setItem(
+                "language",
+                lang
+            );
 
 
+            updateLanguage();
 
 
+            renderAll();
+
+        };
+
+
+    /* =========================
+       DATE
+    ========================= */
+
+    function getLocalDateString(date) {
+
+        const year =
+            date.getFullYear();
+
+
+        const month =
+            String(
+                date.getMonth() + 1
+            ).padStart(2, "0");
+
+
+        const day =
+            String(
+                date.getDate()
+            ).padStart(2, "0");
+
+
+        return `${year}-${month}-${day}`;
+
+    }
+
+
+    function getWeekDay(dateString) {
+
+        const date =
+            new Date(
+                dateString + "T00:00:00"
+            );
+
+
+        let day =
+            date.getDay();
+
+
+        day =
+            day === 0
+                ? 6
+                : day - 1;
+
+
+        return weekDays[day].vn;
+
+    }
+
+
+    /* =========================
+       LẤY THỨ 2 CỦA TUẦN
+    ========================= */
+
+    function getMonday(date) {
+
+        const result =
+            new Date(date);
+
+
+        result.setHours(
+            0,
+            0,
+            0,
+            0
+        );
+
+
+        const day =
+            result.getDay();
+
+
+        const difference =
+            day === 0
+                ? -6
+                : 1 - day;
+
+
+        result.setDate(
+            result.getDate() +
+            difference
+        );
+
+
+        return result;
+
+    }
+
+
+    /* =========================
+       LẤY 7 NGÀY TRONG TUẦN
+    ========================= */
+
+    function getWeekDates() {
+
+        const dates = [];
+
+
+        for (
+            let i = 0;
+            i < 7;
+            i++
+        ) {
+
+            const date =
+                new Date(
+                    currentWeekStart
+                );
+
+
+            date.setDate(
+                currentWeekStart.getDate() +
+                i
+            );
+
+
+            dates.push(
+                getLocalDateString(
+                    date
+                )
+            );
+
+        }
+
+
+        return dates;
+
+    }
+
+
+    /* =========================
+       ĐỊNH DẠNG KHOẢNG TUẦN
+    ========================= */
+
+    function formatWeekRange() {
+
+        const weekDates =
+            getWeekDates();
+
+
+        const firstDate =
+            new Date(
+                weekDates[0] +
+                "T00:00:00"
+            );
+
+
+        const lastDate =
+            new Date(
+                weekDates[6] +
+                "T00:00:00"
+            );
+
+
+        const lang =
+            getLanguage();
+
+
+        const locale =
+            lang === "en"
+                ? "en-US"
+                : "vi-VN";
+
+
+        const first =
+            firstDate.toLocaleDateString(
+                locale,
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+
+        const last =
+            lastDate.toLocaleDateString(
+                locale,
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+
+        return `${first} - ${last}`;
+
+    }
+
+
+    /* =========================
+       CHUYỂN TUẦN
+    ========================= */
+
+    function changeWeek(value) {
+
+        currentWeekStart.setDate(
+            currentWeekStart.getDate() +
+            (value * 7)
+        );
+
+
+        renderWeeklySchedule();
+
+    }
+
+
+    window.changeWeek =
+        changeWeek;
+
+
+    /* =========================
+       VỀ TUẦN HIỆN TẠI
+    ========================= */
+
+    function goToCurrentWeek() {
+
+        currentWeekStart =
+            getMonday(
+                new Date()
+            );
+
+
+        renderWeeklySchedule();
+
+    }
+
+
+    window.goToCurrentWeek =
+        goToCurrentWeek;
+
+
+    /* =========================
+       ADD SCHEDULE
+    ========================= */
 
     function addSchedule() {
 
-
         const date =
-            document.getElementById("studyDate").value;
+            document
+                .getElementById("studyDate")
+                .value;
 
 
         const session =
-            document.getElementById("studySession").value;
+            document
+                .getElementById("studySession")
+                .value;
 
 
         const subject =
-            document.getElementById("subject").value;
+            document
+                .getElementById("subject")
+                .value
+                .trim();
 
 
         const content =
-            document.getElementById("content").value;
+            document
+                .getElementById("content")
+                .value
+                .trim();
 
 
         const note =
-            document.getElementById("note").value;
+            document
+                .getElementById("note")
+                .value
+                .trim();
 
 
         const studyTime =
             Number(
-                document.getElementById("studyTime").value
+                document
+                    .getElementById("studyTime")
+                    .value
             );
-
 
 
         if (
@@ -184,49 +515,44 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        if (editId) {
 
+            updateSchedule();
 
-        const d =
-            new Date(date);
+            return;
 
-
-
-        let day =
-            d.getDay();
-
-
-        day =
-            day === 0 ? 6 : day - 1;
-
-
+        }
 
 
         const item = {
 
             id: createId(),
 
-            date,
+            date: date,
 
-            day: weekDays[day].vn,
+            day: getWeekDay(date),
 
-            session,
+            session: session,
 
-            subject,
+            subject: subject,
 
-            content,
+            content: content,
 
-            note,
+            note: note,
 
-            studyTime,
+            studyTime:
+                studyTime >= 0
+                    ? studyTime
+                    : 0,
 
             completed: true
 
         };
 
 
-
-        calendarData.schedules.push(item);
-
+        calendarData.schedules.push(
+            item
+        );
 
 
         saveData();
@@ -235,605 +561,719 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInput();
 
 
-        renderAll();
-
-
-    }
-
-
-
-
-
-
-
-    function clearInput() {
-
-
-        [
-            "studyDate",
-            "subject",
-            "content",
-            "note",
-            "studyTime"
-        ]
-            .forEach(id => {
-
-                const el =
-                    document.getElementById(id);
-
-                if (el)
-                    el.value = "";
-
-            });
-
-
-    }
-
-
-
-
-
-    function deleteSchedule(id) {
-
-
-        calendarData.schedules =
-            calendarData.schedules.filter(
-                item => item.id !== id
+        currentWeekStart =
+            getMonday(
+                new Date(
+                    date +
+                    "T00:00:00"
+                )
             );
-
-
-        saveData();
 
 
         renderAll();
 
-
     }
-
-
-
-
-
-
-    function editSchedule(id) {
-
-
-        const item =
-            calendarData.schedules.find(
-                x => x.id === id
-            );
-
-
-        if (!item)
-            return;
-
-
-
-        editId = id;
-
-
-
-        document.getElementById("studyDate").value =
-            item.date;
-
-
-        document.getElementById("studySession").value =
-            item.session;
-
-
-        document.getElementById("subject").value =
-            item.subject;
-
-
-        document.getElementById("content").value =
-            item.content;
-
-
-        document.getElementById("note").value =
-            item.note;
-
-
-        document.getElementById("studyTime").value =
-            item.studyTime;
-
-
-        document.querySelector(".schedule-form")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-
-    }
-
-
-
-
-
-
-    function updateSchedule() {
-
-
-        if (!editId)
-            return addSchedule();
-
-
-
-        const item =
-            calendarData.schedules.find(
-                x => x.id === editId
-            );
-
-
-
-        item.date =
-            document.getElementById("studyDate").value;
-
-
-        item.session =
-            document.getElementById("studySession").value;
-
-
-        item.subject =
-            document.getElementById("subject").value;
-
-
-        item.content =
-            document.getElementById("content").value;
-
-
-        item.note =
-            document.getElementById("note").value;
-
-
-        item.studyTime =
-            Number(
-                document.getElementById("studyTime").value
-            );
-
-
-
-        editId = null;
-
-
-        saveData();
-
-
-        clearInput();
-
-
-        renderAll();
-
-
-    }
-
-
-
-
 
 
     window.addSchedule =
         addSchedule;
 
 
-    window.editSchedule =
-        editSchedule;
+    /* =========================
+       CLEAR FORM
+    ========================= */
+
+    function clearInput() {
+
+        [
+
+            "studyDate",
+
+            "subject",
+
+            "content",
+
+            "note",
+
+            "studyTime"
+
+        ].forEach(id => {
+
+            const el =
+                document.getElementById(id);
+
+
+            if (el) {
+
+                el.value = "";
+
+            }
+
+        });
+
+
+        document
+            .getElementById("studySession")
+            .value = "Sáng";
+
+
+        editId = null;
+
+
+        const button =
+            document.getElementById(
+                "scheduleSubmitButton"
+            );
+
+
+        if (button) {
+
+            button.dataset.vn =
+                "Thêm lịch";
+
+
+            button.dataset.en =
+                "Add Schedule";
+
+        }
+
+
+        updateLanguage();
+
+    }
+
+
+    /* =========================
+       DELETE
+    ========================= */
+
+    function deleteSchedule(id) {
+
+        const confirmDelete =
+            confirm(
+                text(
+                    "Bạn có chắc muốn xóa lịch học này không?",
+                    "Are you sure you want to delete this study schedule?"
+                )
+            );
+
+
+        if (!confirmDelete) {
+
+            return;
+
+        }
+
+
+        calendarData.schedules =
+            calendarData.schedules.filter(
+                item =>
+                    item.id !== id
+            );
+
+
+        saveData();
+
+
+        renderAll();
+
+    }
 
 
     window.deleteSchedule =
         deleteSchedule;
 
 
-    window.updateSchedule =
-        updateSchedule;
-
     /* =========================
-RENDER WEEK CALENDAR
-========================= */
+       EDIT
+    ========================= */
+
+    function editSchedule(id) {
+
+        const item =
+            calendarData.schedules.find(
+                x =>
+                    x.id === id
+            );
 
 
-    function renderWeekCalendar() {
+        if (!item) {
 
-
-        const box =
-            document.getElementById("weekCalendar");
-
-
-        if (!box)
             return;
 
+        }
 
-        box.innerHTML = "";
 
+        editId = id;
 
 
-        const header =
-            document.createElement("div");
+        document
+            .getElementById("studyDate")
+            .value =
+            item.date;
 
 
-        header.className =
-            "schedule-grid";
+        document
+            .getElementById("studySession")
+            .value =
+            item.session;
 
 
+        document
+            .getElementById("subject")
+            .value =
+            item.subject;
 
-        let html = `
 
-        <div class="schedule-head"
-        data-vn="Buổi"
-        data-en="Session">
+        document
+            .getElementById("content")
+            .value =
+            item.content || "";
 
-        Buổi
 
-        </div>
+        document
+            .getElementById("note")
+            .value =
+            item.note || "";
 
-        `;
 
+        document
+            .getElementById("studyTime")
+            .value =
+            item.studyTime || 0;
 
 
-        weekDays.forEach(day => {
+        const button =
+            document.getElementById(
+                "scheduleSubmitButton"
+            );
 
-            html += `
 
-            <div class="schedule-head">
+        if (button) {
 
-            <span
-            data-vn="${day.vn}"
-            data-en="${day.en}">
+            button.dataset.vn =
+                "Lưu thay đổi";
 
-            ${day.vn}
 
-            </span>
+            button.dataset.en =
+                "Save Changes";
 
-            </div>
 
-            `;
+            updateLanguage();
 
-        });
+        }
 
 
+        document
+            .querySelector(".schedule-form")
+            .scrollIntoView({
 
-        html += `</div>`;
+                behavior: "smooth",
 
-
-
-        box.innerHTML = html;
-
-
-
-        const grid =
-            document.createElement("div");
-
-
-        grid.className =
-            "schedule-grid";
-
-
-
-        sessions.forEach(session => {
-
-
-            grid.innerHTML += `
-
-            <div class="schedule-day">
-
-            <span
-            data-vn="${session.vn}"
-            data-en="${session.en}">
-
-            ${session.vn}
-
-            </span>
-
-            </div>
-
-            `;
-
-
-
-            weekDays.forEach(day => {
-
-
-                const list =
-                    calendarData.schedules.filter(
-                        item =>
-
-                            item.day === day.vn
-                            &&
-                            item.session === session.vn
-
-                    );
-
-
-
-                let content = "";
-
-
-
-                list.forEach(item => {
-
-
-                    content += `
-
-                    <div class="event-box">
-
-
-                    <b>
-                    📘 ${item.subject}
-                    </b>
-
-
-                    <p>
-                    📝 ${item.content}
-                    </p>
-
-
-                    <p>
-                    ⏱ ${item.studyTime || 0}h
-                    </p>
-
-
-                    <p>
-                    ${item.note || ""}
-                    </p>
-
-
-
-                    <button onclick="editSchedule(${item.id})"
-                    data-vn="Sửa"
-                    data-en="Edit">
-
-                    Sửa
-
-                    </button>
-
-
-
-                    <button onclick="deleteSchedule(${item.id})"
-                    data-vn="Xóa"
-                    data-en="Delete">
-
-                    Xóa
-
-                    </button>
-
-
-                    </div>
-
-                    `;
-
-
-                });
-
-
-
-                grid.innerHTML += `
-
-                <div class="schedule-cell">
-
-                ${content}
-
-                </div>
-
-                `;
-
-
+                block: "center"
 
             });
-
-
-
-        });
-
-
-
-        box.appendChild(grid);
-
 
     }
 
 
+    window.editSchedule =
+        editSchedule;
 
 
+    /* =========================
+       UPDATE
+    ========================= */
+
+    function updateSchedule() {
+
+        if (!editId) {
+
+            addSchedule();
+
+            return;
+
+        }
+
+
+        const item =
+            calendarData.schedules.find(
+                x =>
+                    x.id === editId
+            );
+
+
+        if (!item) {
+
+            return;
+
+        }
+
+
+        const date =
+            document
+                .getElementById("studyDate")
+                .value;
+
+
+        const subject =
+            document
+                .getElementById("subject")
+                .value
+                .trim();
+
+
+        if (
+            !date ||
+            !subject
+        ) {
+
+            alert(
+                text(
+                    "Vui lòng nhập ngày và môn học",
+                    "Please enter date and subject"
+                )
+            );
+
+            return;
+
+        }
+
+
+        item.date =
+            date;
+
+
+        item.day =
+            getWeekDay(date);
+
+
+        item.session =
+            document
+                .getElementById("studySession")
+                .value;
+
+
+        item.subject =
+            subject;
+
+
+        item.content =
+            document
+                .getElementById("content")
+                .value
+                .trim();
+
+
+        item.note =
+            document
+                .getElementById("note")
+                .value
+                .trim();
+
+
+        item.studyTime =
+            Number(
+                document
+                    .getElementById("studyTime")
+                    .value
+            ) || 0;
+
+
+        saveData();
+
+
+        currentWeekStart =
+            getMonday(
+                new Date(
+                    date +
+                    "T00:00:00"
+                )
+            );
+
+
+        clearInput();
+
+
+        renderAll();
+
+    }
+
+
+    window.updateSchedule =
+        updateSchedule;
+
+
+    /* =========================
+       EDIT MODAL
+       GIỮ LẠI ĐỂ TƯƠNG THÍCH
+    ========================= */
+
+    window.saveEdit =
+        function () {
+
+            updateSchedule();
+
+        };
+
+
+    window.closeEdit =
+        function () {
+
+            const modal =
+                document.getElementById(
+                    "editModal"
+                );
+
+
+            if (modal) {
+
+                modal.classList.remove(
+                    "show"
+                );
+
+            }
+
+        };
 
 
     /* =========================
        WEEKLY STUDY SCHEDULE
+       CÓ CHUYỂN TUẦN
+       CÓ SỬA + XÓA
     ========================= */
-
 
     function renderWeeklySchedule() {
 
-
-        let old =
+        const box =
             document.getElementById(
                 "weeklyStudyTable"
             );
 
 
-        if (old)
-            old.remove();
+        if (!box) {
+
+            return;
+
+        }
 
 
-
-
-        const card =
-            document.createElement("section");
-
-
-        card.className = "card";
-
-
-        card.id =
-            "weeklyStudyTable";
-
+        const weekDates =
+            getWeekDates();
 
 
         let html = `
 
+            <div class="week-control">
 
-        <h2
-        data-vn="Thời khóa biểu học tập tuần"
-        data-en="Weekly Study Schedule">
+                <button
+                    onclick="changeWeek(-1)">
 
-        Thời khóa biểu học tập tuần
+                    ◀
+                    ${text(
+                        "Tuần trước",
+                        "Previous Week"
+                    )}
 
-        </h2>
-
-
-
-        <div class="schedule-table">
-
-        <table>
+                </button>
 
 
-        <tr>
+                <button
+                    onclick="goToCurrentWeek()">
+
+                    ${text(
+                        "Tuần hiện tại",
+                        "Current Week"
+                    )}
+
+                </button>
 
 
-        <th>
-        #
-        </th>
+                <button
+                    onclick="changeWeek(1)">
+
+                    ${text(
+                        "Tuần sau",
+                        "Next Week"
+                    )}
+                    ▶
+
+                </button>
+
+            </div>
 
 
+            <h3 class="week-title">
 
-        ${weekDays.map(day => `
+                ${text(
+                    "Tuần",
+                    "Week"
+                )}
 
-        <th>
+                ${formatWeekRange()}
 
-        <span
-        data-vn="${day.vn}"
-        data-en="${day.en}">
-
-        ${day.vn}
-
-        </span>
+            </h3>
 
 
-        </th>
+            <table>
 
-        `).join("")}
+                <tr>
 
+                    <th>
+                        #
+                    </th>
 
-        </tr>
+                    ${weekDays.map(
+                        (day, index) => `
 
+                        <th>
 
+                            <span
+                                data-vn="${day.vn}"
+                                data-en="${day.en}">
+
+                                ${
+                                    getLanguage() === "en"
+                                        ? day.en
+                                        : day.vn
+                                }
+
+                            </span>
+
+                            <small>
+
+                                ${weekDates[index]
+                                    .split("-")
+                                    .reverse()
+                                    .join("/")}
+
+                            </small>
+
+                        </th>
+
+                    `
+                    ).join("")}
+
+                </tr>
 
         `;
 
 
-
-
-        sessions.forEach(session => {
-
-
-            html += `
-
-            <tr>
-
-
-            <td>
-
-            <span
-            data-vn="${session.vn}"
-            data-en="${session.en}">
-
-            ${session.vn}
-
-            </span>
-
-
-            </td>
-
-            `;
-
-
-
-
-            weekDays.forEach(day => {
-
-
-                let list =
-                    calendarData.schedules.filter(
-                        item =>
-
-                            item.day === day.vn
-                            &&
-                            item.session === session.vn
-
-                    );
-
-
+        sessions.forEach(
+            session => {
 
                 html += `
 
-                <td>
+                    <tr>
 
+                        <td>
 
-                ${list.map(
-                    item =>
-                        `📘 ${item.subject}`
-                ).join("<br>")
-                    }
+                            <strong>
 
+                                <span
+                                    data-vn="${session.vn}"
+                                    data-en="${session.en}">
 
-                </td>
+                                    ${
+                                        getLanguage() === "en"
+                                            ? session.en
+                                            : session.vn
+                                    }
 
+                                </span>
+
+                            </strong>
+
+                        </td>
 
                 `;
 
 
+                weekDays.forEach(
+                    (day, dayIndex) => {
 
-            });
-
-
-
-            html += "</tr>";
-
-
-        });
+                        const selectedDate =
+                            weekDates[
+                                dayIndex
+                            ];
 
 
+                        const list =
+                            calendarData.schedules.filter(
+                                item =>
+
+                                    item.date ===
+                                    selectedDate
+
+                                    &&
+
+                                    item.session ===
+                                    session.vn
+                            );
+
+
+                        html += `
+
+                            <td>
+
+                                ${
+                                    list.length
+                                        ? list.map(
+                                            item => `
+
+                                                <div
+                                                    class="weekly-event">
+
+                                                    <strong>
+
+                                                        📘
+
+                                                        ${escapeHtml(
+                                                            item.subject
+                                                        )}
+
+                                                    </strong>
+
+
+                                                    ${
+                                                        item.content
+                                                            ? `
+
+                                                                <small>
+
+                                                                    ${escapeHtml(
+                                                                        item.content
+                                                                    )}
+
+                                                                </small>
+
+                                                              `
+                                                            : ""
+                                                    }
+
+
+                                                    ${
+                                                        item.note
+                                                            ? `
+
+                                                                <small>
+
+                                                                    ${escapeHtml(
+                                                                        item.note
+                                                                    )}
+
+                                                                </small>
+
+                                                              `
+                                                            : ""
+                                                    }
+
+
+                                                    <div
+                                                        class="event-actions">
+
+                                                        <button
+                                                            type="button"
+                                                            onclick="editSchedule(${item.id})">
+
+                                                            
+
+                                                            ${text(
+                                                                "Sửa",
+                                                                "Edit"
+                                                            )}
+
+                                                        </button>
+
+
+                                                        <button
+                                                            type="button"
+                                                            onclick="deleteSchedule(${item.id})">
+
+                                                            
+
+                                                            ${text(
+                                                                "Xóa",
+                                                                "Delete"
+                                                            )}
+
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
+
+                                            `
+                                        ).join("")
+                                        : `
+
+                                            <span
+                                                class="empty-cell">
+
+                                                —
+
+                                            </span>
+
+                                          `
+                                }
+
+                            </td>
+
+                        `;
+
+                    }
+                );
+
+
+                html += `
+
+                    </tr>
+
+                `;
+
+            }
+        );
 
 
         html += `
 
-        </table>
-
-        </div>
+            </table>
 
         `;
 
 
-
-        card.innerHTML =
+        box.innerHTML =
             html;
-
-
-
-        document.querySelector(".main")
-            .insertBefore(
-                card,
-                document.querySelector(".main")
-                    .children[3]
-            );
-
-
 
     }
 
 
+    /* =========================
+       ESCAPE HTML
+    ========================= */
+
+    function escapeHtml(value) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
 
 
+        div.textContent =
+            value || "";
 
 
+        return div.innerHTML;
+
+    }
 
 
     /* =========================
        MONTH CALENDAR
     ========================= */
 
-
-
     function renderMonth() {
-
 
         const box =
             document.getElementById(
@@ -847,39 +1287,41 @@ RENDER WEEK CALENDAR
             );
 
 
+        if (!box) {
 
-        if (!box)
             return;
 
-
+        }
 
 
         const monthName =
             new Date(
                 currentYear,
-                currentMonth
-            )
-                .toLocaleString(
-                    getLanguage() === "en"
-                        ? "en-US"
-                        : "vi-VN",
-                    {
-                        month: "long",
-                        year: "numeric"
-                    }
-                );
+                currentMonth,
+                1
+            ).toLocaleString(
+
+                getLanguage() === "en"
+                    ? "en-US"
+                    : "vi-VN",
+
+                {
+
+                    month: "long",
+
+                    year: "numeric"
+
+                }
+
+            );
 
 
+        if (title) {
 
-        if (title)
             title.innerText =
                 monthName;
 
-
-
-
-        box.innerHTML = "";
-
+        }
 
 
         const days =
@@ -890,6 +1332,8 @@ RENDER WEEK CALENDAR
             ).getDate();
 
 
+        const fragment =
+            document.createDocumentFragment();
 
 
         for (
@@ -898,86 +1342,94 @@ RENDER WEEK CALENDAR
             i++
         ) {
 
-
-            let date =
-                `${currentYear}-${String(currentMonth + 1).padStart(2, "0")}-${String(i).padStart(2, "0")}`;
-
-
-
-            let has =
-                calendarData.schedules
-                    .some(
-                        x => x.date === date
-                    );
+            const date =
+                `${currentYear}-${String(
+                    currentMonth + 1
+                ).padStart(2, "0")}-${String(
+                    i
+                ).padStart(2, "0")}`;
 
 
-
-            box.innerHTML += `
-
-            <div class="day ${has ? "event" : ""
-                }">
-
-
-            ${i}
+            const has =
+                calendarData.schedules.some(
+                    item =>
+                        item.date === date
+                );
 
 
-            ${has
-                    ? "🔥"
-                    : ""
-                }
+            const day =
+                document.createElement(
+                    "div"
+                );
 
 
-            </div>
+            day.className =
+                has
+                    ? "day event"
+                    : "day";
 
-            `;
 
+            day.innerHTML =
+                has
+                    ? `${i}<span>🔥</span>`
+                    : `${i}`;
+
+
+            fragment.appendChild(
+                day
+            );
 
         }
 
+
+        box.innerHTML = "";
+
+
+        box.appendChild(
+            fragment
+        );
 
     }
 
 
+    window.changeMonth =
+        function (value) {
+
+            currentMonth += value;
 
 
+            if (
+                currentMonth > 11
+            ) {
+
+                currentMonth = 0;
+
+                currentYear++;
+
+            }
 
 
-    window.changeMonth = function (value) {
+            if (
+                currentMonth < 0
+            ) {
+
+                currentMonth = 11;
+
+                currentYear--;
+
+            }
 
 
-        currentMonth += value;
+            renderMonth();
+
+        };
 
 
-
-        if (currentMonth > 11) {
-
-            currentMonth = 0;
-            currentYear++;
-
-        }
-
-
-
-        if (currentMonth < 0) {
-
-            currentMonth = 11;
-            currentYear--;
-
-        }
-
-
-
-        renderMonth();
-
-
-    }
     /* =========================
        STUDY STREAK
     ========================= */
 
-
     function renderStreak() {
-
 
         const fire =
             document.getElementById(
@@ -985,82 +1437,97 @@ RENDER WEEK CALENDAR
             );
 
 
-        const text =
+        const streakText =
             document.getElementById(
                 "streakText"
             );
 
 
+        if (
+            !fire ||
+            !streakText
+        ) {
 
-        if (!fire || !text)
             return;
 
+        }
 
 
         const dates =
             [
                 ...new Set(
+
                     calendarData.schedules
                         .map(
-                            item => item.date
+                            item =>
+                                item.date
                         )
+
                 )
-            ]
-                .sort();
+
+            ].sort();
 
 
-
-        let streak =
-            calculateStreak(dates);
-
-
-
-        fire.innerHTML =
-            "🔥".repeat(
-                streak || 1
+        const streak =
+            calculateStreak(
+                dates
             );
 
 
+        if (streak > 0) {
 
-        text.innerHTML =
-            streak
-                ?
-                `${streak} ${getLanguage() === "en"
-                    ?
-                    "days study streak"
-                    :
-                    "ngày học liên tục"
-                }`
-                :
+            const fireCount =
+                Math.min(
+                    streak,
+                    10
+                );
+
+
+            fire.innerHTML =
+                "🔥".repeat(
+                    fireCount
+                );
+
+
+            streakText.innerText =
+                `${streak} ${
+                    getLanguage() === "en"
+                        ? "days study streak"
+                        : "ngày học liên tục"
+                }`;
+
+        }
+        else {
+
+            fire.innerHTML =
+                "🔥";
+
+
+            streakText.innerText =
                 text(
                     "Chưa có lịch học",
                     "No study record"
                 );
 
-
+        }
 
     }
 
 
-
-
-
-
-
     function calculateStreak(dates) {
-
 
         if (
             !dates.length
-        )
+        ) {
+
             return 0;
 
+        }
 
 
         let max = 1;
 
         let current = 1;
-
 
 
         for (
@@ -1069,32 +1536,36 @@ RENDER WEEK CALENDAR
             i++
         ) {
 
-
             const previous =
                 new Date(
-                    dates[i - 1]
+                    dates[i - 1] +
+                    "T00:00:00"
                 );
 
 
             const now =
                 new Date(
-                    dates[i]
+                    dates[i] +
+                    "T00:00:00"
                 );
 
 
-
             const diff =
-                (
-                    now - previous
-                )
-                /
-                86400000;
+                Math.round(
+                    (
+                        now -
+                        previous
+                    ) /
+                    86400000
+                );
 
 
-
-            if (diff === 1) {
+            if (
+                diff === 1
+            ) {
 
                 current++;
+
 
                 max =
                     Math.max(
@@ -1109,29 +1580,19 @@ RENDER WEEK CALENDAR
 
             }
 
-
         }
 
 
         return max;
 
-
     }
-
-
-
-
-
-
 
 
     /* =========================
        STUDY TIME
     ========================= */
 
-
     function renderStudyTime() {
-
 
         const today =
             document.getElementById(
@@ -1145,17 +1606,20 @@ RENDER WEEK CALENDAR
             );
 
 
+        if (
+            !today ||
+            !total
+        ) {
 
-        if (!today || !total)
             return;
 
+        }
 
 
         const now =
-            new Date()
-                .toISOString()
-                .split("T")[0];
-
+            getLocalDateString(
+                new Date()
+            );
 
 
         let todayTime = 0;
@@ -1163,236 +1627,137 @@ RENDER WEEK CALENDAR
         let totalTime = 0;
 
 
+        calendarData.schedules.forEach(
+            item => {
 
-        calendarData.schedules
-            .forEach(
-                item => {
-
-
-                    totalTime +=
-                        Number(
-                            item.studyTime || 0
-                        );
+                const time =
+                    Number(
+                        item.studyTime || 0
+                    );
 
 
+                totalTime += time;
 
-                    if (
-                        item.date === now
-                    ) {
 
-                        todayTime +=
-                            Number(
-                                item.studyTime || 0
-                            );
+                if (
+                    item.date === now
+                ) {
 
-                    }
-
+                    todayTime += time;
 
                 }
-            );
 
-
+            }
+        );
 
 
         today.innerText =
-            todayTime
-                ?
-                `${todayTime} ${getLanguage() === "en"
-                    ? "hours"
-                    : "giờ"
-                }`
-                :
-                (
+            todayTime > 0
+                ? `${todayTime} ${
                     getLanguage() === "en"
-                        ?
-                        "No study time today"
-                        :
-                        "Chưa có thời gian học hôm nay"
+                        ? "hours"
+                        : "giờ"
+                }`
+                : (
+                    getLanguage() === "en"
+                        ? "No study time today"
+                        : "Chưa có thời gian học hôm nay"
                 );
 
 
-
-
         total.innerText =
-            `${totalTime} ${getLanguage() === "en"
-                ? "hours"
-                : "giờ"
+            `${totalTime} ${
+                getLanguage() === "en"
+                    ? "hours"
+                    : "giờ"
             }`;
 
-
-
     }
-
-
-
-
-
-
-
-    /* =========================
-       LANGUAGE SYSTEM
-    ========================= */
-
-
-
-    function updateLanguage() {
-
-
-
-        const lang =
-            getLanguage();
-
-
-
-        document
-            .querySelectorAll(
-                "[data-vn]"
-            )
-            .forEach(
-                el => {
-
-
-                    el.innerText =
-                        lang === "en"
-                            ?
-                            el.dataset.en
-                            :
-                            el.dataset.vn;
-
-
-                }
-            );
-
-
-
-
-        document
-            .querySelectorAll(
-                "[data-vn-placeholder]"
-            )
-            .forEach(
-                el => {
-
-
-                    el.placeholder =
-                        lang === "en"
-                            ?
-                            el.dataset.enPlaceholder
-                            :
-                            el.dataset.vnPlaceholder;
-
-
-                }
-            );
-
-
-
-        renderAll();
-
-
-    }
-
-
-
-
-
-
-    window.changeLanguage =
-        function (lang) {
-
-            localStorage.setItem(
-                "language",
-                lang
-            );
-
-
-            updateLanguage();
-
-        };
-
-
-
-
-
-
 
 
     /* =========================
        RENDER ALL
     ========================= */
 
-
     function renderAll() {
-
-
-        renderWeekCalendar();
-
-
-        renderWeeklySchedule();
-
-
-        renderMonth();
-
-
-        renderStreak();
-
-
-        renderStudyTime();
-
 
         updateLanguage();
 
+        renderWeeklySchedule();
+
+        renderMonth();
+
+        renderStreak();
+
+        renderStudyTime();
 
     }
-
-
-
-
 
 
     /* =========================
-       BUTTON SAVE EDIT
+       SETTING DROPDOWN
     ========================= */
 
-
-    const addButton =
+    const settingButton =
         document.querySelector(
-            "button[onclick='addSchedule()']"
+            ".setting-btn"
         );
 
 
-
-    if (addButton) {
-
-
-        addButton.onclick =
-            function () {
+    const settingDropdown =
+        document.querySelector(
+            ".setting-dropdown"
+        );
 
 
-                if (editId) {
+    if (
+        settingButton &&
+        settingDropdown
+    ) {
 
-                    updateSchedule();
+        settingButton.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+
+
+                settingDropdown.classList.toggle(
+                    "show"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    !event.target.closest(
+                        ".setting-menu"
+                    )
+                ) {
+
+                    settingDropdown.classList.remove(
+                        "show"
+                    );
 
                 }
-                else {
 
-                    addSchedule();
-
-                }
-
-
-            };
-
+            }
+        );
 
     }
 
 
+    /* =========================
+       INITIAL LOAD
+    ========================= */
 
-
-
+    updateLanguage();
 
     renderAll();
-
-
 
 });
