@@ -334,9 +334,7 @@
                 data-vn="Tính năng nổi bật"
                 data-en="Featured Features">
 
-                ```
-                Tính năng nổi bật
-                ```
+                    Tính năng nổi bật
 
                 </h2>
 
@@ -344,9 +342,7 @@
                 data-vn="Study Focus giúp bạn học tập hiệu quả, quản lý thời gian và tăng khả năng tập trung."
                 data-en="Study Focus helps you study effectively, manage time and improve concentration.">
 
-                ```
-                Study Focus giúp bạn học tập hiệu quả, quản lý thời gian và tăng khả năng tập trung.
-                ```
+                    Study Focus giúp bạn học tập hiệu quả, quản lý thời gian và tăng khả năng tập trung.
 
                 </p>
 
@@ -571,9 +567,7 @@
 
 
                     <blockquote
-                    id="quote-text"
-                    data-vn="&quot;Don't watch the clock. Do what it does. Keep going.&quot;;"
-                    data-en="&quot;Don't watch the clock. Do what it does. Keep going.&quot;">
+                    id="quote-text">
 
                         "Don't watch the clock. Do what it does. Keep going."
 
@@ -582,7 +576,8 @@
 
 
 
-                    <p class="quote-author">
+                    <p class="quote-author"
+                    id="quote-author">
 
                         — Sam Levenson
 
@@ -594,14 +589,15 @@
                     <div class="quote-buttons">
 
 
-                        <button id="random-quote"
+                        <button type="button"
+                                id="random-quote"
                                 class="quote-btn">
 
                             <span
                             data-vn="Câu nói khác"
                             data-en="Random Quote">
 
-                                Random Quote
+                                Câu nói khác
 
                             </span>
 
@@ -610,14 +606,15 @@
 
 
 
-                        <button id="favorite-quote"
+                        <button type="button"
+                                id="favorite-quote"
                                 class="quote-btn">
 
                             <span
                             data-vn="Yêu thích"
                             data-en="Favorite">
 
-                                Favorite
+                                Yêu thích
 
                             </span>
 
@@ -626,14 +623,15 @@
 
 
 
-                        <button id="copy-quote"
+                        <button type="button"
+                                id="copy-quote"
                                 class="quote-btn">
 
                             <span
                             data-vn="Sao chép"
                             data-en="Copy Quote">
 
-                                Copy Quote
+                                Sao chép
 
                             </span>
 
@@ -710,7 +708,14 @@
 
     </footer>
 
+    <!-- MAIN SCRIPT -->
     <script src="js/main.js" defer></script>
+
+    <!-- STORAGE SYSTEM -->
+    <script src="js/storage.js" defer></script>
+
+    <!-- QUOTE SYSTEM -->
+    <script src="js/quote.js" defer></script>
 
 </body>
 

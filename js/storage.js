@@ -123,6 +123,7 @@ function saveCalendarData(data){
 
 
 
+
 // ================= POMODORO =================
 
 
@@ -150,6 +151,7 @@ function savePomodoroData(data){
 
 
 }
+
 
 
 
@@ -187,6 +189,7 @@ function saveTodoData(data){
 
 
 
+
 // ================= DAILY GOALS =================
 
 
@@ -214,6 +217,7 @@ function saveDailyGoalsData(data){
 
 
 }
+
 
 
 
@@ -251,6 +255,7 @@ function saveStudyTimeData(data){
 
 
 
+
 // ================= SETTINGS =================
 
 
@@ -269,6 +274,8 @@ function saveSettings(data){
 
 
 
+
+
 function getSettings(){
 
 
@@ -282,6 +289,39 @@ function getSettings(){
             notification:true
 
         }
+    );
+
+
+}
+
+
+
+
+
+
+// ================= QUOTE =================
+
+
+function getFavoriteQuotes(){
+
+
+    return StudyStorage.load(
+        "favoriteQuotes",
+        []
+    );
+
+
+}
+
+
+
+
+function saveFavoriteQuotes(data){
+
+
+    StudyStorage.save(
+        "favoriteQuotes",
+        data
     );
 
 

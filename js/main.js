@@ -118,7 +118,6 @@ function changeTheme(theme){
 
 
 
-
 function applyTheme(theme){
 
 
@@ -134,6 +133,8 @@ function applyTheme(theme){
 
 
 }
+
+
 
 
 
@@ -249,6 +250,10 @@ function applyLanguage(lang){
 
 
 
+
+
+
+
 /* ===============================
    USER PROFILE SYNC
 ================================ */
@@ -325,6 +330,10 @@ function loadUserProfile(){
 
 
 
+
+
+
+
 /* ===============================
    POMODORO TIMER
 ================================ */
@@ -337,6 +346,8 @@ let time = 1500;
 
 
 let running=false;
+
+
 
 
 
@@ -461,6 +472,7 @@ function startPomodoro(display){
 
 
 
+
 function resetPomodoro(display){
 
 
@@ -478,6 +490,7 @@ function resetPomodoro(display){
 
 
 }
+
 
 
 
