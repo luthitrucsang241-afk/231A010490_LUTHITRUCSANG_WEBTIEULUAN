@@ -1,10 +1,10 @@
- // ================= REGISTER SYSTEM =================
+// ================= REGISTER SYSTEM =================
 // Vị trí: js/register.js
-
 
 
 const registerForm =
 document.getElementById("registerForm");
+
 
 
 
@@ -14,7 +14,6 @@ document.getElementById("registerForm");
 
 const showPassword =
 document.getElementById("showPassword");
-
 
 
 if(showPassword){
@@ -29,7 +28,6 @@ if(showPassword){
 
         const confirm =
         document.getElementById("confirmPassword");
-
 
 
         if(this.checked){
@@ -64,10 +62,7 @@ if(showPassword){
 
 
 
-
-
 // ================= ĐĂNG KÝ =================
-
 
 
 if(registerForm){
@@ -78,7 +73,6 @@ registerForm.addEventListener(
 "submit",
 
 function(e){
-
 
 
 e.preventDefault();
@@ -144,18 +138,23 @@ document
 
 
 
-
-
 if(
-    fullname==="" ||
-    username==="" ||
-    email==="" ||
-    password===""
+
+fullname==="" ||
+
+username==="" ||
+
+email==="" ||
+
+password===""
+
 ){
 
 
     alert(
+
         "Vui lòng nhập đầy đủ thông tin"
+
     );
 
 
@@ -174,7 +173,9 @@ if(password !== confirmPassword){
 
 
     alert(
+
         "Mật khẩu không trùng khớp"
+
     );
 
 
@@ -189,11 +190,7 @@ if(password !== confirmPassword){
 
 
 
-
-
-// ================= LƯU TÀI KHOẢN LOCALSTORAGE =================
-// SỬA: bỏ gọi API localhost, lưu trực tiếp trên trình duyệt
-
+// ================= LƯU TÀI KHOẢN =================
 
 
 let users =
@@ -211,18 +208,39 @@ localStorage.getItem("users")
 
 
 
+// ================= TẠO ID USER =================
 
-// kiểm tra email đã tồn tại
+
+const userId =
+
+"USER_" +
+
+Date.now() +
+
+"_" +
+
+Math.random()
+.toString(36)
+.substring(2, 8);
+
+
+
+
+
+
+
+// ================= KIỂM TRA EMAIL =================
 
 
 const emailExist =
 
 users.find(
 
-user => user.email === email
+user =>
+
+user.email === email
 
 );
-
 
 
 
@@ -249,18 +267,18 @@ if(emailExist){
 
 
 
-
-// kiểm tra username đã tồn tại
+// ================= KIỂM TRA USERNAME =================
 
 
 const usernameExist =
 
 users.find(
 
-user => user.username === username
+user =>
+
+user.username === username
 
 );
-
 
 
 
@@ -287,24 +305,40 @@ if(usernameExist){
 
 
 
+// ================= TẠO USER =================
 
 
 const newUser = {
 
 
-    fullname: fullname,
+    id:
+
+    userId,
 
 
-    username: username,
+    fullname:
+
+    fullname,
 
 
-    email: email,
+    username:
+
+    username,
 
 
-    password: password,
+    email:
+
+    email,
 
 
-    avatar:"images/avatar.png"
+    password:
+
+    password,
+
+
+    avatar:
+
+    "images/avatar.png"
 
 
 };
@@ -315,9 +349,14 @@ const newUser = {
 
 
 
-users.push(newUser);
+// ================= LƯU USER =================
 
 
+users.push(
+
+newUser
+
+);
 
 
 
@@ -328,6 +367,90 @@ localStorage.setItem(
 "users",
 
 JSON.stringify(users)
+
+);
+
+
+
+
+
+
+
+// ================= TẠO DỮ LIỆU STUDY BAN ĐẦU =================
+
+
+const studyDataKey =
+
+"studyData_" +
+
+userId;
+
+
+
+
+
+
+
+const initialStudyData = {
+
+
+    currentStreak:
+
+    0,
+
+
+    bestStreak:
+
+    0,
+
+
+    lastStudyDate:
+
+    null,
+
+
+    todayCompleted:
+
+    false,
+
+
+    updatedAt:
+
+    new Date()
+    .toISOString(),
+
+
+    totalStudyMinutes:
+
+    0,
+
+
+    dailyStudy:
+
+    {},
+
+
+    pomodoroSessions:
+
+    []
+
+};
+
+
+
+
+
+
+
+localStorage.setItem(
+
+studyDataKey,
+
+JSON.stringify(
+
+initialStudyData
+
+)
 
 );
 
@@ -361,6 +484,6 @@ window.location.href =
 
 );
 
-
-
 }
+
+

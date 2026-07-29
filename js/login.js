@@ -21,7 +21,6 @@ if(showPassword && password){
 showPassword.onclick=function(){
 
 
-
     if(password.type==="password"){
 
 
@@ -55,7 +54,6 @@ showPassword.onclick=function(){
     }
 
 
-
 };
 
 
@@ -68,14 +66,12 @@ showPassword.onclick=function(){
 
 
 
-// ================= LOGIN =================
 
+// ================= LOGIN =================
 
 
 const loginForm =
 document.getElementById("loginForm");
-
-
 
 
 
@@ -88,7 +84,6 @@ loginForm.addEventListener(
 "submit",
 
 function(e){
-
 
 
 e.preventDefault();
@@ -119,7 +114,6 @@ document
 
 
 
-
 const remember =
 
 document
@@ -132,22 +126,23 @@ document
 
 
 
-
-
 if(
+
 email==="" ||
+
 pass===""
+
 ){
 
 
-alert(
+    alert(
 
-"Vui lòng nhập đầy đủ thông tin"
+        "Vui lòng nhập đầy đủ thông tin"
 
-);
+    );
 
 
-return;
+    return;
 
 
 }
@@ -158,11 +153,7 @@ return;
 
 
 
-
-
-// ================= KIỂM TRA TÀI KHOẢN =================
-// SỬA: bỏ API localhost, lấy dữ liệu từ localStorage
-
+// ================= LẤY TÀI KHOẢN =================
 
 
 const users =
@@ -201,18 +192,17 @@ item.password === pass
 
 
 
-
 if(!user){
 
 
-alert(
+    alert(
 
-"Sai email hoặc mật khẩu"
+        "Sai email hoặc mật khẩu"
 
-);
+    );
 
 
-return;
+    return;
 
 
 }
@@ -223,10 +213,83 @@ return;
 
 
 
+// ================= ĐẢM BẢO USER CÓ ID =================
+
+
+if(
+
+!user.id
+
+){
+
+
+    user.id =
+
+    "USER_" +
+
+    Date.now() +
+
+    "_" +
+
+    Math.random()
+    .toString(36)
+    .substring(2, 8);
+
+
+
+
+
+
+
+    const userIndex =
+
+    users.findIndex(
+
+        item =>
+
+        item.email === email
+
+    );
+
+
+
+
+
+
+
+    if(
+
+        userIndex !== -1
+
+    ){
+
+
+        users[userIndex] =
+
+        user;
+
+
+        localStorage.setItem(
+
+            "users",
+
+            JSON.stringify(users)
+
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
 
 
 // ================= LƯU PHIÊN ĐĂNG NHẬP =================
-
 
 
 localStorage.setItem(
@@ -255,19 +318,127 @@ localStorage.setItem(
 
 
 
+// ================= TẠO STUDY DATA NẾU CHƯA CÓ =================
+
+
+const studyDataKey =
+
+"studyData_" +
+
+user.id;
+
+
+
+
+
+
+
+const existingStudyData =
+
+localStorage.getItem(
+
+studyDataKey
+
+);
+
+
+
+
+
+
+
+if(
+
+!existingStudyData
+
+){
+
+
+    const initialStudyData = {
+
+
+        currentStreak:
+
+        0,
+
+
+        bestStreak:
+
+        0,
+
+
+        lastStudyDate:
+
+        null,
+
+
+        todayCompleted:
+
+        false,
+
+
+        updatedAt:
+
+        new Date()
+        .toISOString(),
+
+
+        totalStudyMinutes:
+
+        0,
+
+
+        dailyStudy:
+
+        {},
+
+
+        pomodoroSessions:
+
+        []
+
+    };
+
+
+
+
+
+
+
+    localStorage.setItem(
+
+        studyDataKey,
+
+        JSON.stringify(
+
+            initialStudyData
+
+        )
+
+    );
+
+
+}
+
+
+
+
+
+
+
+// ================= NHỚ ĐĂNG NHẬP =================
+
 
 if(remember){
 
 
+    localStorage.setItem(
 
-localStorage.setItem(
+        "rememberLogin",
 
-"rememberLogin",
+        "true"
 
-"true"
-
-);
-
+    );
 
 
 }
@@ -275,13 +446,11 @@ localStorage.setItem(
 else{
 
 
+    localStorage.removeItem(
 
-localStorage.removeItem(
+        "rememberLogin"
 
-"rememberLogin"
-
-);
-
+    );
 
 
 }
@@ -303,85 +472,19 @@ alert(
 
 
 
-window.location.href =
-
-"dashboard.html";
-
-
-
-
-}
-
-);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-// ================= AUTO LOGIN =================
-
-
-
-document.addEventListener(
-
-"DOMContentLoaded",
-
-()=>{
-
-
-
-const remember =
-
-localStorage.getItem(
-
-"rememberLogin"
-
-);
-
-
-
-const user =
-
-localStorage.getItem(
-
-"currentUser"
-
-);
-
-
-
-
-
-if(
-
-remember==="true"
-
-&&
-
-user
-
-){
-
-
 
 window.location.href =
 
 "dashboard.html";
 
 
-}
 
 
 
 }
 
 );
+
+}
+
+

@@ -1,32 +1,63 @@
 /* =====================================
    STUDY FOCUS MAIN SCRIPT
-   Theme + Language + Setting + Pomodoro
+   Theme + Language + Setting + Profile
+   + Pomodoro
 ===================================== */
 
 
-document.addEventListener("DOMContentLoaded",()=>{
+/* ===============================
+   DOM CONTENT LOADED
+================================ */
 
+document.addEventListener("DOMContentLoaded", () => {
+
+
+    /* ===============================
+       LOAD SAVED SETTINGS
+    ================================ */
 
     const theme =
-    localStorage.getItem("theme")
-    || "light";
+        localStorage.getItem("theme")
+        || "light";
 
 
     const language =
-    localStorage.getItem("language")
-    || "vi";
+        localStorage.getItem("language")
+        || "vi";
 
 
+    /* ===============================
+       APPLY SETTINGS
+    ================================ */
 
     applyTheme(theme);
 
     applyLanguage(language);
+
+
+    /* ===============================
+       OTHER SYSTEMS
+    ================================ */
 
     loadUserProfile();
 
     setupSettingMenu();
 
     setupPomodoro();
+
+
+    /* ===============================
+       DASHBOARD SYNC
+    ================================ */
+
+    if (
+        typeof updateStudyDashboard ===
+        "function"
+    ) {
+
+        updateStudyDashboard();
+
+    }
 
 
 });
@@ -39,56 +70,92 @@ document.addEventListener("DOMContentLoaded",()=>{
    SETTING MENU
 ================================ */
 
-
-function setupSettingMenu(){
+function setupSettingMenu() {
 
 
     const btn =
-    document.querySelector(".setting-btn");
+        document.querySelector(
+            ".setting-btn"
+        );
 
 
     const menu =
-    document.querySelector(".setting-dropdown");
+        document.querySelector(
+            ".setting-dropdown"
+        );
 
 
+    /* ===============================
+       CHECK ELEMENT
+    ================================ */
 
-    if(!btn || !menu)
+    if (
+        !btn ||
+        !menu
+    ) {
+
         return;
 
+    }
 
 
-    btn.onclick=function(e){
+    /* ===============================
+       OPEN / CLOSE SETTING
+    ================================ */
+
+    btn.addEventListener(
+        "click",
+        function (e) {
 
 
-        e.stopPropagation();
+            e.stopPropagation();
 
 
-        menu.classList.toggle("show");
+            menu.classList.toggle(
+                "show"
+            );
 
 
-    };
+        }
+    );
 
 
+    /* ===============================
+       CLOSE WHEN CLICK OUTSIDE
+    ================================ */
 
-    document.addEventListener("click",()=>{
-
-
-        menu.classList.remove("show");
-
-
-    });
-
+    document.addEventListener(
+        "click",
+        function () {
 
 
-    menu.onclick=function(e){
+            menu.classList.remove(
+                "show"
+            );
 
-        e.stopPropagation();
 
-    };
+        }
+    );
+
+
+    /* ===============================
+       KEEP MENU OPEN
+       WHEN CLICK INSIDE
+    ================================ */
+
+    menu.addEventListener(
+        "click",
+        function (e) {
+
+
+            e.stopPropagation();
+
+
+        }
+    );
 
 
 }
-
 
 
 
@@ -96,12 +163,20 @@ function setupSettingMenu(){
 
 
 /* ===============================
-   THEME
+   THEME SYSTEM
 ================================ */
 
 
-function changeTheme(theme){
+/* ===============================
+   CHANGE THEME
+================================ */
 
+function changeTheme(theme) {
+
+
+    /* ===============================
+       SAVE THEME
+    ================================ */
 
     localStorage.setItem(
         "theme",
@@ -109,7 +184,30 @@ function changeTheme(theme){
     );
 
 
+    /* ===============================
+       APPLY THEME
+    ================================ */
+
     applyTheme(theme);
+
+
+    /* ===============================
+       CLOSE SETTING MENU
+    ================================ */
+
+    const menu =
+        document.querySelector(
+            ".setting-dropdown"
+        );
+
+
+    if (menu) {
+
+        menu.classList.remove(
+            "show"
+        );
+
+    }
 
 
 }
@@ -118,14 +216,27 @@ function changeTheme(theme){
 
 
 
-function applyTheme(theme){
 
+/* ===============================
+   APPLY THEME
+================================ */
+
+function applyTheme(theme) {
+
+
+    /* ===============================
+       REMOVE OLD THEME
+    ================================ */
 
     document.body.classList.remove(
         "light",
         "dark"
     );
 
+
+    /* ===============================
+       ADD NEW THEME
+    ================================ */
 
     document.body.classList.add(
         theme
@@ -139,18 +250,21 @@ function applyTheme(theme){
 
 
 
-
-
-
-
-
 /* ===============================
-   LANGUAGE SYSTEM FIX
+   LANGUAGE SYSTEM
 ================================ */
 
 
-function changeLanguage(lang){
+/* ===============================
+   CHANGE LANGUAGE
+================================ */
 
+function changeLanguage(lang) {
+
+
+    /* ===============================
+       SAVE LANGUAGE
+    ================================ */
 
     localStorage.setItem(
         "language",
@@ -158,14 +272,43 @@ function changeLanguage(lang){
     );
 
 
+    /* ===============================
+       APPLY LANGUAGE
+    ================================ */
+
     applyLanguage(lang);
 
 
+    /* ===============================
+       UPDATE OTHER SYSTEMS
+    ================================ */
+
     window.dispatchEvent(
-        new Event("languageChanged")
+        new Event(
+            "languageChanged"
+        )
     );
 
 
+    /* ===============================
+       CLOSE SETTING MENU
+    ================================ */
+
+    const menu =
+        document.querySelector(
+            ".setting-dropdown"
+        );
+
+
+    if (menu) {
+
+        menu.classList.remove(
+            "show"
+        );
+
+    }
+
+
 }
 
 
@@ -173,81 +316,132 @@ function changeLanguage(lang){
 
 
 
+/* ===============================
+   APPLY LANGUAGE
+================================ */
 
-function applyLanguage(lang){
+function applyLanguage(lang) {
 
 
+    /* ===============================
+       UPDATE HTML LANGUAGE
+    ================================ */
 
     document.documentElement.lang =
-    lang;
+        lang;
 
 
-
-    document
-    .querySelectorAll("[data-vn]")
-    .forEach(element=>{
-
-
-        if(lang==="en"){
-
-
-            element.innerHTML =
-            element.dataset.en;
-
-
-        }
-        else{
-
-
-            element.innerHTML =
-            element.dataset.vn;
-
-
-        }
-
-
-    });
-
-
-
-
+    /* ===============================
+       UPDATE TEXT
+       data-vn / data-en
+    ================================ */
 
     document
-    .querySelectorAll("[data-vn-placeholder]")
-    .forEach(element=>{
+        .querySelectorAll(
+            "[data-vn]"
+        )
+        .forEach(
+            element => {
 
 
-        if(lang==="en"){
+                if (
+                    lang === "en"
+                ) {
 
 
-            element.placeholder =
-            element.dataset.enPlaceholder;
+                    /* ===============================
+                       ENGLISH
+                    ================================ */
+
+                    if (
+                        element.dataset.en
+                    ) {
+
+                        element.innerHTML =
+                            element.dataset.en;
+
+                    }
 
 
-        }
-        else{
+                }
+
+                else {
 
 
-            element.placeholder =
-            element.dataset.vnPlaceholder;
+                    /* ===============================
+                       VIETNAMESE
+                    ================================ */
+
+                    if (
+                        element.dataset.vn
+                    ) {
+
+                        element.innerHTML =
+                            element.dataset.vn;
+
+                    }
 
 
-        }
+                }
 
 
-    });
+            }
+        );
 
 
+
+    /* ===============================
+       UPDATE PLACEHOLDER
+       data-vn-placeholder
+       data-en-placeholder
+    ================================ */
+
+    document
+        .querySelectorAll(
+            "[data-vn-placeholder]"
+        )
+        .forEach(
+            element => {
+
+
+                if (
+                    lang === "en"
+                ) {
+
+
+                    if (
+                        element.dataset.enPlaceholder
+                    ) {
+
+                        element.placeholder =
+                            element.dataset.enPlaceholder;
+
+                    }
+
+
+                }
+
+                else {
+
+
+                    if (
+                        element.dataset.vnPlaceholder
+                    ) {
+
+                        element.placeholder =
+                            element.dataset.vnPlaceholder;
+
+                    }
+
+
+                }
+
+
+            }
+        );
 
 
 }
-
-
-
-
-
-
-
 
 
 
@@ -258,76 +452,113 @@ function applyLanguage(lang){
    USER PROFILE SYNC
 ================================ */
 
+function loadUserProfile() {
 
-function loadUserProfile(){
+
+    /* ===============================
+       CURRENT USER
+    ================================ */
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
 
 
+    /* ===============================
+       USER PROFILE
+    ================================ */
+
+    const userProfile =
+        JSON.parse(
+            localStorage.getItem(
+                "userProfile"
+            )
+        );
+
+
+    /* ===============================
+       SELECT USER
+    ================================ */
 
     const user =
-
-    JSON.parse(
-        localStorage.getItem("userProfile")
-    );
+        currentUser ||
+        userProfile;
 
 
+    if (
+        !user
+    ) {
 
-    if(!user)
         return;
 
+    }
 
 
+    /* ===============================
+       GET ELEMENTS
+    ================================ */
 
     const welcome =
-    document.getElementById(
-        "welcomeUser"
-    );
-
+        document.getElementById(
+            "welcomeUser"
+        );
 
 
     const avatar =
-    document.getElementById(
-        "avatar"
-    );
+        document.getElementById(
+            "avatar"
+        );
 
 
+    /* ===============================
+       GET USERNAME
+    ================================ */
+
+    const userName =
+        user.fullname ||
+        user.name ||
+        user.username;
 
 
+    /* ===============================
+       DISPLAY USERNAME
+    ================================ */
 
-
-
-    if(welcome && user.name){
+    if (
+        welcome &&
+        userName
+    ) {
 
 
         welcome.innerHTML =
-        user.name;
+            "Xin chào 👋 " +
+            userName;
 
 
     }
 
 
+    /* ===============================
+       DISPLAY AVATAR
+    ================================ */
 
-
-
-
-    if(avatar && user.avatar){
+    if (
+        avatar &&
+        user.avatar
+    ) {
 
 
         avatar.src =
-        user.avatar;
+            user.avatar;
 
 
     }
 
 
-
 }
-
-
-
-
-
-
-
 
 
 
@@ -335,75 +566,109 @@ function loadUserProfile(){
 
 
 /* ===============================
-   POMODORO TIMER
+   POMODORO FALLBACK
+   Chỉ hoạt động nếu trang
+   có .pomodoro
 ================================ */
 
 
-let timer;
+/* ===============================
+   POMODORO VARIABLES
+================================ */
 
+let timer;
 
 let time = 1500;
 
-
-let running=false;
-
+let running = false;
 
 
 
 
 
 
+/* ===============================
+   SETUP POMODORO
+================================ */
 
-function setupPomodoro(){
+function setupPomodoro() {
 
 
     const display =
-    document.querySelector(".pomodoro h3");
+        document.querySelector(
+            ".pomodoro h3"
+        );
 
 
+    /* ===============================
+       KHÔNG CÓ POMODORO
+       TRÊN TRANG
+    ================================ */
 
-    if(!display)
+    if (
+        !display
+    ) {
+
         return;
 
+    }
 
 
-    updateTimer(display);
+    /* ===============================
+       INITIAL TIMER
+    ================================ */
 
-
-
-    const buttons =
-    document.querySelectorAll(
-        ".pomodoro button"
+    updateTimer(
+        display
     );
 
 
+    /* ===============================
+       GET BUTTONS
+    ================================ */
 
-    if(buttons.length>=2){
-
-
-        buttons[0].onclick=function(){
-
-
-            startPomodoro(display);
-
-
-        };
+    const buttons =
+        document.querySelectorAll(
+            ".pomodoro button"
+        );
 
 
+    /* ===============================
+       START + RESET
+    ================================ */
 
-        buttons[1].onclick=function(){
+    if (
+        buttons.length >= 2
+    ) {
 
 
-            resetPomodoro(display);
+        buttons[0].onclick =
+            function () {
 
 
-        };
+                startPomodoro(
+                    display
+                );
+
+
+            };
+
+
+        buttons[1].onclick =
+            function () {
+
+
+                resetPomodoro(
+                    display
+                );
+
+
+            };
 
 
     }
 
 
-
 }
 
 
@@ -411,56 +676,104 @@ function setupPomodoro(){
 
 
 
+/* ===============================
+   START POMODORO
+================================ */
 
-function startPomodoro(display){
+function startPomodoro(display) {
 
 
-    if(running)
+    /* ===============================
+       PREVENT MULTIPLE TIMER
+    ================================ */
+
+    if (
+        running
+    ) {
+
         return;
 
+    }
 
 
-    running=true;
+    running = true;
 
 
+    /* ===============================
+       START COUNTDOWN
+    ================================ */
 
-    timer=setInterval(()=>{
-
-
-        time--;
-
-
-        updateTimer(display);
-
+    timer =
+        setInterval(
+            () => {
 
 
-        if(time<=0){
+                time--;
 
 
-            clearInterval(timer);
+                updateTimer(
+                    display
+                );
 
 
-            running=false;
+                /* ===============================
+                   TIMER COMPLETED
+                ================================ */
+
+                if (
+                    time <= 0
+                ) {
 
 
-            alert(
-            localStorage.getItem("language")==="en"
-            ?
-            "Pomodoro completed!"
-            :
-            "Hoàn thành Pomodoro!"
-            );
+                    clearInterval(
+                        timer
+                    );
 
 
-            time=1500;
+                    running = false;
 
 
-        }
+                    /* ===============================
+                       LANGUAGE ALERT
+                    ================================ */
+
+                    alert(
+
+                        localStorage.getItem(
+                            "language"
+                        ) === "en"
+
+                            ?
+
+                        "Pomodoro completed!"
+
+                            :
+
+                        "Hoàn thành Pomodoro!"
+
+                    );
 
 
+                    /* ===============================
+                       RESET TIME
+                    ================================ */
 
-    },1000);
+                    time = 1500;
 
+
+                    updateTimer(
+                        display
+                    );
+
+
+                }
+
+
+            },
+
+            1000
+
+        );
 
 
 }
@@ -470,67 +783,74 @@ function startPomodoro(display){
 
 
 
+/* ===============================
+   RESET POMODORO
+================================ */
+
+function resetPomodoro(display) {
 
 
-
-function resetPomodoro(display){
-
-
-    clearInterval(timer);
-
-
-    running=false;
-
-
-    time=1500;
-
-
-    updateTimer(display);
-
-
-
-}
-
-
-
-
-
-
-
-
-
-function updateTimer(display){
-
-
-
-    let minutes =
-
-    Math.floor(
-        time/60
+    clearInterval(
+        timer
     );
 
 
+    running = false;
 
-    let seconds =
 
-    time%60;
+    time = 1500;
 
+
+    updateTimer(
+        display
+    );
+
+
+}
+
+
+
+
+
+
+/* ===============================
+   UPDATE TIMER
+================================ */
+
+function updateTimer(display) {
+
+
+    const minutes =
+
+        Math.floor(
+            time / 60
+        );
+
+
+    const seconds =
+
+        time % 60;
 
 
     display.innerHTML =
 
-    String(minutes)
-    .padStart(2,"0")
+        String(minutes)
+            .padStart(
+                2,
+                "0"
+            )
 
-    +
+        +
 
-    ":"
+        ":"
 
-    +
+        +
 
-    String(seconds)
-    .padStart(2,"0");
-
+        String(seconds)
+            .padStart(
+                2,
+                "0"
+            );
 
 
 }
@@ -540,23 +860,45 @@ function updateTimer(display){
 
 
 
-
 /* ===============================
-   AUTO SYNC LANGUAGE ALL PAGE
+   AUTO SYNC LANGUAGE
+   ALL PAGE
 ================================ */
 
-
 window.addEventListener(
-"languageChanged",
-()=>{
+    "languageChanged",
+    () => {
 
 
-    const lang =
-    localStorage.getItem("language")
-    ||"vi";
+        const lang =
+            localStorage.getItem(
+                "language"
+            )
+            || "vi";
 
 
-    applyLanguage(lang);
+        /* ===============================
+           APPLY LANGUAGE AGAIN
+        ================================ */
+
+        applyLanguage(
+            lang
+        );
 
 
-});
+        /* ===============================
+           UPDATE DASHBOARD
+        ================================ */
+
+        if (
+            typeof updateStudyDashboard ===
+            "function"
+        ) {
+
+            updateStudyDashboard();
+
+        }
+
+
+    }
+);

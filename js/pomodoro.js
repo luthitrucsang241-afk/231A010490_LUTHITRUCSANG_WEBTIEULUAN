@@ -14,6 +14,10 @@ document.addEventListener("DOMContentLoaded", function () {
     let running = false;
 
 
+    /* ================= THỜI GIAN BAN ĐẦU ================= */
+
+    let initialMinutes = 25;
+
 
     /* ================= LẤY PHẦN TỬ HTML ================= */
 
@@ -72,18 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateTimer() {
 
-
         const m =
-            String(minutes).padStart(2, "0");
+            String(minutes)
+                .padStart(2, "0");
 
 
         const s =
-            String(seconds).padStart(2, "0");
+            String(seconds)
+                .padStart(2, "0");
 
 
         timer.textContent =
             m + ":" + s;
-
 
     }
 
@@ -93,10 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateStudyTime() {
 
-
         studyTime.textContent =
-            minutes;
-
+            initialMinutes;
 
     }
 
@@ -106,8 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function startTimer() {
 
-
-        if (running) {
+        if (
+            running
+        ) {
 
             return;
 
@@ -118,74 +121,105 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         timerInterval =
-            setInterval(function () {
+            setInterval(
+                function () {
 
 
-                if (
-                    minutes === 0 &&
-                    seconds === 0
-                ) {
+                    if (
+                        minutes === 0 &&
+                        seconds === 0
+                    ) {
 
 
-                    clearInterval(
-                        timerInterval
-                    );
+                        clearInterval(
+                            timerInterval
+                        );
 
 
-                    timerInterval =
-                        null;
+                        timerInterval =
+                            null;
 
 
-                    running = false;
-
-
-                    localStorage.setItem(
-                        "pomodoroDone",
-                        "true"
-                    );
-
-
-                    alert(
-                        "Hoàn thành Pomodoro!"
-                    );
-
-
-                    return;
-
-                }
+                        running = false;
 
 
 
-                if (seconds > 0) {
+                        /*
+                           GHI NHẬN POMODORO
+                           HOÀN THÀNH THỰC TẾ
+                        */
+
+                        if (
+                            typeof recordStudyTime ===
+                            "function"
+                        ) {
+
+                            recordStudyTime(
+                                initialMinutes
+                            );
+
+                        }
 
 
-                    seconds--;
+
+                        /*
+                           LƯU TRẠNG THÁI
+                        */
+
+                        localStorage.setItem(
+
+                            "pomodoroDone",
+
+                            "true"
+
+                        );
 
 
-                }
-                else {
+
+                        alert(
+                            "Hoàn thành Pomodoro!"
+                        );
 
 
-                    if (minutes > 0) {
-
-
-                        minutes--;
-
-                        seconds = 59;
-
+                        return;
 
                     }
 
 
-                }
+
+                    if (
+                        seconds > 0
+                    ) {
+
+                        seconds--;
+
+                    }
+
+                    else {
+
+
+                        if (
+                            minutes > 0
+                        ) {
+
+                            minutes--;
+
+                            seconds = 59;
+
+                        }
+
+                    }
 
 
 
-                updateTimer();
+                    updateTimer();
 
 
-            }, 1000);
+                },
 
+                1000
+
+            );
 
     }
 
@@ -195,11 +229,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function pauseTimer() {
 
-
         if (
             timerInterval !== null
         ) {
-
 
             clearInterval(
                 timerInterval
@@ -209,12 +241,10 @@ document.addEventListener("DOMContentLoaded", function () {
             timerInterval =
                 null;
 
-
         }
 
 
         running = false;
-
 
     }
 
@@ -223,7 +253,6 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= RESET ================= */
 
     function resetTimer() {
-
 
         clearInterval(
             timerInterval
@@ -238,16 +267,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         minutes =
-            Number(
-                studyTime.textContent
-            );
+            initialMinutes;
 
 
         seconds = 0;
 
 
         updateTimer();
-
 
     }
 
@@ -256,21 +282,32 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= TĂNG 5 PHÚT ================= */
 
     plusTime.addEventListener(
+
         "click",
+
         function (event) {
 
 
             event.preventDefault();
 
 
-            if (running) {
+            if (
+                running
+            ) {
 
                 return;
 
             }
 
 
-            minutes += 5;
+            initialMinutes += 5;
+
+
+            minutes =
+                initialMinutes;
+
+
+            seconds = 0;
 
 
             updateStudyTime();
@@ -280,6 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         }
+
     );
 
 
@@ -287,24 +325,37 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= GIẢM 5 PHÚT ================= */
 
     minusTime.addEventListener(
+
         "click",
+
         function (event) {
 
 
             event.preventDefault();
 
 
-            if (running) {
+            if (
+                running
+            ) {
 
                 return;
 
             }
 
 
-            if (minutes > 5) {
+            if (
+                initialMinutes > 5
+            ) {
 
 
-                minutes -= 5;
+                initialMinutes -= 5;
+
+
+                minutes =
+                    initialMinutes;
+
+
+                seconds = 0;
 
 
                 updateStudyTime();
@@ -312,11 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 updateTimer();
 
-
             }
 
-
         }
+
     );
 
 
@@ -324,7 +374,9 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= NÚT BẮT ĐẦU ================= */
 
     startBtn.addEventListener(
+
         "click",
+
         function (event) {
 
 
@@ -333,8 +385,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             startTimer();
 
-
         }
+
     );
 
 
@@ -342,7 +394,9 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= NÚT DỪNG ================= */
 
     pauseBtn.addEventListener(
+
         "click",
+
         function (event) {
 
 
@@ -351,8 +405,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             pauseTimer();
 
-
         }
+
     );
 
 
@@ -360,7 +414,9 @@ document.addEventListener("DOMContentLoaded", function () {
     /* ================= NÚT RESET ================= */
 
     resetBtn.addEventListener(
+
         "click",
+
         function (event) {
 
 
@@ -369,8 +425,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             resetTimer();
 
-
         }
+
     );
 
 
