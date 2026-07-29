@@ -1,159 +1,366 @@
-const registerForm = document.getElementById("registerForm");
+ // ================= REGISTER SYSTEM =================
+// Vị trí: js/register.js
+
+
+
+const registerForm =
+document.getElementById("registerForm");
+
+
 
 
 // ================= HIỆN MẬT KHẨU =================
 
-const showPassword = document.getElementById("showPassword");
+
+const showPassword =
+document.getElementById("showPassword");
+
+
 
 if(showPassword){
 
+
     showPassword.onclick=function(){
 
-        let pass =
+
+        const pass =
         document.getElementById("password");
 
 
-        let confirm =
+        const confirm =
         document.getElementById("confirmPassword");
 
 
 
         if(this.checked){
 
+
             pass.type="text";
+
             confirm.type="text";
+
 
         }
 
         else{
 
+
             pass.type="password";
+
             confirm.type="password";
+
 
         }
 
+
     };
 
+
 }
+
+
+
+
+
+
 
 
 
 // ================= ĐĂNG KÝ =================
 
 
+
+if(registerForm){
+
+
 registerForm.addEventListener(
+
 "submit",
+
 function(e){
 
 
-    e.preventDefault();
+
+e.preventDefault();
 
 
 
-    let fullname =
-    document.getElementById("fullname").value;
+
+
+const fullname =
+
+document
+.getElementById("fullname")
+.value
+.trim();
 
 
 
-    let username =
-    document.getElementById("username").value;
+
+
+const username =
+
+document
+.getElementById("username")
+.value
+.trim();
 
 
 
-    let email =
-    document.getElementById("email").value;
+
+
+const email =
+
+document
+.getElementById("email")
+.value
+.trim();
 
 
 
-    let password =
-    document.getElementById("password").value;
+
+
+const password =
+
+document
+.getElementById("password")
+.value
+.trim();
 
 
 
-    let confirmPassword =
-    document.getElementById("confirmPassword").value;
+
+
+const confirmPassword =
+
+document
+.getElementById("confirmPassword")
+.value
+.trim();
 
 
 
-    // kiểm tra mật khẩu
-
-    if(password !== confirmPassword){
-
-        alert(
-        "Mật khẩu không trùng khớp"
-        );
-
-        return;
-
-    }
 
 
 
-    // lấy user cũ
-
-    let users =
-    JSON.parse(
-        localStorage.getItem("users")
-    ) || [];
 
 
 
-    // kiểm tra email tồn tại
-
-    let check =
-    users.find(
-        user=>user.email===email
-    );
-
-
-
-    if(check){
-
-        alert(
-        "Email đã được đăng ký"
-        );
-
-        return;
-
-    }
-
-
-
-    // tạo user mới
-
-    let user={
-
-        fullname:fullname,
-
-        username:username,
-
-        email:email,
-
-        password:password
-
-    };
-
-
-
-    users.push(user);
-
-
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
+if(
+    fullname==="" ||
+    username==="" ||
+    email==="" ||
+    password===""
+){
 
 
     alert(
-    "Đăng ký thành công"
+        "Vui lòng nhập đầy đủ thông tin"
     );
 
 
-
-    window.location.href=
-    "login.html";
+    return;
 
 
-});
+}
+
+
+
+
+
+
+
+if(password !== confirmPassword){
+
+
+    alert(
+        "Mật khẩu không trùng khớp"
+    );
+
+
+    return;
+
+
+}
+
+
+
+
+
+
+
+
+
+// ================= LƯU TÀI KHOẢN LOCALSTORAGE =================
+// SỬA: bỏ gọi API localhost, lưu trực tiếp trên trình duyệt
+
+
+
+let users =
+
+JSON.parse(
+
+localStorage.getItem("users")
+
+)
+
+|| [];
+
+
+
+
+
+
+
+// kiểm tra email đã tồn tại
+
+
+const emailExist =
+
+users.find(
+
+user => user.email === email
+
+);
+
+
+
+
+
+
+if(emailExist){
+
+
+    alert(
+
+        "Email đã được đăng ký"
+
+    );
+
+
+    return;
+
+
+}
+
+
+
+
+
+
+
+
+// kiểm tra username đã tồn tại
+
+
+const usernameExist =
+
+users.find(
+
+user => user.username === username
+
+);
+
+
+
+
+
+
+if(usernameExist){
+
+
+    alert(
+
+        "Tên tài khoản đã tồn tại"
+
+    );
+
+
+    return;
+
+
+}
+
+
+
+
+
+
+
+
+
+const newUser = {
+
+
+    fullname: fullname,
+
+
+    username: username,
+
+
+    email: email,
+
+
+    password: password,
+
+
+    avatar:"images/avatar.png"
+
+
+};
+
+
+
+
+
+
+
+users.push(newUser);
+
+
+
+
+
+
+
+localStorage.setItem(
+
+"users",
+
+JSON.stringify(users)
+
+);
+
+
+
+
+
+
+
+alert(
+
+"Đăng ký thành công"
+
+);
+
+
+
+
+
+
+
+window.location.href =
+
+"login.html";
+
+
+
+
+
+}
+
+);
+
+
+
+}

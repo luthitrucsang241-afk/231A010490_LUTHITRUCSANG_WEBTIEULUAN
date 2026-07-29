@@ -1,3 +1,8 @@
+// ================= LOGIN SYSTEM =================
+// Vị trí: js/login.js
+
+
+
 // ================= HIỆN / ẨN MẬT KHẨU =================
 
 
@@ -16,6 +21,7 @@ if(showPassword && password){
 showPassword.onclick=function(){
 
 
+
     if(password.type==="password"){
 
 
@@ -31,7 +37,6 @@ showPassword.onclick=function(){
 
 
     }
-
 
     else{
 
@@ -50,6 +55,7 @@ showPassword.onclick=function(){
     }
 
 
+
 };
 
 
@@ -60,12 +66,16 @@ showPassword.onclick=function(){
 
 
 
-// ================= ĐĂNG NHẬP =================
+
+
+// ================= LOGIN =================
 
 
 
 const loginForm =
 document.getElementById("loginForm");
+
+
 
 
 
@@ -87,7 +97,7 @@ e.preventDefault();
 
 
 
-let email =
+const email =
 
 document
 .getElementById("email")
@@ -97,7 +107,8 @@ document
 
 
 
-let pass =
+
+const pass =
 
 document
 .getElementById("password")
@@ -109,10 +120,24 @@ document
 
 
 
-// kiểm tra nhập trống
+const remember =
+
+document
+.getElementById("rememberMe")
+.checked;
 
 
-if(email==="" || pass===""){
+
+
+
+
+
+
+
+if(
+email==="" ||
+pass===""
+){
 
 
 alert(
@@ -131,32 +156,42 @@ return;
 
 
 
-// lấy danh sách tài khoản đăng ký
 
 
-let users =
+
+
+// ================= KIỂM TRA TÀI KHOẢN =================
+// SỬA: bỏ API localhost, lấy dữ liệu từ localStorage
+
+
+
+const users =
 
 JSON.parse(
 
 localStorage.getItem("users")
 
-) || [];
+)
+
+|| [];
 
 
 
 
 
 
-// tìm email
 
-
-let user =
+const user =
 
 users.find(
 
-u =>
+item =>
 
-u.email === email
+item.email === email
+
+&&
+
+item.password === pass
 
 );
 
@@ -165,8 +200,6 @@ u.email === email
 
 
 
-
-// email không tồn tại
 
 
 if(!user){
@@ -174,30 +207,7 @@ if(!user){
 
 alert(
 
-"Email chưa được đăng ký"
-
-);
-
-
-return;
-
-
-}
-
-
-
-
-
-
-// kiểm tra mật khẩu
-
-
-if(user.password !== pass){
-
-
-alert(
-
-"Sai mật khẩu"
+"Sai email hoặc mật khẩu"
 
 );
 
@@ -213,7 +223,10 @@ return;
 
 
 
-// lưu tài khoản đang đăng nhập
+
+
+// ================= LƯU PHIÊN ĐĂNG NHẬP =================
+
 
 
 localStorage.setItem(
@@ -226,6 +239,8 @@ JSON.stringify(user)
 
 
 
+
+
 localStorage.setItem(
 
 "isLogin",
@@ -233,6 +248,44 @@ localStorage.setItem(
 "true"
 
 );
+
+
+
+
+
+
+
+
+if(remember){
+
+
+
+localStorage.setItem(
+
+"rememberLogin",
+
+"true"
+
+);
+
+
+
+}
+
+else{
+
+
+
+localStorage.removeItem(
+
+"rememberLogin"
+
+);
+
+
+
+}
+
 
 
 
@@ -256,6 +309,7 @@ window.location.href =
 
 
 
+
 }
 
 );
@@ -263,3 +317,71 @@ window.location.href =
 
 
 }
+
+
+
+
+
+
+
+
+
+
+// ================= AUTO LOGIN =================
+
+
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+()=>{
+
+
+
+const remember =
+
+localStorage.getItem(
+
+"rememberLogin"
+
+);
+
+
+
+const user =
+
+localStorage.getItem(
+
+"currentUser"
+
+);
+
+
+
+
+
+if(
+
+remember==="true"
+
+&&
+
+user
+
+){
+
+
+
+window.location.href =
+
+"dashboard.html";
+
+
+}
+
+
+
+}
+
+);

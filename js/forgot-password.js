@@ -1,7 +1,7 @@
 let otpCode = "";
 
 
-// ================= GỬI OTP GMAIL =================
+// ================= GỬI OTP =================
 
 
 const otpBtn = document.getElementById("otpBtn");
@@ -15,7 +15,16 @@ otpBtn.onclick = function(){
 
 
 let email =
-document.getElementById("email").value;
+
+document
+
+.getElementById("email")
+
+.value
+
+.trim();
+
+
 
 
 
@@ -23,7 +32,9 @@ if(email===""){
 
 
 alert(
+
 "Vui lòng nhập email"
+
 );
 
 
@@ -35,19 +46,42 @@ return;
 
 
 
-// kiểm tra email đã đăng ký
+
+
+
+// ================= KIỂM TRA EMAIL ĐÃ ĐĂNG KÝ =================
+// SỬA: dùng chung dữ liệu với register.js bằng localStorage.users
+
+
 
 let users =
+
 JSON.parse(
+
 localStorage.getItem("users")
-) || [];
+
+)
+
+|| [];
+
+
+
 
 
 
 let check =
+
 users.find(
-u => u.email === email
+
+user =>
+
+user.email === email
+
 );
+
+
+
+
 
 
 
@@ -55,7 +89,9 @@ if(!check){
 
 
 alert(
+
 "Email chưa đăng ký"
+
 );
 
 
@@ -67,34 +103,61 @@ return;
 
 
 
-// tạo OTP 6 số
+
+
+
+
+// ================= TẠO OTP =================
+
+
 
 otpCode =
+
 Math.floor(
-100000 + Math.random()*900000
+
+100000 +
+
+Math.random() * 900000
+
 );
 
 
 
 
 
+
+
 localStorage.setItem(
+
 "otp",
+
 otpCode
+
 );
+
+
+
+
 
 
 
 localStorage.setItem(
+
 "resetEmail",
+
 email
+
 );
 
 
 
 
 
-// gửi OTP Gmail bằng EmailJS
+
+
+
+// ================= GỬI EMAIL QUA EMAILJS =================
+
 
 
 emailjs.send(
@@ -121,14 +184,19 @@ otp: otpCode
 
 
 console.log(
+
 "SUCCESS:",
+
 response
+
 );
 
 
 
 alert(
+
 "OTP đã được gửi tới Gmail"
+
 );
 
 
@@ -141,16 +209,19 @@ alert(
 
 
 console.log(
+
 "EMAILJS ERROR:",
+
 error
+
 );
 
 
 
 alert(
-"Gửi OTP thất bại: "
-+
-error.text
+
+"Gửi OTP thất bại"
+
 );
 
 
@@ -167,16 +238,24 @@ error.text
 
 
 
+
+
+
+
 // ================= ĐỔI MẬT KHẨU =================
 
 
 
 const forgotForm =
+
 document.getElementById("forgotForm");
 
 
 
+
+
 if(forgotForm){
+
 
 
 forgotForm.addEventListener(
@@ -191,41 +270,94 @@ e.preventDefault();
 
 
 
+
+
 let email =
-document.getElementById("email").value;
+
+document
+
+.getElementById("email")
+
+.value
+
+.trim();
+
+
+
 
 
 
 let otp =
-document.getElementById("otp").value;
+
+document
+
+.getElementById("otp")
+
+.value
+
+.trim();
+
+
+
 
 
 
 let pass =
-document.getElementById("newPassword").value;
+
+document
+
+.getElementById("newPassword")
+
+.value
+
+.trim();
+
+
+
 
 
 
 let confirm =
-document.getElementById("confirmPassword").value;
+
+document
+
+.getElementById("confirmPassword")
+
+.value
+
+.trim();
 
 
 
 
 
 
-// kiểm tra OTP
+
+
+
+
+
+// ================= KIỂM TRA OTP =================
+
 
 
 if(
+
 otp !==
-localStorage.getItem("otp").toString()
+
+String(
+
+localStorage.getItem("otp")
+
+)
 
 ){
 
 
 alert(
+
 "OTP không đúng"
+
 );
 
 
@@ -237,16 +369,25 @@ return;
 
 
 
-// kiểm tra mật khẩu
+
+
+
+
+// ================= KIỂM TRA MẬT KHẨU =================
+
 
 
 if(
+
 pass !== confirm
+
 ){
 
 
 alert(
+
 "Mật khẩu không trùng khớp"
+
 );
 
 
@@ -259,37 +400,65 @@ return;
 
 
 
-// cập nhật mật khẩu
+
+
+
+// ================= CẬP NHẬT MẬT KHẨU =================
+// SỬA: cập nhật trực tiếp users thay vì dữ liệu cũ không đồng bộ
+
 
 
 let users =
+
 JSON.parse(
+
 localStorage.getItem("users")
-) || [];
+
+)
+
+|| [];
+
+
+
+
 
 
 
 
 users =
+
 users.map(
+
 user => {
 
 
-if(user.email === email){
+
+if(
+
+user.email === email
+
+){
+
 
 
 user.password = pass;
 
 
+
 }
+
 
 
 return user;
 
 
+
 }
 
 );
+
+
+
 
 
 
@@ -305,11 +474,42 @@ JSON.stringify(users)
 
 
 
+
+
+
+
+// xóa dữ liệu reset sau khi hoàn thành
+
+
+localStorage.removeItem(
+
+"otp"
+
+);
+
+
+localStorage.removeItem(
+
+"resetEmail"
+
+);
+
+
+
+
+
+
+
+
 alert(
 
 "Đổi mật khẩu thành công"
 
 );
+
+
+
+
 
 
 

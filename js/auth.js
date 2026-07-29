@@ -1,135 +1,295 @@
-// ================= AUTH SYSTEM =================
-
-// lấy user
-function getUsers(){
-    return JSON.parse(localStorage.getItem("users")) || [];
-}
-
-
-// lưu user
-function saveUsers(users){
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-}
-
-
-// đăng nhập
-function loginUser(email,password){
-
-    let users=getUsers();
-
-    let user=users.find(
-        u =>
-        u.email===email &&
-        u.password===password
-    );
-
-
-    if(user){
-
-        localStorage.setItem(
-            "currentUser",
-            JSON.stringify(user)
-        );
-
-        localStorage.setItem(
-            "isLogin",
-            "true"
-        );
-
-
-        return true;
-
-    }
-
-
-    return false;
-}
+ // ================= AUTH SYSTEM =================
+// Vị trí: js/auth.js
 
 
 
-// đăng ký
-function registerUser(data){
-
-    let users=getUsers();
+// ================= LOGIN =================
 
 
-    let exists=users.find(
-        u=>u.email===data.email
+
+function loginUser(email, password){
+
+
+
+    const users =
+
+    JSON.parse(
+
+        localStorage.getItem("users")
+
+    )
+
+    || [];
+
+
+
+
+
+
+
+    const user =
+
+    users.find(
+
+        item =>
+
+        item.email === email
+
+        &&
+
+        item.password === password
+
     );
 
 
-    if(exists){
+
+
+
+
+
+    if(!user){
+
 
         return false;
 
+
     }
+
+
+
+
+
+
+
+    localStorage.setItem(
+
+        "currentUser",
+
+        JSON.stringify(user)
+
+    );
+
+
+
+
+
+
+
+    localStorage.setItem(
+
+        "isLogin",
+
+        "true"
+
+    );
+
+
+
+
+
+
+
+    return true;
+
+
+
+}
+
+
+
+
+
+
+
+
+// ================= REGISTER =================
+
+
+
+function registerUser(data){
+
+
+
+    const users =
+
+    JSON.parse(
+
+        localStorage.getItem("users")
+
+    )
+
+    || [];
+
+
+
+
+
+
+
+
+    const emailExist =
+
+    users.find(
+
+        user =>
+
+        user.email === data.email
+
+    );
+
+
+
+
+
+
+
+    if(emailExist){
+
+
+        return false;
+
+
+    }
+
+
+
+
+
 
 
     users.push(data);
 
 
-    saveUsers(users);
+
+
+
+
+
+    localStorage.setItem(
+
+        "users",
+
+        JSON.stringify(users)
+
+    );
+
+
+
+
+
 
 
     return true;
 
+
+
 }
 
 
 
-// kiểm tra đăng nhập
+
+
+
+
+
+// ================= CHECK LOGIN =================
+
+
+
 function checkLogin(){
 
 
-    let status=
-    localStorage.getItem("isLogin");
+
+    return (
+
+        localStorage.getItem(
+
+            "isLogin"
+
+        )
+
+        ===
+
+        "true"
+
+    );
 
 
-    if(status==="true"){
-
-        return true;
-
-    }
-
-
-    return false;
 
 }
 
 
 
-// đăng xuất
+
+
+
+
+
+// ================= LOGOUT =================
+
+
 
 function logout(){
 
 
+
     localStorage.removeItem(
+
         "currentUser"
+
     );
+
 
 
     localStorage.removeItem(
+
         "isLogin"
+
     );
 
 
-    location.href="login.html";
+
+    localStorage.removeItem(
+
+        "rememberLogin"
+
+    );
+
+
+
+    window.location.href =
+
+    "login.html";
+
+
 
 }
 
 
 
-// lấy user hiện tại
+
+
+
+
+
+// ================= CURRENT USER =================
+
+
 
 function currentUser(){
 
 
+
     return JSON.parse(
-        localStorage.getItem("currentUser")
+
+        localStorage.getItem(
+
+            "currentUser"
+
+        )
+
     );
+
 
 
 }

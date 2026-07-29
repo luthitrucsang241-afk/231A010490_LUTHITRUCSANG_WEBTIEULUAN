@@ -1,48 +1,79 @@
 // ================= STORAGE SYSTEM =================
+// Vị trí: js/storage.js
+
 
 
 const StudyStorage = {
 
+
     save(key, data) {
 
+
         localStorage.setItem(
+
             key,
+
             JSON.stringify(data)
+
         );
 
+
     },
+
+
+
 
 
     load(key, defaultValue = []) {
 
-        const data = localStorage.getItem(key);
+
+        const data =
+
+        localStorage.getItem(key);
+
+
 
 
         if (!data) {
 
+
             return defaultValue;
 
+
         }
+
+
 
 
         try {
 
+
             return JSON.parse(data);
 
+
         }
+
 
         catch(error) {
 
+
             return defaultValue;
 
+
         }
+
 
     },
 
 
+
+
+
     remove(key) {
 
+
         localStorage.removeItem(key);
+
 
     }
 
@@ -53,19 +84,33 @@ const StudyStorage = {
 
 
 
+
+
+
 // ================= USER =================
+// SỬA: đồng bộ user với currentUser và users
+
 
 
 function saveUser(user){
 
 
+
     StudyStorage.save(
-        "user",
+
+        "currentUser",
+
         user
+
     );
 
 
+
 }
+
+
+
+
 
 
 
@@ -73,20 +118,105 @@ function saveUser(user){
 function getUser(){
 
 
-    return StudyStorage.load(
-        "user",
-        {
 
-            name:"",
-            email:"",
-            username:"",
-            avatar:""
+    const user =
 
-        }
+    StudyStorage.load(
+
+        "currentUser",
+
+        null
+
     );
 
 
+
+
+
+    if(user){
+
+
+        return user;
+
+
+    }
+
+
+
+
+
+
+
+    return {
+
+
+        fullname:"",
+
+        username:"",
+
+        email:"",
+
+        avatar:""
+
+
+    };
+
+
+
 }
+
+
+
+
+
+
+
+
+// ================= USERS =================
+
+
+
+function getUsers(){
+
+
+
+    return StudyStorage.load(
+
+        "users",
+
+        []
+
+    );
+
+
+
+}
+
+
+
+
+
+
+
+function saveUsers(data){
+
+
+
+    StudyStorage.save(
+
+        "users",
+
+        data
+
+    );
+
+
+
+}
+
+
+
+
 
 
 
@@ -94,16 +224,22 @@ function getUser(){
 // ================= CALENDAR =================
 
 
+
 function getCalendarData(){
 
 
     return StudyStorage.load(
+
         "calendar",
+
         []
+
     );
 
 
 }
+
+
 
 
 
@@ -112,12 +248,16 @@ function saveCalendarData(data){
 
 
     StudyStorage.save(
+
         "calendar",
+
         data
+
     );
 
 
 }
+
 
 
 
@@ -127,16 +267,23 @@ function saveCalendarData(data){
 // ================= POMODORO =================
 
 
+
 function getPomodoroData(){
 
 
     return StudyStorage.load(
+
         "pomodoro",
+
         []
+
     );
 
 
 }
+
+
+
 
 
 
@@ -145,12 +292,16 @@ function savePomodoroData(data){
 
 
     StudyStorage.save(
+
         "pomodoro",
+
         data
+
     );
 
 
 }
+
 
 
 
@@ -160,16 +311,23 @@ function savePomodoroData(data){
 // ================= TODO =================
 
 
+
 function getTodoData(){
 
 
     return StudyStorage.load(
+
         "todo",
+
         []
+
     );
 
 
 }
+
+
+
 
 
 
@@ -178,12 +336,16 @@ function saveTodoData(data){
 
 
     StudyStorage.save(
+
         "todo",
+
         data
+
     );
 
 
 }
+
 
 
 
@@ -193,16 +355,23 @@ function saveTodoData(data){
 // ================= DAILY GOALS =================
 
 
+
 function getDailyGoalsData(){
 
 
     return StudyStorage.load(
+
         "dailyGoals",
+
         []
+
     );
 
 
 }
+
+
+
 
 
 
@@ -211,12 +380,16 @@ function saveDailyGoalsData(data){
 
 
     StudyStorage.save(
+
         "dailyGoals",
+
         data
+
     );
 
 
 }
+
 
 
 
@@ -226,16 +399,23 @@ function saveDailyGoalsData(data){
 // ================= STUDY TIME =================
 
 
+
 function getStudyTimeData(){
 
 
     return StudyStorage.load(
+
         "studyTime",
+
         []
+
     );
 
 
 }
+
+
+
 
 
 
@@ -244,12 +424,16 @@ function saveStudyTimeData(data){
 
 
     StudyStorage.save(
+
         "studyTime",
+
         data
+
     );
 
 
 }
+
 
 
 
@@ -259,12 +443,16 @@ function saveStudyTimeData(data){
 // ================= SETTINGS =================
 
 
+
 function saveSettings(data){
 
 
     StudyStorage.save(
+
         "settings",
+
         data
+
     );
 
 
@@ -280,19 +468,27 @@ function getSettings(){
 
 
     return StudyStorage.load(
+
         "settings",
+
         {
 
             theme:"light",
+
             language:"vi",
+
             volume:80,
+
             notification:true
 
+
         }
+
     );
 
 
 }
+
 
 
 
@@ -302,12 +498,16 @@ function getSettings(){
 // ================= QUOTE =================
 
 
+
 function getFavoriteQuotes(){
 
 
     return StudyStorage.load(
+
         "favoriteQuotes",
+
         []
+
     );
 
 
@@ -316,12 +516,18 @@ function getFavoriteQuotes(){
 
 
 
+
+
+
 function saveFavoriteQuotes(data){
 
 
     StudyStorage.save(
+
         "favoriteQuotes",
+
         data
+
     );
 
 
