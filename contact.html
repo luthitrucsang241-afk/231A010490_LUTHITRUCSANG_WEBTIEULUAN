@@ -12,6 +12,11 @@
 
     <link rel="stylesheet" href="css/style.css">
 
+
+    <!-- EMAILJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+
 </head>
 
 
@@ -197,14 +202,6 @@
 
 
 </header>
-
-
-
-
-
-
-
-
 <main>
 
 
@@ -224,6 +221,7 @@
         data-en="We are always ready to listen to your feedback.">
 
         Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
+
         </p>
 
     </section>
@@ -236,6 +234,7 @@
 
 
     <section class="contact-container">
+
 
         <div class="contact-info">
 
@@ -291,6 +290,10 @@
 
         </div>
 
+
+
+
+
         <div class="contact-form">
 
 
@@ -302,73 +305,105 @@
 
             </h2>
 
-            <form>
-
-
-            <input 
-            type="text"
-
-            data-vn-placeholder="Họ và tên"
-            data-en-placeholder="Full Name"
-
-            placeholder="Họ và tên">
 
 
 
+            <!-- FORM LIÊN HỆ EMAILJS -->
 
-
-            <input 
-            type="email"
-
-            data-vn-placeholder="Email"
-            data-en-placeholder="Email"
-
-            placeholder="Email">
+            <form id="contact-form">
 
 
 
+                <input 
+                type="text"
 
+                name="name"
 
+                data-vn-placeholder="Họ và tên"
+                data-en-placeholder="Full Name"
 
-            <input 
-            type="text"
+                placeholder="Họ và tên"
 
-            data-vn-placeholder="Tiêu đề"
-            data-en-placeholder="Subject"
-
-            placeholder="Tiêu đề">
-
-
-
-
-
-            <textarea
-
-            data-vn-placeholder="Nội dung"
-            data-en-placeholder="Message"
-
-            placeholder="Nội dung"></textarea>
+                required>
 
 
 
 
 
 
-            <button
+                <input 
+                type="email"
 
-            data-vn="Gửi liên hệ"
-            data-en="Send">
+                name="email"
 
-            Gửi liên hệ
+                data-vn-placeholder="Email"
+                data-en-placeholder="Email"
 
-            </button>
+                placeholder="Email"
+
+                required>
+
+
+
+
+
+
+                <input 
+                type="text"
+
+                name="subject"
+
+                data-vn-placeholder="Tiêu đề"
+                data-en-placeholder="Subject"
+
+                placeholder="Tiêu đề"
+
+                required>
+
+
+
+
+
+
+
+                <textarea
+
+                name="message"
+
+                data-vn-placeholder="Nội dung"
+                data-en-placeholder="Message"
+
+                placeholder="Nội dung"
+
+                required></textarea>
+
+
+
+
+
+
+
+                <button
+
+                type="submit"
+
+                data-vn="Gửi liên hệ"
+                data-en="Send">
+
+                Gửi liên hệ
+
+                </button>
+
 
 
 
             </form>
 
 
+
         </div>
+
+
 
     </section>
 
@@ -381,6 +416,7 @@
 
     <section class="map">
 
+
         <h2
         data-vn="Google Map"
         data-en="Google Map">
@@ -388,6 +424,7 @@
         Google Map
 
         </h2>
+
 
 
         <iframe
@@ -407,21 +444,17 @@
 
 
 </main>
-
-
-
-
-
-
-
-
-
 <footer>
 
     <div class="container">
+
+
         <h3>
         Study Focus
         </h3>
+
+
+
 
         <p
 
@@ -434,7 +467,11 @@
         </p>
 
 
+
+
+
         <div class="footer-links">
+
 
             <a href="index.html"
             data-vn="Trang chủ"
@@ -444,6 +481,10 @@
 
             </a>
 
+
+
+
+
             <a href="about.html"
             data-vn="Giới thiệu"
             data-en="About">
@@ -451,6 +492,10 @@
             Giới thiệu
 
             </a>
+
+
+
+
 
             <a href="contact.html"
             data-vn="Liên hệ"
@@ -466,7 +511,10 @@
 
 
 
+
+
         <hr>
+
 
 
 
@@ -479,7 +527,9 @@
 
 
 
+
     </div>
+
 
 </footer>
 
@@ -488,7 +538,13 @@
 
 
 
+
+<!-- JAVASCRIPT -->
+
 <script src="js/main.js"></script>
+
+<script src="js/contact.js"></script>
+
 
 
 </body>
