@@ -258,7 +258,7 @@
                     <div class="time-control">
 
 
-                        <button id="minusTime" type="button">
+                        <button id="minusTime">
                             -
                         </button>
 
@@ -273,7 +273,7 @@
                         </span>
 
 
-                        <button id="plusTime" type="button">
+                        <button id="plusTime">
                             +
                         </button>
 
@@ -285,17 +285,17 @@
                     <div class="pomodoro-buttons">
 
 
-                        <button id="startBtn" type="button" data-vn="Bắt đầu" data-en="Start">
+                        <button id="startBtn" data-vn="Bắt đầu" data-en="Start">
                             Bắt đầu
                         </button>
 
 
-                        <button id="pauseBtn" type="button" data-vn="Dừng" data-en="Pause">
+                        <button id="pauseBtn" data-vn="Dừng" data-en="Pause">
                             Dừng
                         </button>
 
 
-                        <button id="resetBtn" type="button" data-vn="Reset" data-en="Reset">
+                        <button id="resetBtn" data-vn="Reset" data-en="Reset">
                             Reset
                         </button>
 
@@ -319,12 +319,17 @@
                     <div class="todo-input">
 
 
-                        <input id="todoInput" type="text" placeholder="Thêm công việc"
-                            data-vn-placeholder="Thêm công việc" data-en-placeholder="Add task">
+                        <input
+                            id="todoInput"
+                            type="text"
+                            placeholder="Thêm công việc"
+                            data-vn-placeholder="Thêm công việc"
+                            data-en-placeholder="Add task"
+                        >
 
 
 
-                        <button id="addTodo" type="button" data-vn="Thêm" data-en="Add">
+                        <button id="addTodo" data-vn="Thêm" data-en="Add">
                             Thêm
                         </button>
 
@@ -435,13 +440,8 @@
 
                 <div class="media-select-box">
 
-
-                    <label for="noiseSelect"
-                        data-vn="🎵 Chọn âm thanh"
-                        data-en="🎵 Select sound">
-
-                        🎵 Chọn âm thanh
-
+                    <label data-vn="Chọn âm thanh" data-en="Select Sound">
+                        Chọn âm thanh
                     </label>
 
 
@@ -481,7 +481,6 @@
 
                     </select>
 
-
                 </div>
 
 
@@ -495,7 +494,7 @@
                 <div class="media-controls">
 
 
-                    <button id="noisePlay" type="button">
+                    <button id="noisePlay">
 
                         ▶
 
@@ -507,7 +506,7 @@
 
 
 
-                    <button id="noisePause" type="button">
+                    <button id="noisePause">
 
                         ⏸
 
@@ -520,7 +519,7 @@
 
 
 
-                    <button id="noiseStop" type="button">
+                    <button id="noiseStop">
 
                         ⏹
 
@@ -532,7 +531,7 @@
 
 
 
-                    <button id="noiseBack" type="button">
+                    <button id="noiseBack">
 
                         ⏪ -10s
 
@@ -540,7 +539,7 @@
 
 
 
-                    <button id="noiseForward" type="button">
+                    <button id="noiseForward">
 
                         ⏩ +10s
 
@@ -548,7 +547,7 @@
 
 
 
-                    <button id="noiseVolumeDown" type="button">
+                    <button id="noiseVolumeDown">
 
                         🔉
 
@@ -556,7 +555,7 @@
 
 
 
-                    <button id="noiseVolumeUp" type="button">
+                    <button id="noiseVolumeUp">
 
                         🔊
 
@@ -600,36 +599,24 @@
 
 
 
-                <div class="media-speed-box">
+                <label data-vn="Âm lượng" data-en="Volume">
 
+                    Âm lượng
 
-                    <label for="noiseVolume"
-                        data-vn="🔊 Âm lượng"
-                        data-en="🔊 Volume">
-
-                        🔊 Âm lượng
-
-                    </label>
+                </label>
 
 
 
-                    <div class="range-control">
+
+                <input type="range" id="noiseVolume" min="0" max="100" value="75">
 
 
-                        <input type="range" id="noiseVolume" min="0" max="100" value="75">
 
+                <span id="noiseVolumeValue">
 
-                        <span id="noiseVolumeValue">
+                    75%
 
-                            75%
-
-                        </span>
-
-
-                    </div>
-
-
-                </div>
+                </span>
 
 
 
@@ -638,16 +625,11 @@
 
                 <div class="media-speed-box">
 
+                    <label data-vn="Tốc độ phát" data-en="Playback Speed">
 
-                    <label for="noiseSpeed"
-                        data-vn="⚡ Tốc độ phát"
-                        data-en="⚡ Playback Speed">
-
-                        ⚡ Tốc độ phát
+                        Tốc độ phát
 
                     </label>
-
-
 
 
                     <select id="noiseSpeed">
@@ -697,7 +679,6 @@
 
                     </select>
 
-
                 </div>
 
 
@@ -727,34 +708,45 @@
 
 
 
-                <select id="videoSelect">
+                <div class="media-select-box">
+
+                    <label data-vn="Chọn video" data-en="Select Video">
+
+                        Chọn video
+
+                    </label>
 
 
-                    <option value="">
-
-                        -- Chọn video --
-
-                    </option>
+                    <select id="videoSelect">
 
 
+                        <option value="">
 
-                    <option value="local">
+                            -- Chọn video --
 
-                        Study Video (Local)
-
-                    </option>
-
-
-
-                    <option value="youtube">
-
-                        Lo-fi Youtube
-
-                    </option>
+                        </option>
 
 
 
-                </select>
+                        <option value="local">
+
+                            Study Video (Local)
+
+                        </option>
+
+
+
+                        <option value="youtube">
+
+                            Lo-fi Youtube
+
+                        </option>
+
+
+
+                    </select>
+
+                </div>
 
 
 
@@ -778,7 +770,7 @@
                 <div class="media-controls">
 
 
-                    <button id="videoPlay" type="button">
+                    <button id="videoPlay">
 
                         ▶ Play
 
@@ -786,7 +778,7 @@
 
 
 
-                    <button id="videoPause" type="button">
+                    <button id="videoPause">
 
                         ⏸ Pause
 
@@ -794,7 +786,7 @@
 
 
 
-                    <button id="videoStop" type="button">
+                    <button id="videoStop">
 
                         ⏹ Stop
 
@@ -802,7 +794,7 @@
 
 
 
-                    <button id="videoBack" type="button">
+                    <button id="videoBack">
 
                         ⏪ -10s
 
@@ -810,7 +802,7 @@
 
 
 
-                    <button id="videoForward" type="button">
+                    <button id="videoForward">
 
                         ⏩ +10s
 
@@ -818,7 +810,7 @@
 
 
 
-                    <button id="videoVolumeDown" type="button">
+                    <button id="videoVolumeDown">
 
                         🔉
 
@@ -826,7 +818,7 @@
 
 
 
-                    <button id="videoVolumeUp" type="button">
+                    <button id="videoVolumeUp">
 
                         🔊
 
@@ -834,7 +826,7 @@
 
 
 
-                    <button id="videoFullscreen" type="button">
+                    <button id="videoFullscreen">
 
                         Fullscreen
 
@@ -842,7 +834,7 @@
 
 
 
-                    <button id="videoPip" type="button">
+                    <button id="videoPip">
 
                         Picture in Picture
 
@@ -900,61 +892,63 @@
 
 
 
-                <label data-vn="Tốc độ phát" data-en="Playback Speed">
+                <div class="media-speed-box">
 
-                    Tốc độ phát
+                    <label data-vn="Tốc độ phát" data-en="Playback Speed">
 
-                </label>
+                        Tốc độ phát
 
-
-
-
-                <select id="videoSpeed">
+                    </label>
 
 
-                    <option value="0.5">
-
-                        0.5x
-
-                    </option>
+                    <select id="videoSpeed">
 
 
-                    <option value="0.75">
+                        <option value="0.5">
 
-                        0.75x
+                            0.5x
 
-                    </option>
-
-
-                    <option value="1" selected>
-
-                        1x
-
-                    </option>
+                        </option>
 
 
-                    <option value="1.25">
+                        <option value="0.75">
 
-                        1.25x
+                            0.75x
 
-                    </option>
-
-
-                    <option value="1.5">
-
-                        1.5x
-
-                    </option>
+                        </option>
 
 
-                    <option value="2">
+                        <option value="1" selected>
 
-                        2x
+                            1x
 
-                    </option>
+                        </option>
 
 
-                </select>
+                        <option value="1.25">
+
+                            1.25x
+
+                        </option>
+
+
+                        <option value="1.5">
+
+                            1.5x
+
+                        </option>
+
+
+                        <option value="2">
+
+                            2x
+
+                        </option>
+
+
+                    </select>
+
+                </div>
 
 
 
@@ -986,7 +980,7 @@
 
 
 
-                <button id="randomQuote" type="button" data-vn="Câu nói ngẫu nhiên" data-en="Random Quote">
+                <button id="randomQuote" data-vn="Câu nói ngẫu nhiên" data-en="Random Quote">
 
                     Random Quote
 
@@ -995,7 +989,7 @@
 
 
 
-                <button id="favoriteQuote" type="button" data-vn="Yêu thích" data-en="Favorite">
+                <button id="favoriteQuote" data-vn="Yêu thích" data-en="Favorite">
 
                     Favorite
 
@@ -1012,6 +1006,7 @@
 
 
     </div>
+
 
 
 

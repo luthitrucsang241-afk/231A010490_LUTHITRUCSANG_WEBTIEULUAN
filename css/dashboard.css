@@ -35,8 +35,9 @@ body {
 
 
 .header {
-    position:relative;
-    
+
+    position: relative;
+
     height: 80px;
 
     width: 100%;
@@ -109,7 +110,6 @@ body {
     border-radius: 20px;
 
     background:
-
         linear-gradient(135deg,
             #2563eb,
             #38bdf8);
@@ -186,7 +186,6 @@ body {
 
 .sidebar a:hover,
 .sidebar .active {
-
 
     background: #dff6ff;
 
@@ -311,7 +310,6 @@ button {
     border-radius: 20px;
 
     background:
-
         linear-gradient(135deg,
             #2563eb,
             #38bdf8);
@@ -442,6 +440,8 @@ footer hr {
 
 
 
+
+
 /* RESPONSIVE */
 
 
@@ -509,11 +509,14 @@ footer hr {
 }
 
 
+
+
+
+
 /* ================= KHUNG 2 POMODORO + TODO ================= */
 
 
 .double-card {
-
 
     display: grid;
 
@@ -522,7 +525,6 @@ footer hr {
     gap: 25px;
 
     width: 100%;
-
 
 }
 
@@ -536,43 +538,28 @@ footer hr {
 
 .card {
 
-
     background: white;
-
 
     border-radius: 25px;
 
-
     padding: 25px;
 
-
     box-shadow:
-
-
         0 15px 35px rgba(37, 99, 235, .15);
 
-
 }
-
-
-
 
 
 
 .card h2 {
 
-
     text-align: center;
-
 
     color: #2563eb;
 
-
     margin-bottom: 20px;
 
-
 }
-
 
 
 
@@ -586,18 +573,13 @@ footer hr {
 
 .pomodoro-box {
 
-
     display: flex;
-
 
     flex-direction: column;
 
-
     align-items: center;
 
-
     justify-content: center;
-
 
 }
 
@@ -609,53 +591,32 @@ footer hr {
 
 .timer {
 
-
     width: 180px;
-
 
     height: 180px;
 
-
     border-radius: 50%;
-
 
     display: flex;
 
-
     align-items: center;
-
 
     justify-content: center;
 
-
     background:
-
-
         linear-gradient(135deg,
-
-
             #2563eb,
-
-
             #38bdf8);
-
 
     color: white;
 
-
     font-size: 45px;
-
 
     font-weight: bold;
 
-
     margin: 20px;
 
-
-
 }
-
-
 
 
 
@@ -666,21 +627,15 @@ footer hr {
 
 .time-control {
 
-
     display: flex;
-
 
     align-items: center;
 
-
     gap: 15px;
-
 
     font-size: 20px;
 
-
     margin-bottom: 20px;
-
 
 }
 
@@ -689,44 +644,46 @@ footer hr {
 
 .time-control button {
 
-
     width: 40px;
-
 
     height: 40px;
 
-
     border: none;
-
 
     border-radius: 50%;
 
-
     cursor: pointer;
-
 
     color: white;
 
-
     background: #2563eb;
-
 
     font-size: 20px;
 
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    line-height: 1;
 
 }
 
 
 
 
-.pomodoro-buttons {
 
+
+
+
+.pomodoro-buttons {
 
     display: flex;
 
-
     gap: 10px;
-
 
 }
 
@@ -735,33 +692,20 @@ footer hr {
 
 .pomodoro-buttons button {
 
-
     border: none;
-
 
     padding: 10px 20px;
 
-
     border-radius: 20px;
-
 
     color: white;
 
-
     cursor: pointer;
 
-
     background:
-
-
         linear-gradient(135deg,
-
-
             #2563eb,
-
-
             #38bdf8);
-
 
 }
 
@@ -770,15 +714,9 @@ footer hr {
 
 .pomodoro-buttons button:hover {
 
-
     transform: translateY(-2px);
 
-
 }
-
-
-
-
 
 
 
@@ -791,12 +729,9 @@ footer hr {
 /* ================= TODO ================= */
 
 
-
 .todo-box {
 
-
     min-height: 350px;
-
 
 }
 
@@ -806,15 +741,11 @@ footer hr {
 
 .todo-input {
 
-
     display: flex;
-
 
     gap: 10px;
 
-
     margin-bottom: 20px;
-
 
 }
 
@@ -823,21 +754,15 @@ footer hr {
 
 .todo-input input {
 
-
     flex: 1;
-
 
     padding: 12px;
 
-
     border-radius: 15px;
-
 
     border: 1px solid #cbd5e1;
 
-
     outline: none;
-
 
 }
 
@@ -846,1013 +771,24 @@ footer hr {
 
 .todo-input button {
 
-
     width: 80px;
 
-
     border: none;
-
 
     border-radius: 15px;
 
-
     color: white;
-
 
     cursor: pointer;
 
-
     background: #2563eb;
 
-
-}
-
-
-
-
-
-
-#todoList {
-
-
-    list-style: none;
-
-
-    display: flex;
-
-
-    flex-direction: column;
-
-
-    gap: 12px;
-
-
-}
-
-
-
-
-
-
-
-#todoList li {
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    justify-content: space-between;
-
-
-    padding: 12px;
-
-
-    border-radius: 15px;
-
-
-    background: #f1f5f9;
-
-
-}
-
-
-
-
-
-
-
-#todoList label {
-
-
-    display: flex;
-
-
-    align-items: center;
-
-
-    gap: 10px;
-
-
-}
-
-
-
-
-
-
-
-#todoList span {
-
-
-    color: #334155;
-
-
-}
-
-
-
-
-
-
-
-#todoList button {
-
-
-    width: auto;
-
-
-    padding: 7px 15px;
-
-
-    border-radius: 15px;
-
-
-    background: #ef4444;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ================= DARK MODE ================= */
-
-
-body.dark .card {
-
-
-    background: #0f172a;
-
-
-    color: white;
-
-
-}
-
-
-
-body.dark #todoList li {
-
-
-    background: #1e293b;
-
-
-}
-
-
-
-body.dark #todoList span {
-
-
-    color: white;
-
-
-}
-
-
-
-
-
-
-
-
-/* ================= RESPONSIVE ================= */
-
-
-@media(max-width:900px) {
-
-
-
-    .double-card {
-
-
-        grid-template-columns: 1fr;
-
-
-    }
-
-
-
-}
-
-
-/* ================= THEME ================= */
-
-
-body.light {
-
-
-    background: #dff6ff;
-
-    color: #1e293b;
-
-
-}
-
-
-
-body.dark {
-
-
-    background: #020617;
-
-    color: white;
-
-
-}
-
-
-
-
-
-
-/* DARK CARD */
-
-
-body.dark .card,
-body.dark .hero,
-body.dark .sidebar {
-
-
-    background: #0f172a;
-
-    color: white;
-
-
-}
-
-
-
-
-body.dark .sidebar a {
-
-
-    color: #e2e8f0;
-
-
-}
-
-
-
-body.dark .sidebar a:hover,
-body.dark .sidebar .active {
-
-
-    background: #2563eb;
-
-    color: white;
-
-
-}
-
-
-
-
-
-
-
-body.dark input,
-body.dark select,
-body.dark textarea {
-
-
-    background: #1e293b;
-
-    color: white;
-
-    border-color: #475569;
-
-
-}
-
-
-
-
-body.dark button {
-
-
-    background: #2563eb;
-
-    color: white;
-
-
-}
-
-
-
-
-body.light button {
-
-
-    background:
-
-        linear-gradient(135deg,
-            #2563eb,
-            #38bdf8);
-
-
-}
-
-
-
-
-
-
-
-/* TEXT */
-
-
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark p {
-
-
-    color: white;
-
-
-}
-
-
-
-
-
-body.dark footer {
-
-
-    background: #020617;
-
-
-}
-
-
-
-/* ================= SETTING MENU ================= */
-
-
-.setting-menu{
-
-    position:relative;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-}
-
-
-
-.setting-btn{
-
-    width:42px;
-
-    height:42px;
-
-    border:none;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:0;
-
-    line-height:1;
-
-    font-size:20px;
-
-    background:
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #38bdf8
-    );
-
-    color:white;
-
-    cursor:pointer;
-
-}
-
-
-
-
-
-.setting-dropdown {
-
-    position: absolute;
-
-    right: 0;
-
-    top: 50px;
-
-    width: 210px;
-
-    background: white;
-
-    padding: 12px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, .15);
-
-    display: none;
-
-    z-index: 9999;
-
-}
-
-
-
-.setting-dropdown.show {
-
-    display: block;
-
-}
-
-
-
-
-
-.setting-dropdown button {
-
-    width: 100%;
-
-    padding: 10px;
-
-    border: none;
-
-    background: none;
-
-    text-align: left;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-}
-
-
-
-
-
-.setting-dropdown button:hover {
-
-    background: #dbeafe;
-
-}
-
-
-
-
-
-.dropdown-title {
-
-    font-weight: bold;
-
-    color: #2563eb;
-
-    padding: 8px;
-
-    font-size: 14px;
-
-}
-
-
-
-
-
-.setting-dropdown hr {
-
-    border: none;
-
-    border-top: 1px solid #ddd;
-
-    margin: 8px 0;
-
-}
-
-
-
-
-
-
-
-/* DARK MENU */
-
-
-body.dark .setting-dropdown {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-
-body.dark .setting-dropdown button {
-
-    color: white;
-
-}
-
-
-
-body.dark .setting-dropdown button:hover {
-
-    background: #1e40af;
-
-}
-
-
-/* ================= LIGHT THEME ================= */
-
-body.light {
-
-    background:
-    linear-gradient(
-        135deg,
-        #dff6ff,
-        #89cff0
-    );
-
-    color:#334155;
-
-}
-
-
-body.light .header,
-body.light .sidebar,
-body.light .card,
-body.light .hero,
-body.light .profile-card,
-body.light .stat-card,
-body.light .badge,
-body.light footer {
-
-    background:white;
-
-    color:#334155;
-
-}
-
-
-
-body.light h1,
-body.light h2,
-body.light h3 {
-
-    color:#2563eb;
-
-}
-
-
-
-body.light p,
-body.light label {
-
-    color:#475569;
-
-}
-
-
-
-body.light input,
-body.light select,
-body.light textarea {
-
-    background:white;
-
-    color:#334155;
-
-    border-color:#cbd5e1;
-
 }
-
-
-/* ================= DARK THEME ================= */
-
-
-body.dark {
-
-
-    background:
-    linear-gradient(
-        135deg,
-        #020617,
-        #1e293b
-    );
-
-
-    color:white;
-
-}
-
-
-
-body.dark .header,
-body.dark .sidebar,
-body.dark .card,
-body.dark .hero,
-body.dark .profile-card,
-body.dark .stat-card,
-body.dark .badge,
-body.dark footer {
-
-
-    background:#0f172a;
-
-    color:white;
-
-
-}
-
-
-
-body.dark h1,
-body.dark h2,
-body.dark h3 {
-
-
-    color:#38bdf8;
-
-
-}
-
-
-
-body.dark p,
-body.dark label {
-
-
-    color:#cbd5e1;
-
-
-}
-
-
-
-body.dark input,
-body.dark select,
-body.dark textarea {
-
-
-    background:#1e293b;
-
-    color:white;
-
-    border-color:#475569;
-
-
-}
-
-
-body.dark .sidebar a {
-
-
-    color:#cbd5e1;
-
-}
-
-
-
-body.dark .sidebar a:hover,
-body.dark .sidebar .active {
-
-
-    background:#1e40af;
-
-    color:white;
-
-}
-
-/* ================= SETTING DROPDOWN FIX ================= */
-
-
-/* Theme sáng */
-
-body.light .setting-dropdown {
-
-    background:white;
-
-    color:#334155;
-
-}
-
-
-
-body.light .setting-dropdown button {
-
-    background:white;
-
-    color:#334155;
-
-}
-
-
-
-body.light .setting-dropdown button:hover {
-
-    background:#dbeafe;
-
-    color:#2563eb;
-
-}
-
-
-
-body.light .dropdown-title {
-
-    color:#2563eb;
-
-}
-
-
-
-
-/* Theme tối */
-
-body.dark .setting-dropdown {
-
-    background:#0f172a;
-
-    color:white;
-
-}
-
-
-
-body.dark .setting-dropdown button {
-
-    background:#0f172a;
-
-    color:white;
-
-}
-
-
-
-body.dark .setting-dropdown button:hover {
-
-    background:#1e40af;
-
-    color:white;
-
-}
-
-/* FIX SETTING MENU DASHBOARD */
-
-.setting-menu{
-    position:relative;
-    z-index:10000;
-}
-
-
-.setting-dropdown{
-
-    position:absolute;
-
-    right:0;
-
-    top:50px;
-
-    width:220px;
-
-    background:white;
-
-    padding:15px;
-
-    border-radius:15px;
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.25);
-
-    display:none;
-
-    z-index:99999;
-
-}
-
-
-
-.setting-dropdown.show{
-
-    display:block !important;
-
-}
-
-
-
-.setting-dropdown .dropdown-title{
-
-    color:#2563eb;
-
-    font-weight:bold;
-
-}
-
-
-
-.setting-dropdown button{
-
-    display:block;
-
-    width:100%;
-
-    color:#334155;
-
-    background:white;
-
-    border:none;
-
-    padding:10px;
-
-    border-radius:10px;
-
-}
-
-
-
-.setting-dropdown button:hover{
-
-    background:#dbeafe;
-
-}
-
-
-
-
-
-
-
-
-
-/* ================= MEDIA SELECT + SPEED BOX ================= */
-/* Vị trí: cuối file dashboard.css */
-
-
-.media-select-box,
-.media-speed-box {
-
-    width:100%;
-
-    background:#f8fafc;
-
-    padding:15px;
-
-    border-radius:18px;
-
-    margin-bottom:15px;
-
-}
-
-
-
-.media-select-box label,
-.media-speed-box label {
-
-    display:block;
-
-    font-weight:600;
-
-    color:#2563eb;
-
-    margin-bottom:10px;
-
-}
-
-
-
-
-
-.media-select-box select,
-.media-speed-box select {
-
-    width:100%;
-
-    padding:12px 15px;
-
-    border-radius:15px;
-
-    border:1px solid #cbd5e1;
-
-    background:white;
-
-    cursor:pointer;
-
-    outline:none;
-
-}
-
-
-
-
-
-/* ================= QUOTE FIX ================= */
-
-
-.quote {
-
-    text-align:center;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:20px;
-
-}
-
-
-
-#quoteText {
-
-    width:90%;
-
-    min-height:80px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    line-height:1.8;
-
-    font-size:18px;
-
-}
-
-
-
-
-
-#quoteText small {
-
-    margin-top:10px;
-
-    font-size:15px;
-
-    color:#64748b;
-
-}
-
-
-
-
-
-.quote button {
-
-    margin:5px;
-
-}
-
-
-
-
-
-#favoriteQuote.active {
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #ef4444,
-        #fb7185
-    );
-
-}
-
-
-
 
 
 
-/* ================= TODO TEXT FIX ================= */
 
 
-/* Khung danh sách Todo */
 
 #todoList {
 
@@ -1872,7 +808,9 @@ body.dark .setting-dropdown button:hover {
 
 
 
-/* Khung từng Todo */
+
+
+
 
 #todoList li {
 
@@ -1900,7 +838,9 @@ body.dark .setting-dropdown button:hover {
 
 
 
-/* Khu vực checkbox + nội dung */
+
+
+
 
 #todoList label {
 
@@ -1918,7 +858,9 @@ body.dark .setting-dropdown button:hover {
 
 
 
-/* Checkbox */
+
+
+
 
 #todoList label input[type="checkbox"] {
 
@@ -1936,7 +878,9 @@ body.dark .setting-dropdown button:hover {
 
 
 
-/* Nội dung Todo */
+
+
+
 
 #todoList .todo-text {
 
@@ -1960,7 +904,9 @@ body.dark .setting-dropdown button:hover {
 
 
 
-/* Nút xóa */
+
+
+
 
 #todoList li > button {
 
@@ -1984,7 +930,683 @@ body.dark .setting-dropdown button:hover {
 
 
 
+
+
+
+
+/* ================= DARK MODE ================= */
+
+
+body.dark .card {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+
+body.dark #todoList li {
+
+    background: #1e293b;
+
+}
+
+
+
+body.dark #todoList span {
+
+    color: white;
+
+}
+
+
+
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+@media(max-width:900px) {
+
+
+    .double-card {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+}
+
+
+
+
+
+
+/* ================= THEME ================= */
+
+
+body.light {
+
+    background: #dff6ff;
+
+    color: #1e293b;
+
+}
+
+
+
+body.dark {
+
+    background: #020617;
+
+    color: white;
+
+}
+
+
+
+
+
+
+
+/* DARK CARD */
+
+
+body.dark .card,
+body.dark .hero,
+body.dark .sidebar {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+
+
+
+
+body.dark .sidebar a {
+
+    color: #e2e8f0;
+
+}
+
+
+
+body.dark .sidebar a:hover,
+body.dark .sidebar .active {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+
+
+
+
+
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+
+    background: #1e293b;
+
+    color: white;
+
+    border-color: #475569;
+
+}
+
+
+
+
+body.dark button {
+
+    background: #2563eb;
+
+    color: white;
+
+}
+
+
+
+
+body.light button {
+
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #38bdf8);
+
+}
+
+
+
+
+
+
+
+/* TEXT */
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p {
+
+    color: white;
+
+}
+
+
+
+
+
+body.dark footer {
+
+    background: #020617;
+
+}
+
+
+
+/* ================= SETTING MENU ================= */
+
+
+.setting-menu {
+
+    position: relative;
+
+    z-index: 10000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.setting-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 0;
+
+    line-height: 1;
+
+    font-size: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #38bdf8
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+
+
+
+.setting-dropdown {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 50px;
+
+    width: 220px;
+
+    background: white;
+
+    padding: 15px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, .25);
+
+    display: none;
+
+    z-index: 99999;
+
+}
+
+
+
+.setting-dropdown.show {
+
+    display: block !important;
+
+}
+
+
+
+.setting-dropdown h4 {
+
+    color: #2563eb;
+
+    padding: 8px;
+
+    font-size: 14px;
+
+}
+
+
+
+.setting-dropdown button {
+
+    display: block;
+
+    width: 100%;
+
+    color: #334155;
+
+    background: white;
+
+    border: none;
+
+    padding: 10px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+}
+
+
+
+.setting-dropdown button:hover {
+
+    background: #dbeafe;
+
+    color: #2563eb;
+
+}
+
+
+
+.setting-dropdown hr {
+
+    border: none;
+
+    border-top: 1px solid #ddd;
+
+    margin: 8px 0;
+
+}
+
+
+
+
+
+/* DARK MENU */
+
+
+body.dark .setting-dropdown {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+
+body.dark .setting-dropdown button {
+
+    background: #0f172a;
+
+    color: white;
+
+}
+
+
+
+body.dark .setting-dropdown button:hover {
+
+    background: #1e40af;
+
+    color: white;
+
+}
+
+
+
+
+
+
+/* ================= MEDIA SELECT + SPEED BOX ================= */
+
+
+.media-select-box,
+.media-speed-box {
+
+    width: 100%;
+
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    margin-bottom: 15px;
+
+}
+
+
+
+.media-select-box label,
+.media-speed-box label {
+
+    display: block;
+
+    font-weight: 600;
+
+    color: #2563eb;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+
+
+.media-select-box select,
+.media-speed-box select {
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border-radius: 15px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    cursor: pointer;
+
+    outline: none;
+
+}
+
+
+
+.media-select-box select:focus,
+.media-speed-box select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .1);
+
+}
+
+
+
+
+
+
+
+/* ================= QUOTE FIX ================= */
+
+
+.quote {
+
+    text-align: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+}
+
+
+
+#quoteText {
+
+    width: 90%;
+
+    min-height: 80px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    line-height: 1.8;
+
+    font-size: 18px;
+
+}
+
+
+
+
+
+#quoteText small {
+
+    margin-top: 10px;
+
+    font-size: 15px;
+
+    color: #64748b;
+
+}
+
+
+
+
+
+.quote button {
+
+    margin: 5px;
+
+}
+
+
+
+
+#favoriteQuote.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #fb7185
+        );
+
+}
+
+
+
+
+
+
+
+
+/* ================= TODO TEXT FIX ================= */
+
+
+#todoList {
+
+    width: 100%;
+
+    padding-left: 0;
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+
+
+
+#todoList li {
+
+    width: 100%;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    background: #f1f5f9;
+
+}
+
+
+
+
+
+#todoList label {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+
+
+
+#todoList label input[type="checkbox"] {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 16px;
+
+    margin-top: 4px;
+
+    margin-bottom: 0;
+
+}
+
+
+
+
+
+#todoList .todo-text {
+
+    display: block;
+
+    min-width: 0;
+
+    flex: 1;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: normal;
+
+    overflow-wrap: break-word;
+
+    word-break: normal;
+
+}
+
+
+
+
+
+#todoList li > button {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 40px;
+
+    padding: 7px 15px;
+
+    margin-right: 0;
+
+    border-radius: 15px;
+
+    background: #ef4444;
+
+    color: white;
+
+}
+
+
+
+
+
+
+
 /* ================= DARK MODE TODO ================= */
+
 
 body.dark #todoList li {
 
@@ -2006,40 +1628,22 @@ body.dark #todoList .todo-text {
 
 
 
-/* ================= POMODORO BUTTON FIX ================= */
-
-
-.time-control button {
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:0;
-
-    font-size:22px;
-
-    line-height:1;
-
-}
-
-
-
-
-
-
-
 /* ================= DARK MODE MEDIA ================= */
 
 
 body.dark .media-select-box,
 body.dark .media-speed-box {
 
+    background: #1e293b;
 
-    background:#1e293b;
+}
 
+
+
+body.dark .media-select-box label,
+body.dark .media-speed-box label {
+
+    color: #38bdf8;
 
 }
 
@@ -2048,13 +1652,11 @@ body.dark .media-speed-box {
 body.dark .media-select-box select,
 body.dark .media-speed-box select {
 
+    background: #0f172a;
 
-    background:#0f172a;
+    color: white;
 
-    color:white;
-
-    border-color:#475569;
-
+    border-color: #475569;
 
 }
 
@@ -2067,15 +1669,13 @@ body.dark .media-speed-box select {
 /* ================= RESPONSIVE ================= */
 
 
-@media(max-width:900px){
+@media(max-width:900px) {
 
 
     .media-select-box,
     .media-speed-box {
 
-
-        padding:12px;
-
+        padding: 12px;
 
     }
 
@@ -2083,14 +1683,14 @@ body.dark .media-speed-box select {
 
     #quoteText {
 
-
-        width:100%;
-
+        width: 100%;
 
     }
 
 
 }
+
+
 
 
 
@@ -2128,306 +1728,6 @@ body.dark .media-speed-box select {
     #todoList li > button {
 
         flex-shrink: 0;
-
-    }
-
-
-}
-
-
-/* =========================================================
-   WHITE NOISE - KHUNG CHỌN ÂM THANH VÀ TỐC ĐỘ PHÁT
-========================================================= */
-
-
-/* ================= KHUNG CHUNG ================= */
-
-.white-noise-card {
-
-    width: 100%;
-
-}
-
-
-.media-select-box,
-.media-speed-box {
-
-    width: 100%;
-
-    background: #f8fafc;
-
-    padding: 15px;
-
-    border-radius: 18px;
-
-    margin-bottom: 15px;
-
-    border: 1px solid #e2e8f0;
-
-    box-shadow:
-        0 5px 15px rgba(37, 99, 235, .06);
-
-}
-
-
-
-/* ================= TIÊU ĐỀ TRONG KHUNG ================= */
-
-.media-select-box label,
-.media-speed-box label {
-
-    display: block;
-
-    width: 100%;
-
-    font-weight: 600;
-
-    color: #2563eb;
-
-    margin-bottom: 10px;
-
-}
-
-
-
-/* ================= MENU DỌC ================= */
-
-.media-select-box select,
-.media-speed-box select {
-
-    display: block;
-
-    width: 100%;
-
-    padding: 12px 15px;
-
-    border-radius: 12px;
-
-    border: 1px solid #cbd5e1;
-
-    background: white;
-
-    color: #334155;
-
-    font-size: 15px;
-
-    cursor: pointer;
-
-    outline: none;
-
-    transition: .2s;
-
-}
-
-
-
-/* Khi bấm vào menu */
-
-.media-select-box select:focus,
-.media-speed-box select:focus {
-
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, .12);
-
-}
-
-
-
-/* ================= KHUNG ÂM LƯỢNG ================= */
-
-.range-control {
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-}
-
-
-
-.range-control input[type="range"] {
-
-    flex: 1;
-
-    width: auto;
-
-    margin: 0;
-
-}
-
-
-
-#noiseVolumeValue {
-
-    min-width: 45px;
-
-    text-align: center;
-
-    font-weight: 600;
-
-    color: #2563eb;
-
-}
-
-
-
-/* ================= THANH ÂM LƯỢNG ================= */
-
-#noiseVolume {
-
-    cursor: pointer;
-
-}
-
-
-
-/* ================= THANH TIẾN TRÌNH ================= */
-
-#noiseProgress {
-
-    width: 100%;
-
-    margin: 10px 0 20px;
-
-    cursor: pointer;
-
-}
-
-
-
-/* ================= NÚT MEDIA ================= */
-
-.media-controls {
-
-    display: flex;
-
-    flex-wrap: wrap;
-
-    justify-content: center;
-
-    gap: 8px;
-
-    margin: 15px 0;
-
-}
-
-
-
-.media-controls button {
-
-    margin: 0;
-
-}
-
-
-
-/* ================= THỜI GIAN ================= */
-
-.media-time {
-
-    text-align: center;
-
-    margin: 10px 0;
-
-    color: #64748b;
-
-    font-weight: 500;
-
-}
-
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-body.dark .media-select-box,
-body.dark .media-speed-box {
-
-    background: #1e293b;
-
-    border-color: #334155;
-
-}
-
-
-
-body.dark .media-select-box label,
-body.dark .media-speed-box label {
-
-    color: #38bdf8;
-
-}
-
-
-
-body.dark .media-select-box select,
-body.dark .media-speed-box select {
-
-    background: #0f172a;
-
-    color: white;
-
-    border-color: #475569;
-
-}
-
-
-
-body.dark #noiseVolumeValue {
-
-    color: #38bdf8;
-
-}
-
-
-
-body.dark .media-time {
-
-    color: #cbd5e1;
-
-}
-
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width: 600px) {
-
-
-    .media-controls {
-
-        display: grid;
-
-        grid-template-columns: repeat(2, 1fr);
-
-        gap: 8px;
-
-    }
-
-
-
-    .media-controls button {
-
-        width: 100%;
-
-        margin: 0;
-
-    }
-
-
-
-    .range-control {
-
-        gap: 8px;
 
     }
 
