@@ -81,43 +81,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-        .then(function(response) {
+            .then(function (response) {
 
 
 
-            console.log("SUCCESS:", response);
+                console.log("SUCCESS:", response);
 
 
 
-            alert("Gửi liên hệ thành công!");
+                alert("Gửi liên hệ thành công!");
 
 
 
-            contactForm.reset();
+                contactForm.reset();
 
 
 
 
 
-        })
+            })
 
 
 
-        .catch(function(error) {
+            .catch(function (error) {
 
 
 
-            console.log("FAILED FULL ERROR:", error);
+                console.log("FAILED FULL ERROR:", error);
 
 
 
-            alert(
-                "Gửi liên hệ thất bại: " + error.text
-            );
+                alert(
+                    "Gửi liên hệ thất bại: " + error.text
+                );
 
 
 
-        });
+            });
 
 
 

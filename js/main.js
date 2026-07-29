@@ -745,11 +745,11 @@ function startPomodoro(display) {
 
                             ?
 
-                        "Pomodoro completed!"
+                            "Pomodoro completed!"
 
                             :
 
-                        "Hoàn thành Pomodoro!"
+                            "Hoàn thành Pomodoro!"
 
                     );
 

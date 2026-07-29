@@ -1,7 +1,7 @@
 // ================= SETTINGS PAGE =================
 
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
 
     loadUserProfile();
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
-function getUserProfile(){
+function getUserProfile() {
 
 
     return JSON.parse(
@@ -35,17 +35,17 @@ function getUserProfile(){
 
     )
 
-    ||
+        ||
 
     {
 
-        name:"Lữ Thị Trúc Sang",
+        name: "Lữ Thị Trúc Sang",
 
-        email:"sang@gmail.com",
+        email: "sang@gmail.com",
 
-        password:"123456",
+        password: "123456",
 
-        avatar:"images/avatar.png"
+        avatar: "images/avatar.png"
 
     };
 
@@ -58,65 +58,65 @@ function getUserProfile(){
 
 
 
-function loadUserProfile(){
+function loadUserProfile() {
 
 
     const user =
-    getUserProfile();
+        getUserProfile();
 
 
 
     const name =
-    document.getElementById(
-        "userName"
-    );
+        document.getElementById(
+            "userName"
+        );
 
 
     const email =
-    document.getElementById(
-        "userEmail"
-    );
+        document.getElementById(
+            "userEmail"
+        );
 
 
     const password =
-    document.getElementById(
-        "userPassword"
-    );
+        document.getElementById(
+            "userPassword"
+        );
 
 
     const avatar =
-    document.getElementById(
-        "avatarPreview"
-    );
+        document.getElementById(
+            "avatarPreview"
+        );
 
 
 
 
-    if(name)
+    if (name)
 
         name.value =
-        user.name;
+            user.name;
 
 
 
-    if(email)
+    if (email)
 
         email.value =
-        user.email;
+            user.email;
 
 
 
-    if(password)
+    if (password)
 
         password.value =
-        user.password;
+            user.password;
 
 
 
-    if(avatar)
+    if (avatar)
 
         avatar.src =
-        user.avatar;
+            user.avatar;
 
 
 
@@ -129,12 +129,12 @@ function loadUserProfile(){
 
 
 
-function saveUserProfile(){
+function saveUserProfile() {
 
 
 
     const oldUser =
-    getUserProfile();
+        getUserProfile();
 
 
 
@@ -145,31 +145,31 @@ function saveUserProfile(){
 
         name:
 
-        document.getElementById(
-            "userName"
-        ).value,
+            document.getElementById(
+                "userName"
+            ).value,
 
 
 
         email:
 
-        document.getElementById(
-            "userEmail"
-        ).value,
+            document.getElementById(
+                "userEmail"
+            ).value,
 
 
 
         password:
 
-        document.getElementById(
-            "userPassword"
-        ).value,
+            document.getElementById(
+                "userPassword"
+            ).value,
 
 
 
         avatar:
 
-        oldUser.avatar
+            oldUser.avatar
 
 
 
@@ -206,25 +206,25 @@ function saveUserProfile(){
 
 
 
-function setupAvatar(){
+function setupAvatar() {
 
 
 
     const input =
-    document.getElementById(
-        "avatarInput"
-    );
+        document.getElementById(
+            "avatarInput"
+        );
 
 
 
     const preview =
-    document.getElementById(
-        "avatarPreview"
-    );
+        document.getElementById(
+            "avatarPreview"
+        );
 
 
 
-    if(!input || !preview)
+    if (!input || !preview)
 
         return;
 
@@ -234,16 +234,16 @@ function setupAvatar(){
 
     input.addEventListener(
         "change",
-        function(){
+        function () {
 
 
 
             const file =
-            this.files[0];
+                this.files[0];
 
 
 
-            if(!file)
+            if (!file)
 
                 return;
 
@@ -252,33 +252,33 @@ function setupAvatar(){
 
 
             const reader =
-            new FileReader();
+                new FileReader();
 
 
 
 
 
 
-            reader.onload=function(e){
+            reader.onload = function (e) {
 
 
 
                 preview.src =
-                e.target.result;
+                    e.target.result;
 
 
 
 
 
                 const user =
-                getUserProfile();
+                    getUserProfile();
 
 
 
 
 
                 user.avatar =
-                e.target.result;
+                    e.target.result;
 
 
 
@@ -329,111 +329,111 @@ function setupAvatar(){
 
 
 
-function loadSettings(){
+function loadSettings() {
 
 
 
     const settings =
 
-    JSON.parse(
+        JSON.parse(
 
-        localStorage.getItem(
-            "settings"
+            localStorage.getItem(
+                "settings"
+            )
+
         )
 
-    )
+        ||
 
-    ||
+        {
 
-    {
+            theme: "light",
 
-        theme:"light",
+            language: "vi",
 
-        language:"vi",
+            volume: 50,
 
-        volume:50,
+            notification: false
 
-        notification:false
-
-    };
+        };
 
 
 
 
 
     const theme =
-    document.getElementById(
-        "themeSelect"
-    );
+        document.getElementById(
+            "themeSelect"
+        );
 
 
 
     const language =
-    document.getElementById(
-        "languageSelect"
-    );
+        document.getElementById(
+            "languageSelect"
+        );
 
 
 
     const volume =
-    document.getElementById(
-        "volume"
-    );
+        document.getElementById(
+            "volume"
+        );
 
 
 
     const volumeValue =
-    document.getElementById(
-        "volumeValue"
-    );
+        document.getElementById(
+            "volumeValue"
+        );
 
 
 
     const notification =
-    document.getElementById(
-        "notification"
-    );
+        document.getElementById(
+            "notification"
+        );
 
 
 
 
 
-    if(theme)
+    if (theme)
 
         theme.value =
-        settings.theme;
+            settings.theme;
 
 
 
 
-    if(language)
+    if (language)
 
         language.value =
-        settings.language;
+            settings.language;
 
 
 
 
-    if(volume)
+    if (volume)
 
         volume.value =
-        settings.volume;
+            settings.volume;
 
 
 
 
-    if(volumeValue)
+    if (volumeValue)
 
         volumeValue.innerHTML =
-        settings.volume;
+            settings.volume;
 
 
 
 
-    if(notification)
+    if (notification)
 
         notification.checked =
-        settings.notification;
+            settings.notification;
 
 
 
@@ -457,7 +457,7 @@ function loadSettings(){
 
 
 
-function saveSettings(){
+function saveSettings() {
 
 
 
@@ -467,33 +467,33 @@ function saveSettings(){
 
         theme:
 
-        document.getElementById(
-            "themeSelect"
-        ).value,
+            document.getElementById(
+                "themeSelect"
+            ).value,
 
 
 
         language:
 
-        document.getElementById(
-            "languageSelect"
-        ).value,
+            document.getElementById(
+                "languageSelect"
+            ).value,
 
 
 
         volume:
 
-        document.getElementById(
-            "volume"
-        ).value,
+            document.getElementById(
+                "volume"
+            ).value,
 
 
 
         notification:
 
-        document.getElementById(
-            "notification"
-        ).checked
+            document.getElementById(
+                "notification"
+            ).checked
 
 
 
@@ -564,7 +564,7 @@ function saveSettings(){
 
 
 
-function applyTheme(theme){
+function applyTheme(theme) {
 
 
 
@@ -599,37 +599,37 @@ function applyTheme(theme){
 
 
 
-function applyLanguage(lang){
+function applyLanguage(lang) {
 
 
 
     document
-    .querySelectorAll("[data-vn]")
-    .forEach(el=>{
+        .querySelectorAll("[data-vn]")
+        .forEach(el => {
 
 
 
-        if(lang==="en"){
+            if (lang === "en") {
 
 
-            el.innerHTML =
-            el.dataset.en;
+                el.innerHTML =
+                    el.dataset.en;
 
 
-        }
+            }
 
-        else{
-
-
-            el.innerHTML =
-            el.dataset.vn;
+            else {
 
 
-        }
+                el.innerHTML =
+                    el.dataset.vn;
+
+
+            }
 
 
 
-    });
+        });
 
 
 }
@@ -645,73 +645,73 @@ function applyLanguage(lang){
 
 
 
-function setupEvents(){
+function setupEvents() {
 
 
 
     const saveProfile =
-    document.getElementById(
-        "saveProfile"
-    );
+        document.getElementById(
+            "saveProfile"
+        );
 
 
 
     const saveSettingsBtn =
-    document.getElementById(
-        "saveSettings"
-    );
+        document.getElementById(
+            "saveSettings"
+        );
 
 
 
     const volume =
-    document.getElementById(
-        "volume"
-    );
+        document.getElementById(
+            "volume"
+        );
 
 
 
 
-    if(saveProfile)
+    if (saveProfile)
 
 
         saveProfile.onclick =
-        saveUserProfile;
+            saveUserProfile;
 
 
 
 
 
 
-    if(saveSettingsBtn)
+    if (saveSettingsBtn)
 
 
         saveSettingsBtn.onclick =
-        saveSettings;
+            saveSettings;
 
 
 
 
 
 
-    if(volume){
+    if (volume) {
 
 
 
-        volume.oninput=function(){
+        volume.oninput = function () {
 
 
 
             const value =
-            document.getElementById(
-                "volumeValue"
-            );
+                document.getElementById(
+                    "volumeValue"
+                );
 
 
 
-            if(value)
+            if (value)
 
                 value.innerHTML =
-                this.value;
+                    this.value;
 
 
 
@@ -736,18 +736,18 @@ function setupEvents(){
 
 
 
-function updateAnimation(){
+function updateAnimation() {
 
 
 
     const card =
-    document.querySelector(
-        ".card"
-    );
+        document.querySelector(
+            ".card"
+        );
 
 
 
-    if(!card)
+    if (!card)
 
         return;
 
@@ -761,7 +761,7 @@ function updateAnimation(){
 
 
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
 
         card.classList.remove(
@@ -769,7 +769,7 @@ function updateAnimation(){
         );
 
 
-    },500);
+    }, 500);
 
 
 

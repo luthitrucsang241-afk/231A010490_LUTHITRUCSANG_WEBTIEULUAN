@@ -22,24 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Dùng chung với settings + dashboard
 
-function getUserProfile(){
+function getUserProfile() {
 
 
     return JSON.parse(
         localStorage.getItem("userProfile")
     )
-    ||
+        ||
     {
 
-        name:"Lữ Thị Trúc Sang",
+        name: "Lữ Thị Trúc Sang",
 
-        avatar:"images/avatar.png",
+        avatar: "images/avatar.png",
 
-        email:"sang@gmail.com",
+        email: "sang@gmail.com",
 
-        username:"studyfocus",
+        username: "studyfocus",
 
-        password:"123456"
+        password: "123456"
 
     };
 
@@ -50,7 +50,7 @@ function getUserProfile(){
 
 
 
-function saveUserProfile(data){
+function saveUserProfile(data) {
 
 
     localStorage.setItem(
@@ -81,55 +81,55 @@ function saveUserProfile(data){
 
 
 
-function loadProfile(){
+function loadProfile() {
 
 
     const user =
-    getUserProfile();
+        getUserProfile();
 
 
 
 
     const name =
-    document.getElementById(
-        "profileName"
-    );
+        document.getElementById(
+            "profileName"
+        );
 
 
     const email =
-    document.getElementById(
-        "profileEmail"
-    );
+        document.getElementById(
+            "profileEmail"
+        );
 
 
     const username =
-    document.getElementById(
-        "profileUsername"
-    );
+        document.getElementById(
+            "profileUsername"
+        );
 
 
 
 
-    if(name)
+    if (name)
 
         name.value =
-        user.name;
+            user.name;
 
 
 
 
-    if(email)
+    if (email)
 
         email.value =
-        user.email;
+            user.email;
 
 
 
 
-    if(username)
+    if (username)
 
         username.value =
-        user.username;
+            user.username;
 
 
 
@@ -146,56 +146,56 @@ function loadProfile(){
 
 
 
-function saveProfile(){
+function saveProfile() {
 
 
 
     let user =
-    getUserProfile();
+        getUserProfile();
 
 
 
 
     const name =
-    document.getElementById(
-        "profileName"
-    );
+        document.getElementById(
+            "profileName"
+        );
 
 
     const email =
-    document.getElementById(
-        "profileEmail"
-    );
+        document.getElementById(
+            "profileEmail"
+        );
 
 
     const username =
-    document.getElementById(
-        "profileUsername"
-    );
+        document.getElementById(
+            "profileUsername"
+        );
 
 
 
 
-    if(name)
+    if (name)
 
         user.name =
-        name.value;
+            name.value;
 
 
 
 
-    if(email)
+    if (email)
 
         user.email =
-        email.value;
+            email.value;
 
 
 
 
-    if(username)
+    if (username)
 
         user.username =
-        username.value;
+            username.value;
 
 
 
@@ -227,14 +227,14 @@ function saveProfile(){
 
 
 const avatarInput =
-document.getElementById(
-    "avatarInput"
-);
+    document.getElementById(
+        "avatarInput"
+    );
 
 
 
 
-if(avatarInput){
+if (avatarInput) {
 
 
 
@@ -242,16 +242,16 @@ if(avatarInput){
 
         "change",
 
-        function(){
+        function () {
 
 
 
             const file =
-            this.files[0];
+                this.files[0];
 
 
 
-            if(!file)
+            if (!file)
 
                 return;
 
@@ -260,24 +260,24 @@ if(avatarInput){
 
 
             const reader =
-            new FileReader();
+                new FileReader();
 
 
 
 
 
-            reader.onload=function(e){
+            reader.onload = function (e) {
 
 
 
                 let user =
-                getUserProfile();
+                    getUserProfile();
 
 
 
 
                 user.avatar =
-                e.target.result;
+                    e.target.result;
 
 
 
@@ -288,16 +288,16 @@ if(avatarInput){
 
 
                 const img =
-                document.getElementById(
-                    "avatarImage"
-                );
+                    document.getElementById(
+                        "avatarImage"
+                    );
 
 
 
-                if(img)
+                if (img)
 
                     img.src =
-                    e.target.result;
+                        e.target.result;
 
 
 
@@ -331,29 +331,29 @@ if(avatarInput){
 
 
 
-function loadAvatar(){
+function loadAvatar() {
 
 
 
     const user =
-    getUserProfile();
+        getUserProfile();
 
 
 
 
     const img =
-    document.getElementById(
-        "avatarImage"
-    );
+        document.getElementById(
+            "avatarImage"
+        );
 
 
 
 
-    if(img)
+    if (img)
 
 
         img.src =
-        user.avatar;
+            user.avatar;
 
 
 
@@ -374,17 +374,17 @@ function loadAvatar(){
 
 window.addEventListener(
 
-"userUpdated",
+    "userUpdated",
 
-()=>{
-
-
-    loadProfile();
-
-    loadAvatar();
+    () => {
 
 
-}
+        loadProfile();
+
+        loadAvatar();
+
+
+    }
 
 );
 
@@ -400,43 +400,43 @@ window.addEventListener(
 
 
 
-function updateSecurity(){
+function updateSecurity() {
 
 
 
     let user =
-    getUserProfile();
+        getUserProfile();
 
 
 
 
     const email =
-    document.getElementById(
-        "newEmail"
-    );
+        document.getElementById(
+            "newEmail"
+        );
 
 
 
     const password =
-    document.getElementById(
-        "newPassword"
-    );
+        document.getElementById(
+            "newPassword"
+        );
 
 
 
 
 
-    if(email.value){
+    if (email.value) {
 
 
         user.email =
-        email.value;
+            email.value;
 
 
         document.getElementById(
             "profileEmail"
         ).value =
-        email.value;
+            email.value;
 
 
     }
@@ -446,11 +446,11 @@ function updateSecurity(){
 
 
 
-    if(password.value){
+    if (password.value) {
 
 
         user.password =
-        password.value;
+            password.value;
 
 
     }
@@ -467,9 +467,9 @@ function updateSecurity(){
 
 
 
-    email.value="";
+    email.value = "";
 
-    password.value="";
+    password.value = "";
 
 
 
@@ -500,33 +500,33 @@ function updateSecurity(){
 
 
 
-function loadStudyData(){
+function loadStudyData() {
 
 
 
     const user =
-    localStorage.getItem(
-        "currentUser"
-    )
-    ||
-    "guest";
+        localStorage.getItem(
+            "currentUser"
+        )
+        ||
+        "guest";
 
 
 
 
     const pomodoro =
 
-    Number(
+        Number(
 
-        localStorage.getItem(
-            "pomodoroCount_" + user
-        )
+            localStorage.getItem(
+                "pomodoroCount_" + user
+            )
 
-        ||
+            ||
 
-        0
+            0
 
-    );
+        );
 
 
 
@@ -534,23 +534,23 @@ function loadStudyData(){
 
     const calendar =
 
-    JSON.parse(
+        JSON.parse(
 
-        localStorage.getItem(
+            localStorage.getItem(
 
-            "studyCalendar_" + user
+                "studyCalendar_" + user
+
+            )
 
         )
 
-    )
+        ||
 
-    ||
+        {
 
-    {
+            schedules: []
 
-        schedules:[]
-
-    };
+        };
 
 
 
@@ -559,11 +559,11 @@ function loadStudyData(){
 
 
     let days =
-    new Set();
+        new Set();
 
 
 
-    let hours=0;
+    let hours = 0;
 
 
 
@@ -571,7 +571,7 @@ function loadStudyData(){
 
     calendar.schedules.forEach(
 
-        item=>{
+        item => {
 
 
             days.add(
@@ -582,15 +582,15 @@ function loadStudyData(){
 
             hours +=
 
-            Number(
+                Number(
 
-                item.studyTime
+                    item.studyTime
 
-                ||
+                    ||
 
-                0
+                    0
 
-            );
+                );
 
 
 
@@ -605,45 +605,45 @@ function loadStudyData(){
 
 
     const pomodoroEl =
-    document.getElementById(
-        "pomodoroCount"
-    );
+        document.getElementById(
+            "pomodoroCount"
+        );
 
 
     const daysEl =
-    document.getElementById(
-        "studyDays"
-    );
+        document.getElementById(
+            "studyDays"
+        );
 
 
     const hoursEl =
-    document.getElementById(
-        "studyHours"
-    );
+        document.getElementById(
+            "studyHours"
+        );
 
 
 
 
 
 
-    if(pomodoroEl)
+    if (pomodoroEl)
 
         pomodoroEl.innerHTML =
-        pomodoro;
+            pomodoro;
 
 
 
-    if(daysEl)
+    if (daysEl)
 
         daysEl.innerHTML =
-        days.size;
+            days.size;
 
 
 
-    if(hoursEl)
+    if (hoursEl)
 
         hoursEl.innerHTML =
-        hours+"h";
+            hours + "h";
 
 
 
@@ -662,34 +662,34 @@ function loadStudyData(){
 
 
 
-function showMessage(vn,en){
+function showMessage(vn, en) {
 
 
 
     const lang =
 
-    localStorage.getItem(
-        "language"
-    )
+        localStorage.getItem(
+            "language"
+        )
 
-    ||
+        ||
 
-    "vi";
+        "vi";
 
 
 
 
     alert(
 
-        lang==="en"
+        lang === "en"
 
-        ?
+            ?
 
-        en
+            en
 
-        :
+            :
 
-        vn
+            vn
 
     );
 

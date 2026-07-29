@@ -838,11 +838,11 @@ function calculateLearningStreak() {
             getDateDifference(
 
                 sortedDates[
-                    i - 1
+                i - 1
                 ],
 
                 sortedDates[
-                    i
+                i
                 ]
 
             );
@@ -890,7 +890,7 @@ function calculateLearningStreak() {
 
     const lastStudyDate =
         sortedDates[
-            sortedDates.length - 1
+        sortedDates.length - 1
         ];
 
 
@@ -935,11 +935,11 @@ function calculateLearningStreak() {
                 getDateDifference(
 
                     sortedDates[
-                        i - 1
+                    i - 1
                     ],
 
                     sortedDates[
-                        i
+                    i
                     ]
 
                 );

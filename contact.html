@@ -24,121 +24,405 @@
 
 
 
-<!-- ================= HEADER ================= -->
+    <!-- ================= HEADER ================= -->
 
-<header class="header">
-
-
-    <div class="logo">
-        Study Focus
-    </div>
+    <header class="header">
 
 
-
-
-    <nav class="menu">
-
-
-        <a href="index.html"
-        data-vn="Trang chủ"
-        data-en="Home">
-            Trang chủ
-        </a>
+        <div class="logo">
+            Study Focus
+        </div>
 
 
 
-        <a href="about.html"
-        data-vn="Giới thiệu"
-        data-en="About">
-            Giới thiệu
-        </a>
+
+        <nav class="menu">
+
+
+            <a href="index.html" data-vn="Trang chủ" data-en="Home">
+                Trang chủ
+            </a>
 
 
 
-        <a class="active"
-        href="contact.html"
-        data-vn="Liên hệ"
-        data-en="Contact">
-            Liên hệ
-        </a>
+            <a href="about.html" data-vn="Giới thiệu" data-en="About">
+                Giới thiệu
+            </a>
 
 
 
-        <a href="login.html"
-        data-vn="Đăng nhập"
-        data-en="Login">
-            Đăng nhập
-        </a>
+            <a class="active" href="contact.html" data-vn="Liên hệ" data-en="Contact">
+                Liên hệ
+            </a>
 
 
 
-        <a class="btn"
-        href="register.html"
-        data-vn="Đăng ký"
-        data-en="Register">
-            Đăng ký
-        </a>
+            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
+                Đăng nhập
+            </a>
 
 
-    </nav>
+
+            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+                Đăng ký
+            </a>
+
+
+        </nav>
 
 
 
 
 
-    <!-- SETTING MENU -->
+        <!-- SETTING MENU -->
 
-    <div class="setting-menu">
-
-
-        <button type="button" class="setting-btn">
-            ⚙
-        </button>
+        <div class="setting-menu">
 
 
+            <button type="button" class="setting-btn">
+                ⚙
+            </button>
 
-        <div class="setting-dropdown">
 
 
-            <div class="dropdown-title"
-            data-vn="Giao diện"
-            data-en="Theme">
+            <div class="setting-dropdown">
 
-                Giao diện
+
+                <div class="dropdown-title" data-vn="Giao diện" data-en="Theme">
+
+                    Giao diện
+
+                </div>
+
+
+
+                <button onclick="changeTheme('light')">
+
+
+                    <span data-vn="Sáng" data-en="Light">
+
+                        Sáng
+
+                    </span>
+
+                </button>
+
+
+
+
+
+                <button onclick="changeTheme('dark')">
+
+
+                    <span data-vn="Tối" data-en="Dark">
+
+                        Tối
+
+                    </span>
+
+                </button>
+
+
+
+                <hr>
+
+
+
+
+                <div class="dropdown-title" data-vn="Ngôn ngữ" data-en="Language">
+
+                    Ngôn ngữ
+
+                </div>
+
+
+
+
+
+                <button onclick="changeLanguage('vi')">
+
+                    🇻🇳
+
+                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
+
+                        Tiếng Việt
+
+                    </span>
+
+                </button>
+
+
+
+
+
+
+                <button onclick="changeLanguage('en')">
+
+                    🇺🇸
+
+                    <span data-vn="Tiếng Anh" data-en="English">
+
+                        Tiếng Anh
+
+                    </span>
+
+                </button>
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </header>
+    <main>
+
+
+
+        <section class="contact-hero">
+
+            <h1 data-vn="Liên hệ với Study Focus" data-en="Contact Study Focus">
+
+                Liên hệ với Study Focus
+
+            </h1>
+
+            <p data-vn="Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn."
+                data-en="We are always ready to listen to your feedback.">
+
+                Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
+
+            </p>
+
+        </section>
+
+
+
+
+
+
+
+
+        <section class="contact-container">
+
+
+            <div class="contact-info">
+
+
+                <h2 data-vn="Thông tin" data-en="Information">
+
+                    Thông tin
+
+                </h2>
+
+
+
+                <p>
+
+                    📍
+                    <span data-vn="Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh"
+                        data-en="Address: 78/B1 Cao Lo, Chanh Hung Ward, Ho Chi Minh City">
+
+                        Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh
+
+                    </span>
+
+                </p>
+
+
+
+                <p>
+
+                    📧 Email: luthitrucsang241@gmail.com
+
+                </p>
+
+
+
+                <p>
+
+                    📞 Hotline: 0937 28 3546
+
+                </p>
+
+
+
+                <p>
+
+                    🌐 Website: Study Focus
+
+                </p>
+
+
 
             </div>
 
 
 
-            <button onclick="changeTheme('light')">
 
-                
-                <span
-                data-vn="Sáng"
-                data-en="Light">
 
-                    Sáng
+            <div class="contact-form">
 
-                </span>
 
-            </button>
+                <h2 data-vn="Gửi liên hệ" data-en="Send Message">
+
+                    Gửi liên hệ
+
+                </h2>
 
 
 
 
+                <!-- FORM LIÊN HỆ EMAILJS -->
 
-            <button onclick="changeTheme('dark')">
+                <form id="contact-form">
 
-                
-                <span
-                data-vn="Tối"
-                data-en="Dark">
 
-                    Tối
 
-                </span>
+                    <input type="text" name="name" data-vn-placeholder="Họ và tên" data-en-placeholder="Full Name"
+                        placeholder="Họ và tên" required>
 
-            </button>
+
+
+
+
+
+                    <input type="email" name="email" data-vn-placeholder="Email" data-en-placeholder="Email"
+                        placeholder="Email" required>
+
+
+
+
+
+
+                    <input type="text" name="subject" data-vn-placeholder="Tiêu đề" data-en-placeholder="Subject"
+                        placeholder="Tiêu đề" required>
+
+
+
+
+
+
+
+                    <textarea name="message" data-vn-placeholder="Nội dung" data-en-placeholder="Message"
+                        placeholder="Nội dung" required></textarea>
+
+
+
+
+
+
+
+                    <button type="submit" data-vn="Gửi liên hệ" data-en="Send">
+
+                        Gửi liên hệ
+
+                    </button>
+
+
+
+
+                </form>
+
+
+
+            </div>
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+        <section class="map">
+
+
+            <h2 data-vn="Google Map" data-en="Google Map">
+
+                Google Map
+
+            </h2>
+
+
+
+            <iframe src="https://www.google.com/maps?q=Ho%20Chi%20Minh&output=embed" loading="lazy">
+
+            </iframe>
+
+
+
+        </section>
+
+
+
+
+
+    </main>
+    <footer>
+
+        <div class="container">
+
+
+            <h3>
+                Study Focus
+            </h3>
+
+
+
+
+            <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
+                data-en="Study effectively with Pomodoro, manage time and improve concentration.">
+
+                Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+
+            </p>
+
+
+
+
+
+            <div class="footer-links">
+
+
+                <a href="index.html" data-vn="Trang chủ" data-en="Home">
+
+                    Trang chủ
+
+                </a>
+
+
+
+
+
+                <a href="about.html" data-vn="Giới thiệu" data-en="About">
+
+                    Giới thiệu
+
+                </a>
+
+
+
+
+
+                <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+
+                    Liên hệ
+
+                </a>
+
+
+
+            </div>
+
+
 
 
 
@@ -147,403 +431,32 @@
 
 
 
-            <div class="dropdown-title"
-            data-vn="Ngôn ngữ"
-            data-en="Language">
 
-                Ngôn ngữ
+            <p>
 
-            </div>
+                © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
 
+            </p>
 
-
-
-
-            <button onclick="changeLanguage('vi')">
-
-                🇻🇳
-
-                <span
-                data-vn="Tiếng Việt"
-                data-en="Vietnamese">
-
-                    Tiếng Việt
-
-                </span>
-
-            </button>
-
-
-
-
-
-
-            <button onclick="changeLanguage('en')">
-
-                🇺🇸
-
-                <span
-                data-vn="Tiếng Anh"
-                data-en="English">
-
-                    Tiếng Anh
-
-                </span>
-
-            </button>
 
 
 
         </div>
 
 
-    </div>
+    </footer>
 
 
 
-</header>
-<main>
 
 
 
-    <section class="contact-hero">
 
-        <h1
-        data-vn="Liên hệ với Study Focus"
-        data-en="Contact Study Focus">
+    <!-- JAVASCRIPT -->
 
-        Liên hệ với Study Focus
+    <script src="js/main.js"></script>
 
-        </h1>
-
-        <p
-        data-vn="Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn."
-        data-en="We are always ready to listen to your feedback.">
-
-        Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
-
-        </p>
-
-    </section>
-
-
-
-
-
-
-
-
-    <section class="contact-container">
-
-
-        <div class="contact-info">
-
-
-            <h2
-            data-vn="Thông tin"
-            data-en="Information">
-
-            Thông tin
-
-            </h2>
-
-
-
-            <p>
-
-            📍 
-            <span
-            data-vn="Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh"
-            data-en="Address: 78/B1 Cao Lo, Chanh Hung Ward, Ho Chi Minh City">
-
-            Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh
-
-            </span>
-
-            </p>
-
-
-
-            <p>
-
-            📧 Email: luthitrucsang241@gmail.com
-
-            </p>
-
-
-
-            <p>
-
-            📞 Hotline: 0937 28 3546
-
-            </p>
-
-
-
-            <p>
-
-            🌐 Website: Study Focus
-
-            </p>
-
-
-
-        </div>
-
-
-
-
-
-        <div class="contact-form">
-
-
-            <h2
-            data-vn="Gửi liên hệ"
-            data-en="Send Message">
-
-            Gửi liên hệ
-
-            </h2>
-
-
-
-
-            <!-- FORM LIÊN HỆ EMAILJS -->
-
-            <form id="contact-form">
-
-
-
-                <input 
-                type="text"
-
-                name="name"
-
-                data-vn-placeholder="Họ và tên"
-                data-en-placeholder="Full Name"
-
-                placeholder="Họ và tên"
-
-                required>
-
-
-
-
-
-
-                <input 
-                type="email"
-
-                name="email"
-
-                data-vn-placeholder="Email"
-                data-en-placeholder="Email"
-
-                placeholder="Email"
-
-                required>
-
-
-
-
-
-
-                <input 
-                type="text"
-
-                name="subject"
-
-                data-vn-placeholder="Tiêu đề"
-                data-en-placeholder="Subject"
-
-                placeholder="Tiêu đề"
-
-                required>
-
-
-
-
-
-
-
-                <textarea
-
-                name="message"
-
-                data-vn-placeholder="Nội dung"
-                data-en-placeholder="Message"
-
-                placeholder="Nội dung"
-
-                required></textarea>
-
-
-
-
-
-
-
-                <button
-
-                type="submit"
-
-                data-vn="Gửi liên hệ"
-                data-en="Send">
-
-                Gửi liên hệ
-
-                </button>
-
-
-
-
-            </form>
-
-
-
-        </div>
-
-
-
-    </section>
-
-
-
-
-
-
-
-
-    <section class="map">
-
-
-        <h2
-        data-vn="Google Map"
-        data-en="Google Map">
-
-        Google Map
-
-        </h2>
-
-
-
-        <iframe
-
-        src="https://www.google.com/maps?q=Ho%20Chi%20Minh&output=embed"
-
-        loading="lazy">
-
-        </iframe>
-
-
-
-    </section>
-
-
-
-
-
-</main>
-<footer>
-
-    <div class="container">
-
-
-        <h3>
-        Study Focus
-        </h3>
-
-
-
-
-        <p
-
-        data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
-
-        data-en="Study effectively with Pomodoro, manage time and improve concentration.">
-
-        Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
-
-        </p>
-
-
-
-
-
-        <div class="footer-links">
-
-
-            <a href="index.html"
-            data-vn="Trang chủ"
-            data-en="Home">
-
-            Trang chủ
-
-            </a>
-
-
-
-
-
-            <a href="about.html"
-            data-vn="Giới thiệu"
-            data-en="About">
-
-            Giới thiệu
-
-            </a>
-
-
-
-
-
-            <a href="contact.html"
-            data-vn="Liên hệ"
-            data-en="Contact">
-
-            Liên hệ
-
-            </a>
-
-
-
-        </div>
-
-
-
-
-
-        <hr>
-
-
-
-
-
-        <p>
-
-        © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
-
-        </p>
-
-
-
-
-    </div>
-
-
-</footer>
-
-
-
-
-
-
-
-<!-- JAVASCRIPT -->
-
-<script src="js/main.js"></script>
-
-<script src="js/contact.js"></script>
+    <script src="js/contact.js"></script>
 
 
 

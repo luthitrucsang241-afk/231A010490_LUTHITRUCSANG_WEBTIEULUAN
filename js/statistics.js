@@ -171,7 +171,7 @@ function getStudyData() {
     }
 
     catch (
-        error
+    error
     ) {
 
 
@@ -536,12 +536,12 @@ function renderDailyChart(
 
             label.textContent =
                 date
-                ?
-                formatDate(
-                    date
-                )
-                :
-                "";
+                    ?
+                    formatDate(
+                        date
+                    )
+                    :
+                    "";
 
 
 
@@ -557,9 +557,9 @@ function renderDailyChart(
                 getItemHours(
                     item
                 )
-                .toFixed(
-                    1
-                )
+                    .toFixed(
+                        1
+                    )
                 +
                 "h";
 
@@ -854,7 +854,7 @@ function getDaysInCurrentMonth() {
         0
 
     )
-    .getDate();
+        .getDate();
 
 }
 
@@ -893,24 +893,24 @@ function createHorizontalBar(
 
         maxValue > 0
 
-        ?
+            ?
 
-        Math.min(
+            Math.min(
 
-            (
-                value /
-                maxValue
+                (
+                    value /
+                    maxValue
+                )
+                *
+                100,
+
+                100
+
             )
-            *
-            100,
 
-            100
+            :
 
-        )
-
-        :
-
-        0;
+            0;
 
 
 
@@ -1054,48 +1054,48 @@ function createYearOptions() {
     Array.from(
         years
     )
-    .sort(
+        .sort(
 
-        function (
-            a,
-            b
-        ) {
+            function (
+                a,
+                b
+            ) {
 
-            return b - a;
+                return b - a;
 
-        }
+            }
 
-    )
-    .forEach(
+        )
+        .forEach(
 
-        function (
-            year
-        ) {
+            function (
+                year
+            ) {
 
 
-            const option =
-                document.createElement(
-                    "option"
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+
+                option.value =
+                    year;
+
+
+                option.textContent =
+                    year;
+
+
+
+                select.appendChild(
+                    option
                 );
 
 
-            option.value =
-                year;
+            }
 
-
-            option.textContent =
-                year;
-
-
-
-            select.appendChild(
-                option
-            );
-
-
-        }
-
-    );
+        );
 
 
 
@@ -1126,18 +1126,18 @@ function createYearOptions() {
             Array.from(
                 years
             )
-            .sort(
+                .sort(
 
-                function (
-                    a,
-                    b
-                ) {
+                    function (
+                        a,
+                        b
+                    ) {
 
-                    return b - a;
+                        return b - a;
 
-                }
+                    }
 
-            )[0];
+                )[0];
 
     }
 
@@ -1397,67 +1397,67 @@ function renderMonthlyChart() {
     Object.keys(
         months
     )
-    .sort(
+        .sort(
 
-        function (
-            a,
-            b
-        ) {
+            function (
+                a,
+                b
+            ) {
 
-            return (
+                return (
 
-                Number(a)
-                -
-                Number(b)
-
-            );
-
-        }
-
-    )
-    .forEach(
-
-        function (
-            month
-        ) {
-
-
-            const box =
-                document.createElement(
-                    "div"
-                );
-
-
-            box.className =
-                "month-item";
-
-
-
-            const hours =
-                months[month];
-
-
-
-            const height =
-
-                Math.max(
-
-                    (
-
-                        hours /
-                        maxHours
-
-                    )
-                    *
-                    120,
-
-                    15
+                    Number(a)
+                    -
+                    Number(b)
 
                 );
 
+            }
+
+        )
+        .forEach(
+
+            function (
+                month
+            ) {
 
 
-            box.innerHTML = `
+                const box =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                box.className =
+                    "month-item";
+
+
+
+                const hours =
+                    months[month];
+
+
+
+                const height =
+
+                    Math.max(
+
+                        (
+
+                            hours /
+                            maxHours
+
+                        )
+                        *
+                        120,
+
+                        15
+
+                    );
+
+
+
+                box.innerHTML = `
 
                 <div>
                     ${getMonthName(month)}
@@ -1481,14 +1481,14 @@ function renderMonthlyChart() {
 
 
 
-            chart.appendChild(
-                box
-            );
+                chart.appendChild(
+                    box
+                );
 
 
-        }
+            }
 
-    );
+        );
 
 }
 
@@ -1580,15 +1580,15 @@ function getMonthName(
     return (
 
         lang ===
-        "en"
+            "en"
 
-        ?
+            ?
 
-        en[month]
+            en[month]
 
-        :
+            :
 
-        vn[month]
+            vn[month]
 
     );
 

@@ -219,10 +219,10 @@ document.addEventListener(
                 String(
                     now.getMonth() + 1
                 )
-                .padStart(
-                    2,
-                    "0"
-                );
+                    .padStart(
+                        2,
+                        "0"
+                    );
 
 
 
@@ -230,10 +230,10 @@ document.addEventListener(
                 String(
                     now.getDate()
                 )
-                .padStart(
-                    2,
-                    "0"
-                );
+                    .padStart(
+                        2,
+                        "0"
+                    );
 
 
 
@@ -402,20 +402,20 @@ document.addEventListener(
                 String(
                     minutes
                 )
-                .padStart(
-                    2,
-                    "0"
-                );
+                    .padStart(
+                        2,
+                        "0"
+                    );
 
 
             const s =
                 String(
                     seconds
                 )
-                .padStart(
-                    2,
-                    "0"
-                );
+                    .padStart(
+                        2,
+                        "0"
+                    );
 
 
             timer.textContent =

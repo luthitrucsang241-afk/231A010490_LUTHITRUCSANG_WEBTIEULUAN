@@ -56,167 +56,167 @@ document.addEventListener("DOMContentLoaded", () => {
         )
 
 
-        .then(response => {
+            .then(response => {
 
 
-            if (!response.ok) {
+                if (!response.ok) {
 
-                throw new Error(
-                    "Weather API Error"
-                );
+                    throw new Error(
+                        "Weather API Error"
+                    );
 
-            }
-
-
-            return response.json();
+                }
 
 
-        })
+                return response.json();
 
 
-        .then(data => {
+            })
 
 
-            if (
-                !data.current ||
-                typeof data.current.temperature_2m === "undefined"
-            ) {
-
-                throw new Error(
-                    "Weather data not found"
-                );
-
-            }
+            .then(data => {
 
 
-            const temp =
-                data.current.temperature_2m;
+                if (
+                    !data.current ||
+                    typeof data.current.temperature_2m === "undefined"
+                ) {
+
+                    throw new Error(
+                        "Weather data not found"
+                    );
+
+                }
 
 
-            const code =
-                data.current.weather_code;
+                const temp =
+                    data.current.temperature_2m;
 
 
-            let status =
-                "☀️ Trời quang";
+                const code =
+                    data.current.weather_code;
 
 
-
-            if (code === 0) {
-
-                status =
+                let status =
                     "☀️ Trời quang";
 
-            }
 
 
-            else if (
-                code === 1 ||
-                code === 2
-            ) {
+                if (code === 0) {
 
-                status =
-                    "🌤 Có mây";
+                    status =
+                        "☀️ Trời quang";
 
-            }
+                }
 
 
-            else if (code === 3) {
+                else if (
+                    code === 1 ||
+                    code === 2
+                ) {
 
-                status =
-                    "☁️ Nhiều mây";
+                    status =
+                        "🌤 Có mây";
 
-            }
-
-
-            else if (
-                code === 45 ||
-                code === 48
-            ) {
-
-                status =
-                    "🌫 Có sương mù";
-
-            }
+                }
 
 
-            else if (
-                code >= 51 &&
-                code <= 57
-            ) {
+                else if (code === 3) {
 
-                status =
-                    "🌦 Mưa phùn";
+                    status =
+                        "☁️ Nhiều mây";
 
-            }
+                }
 
 
-            else if (
-                code >= 61 &&
-                code <= 67
-            ) {
+                else if (
+                    code === 45 ||
+                    code === 48
+                ) {
 
-                status =
-                    "🌧 Có mưa";
+                    status =
+                        "🌫 Có sương mù";
 
-            }
-
-
-            else if (
-                code >= 71 &&
-                code <= 77
-            ) {
-
-                status =
-                    "❄️ Có tuyết";
-
-            }
+                }
 
 
-            else if (
-                code >= 80 &&
-                code <= 82
-            ) {
+                else if (
+                    code >= 51 &&
+                    code <= 57
+                ) {
 
-                status =
-                    "🌦 Mưa rào";
+                    status =
+                        "🌦 Mưa phùn";
 
-            }
-
-
-            else if (
-                code >= 95 &&
-                code <= 99
-            ) {
-
-                status =
-                    "⛈ Có dông";
-
-            }
+                }
 
 
+                else if (
+                    code >= 61 &&
+                    code <= 67
+                ) {
 
-            weather.innerHTML =
-                `${status}<br>${temp}°C`;
+                    status =
+                        "🌧 Có mưa";
 
-
-        })
-
-
-        .catch(error => {
-
-
-            console.error(
-                "Không thể tải dữ liệu thời tiết:",
-                error
-            );
+                }
 
 
-            weather.innerHTML =
-                "⚠️ Không thể tải thời tiết";
+                else if (
+                    code >= 71 &&
+                    code <= 77
+                ) {
+
+                    status =
+                        "❄️ Có tuyết";
+
+                }
 
 
-        });
+                else if (
+                    code >= 80 &&
+                    code <= 82
+                ) {
+
+                    status =
+                        "🌦 Mưa rào";
+
+                }
+
+
+                else if (
+                    code >= 95 &&
+                    code <= 99
+                ) {
+
+                    status =
+                        "⛈ Có dông";
+
+                }
+
+
+
+                weather.innerHTML =
+                    `${status}<br>${temp}°C`;
+
+
+            })
+
+
+            .catch(error => {
+
+
+                console.error(
+                    "Không thể tải dữ liệu thời tiết:",
+                    error
+                );
+
+
+                weather.innerHTML =
+                    "⚠️ Không thể tải thời tiết";
+
+
+            });
 
 
     }

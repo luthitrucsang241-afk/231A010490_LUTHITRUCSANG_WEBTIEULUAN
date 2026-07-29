@@ -25,11 +25,9 @@ body {
     flex-direction: column;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #dff6ff,
-            #89cff0
-        );
+            #89cff0);
 
     color: #334155;
 }
@@ -115,11 +113,9 @@ body {
     border-radius: 20px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #2563eb,
-            #38bdf8
-        );
+            #38bdf8);
 
     color: white;
 }
@@ -170,11 +166,9 @@ body {
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #2563eb,
-            #38bdf8
-        );
+            #38bdf8);
 
     color: white;
 
@@ -491,11 +485,9 @@ body {
     border-radius: 50%;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #2563eb,
-            #38bdf8
-        );
+            #38bdf8);
 
     color: white;
 
@@ -563,11 +555,9 @@ body {
     border-radius: 20px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #2563eb,
-            #38bdf8
-        );
+            #38bdf8);
 
     color: white;
 
@@ -595,11 +585,9 @@ button {
     border-radius: 20px;
 
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #2563eb,
-            #38bdf8
-        );
+            #38bdf8);
 
     color: white;
 
@@ -734,7 +722,7 @@ button {
 }
 
 
-#todoList li > button {
+#todoList li>button {
     flex: 0 0 auto;
 
     min-width: 40px;
@@ -901,11 +889,9 @@ video {
 
 #favoriteQuote.active {
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #ef4444,
-            #fb7185
-        );
+            #fb7185);
 }
 
 
@@ -964,11 +950,9 @@ footer hr {
 
 body.light {
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #dff6ff,
-            #89cff0
-        );
+            #89cff0);
 
     color: #1e293b;
 }
@@ -989,11 +973,9 @@ body.light footer {
 
 body.dark {
     background:
-        linear-gradient(
-            135deg,
+        linear-gradient(135deg,
             #020617,
-            #1e293b
-        );
+            #1e293b);
 
     color: white;
 }
@@ -1271,7 +1253,7 @@ body.dark .setting-dropdown hr {
     }
 
 
-    #todoList li > button {
+    #todoList li>button {
         flex-shrink: 0;
     }
 

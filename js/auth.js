@@ -1,4 +1,4 @@
- // ================= AUTH SYSTEM =================
+// ================= AUTH SYSTEM =================
 // Vị trí: js/auth.js
 
 
@@ -7,19 +7,19 @@
 
 
 
-function loginUser(email, password){
+function loginUser(email, password) {
 
 
 
     const users =
 
-    JSON.parse(
+        JSON.parse(
 
-        localStorage.getItem("users")
+            localStorage.getItem("users")
 
-    )
+        )
 
-    || [];
+        || [];
 
 
 
@@ -29,25 +29,25 @@ function loginUser(email, password){
 
     const user =
 
-    users.find(
+        users.find(
 
-        item =>
+            item =>
 
-        item.email === email
+                item.email === email
 
-        &&
+                &&
 
-        item.password === password
+                item.password === password
 
-    );
-
-
+        );
 
 
 
 
 
-    if(!user){
+
+
+    if (!user) {
 
 
         return false;
@@ -106,19 +106,19 @@ function loginUser(email, password){
 
 
 
-function registerUser(data){
+function registerUser(data) {
 
 
 
     const users =
 
-    JSON.parse(
+        JSON.parse(
 
-        localStorage.getItem("users")
+            localStorage.getItem("users")
 
-    )
+        )
 
-    || [];
+        || [];
 
 
 
@@ -129,21 +129,21 @@ function registerUser(data){
 
     const emailExist =
 
-    users.find(
+        users.find(
 
-        user =>
+            user =>
 
-        user.email === data.email
+                user.email === data.email
 
-    );
-
-
+        );
 
 
 
 
 
-    if(emailExist){
+
+
+    if (emailExist) {
 
 
         return false;
@@ -196,7 +196,7 @@ function registerUser(data){
 
 
 
-function checkLogin(){
+function checkLogin() {
 
 
 
@@ -229,7 +229,7 @@ function checkLogin(){
 
 
 
-function logout(){
+function logout() {
 
 
 
@@ -259,7 +259,7 @@ function logout(){
 
     window.location.href =
 
-    "login.html";
+        "login.html";
 
 
 
@@ -276,7 +276,7 @@ function logout(){
 
 
 
-function currentUser(){
+function currentUser() {
 
 
 

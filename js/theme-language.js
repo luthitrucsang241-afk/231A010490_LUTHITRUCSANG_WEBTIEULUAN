@@ -1,7 +1,7 @@
 // ================= THEME =================
 
 
-function changeTheme(theme){
+function changeTheme(theme) {
 
 
     document.body.className = theme;
@@ -21,21 +21,21 @@ function changeTheme(theme){
 // load theme khi mở trang
 
 let savedTheme =
-localStorage.getItem("theme");
+    localStorage.getItem("theme");
 
 
 
-if(savedTheme){
+if (savedTheme) {
 
     document.body.className =
-    savedTheme;
+        savedTheme;
 
 }
 
-else{
+else {
 
     document.body.className =
-    "light";
+        "light";
 
 }
 
@@ -47,7 +47,7 @@ else{
 // ================= LANGUAGE =================
 
 
-function changeLanguage(lang){
+function changeLanguage(lang) {
 
 
 
@@ -67,52 +67,52 @@ function changeLanguage(lang){
 
 
 
-function applyLanguage(){
+function applyLanguage() {
 
 
 
     let lang =
-    localStorage.getItem("language")
-    || "vi";
+        localStorage.getItem("language")
+        || "vi";
 
 
 
 
     document
-    .querySelectorAll("[data-vn]")
-    .forEach(function(element){
+        .querySelectorAll("[data-vn]")
+        .forEach(function (element) {
 
 
 
-        if(lang==="vi"){
+            if (lang === "vi") {
 
 
 
-            element.innerHTML =
-            element.getAttribute(
-                "data-vn"
-            );
+                element.innerHTML =
+                    element.getAttribute(
+                        "data-vn"
+                    );
 
 
 
-        }
+            }
 
-        else{
-
-
-
-            element.innerHTML =
-            element.getAttribute(
-                "data-en"
-            );
+            else {
 
 
 
-        }
+                element.innerHTML =
+                    element.getAttribute(
+                        "data-en"
+                    );
 
 
 
-    });
+            }
+
+
+
+        });
 
 
 
@@ -120,36 +120,36 @@ function applyLanguage(){
 
 
     document
-    .querySelectorAll("[data-vn-placeholder]")
-    .forEach(function(input){
+        .querySelectorAll("[data-vn-placeholder]")
+        .forEach(function (input) {
 
 
 
-        if(lang==="vi"){
+            if (lang === "vi") {
 
 
-            input.placeholder =
-            input.getAttribute(
-                "data-vn-placeholder"
-            );
+                input.placeholder =
+                    input.getAttribute(
+                        "data-vn-placeholder"
+                    );
 
 
-        }
+            }
 
-        else{
-
-
-            input.placeholder =
-            input.getAttribute(
-                "data-en-placeholder"
-            );
+            else {
 
 
-        }
+                input.placeholder =
+                    input.getAttribute(
+                        "data-en-placeholder"
+                    );
+
+
+            }
 
 
 
-    });
+        });
 
 
 

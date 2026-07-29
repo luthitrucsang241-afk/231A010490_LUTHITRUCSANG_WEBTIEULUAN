@@ -143,38 +143,36 @@ header .container {
 
 }
 
-.setting-btn{
+.setting-btn {
 
-    width:42px;
+    width: 42px;
 
-    height:42px;
+    height: 42px;
 
-    border:none;
+    border: none;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    padding:0;
+    padding: 0;
 
-    line-height:1;
+    line-height: 1;
 
-    font-size:20px;
+    font-size: 20px;
 
     background:
-    linear-gradient(
-    135deg,
-    #2563eb,
-    #38bdf8
-    );
+        linear-gradient(135deg,
+            #2563eb,
+            #38bdf8);
 
-    color:white;
+    color: white;
 
-    cursor:pointer;
+    cursor: pointer;
 
 }
 
@@ -1005,7 +1003,7 @@ footer hr {
 
 .header {
 
-    position:relative;
+    position: relative;
 
     width: 100%;
 

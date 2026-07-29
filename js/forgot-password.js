@@ -7,41 +7,41 @@ let otpCode = "";
 const otpBtn = document.getElementById("otpBtn");
 
 
-if(otpBtn){
+if (otpBtn) {
 
 
-otpBtn.onclick = function(){
+    otpBtn.onclick = function () {
 
 
 
-let email =
+        let email =
 
-document
+            document
 
-.getElementById("email")
+                .getElementById("email")
 
-.value
+                .value
 
-.trim();
+                .trim();
 
 
 
 
 
-if(email===""){
+        if (email === "") {
 
 
-alert(
+            alert(
 
-"Vui lòng nhập email"
+                "Vui lòng nhập email"
 
-);
+            );
 
 
-return;
+            return;
 
 
-}
+        }
 
 
 
@@ -49,35 +49,35 @@ return;
 
 
 
-// ================= KIỂM TRA EMAIL ĐÃ ĐĂNG KÝ =================
-// SỬA: dùng chung dữ liệu với register.js bằng localStorage.users
+        // ================= KIỂM TRA EMAIL ĐÃ ĐĂNG KÝ =================
+        // SỬA: dùng chung dữ liệu với register.js bằng localStorage.users
 
 
 
-let users =
+        let users =
 
-JSON.parse(
+            JSON.parse(
 
-localStorage.getItem("users")
+                localStorage.getItem("users")
 
-)
+            )
 
-|| [];
+            || [];
 
 
 
 
 
 
-let check =
+        let check =
 
-users.find(
+            users.find(
 
-user =>
+                user =>
 
-user.email === email
+                    user.email === email
 
-);
+            );
 
 
 
@@ -85,20 +85,20 @@ user.email === email
 
 
 
-if(!check){
+        if (!check) {
 
 
-alert(
+            alert(
 
-"Email chưa đăng ký"
+                "Email chưa đăng ký"
 
-);
+            );
 
 
-return;
+            return;
 
 
-}
+        }
 
 
 
@@ -107,19 +107,19 @@ return;
 
 
 
-// ================= TẠO OTP =================
+        // ================= TẠO OTP =================
 
 
 
-otpCode =
+        otpCode =
 
-Math.floor(
+            Math.floor(
 
-100000 +
+                100000 +
 
-Math.random() * 900000
+                Math.random() * 900000
 
-);
+            );
 
 
 
@@ -127,13 +127,13 @@ Math.random() * 900000
 
 
 
-localStorage.setItem(
+        localStorage.setItem(
 
-"otp",
+            "otp",
 
-otpCode
+            otpCode
 
-);
+        );
 
 
 
@@ -141,13 +141,13 @@ otpCode
 
 
 
-localStorage.setItem(
+        localStorage.setItem(
 
-"resetEmail",
+            "resetEmail",
 
-email
+            email
 
-);
+        );
 
 
 
@@ -156,81 +156,81 @@ email
 
 
 
-// ================= GỬI EMAIL QUA EMAILJS =================
+        // ================= GỬI EMAIL QUA EMAILJS =================
 
 
 
-emailjs.send(
+        emailjs.send(
 
-"service_wj4d57l",
+            "service_wj4d57l",
 
-"template_yvwmscq",
+            "template_yvwmscq",
 
-{
+            {
 
 
-to_email: email,
+                to_email: email,
 
 
-otp: otpCode
+                otp: otpCode
 
 
 
-}
+            }
 
-)
+        )
 
-.then(function(response){
+            .then(function (response) {
 
 
-console.log(
+                console.log(
 
-"SUCCESS:",
+                    "SUCCESS:",
 
-response
+                    response
 
-);
+                );
 
 
 
-alert(
+                alert(
 
-"OTP đã được gửi tới Gmail"
+                    "OTP đã được gửi tới Gmail"
 
-);
+                );
 
 
 
-})
+            })
 
 
 
-.catch(function(error){
+            .catch(function (error) {
 
 
-console.log(
+                console.log(
 
-"EMAILJS ERROR:",
+                    "EMAILJS ERROR:",
 
-error
+                    error
 
-);
+                );
 
 
 
-alert(
+                alert(
 
-"Gửi OTP thất bại"
+                    "Gửi OTP thất bại"
 
-);
+                );
 
 
 
-});
+            });
 
 
 
-};
+    };
 
 
 }
@@ -248,84 +248,84 @@ alert(
 
 const forgotForm =
 
-document.getElementById("forgotForm");
+    document.getElementById("forgotForm");
 
 
 
 
 
-if(forgotForm){
+if (forgotForm) {
 
 
 
-forgotForm.addEventListener(
+    forgotForm.addEventListener(
 
-"submit",
+        "submit",
 
-function(e){
+        function (e) {
 
 
-e.preventDefault();
+            e.preventDefault();
 
 
 
 
 
 
-let email =
+            let email =
 
-document
+                document
 
-.getElementById("email")
+                    .getElementById("email")
 
-.value
+                    .value
 
-.trim();
+                    .trim();
 
 
 
 
 
 
-let otp =
+            let otp =
 
-document
+                document
 
-.getElementById("otp")
+                    .getElementById("otp")
 
-.value
+                    .value
 
-.trim();
+                    .trim();
 
 
 
 
 
 
-let pass =
+            let pass =
 
-document
+                document
 
-.getElementById("newPassword")
+                    .getElementById("newPassword")
 
-.value
+                    .value
 
-.trim();
+                    .trim();
 
 
 
 
 
 
-let confirm =
+            let confirm =
 
-document
+                document
 
-.getElementById("confirmPassword")
+                    .getElementById("confirmPassword")
 
-.value
+                    .value
 
-.trim();
+                    .trim();
 
 
 
@@ -337,34 +337,34 @@ document
 
 
 
-// ================= KIỂM TRA OTP =================
+            // ================= KIỂM TRA OTP =================
 
 
 
-if(
+            if (
 
-otp !==
+                otp !==
 
-String(
+                String(
 
-localStorage.getItem("otp")
+                    localStorage.getItem("otp")
 
-)
+                )
 
-){
+            ) {
 
 
-alert(
+                alert(
 
-"OTP không đúng"
+                    "OTP không đúng"
 
-);
+                );
 
 
-return;
+                return;
 
 
-}
+            }
 
 
 
@@ -373,28 +373,28 @@ return;
 
 
 
-// ================= KIỂM TRA MẬT KHẨU =================
+            // ================= KIỂM TRA MẬT KHẨU =================
 
 
 
-if(
+            if (
 
-pass !== confirm
+                pass !== confirm
 
-){
+            ) {
 
 
-alert(
+                alert(
 
-"Mật khẩu không trùng khớp"
+                    "Mật khẩu không trùng khớp"
 
-);
+                );
 
 
-return;
+                return;
 
 
-}
+            }
 
 
 
@@ -403,20 +403,20 @@ return;
 
 
 
-// ================= CẬP NHẬT MẬT KHẨU =================
-// SỬA: cập nhật trực tiếp users thay vì dữ liệu cũ không đồng bộ
+            // ================= CẬP NHẬT MẬT KHẨU =================
+            // SỬA: cập nhật trực tiếp users thay vì dữ liệu cũ không đồng bộ
 
 
 
-let users =
+            let users =
 
-JSON.parse(
+                JSON.parse(
 
-localStorage.getItem("users")
+                    localStorage.getItem("users")
 
-)
+                )
 
-|| [];
+                || [];
 
 
 
@@ -425,37 +425,37 @@ localStorage.getItem("users")
 
 
 
-users =
+            users =
 
-users.map(
+                users.map(
 
-user => {
+                    user => {
 
 
 
-if(
+                        if (
 
-user.email === email
+                            user.email === email
 
-){
+                        ) {
 
 
 
-user.password = pass;
+                            user.password = pass;
 
 
 
-}
+                        }
 
 
 
-return user;
+                        return user;
 
 
 
-}
+                    }
 
-);
+                );
 
 
 
@@ -463,13 +463,13 @@ return user;
 
 
 
-localStorage.setItem(
+            localStorage.setItem(
 
-"users",
+                "users",
 
-JSON.stringify(users)
+                JSON.stringify(users)
 
-);
+            );
 
 
 
@@ -478,21 +478,21 @@ JSON.stringify(users)
 
 
 
-// xóa dữ liệu reset sau khi hoàn thành
+            // xóa dữ liệu reset sau khi hoàn thành
 
 
-localStorage.removeItem(
+            localStorage.removeItem(
 
-"otp"
+                "otp"
 
-);
+            );
 
 
-localStorage.removeItem(
+            localStorage.removeItem(
 
-"resetEmail"
+                "resetEmail"
 
-);
+            );
 
 
 
@@ -501,11 +501,11 @@ localStorage.removeItem(
 
 
 
-alert(
+            alert(
 
-"Đổi mật khẩu thành công"
+                "Đổi mật khẩu thành công"
 
-);
+            );
 
 
 
@@ -513,15 +513,15 @@ alert(
 
 
 
-window.location.href =
+            window.location.href =
 
-"login.html";
+                "login.html";
 
 
 
-}
+        }
 
-);
+    );
 
 
 

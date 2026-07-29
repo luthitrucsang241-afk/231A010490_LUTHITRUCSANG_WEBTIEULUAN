@@ -971,9 +971,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     ◀
                     ${text(
-                        "Tuần trước",
-                        "Previous Week"
-                    )}
+            "Tuần trước",
+            "Previous Week"
+        )}
 
                 </button>
 
@@ -982,9 +982,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     onclick="goToCurrentWeek()">
 
                     ${text(
-                        "Tuần hiện tại",
-                        "Current Week"
-                    )}
+            "Tuần hiện tại",
+            "Current Week"
+        )}
 
                 </button>
 
@@ -993,9 +993,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     onclick="changeWeek(1)">
 
                     ${text(
-                        "Tuần sau",
-                        "Next Week"
-                    )}
+            "Tuần sau",
+            "Next Week"
+        )}
                     ▶
 
                 </button>
@@ -1006,9 +1006,9 @@ document.addEventListener("DOMContentLoaded", () => {
             <h3 class="week-title">
 
                 ${text(
-                    "Tuần",
-                    "Week"
-                )}
+            "Tuần",
+            "Week"
+        )}
 
                 ${formatWeekRange()}
 
@@ -1024,7 +1024,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     </th>
 
                     ${weekDays.map(
-                        (day, index) => `
+            (day, index) => `
 
                         <th>
 
@@ -1032,27 +1032,26 @@ document.addEventListener("DOMContentLoaded", () => {
                                 data-vn="${day.vn}"
                                 data-en="${day.en}">
 
-                                ${
-                                    getLanguage() === "en"
-                                        ? day.en
-                                        : day.vn
-                                }
+                                ${getLanguage() === "en"
+                    ? day.en
+                    : day.vn
+                }
 
                             </span>
 
                             <small>
 
                                 ${weekDates[index]
-                                    .split("-")
-                                    .reverse()
-                                    .join("/")}
+                    .split("-")
+                    .reverse()
+                    .join("/")}
 
                             </small>
 
                         </th>
 
                     `
-                    ).join("")}
+        ).join("")}
 
                 </tr>
 
@@ -1074,11 +1073,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                     data-vn="${session.vn}"
                                     data-en="${session.en}">
 
-                                    ${
-                                        getLanguage() === "en"
-                                            ? session.en
-                                            : session.vn
-                                    }
+                                    ${getLanguage() === "en"
+                        ? session.en
+                        : session.vn
+                    }
 
                                 </span>
 
@@ -1094,7 +1092,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         const selectedDate =
                             weekDates[
-                                dayIndex
+                            dayIndex
                             ];
 
 
@@ -1116,10 +1114,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                             <td>
 
-                                ${
-                                    list.length
-                                        ? list.map(
-                                            item => `
+                                ${list.length
+                                ? list.map(
+                                    item => `
 
                                                 <div
                                                     class="weekly-event">
@@ -1129,44 +1126,42 @@ document.addEventListener("DOMContentLoaded", () => {
                                                         📘
 
                                                         ${escapeHtml(
-                                                            item.subject
-                                                        )}
+                                        item.subject
+                                    )}
 
                                                     </strong>
 
 
-                                                    ${
-                                                        item.content
-                                                            ? `
+                                                    ${item.content
+                                            ? `
 
                                                                 <small>
 
                                                                     ${escapeHtml(
-                                                                        item.content
-                                                                    )}
+                                                item.content
+                                            )}
 
                                                                 </small>
 
                                                               `
-                                                            : ""
-                                                    }
+                                            : ""
+                                        }
 
 
-                                                    ${
-                                                        item.note
-                                                            ? `
+                                                    ${item.note
+                                            ? `
 
                                                                 <small>
 
                                                                     ${escapeHtml(
-                                                                        item.note
-                                                                    )}
+                                                item.note
+                                            )}
 
                                                                 </small>
 
                                                               `
-                                                            : ""
-                                                    }
+                                            : ""
+                                        }
 
 
                                                     <div
@@ -1179,9 +1174,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                             
 
                                                             ${text(
-                                                                "Sửa",
-                                                                "Edit"
-                                                            )}
+                                            "Sửa",
+                                            "Edit"
+                                        )}
 
                                                         </button>
 
@@ -1193,9 +1188,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                                             
 
                                                             ${text(
-                                                                "Xóa",
-                                                                "Delete"
-                                                            )}
+                                            "Xóa",
+                                            "Delete"
+                                        )}
 
                                                         </button>
 
@@ -1204,8 +1199,8 @@ document.addEventListener("DOMContentLoaded", () => {
                                                 </div>
 
                                             `
-                                        ).join("")
-                                        : `
+                                ).join("")
+                                : `
 
                                             <span
                                                 class="empty-cell">
@@ -1215,7 +1210,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             </span>
 
                                           `
-                                }
+                            }
 
                             </td>
 
@@ -1490,10 +1485,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             streakText.innerText =
-                `${streak} ${
-                    getLanguage() === "en"
-                        ? "days study streak"
-                        : "ngày học liên tục"
+                `${streak} ${getLanguage() === "en"
+                    ? "days study streak"
+                    : "ngày học liên tục"
                 }`;
 
         }
@@ -1653,10 +1647,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         today.innerText =
             todayTime > 0
-                ? `${todayTime} ${
-                    getLanguage() === "en"
-                        ? "hours"
-                        : "giờ"
+                ? `${todayTime} ${getLanguage() === "en"
+                    ? "hours"
+                    : "giờ"
                 }`
                 : (
                     getLanguage() === "en"
@@ -1666,10 +1659,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         total.innerText =
-            `${totalTime} ${
-                getLanguage() === "en"
-                    ? "hours"
-                    : "giờ"
+            `${totalTime} ${getLanguage() === "en"
+                ? "hours"
+                : "giờ"
             }`;
 
     }

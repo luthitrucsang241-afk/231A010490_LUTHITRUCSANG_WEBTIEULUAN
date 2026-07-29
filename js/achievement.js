@@ -204,7 +204,7 @@ function countTodo(data) {
                 todo.completed === true ||
 
                 todo.status ===
-                    "completed" ||
+                "completed" ||
 
                 todo.done === true
 
@@ -243,7 +243,7 @@ function countPomodoro(data) {
                 item.completed === true ||
 
                 item.status ===
-                    "completed"
+                "completed"
 
             );
 
@@ -279,7 +279,7 @@ function countDailyGoal(data) {
                 item.completed === true ||
 
                 item.status ===
-                    "completed" ||
+                "completed" ||
 
                 item.done === true
 
@@ -361,8 +361,8 @@ function updateStreak(data) {
                 current +
                 (
                     current === 1
-                    ? " day"
-                    : " days"
+                        ? " day"
+                        : " days"
                 );
 
         }
@@ -393,8 +393,8 @@ function updateStreak(data) {
                 best +
                 (
                     best === 1
-                    ? " day"
-                    : " days"
+                        ? " day"
+                        : " days"
                 );
 
         }
