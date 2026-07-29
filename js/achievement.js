@@ -1,111 +1,79 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-    loadAchievement();
-
-});
-
-
-
-/*
-=============================
-GET DATA FROM LOCAL STORAGE
-=============================
-*/
-
-
-function getData(key, defaultValue = []) {
-
-    let data = localStorage.getItem(key);
-
-    if (!data) {
-
-        return defaultValue;
+        loadAchievement();
 
     }
-
-
-    try {
-
-        return JSON.parse(data);
-
-    }
-
-    catch {
-
-        return defaultValue;
-
-    }
-
-}
+);
 
 
 
-
-
-/*
-=============================
-LOAD ALL ACHIEVEMENT
-=============================
-*/
-
+// =========================================================
+// LOAD ACHIEVEMENT
+// =========================================================
 
 function loadAchievement() {
 
-
-    let todoData =
-        getData("todoData");
-
-
-    let calendarData =
-        getData("calendarData");
+    const todoData =
+        getTodoData();
 
 
-    let pomodoroData =
-        getData("pomodoroData");
+    const pomodoroData =
+        getPomodoroData();
 
 
-    let dailyGoalData =
-        getData("dailyGoalData");
+    const dailyGoalData =
+        getDailyGoalsData();
 
 
-
-    let todoCompleted =
-        countTodo(todoData);
-
-
-
-    let studyTime =
-        calculateStudyTime(calendarData);
+    // Không gọi refreshLearningStreak() ở đây.
+    // Streak chỉ được cập nhật khi Pomodoro hoàn thành thật.
+    const streakData =
+        getLearningStreakData();
 
 
-
-    let studyStreak =
-        calculateStreak(calendarData);
-
-
-
-    let pomodoroCompleted =
-        countPomodoro(pomodoroData);
+    const todoCompleted =
+        countTodo(
+            todoData
+        );
 
 
+    const pomodoroCompleted =
+        countPomodoro(
+            pomodoroData
+        );
 
-    let dailyGoalsCompleted =
-        countDailyGoal(dailyGoalData);
 
+    const studyTime =
+        calculateStudyTime();
+
+
+    const dailyGoalsCompleted =
+        countDailyGoal(
+            dailyGoalData
+        );
+
+
+    updateStreak(
+        streakData
+    );
 
 
     updateBadges({
 
         todoCompleted,
 
-        studyStreak,
+        studyStreak:
+            Number(
+                streakData.currentStreak || 0
+            ),
 
         studyTime,
 
         pomodoroCompleted
 
     });
-
 
 
     updateProgress({
@@ -118,593 +86,770 @@ function loadAchievement() {
 
     });
 
+}
+
+
+
+// =========================================================
+// STUDY TIME
+// Tính tổng thời gian học thật từ studyTime
+// =========================================================
+
+function calculateStudyTime() {
+
+    const data =
+        getStudyTimeData();
+
+
+    if (
+        !Array.isArray(data)
+    ) {
+
+        return 0;
+
+    }
+
+
+    const totalMinutes =
+        data.reduce(
+
+            function (
+                total,
+                item
+            ) {
+
+                const minutes =
+                    Number(
+                        item.minutes
+                    );
+
+
+                if (
+                    Number.isFinite(
+                        minutes
+                    )
+                    &&
+                    minutes > 0
+                ) {
+
+                    return (
+                        total +
+                        minutes
+                    );
+
+                }
+
+
+                const studyTime =
+                    Number(
+                        item.studyTime
+                    );
+
+
+                if (
+                    Number.isFinite(
+                        studyTime
+                    )
+                    &&
+                    studyTime > 0
+                ) {
+
+                    return (
+                        total +
+                        (
+                            studyTime *
+                            60
+                        )
+                    );
+
+                }
+
+
+                return total;
+
+            },
+
+            0
+
+        );
+
+
+    return totalMinutes / 60;
 
 }
 
 
 
-
-
-
-/*
-=============================
-TODO
-=============================
-*/
-
+// =========================================================
+// TODO
+// =========================================================
 
 function countTodo(data) {
 
-
-    if (!Array.isArray(data)) {
+    if (
+        !Array.isArray(data)
+    ) {
 
         return 0;
 
     }
 
 
+    return data.filter(
 
-    return data.filter(todo => {
+        function (todo) {
+
+            return (
+
+                todo.completed === true ||
+
+                todo.status ===
+                    "completed" ||
+
+                todo.done === true
+
+            );
+
+        }
+
+    ).length;
+
+}
 
 
-        return (
 
-            todo.completed === true ||
+// =========================================================
+// POMODORO
+// Chỉ đếm Pomodoro đã hoàn thành thật
+// =========================================================
 
-            todo.status === "completed" ||
+function countPomodoro(data) {
 
-            todo.done === true
+    if (
+        !Array.isArray(data)
+    ) {
 
+        return 0;
+
+    }
+
+
+    return data.filter(
+
+        function (item) {
+
+            return (
+
+                item.completed === true ||
+
+                item.status ===
+                    "completed"
+
+            );
+
+        }
+
+    ).length;
+
+}
+
+
+
+// =========================================================
+// DAILY GOALS
+// =========================================================
+
+function countDailyGoal(data) {
+
+    if (
+        !Array.isArray(data)
+    ) {
+
+        return 0;
+
+    }
+
+
+    return data.filter(
+
+        function (item) {
+
+            return (
+
+                item.completed === true ||
+
+                item.status ===
+                    "completed" ||
+
+                item.done === true
+
+            );
+
+        }
+
+    ).length;
+
+}
+
+
+
+// =========================================================
+// LEARNING STREAK
+// =========================================================
+
+function updateStreak(data) {
+
+    const currentElement =
+        document.getElementById(
+            "currentStreak"
         );
 
 
-    }).length;
-
-
-}
-
-
-
-
-
-
-/*
-=============================
-CALENDAR STUDY TIME
-=============================
-*/
-
-
-function calculateStudyTime(data) {
-
-
-    if (!Array.isArray(data)) {
-
-        return 0;
-
-    }
-
-
-    return data.reduce((total,item)=>{
-
-
-        return total + Number(item.studyTime || 0);
-
-
-    },0);
-
-
-}
-
-
-
-
-
-
-
-/*
-=============================
-STUDY STREAK
-=============================
-*/
-
-
-function calculateStreak(data){
-
-
-    if(!Array.isArray(data) || data.length===0){
-
-        return 0;
-
-    }
-
-
-
-    let dates = data.map(item=>{
-
-
-        return new Date(item.date)
-        .toISOString()
-        .split("T")[0];
-
-
-    });
-
-
-
-    dates =
-    [...new Set(dates)]
-    .sort()
-    .reverse();
-
-
-
-    let streak = 1;
-
-
-
-    for(let i=0;i<dates.length-1;i++){
-
-
-        let current =
-        new Date(dates[i]);
-
-
-
-        let previous =
-        new Date(dates[i+1]);
-
-
-
-        let diff =
-        (current-previous)
-        /
-        (1000*60*60*24);
-
-
-
-        if(diff===1){
-
-            streak++;
-
-        }
-
-        else{
-
-            break;
-
-        }
-
-
-    }
-
-
-
-    return streak;
-
-
-}
-
-
-
-
-
-
-
-
-/*
-=============================
-POMODORO
-=============================
-*/
-
-
-function countPomodoro(data){
-
-
-    if(!Array.isArray(data)){
-
-        return 0;
-
-    }
-
-
-
-    let count=0;
-
-
-
-    data.forEach(item=>{
-
-
-        if(item.completed){
-
-            count++;
-
-        }
-
-
-
-        else if(item.status==="completed"){
-
-            count++;
-
-        }
-
-
-    });
-
-
-
-    return count;
-
-
-}
-
-
-
-
-
-
-
-/*
-=============================
-DAILY GOALS
-=============================
-*/
-
-
-function countDailyGoal(data){
-
-
-    if(!Array.isArray(data)){
-
-        return 0;
-
-    }
-
-
-
-    return data.filter(item=>{
-
-
-        return (
-
-            item.completed===true ||
-
-            item.status==="completed" ||
-
-            item.done===true
-
+    const bestElement =
+        document.getElementById(
+            "bestStreak"
         );
 
 
-    }).length;
+    const messageElement =
+        document.getElementById(
+            "streakMessage"
+        );
 
 
-
-}
-
-
-
-
-
-
-
-
-
-/*
-=============================
-BADGES
-=============================
-*/
-
-
-function updateBadges(data){
-
-
-    let badges =
-    document.querySelectorAll(".badge");
-
-
-
-    if(!badges.length){
+    if (
+        !data
+    ) {
 
         return;
 
     }
 
 
-
-
-    let result=[
-
-
-        {
-
-            unlock:
-            data.todoCompleted>=10
-
-        },
-
-
-
-        {
-
-            unlock:
-            data.studyStreak>=7
-
-        },
-
-
-
-        {
-
-            unlock:
-            data.todoCompleted>=50
-
-        },
-
-
-
-        {
-
-            unlock:
-            data.studyTime>=200
-
-        }
-
-
-
-    ];
-
-
-
-
-
-
-    badges.forEach((badge,index)=>{
-
-
-        if(!result[index]) return;
-
-
-
-        let status =
-        badge.querySelector("span");
-
-
-
-        if(result[index].unlock){
-
-
-
-            badge.classList.remove("locked");
-
-
-
-            if(status){
-
-
-                status.dataset.vn =
-                "✓ Đã đạt";
-
-
-                status.dataset.en =
-                "✓ Completed";
-
-
-                updateText(status);
-
-
-            }
-
-
-
-        }
-
-
-
-        else{
-
-
-            badge.classList.add("locked");
-
-
-
-            if(status){
-
-
-                status.dataset.vn =
-                "🔒 Chưa đạt";
-
-
-                status.dataset.en =
-                "🔒 Locked";
-
-
-                updateText(status);
-
-
-            }
-
-
-        }
-
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
-
-/*
-=============================
-PROGRESS BAR
-=============================
-*/
-
-
-function updateProgress(data){
-
-
-
-    let bars =
-    document.querySelectorAll(".bar");
-
-
-
-    let progress=[
-
-
-        {
-
-            current:data.pomodoroCompleted,
-
-            target:50
-
-        },
-
-
-        {
-
-            current:data.studyTime,
-
-            target:200
-
-        },
-
-
-        {
-
-            current:data.dailyGoalsCompleted,
-
-            target:30
-
-        }
-
-
-    ];
-
-
-
-
-
-    bars.forEach((bar,index)=>{
-
-
-        let value =
-        progress[index];
-
-
-
-        if(!value){
-
-            return;
-
-        }
-
-
-
-        let percent =
-        Math.min(
-            value.current/value.target*100,
-            100
+    const current =
+        Number(
+            data.currentStreak || 0
         );
 
 
-
-        let line =
-        bar.querySelector("i");
-
-
-
-        if(line){
+    const best =
+        Number(
+            data.bestStreak || 0
+        );
 
 
-            line.style.width =
-            percent+"%";
+    const lang =
+        localStorage.getItem(
+            "language"
+        )
+        ||
+        "vi";
 
+
+
+    // =====================================================
+    // CURRENT STREAK
+    // =====================================================
+
+    if (currentElement) {
+
+        if (
+            lang === "en"
+        ) {
+
+            currentElement.textContent =
+                current +
+                (
+                    current === 1
+                    ? " day"
+                    : " days"
+                );
+
+        }
+
+        else {
+
+            currentElement.textContent =
+                current +
+                " ngày";
+
+        }
+
+    }
+
+
+
+    // =====================================================
+    // BEST STREAK
+    // =====================================================
+
+    if (bestElement) {
+
+        if (
+            lang === "en"
+        ) {
+
+            bestElement.textContent =
+                best +
+                (
+                    best === 1
+                    ? " day"
+                    : " days"
+                );
+
+        }
+
+        else {
+
+            bestElement.textContent =
+                best +
+                " ngày";
+
+        }
+
+    }
+
+
+
+    // =====================================================
+    // STREAK MESSAGE
+    // =====================================================
+
+    if (
+        messageElement
+    ) {
+
+        if (
+            current === 0
+        ) {
+
+            messageElement.dataset.vn =
+                "Hoàn thành một Pomodoro hôm nay để bắt đầu lại chuỗi học tập.";
+
+
+            messageElement.dataset.en =
+                "Complete a Pomodoro today to start your learning streak again.";
 
         }
 
 
 
+        else if (
+            current >= 100
+        ) {
 
-        let text =
-        bar.querySelector(".progress-value");
+            messageElement.dataset.vn =
+                "🏆 Chuỗi đặc biệt 100 ngày! Hãy tiếp tục duy trì!";
 
 
-
-        if(text){
-
-
-            text.innerHTML =
-            value.current
-            +
-            " / "
-            +
-            value.target;
-
+            messageElement.dataset.en =
+                "🏆 Special 100-day streak! Keep it going!";
 
         }
 
 
 
-    });
+        else if (
+            current >= 30
+        ) {
+
+            messageElement.dataset.vn =
+                "🔥 Tuyệt vời! Bạn đã duy trì chuỗi 1 tháng!";
 
 
+            messageElement.dataset.en =
+                "🔥 Amazing! You have maintained a 1-month streak!";
+
+        }
+
+
+
+        else if (
+            current >= 7
+        ) {
+
+            messageElement.dataset.vn =
+                "🔥 Tuyệt vời! Bạn đã duy trì chuỗi 1 tuần!";
+
+
+            messageElement.dataset.en =
+                "🔥 Great! You have maintained a 1-week streak!";
+
+        }
+
+
+
+        else {
+
+            messageElement.dataset.vn =
+                "Tiếp tục hoàn thành Pomodoro mỗi ngày để duy trì chuỗi.";
+
+
+            messageElement.dataset.en =
+                "Keep completing Pomodoros every day to maintain your streak.";
+
+        }
+
+
+        updateText(
+            messageElement
+        );
+
+    }
 
 }
 
 
 
+// =========================================================
+// BADGES
+// =========================================================
+
+function updateBadges(data) {
+
+    const badges =
+        document.querySelectorAll(
+            ".badge"
+        );
 
 
+    if (
+        !badges.length
+    ) {
 
-
-
-/*
-=============================
-LANGUAGE SUPPORT
-=============================
-*/
-
-
-function updateText(element){
-
-
-    let lang =
-    localStorage.getItem("language")
-    ||
-    "vi";
-
-
-
-    if(lang==="en"){
-
-
-        element.innerHTML =
-        element.dataset.en;
-
+        return;
 
     }
 
-    else{
 
+    const result = [
+
+        // Beginner
+        {
+            unlock:
+                data.pomodoroCompleted >=
+                10
+        },
+
+
+        // Silver
+        {
+            unlock:
+                data.studyStreak >=
+                7
+        },
+
+
+        // Gold
+        {
+            unlock:
+                data.pomodoroCompleted >=
+                100
+        },
+
+
+        // Master
+        {
+            unlock:
+                data.studyTime >=
+                500
+        }
+
+    ];
+
+
+
+    badges.forEach(
+
+        function (
+            badge,
+            index
+        ) {
+
+            if (
+                !result[index]
+            ) {
+
+                return;
+
+            }
+
+
+            const status =
+                badge.querySelector(
+                    "span"
+                );
+
+
+            if (
+                result[index].unlock
+            ) {
+
+                badge.classList.remove(
+                    "locked"
+                );
+
+
+                if (
+                    status
+                ) {
+
+                    status.dataset.vn =
+                        "✓ Đã đạt";
+
+
+                    status.dataset.en =
+                        "✓ Completed";
+
+
+                    updateText(
+                        status
+                    );
+
+                }
+
+            }
+
+
+
+            else {
+
+                badge.classList.add(
+                    "locked"
+                );
+
+
+                if (
+                    status
+                ) {
+
+                    status.dataset.vn =
+                        "🔒 Chưa đạt";
+
+
+                    status.dataset.en =
+                        "🔒 Locked";
+
+
+                    updateText(
+                        status
+                    );
+
+                }
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+// =========================================================
+// PROGRESS BAR
+// =========================================================
+
+function updateProgress(data) {
+
+    const bars =
+        document.querySelectorAll(
+            ".bar"
+        );
+
+
+    const progress = [
+
+        // Pomodoro
+        {
+            current:
+                Number(
+                    data.pomodoroCompleted || 0
+                ),
+
+            target:
+                50
+        },
+
+
+        // Study Time
+        {
+            current:
+                Number(
+                    data.studyTime || 0
+                ),
+
+            target:
+                200
+        },
+
+
+        // Daily Goals
+        {
+            current:
+                Number(
+                    data.dailyGoalsCompleted || 0
+                ),
+
+            target:
+                30
+        }
+
+    ];
+
+
+
+    bars.forEach(
+
+        function (
+            bar,
+            index
+        ) {
+
+            const value =
+                progress[index];
+
+
+            if (
+                !value
+            ) {
+
+                return;
+
+            }
+
+
+            const percent =
+                Math.min(
+
+                    (
+                        value.current /
+                        value.target
+                    )
+                    *
+                    100,
+
+                    100
+
+                );
+
+
+
+            const line =
+                bar.querySelector(
+                    "i"
+                );
+
+
+            if (
+                line
+            ) {
+
+                line.style.width =
+                    percent +
+                    "%";
+
+            }
+
+
+
+            const text =
+                bar.querySelector(
+                    ".progress-value"
+                );
+
+
+            if (
+                text
+            ) {
+
+                const lang =
+                    localStorage.getItem(
+                        "language"
+                    )
+                    ||
+                    "vi";
+
+
+
+                if (
+                    index === 1
+                ) {
+
+                    if (
+                        lang === "en"
+                    ) {
+
+                        text.textContent =
+                            value.current.toFixed(1) +
+                            " / " +
+                            value.target +
+                            " hours";
+
+                    }
+
+                    else {
+
+                        text.textContent =
+                            value.current.toFixed(1) +
+                            " / " +
+                            value.target +
+                            " giờ";
+
+                    }
+
+                }
+
+
+
+                else {
+
+                    text.textContent =
+                        value.current +
+                        " / " +
+                        value.target;
+
+                }
+
+            }
+
+        }
+
+    );
+
+}
+
+
+
+// =========================================================
+// LANGUAGE
+// =========================================================
+
+function updateText(element) {
+
+    const lang =
+        localStorage.getItem(
+            "language"
+        )
+        ||
+        "vi";
+
+
+    if (
+        lang === "en"
+    ) {
 
         element.innerHTML =
-        element.dataset.vn;
-
+            element.dataset.en;
 
     }
 
+    else {
+
+        element.innerHTML =
+            element.dataset.vn;
+
+    }
 
 }

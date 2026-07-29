@@ -1,268 +1,404 @@
-document.addEventListener("DOMContentLoaded", function () {
+/* =========================================================
+   STATISTICS
+   Đọc dữ liệu học thực tế từ localStorage
+   Dữ liệu được tạo khi hoàn thành Pomodoro
+========================================================= */
 
 
-    loadStatistics();
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
 
-    const yearSelect = document.getElementById("yearSelect");
-    const monthSelect = document.getElementById("monthSelect");
+        createYearOptions();
 
-
-    createYearOptions();
-
-
-    yearSelect.addEventListener("change", function(){
-
-        renderMonthlyChart();
-
-    });
+        loadStatistics();
 
 
 
-    monthSelect.addEventListener("change", function(){
-
-        renderMonthlyChart();
-
-    });
-
-
-});
+        const yearSelect =
+            document.getElementById(
+                "yearSelect"
+            );
 
 
+        const monthSelect =
+            document.getElementById(
+                "monthSelect"
+            );
 
 
 
-/*
-==============================
-GET CALENDAR DATA
-==============================
-*/
+        if (
+            yearSelect
+        ) {
+
+            yearSelect.addEventListener(
+
+                "change",
+
+                function () {
+
+                    renderMonthlyChart();
+
+                }
+
+            );
+
+        }
 
 
-function getCalendarData(){
+
+        if (
+            monthSelect
+        ) {
+
+            monthSelect.addEventListener(
+
+                "change",
+
+                function () {
+
+                    renderMonthlyChart();
+
+                }
+
+            );
+
+        }
 
 
-    let data = localStorage.getItem("calendarData");
+    }
+);
 
 
-    if(!data){
+
+// =========================================================
+// LẤY DỮ LIỆU HỌC THỰC TẾ TỪ LOCALSTORAGE
+// =========================================================
+
+
+function getStudyData() {
+
+
+    try {
+
+
+        const data =
+            localStorage.getItem(
+                "studyTimeData"
+            );
+
+
+
+        if (
+            !data
+        ) {
+
+            return [];
+
+        }
+
+
+
+        const parsedData =
+            JSON.parse(
+                data
+            );
+
+
+
+        if (
+            !Array.isArray(
+                parsedData
+            )
+        ) {
+
+            return [];
+
+        }
+
+
+
+        return parsedData
+
+            .filter(
+
+                function (
+                    item
+                ) {
+
+                    return (
+
+                        item &&
+
+                        item.date &&
+
+                        Number(
+                            item.minutes
+                        ) > 0
+
+                    );
+
+                }
+
+            )
+
+            .sort(
+
+                function (
+                    a,
+                    b
+                ) {
+
+                    return (
+
+                        new Date(
+                            a.date
+                        )
+                        -
+                        new Date(
+                            b.date
+                        )
+
+                    );
+
+                }
+
+            );
+
+
+    }
+
+    catch (
+        error
+    ) {
+
+
+        console.error(
+
+            "Không thể đọc dữ liệu thống kê:",
+
+            error
+
+        );
+
 
         return [];
 
     }
-
-
-    try{
-
-        return JSON.parse(data);
-
-    }
-
-    catch{
-
-        return [];
-
-    }
-
 
 }
 
 
 
+// =========================================================
+// LOAD STATISTICS
+// =========================================================
 
 
-/*
-==============================
-MAIN LOAD
-==============================
-*/
+function loadStatistics() {
 
 
-function loadStatistics(){
+    const data =
+        getStudyData();
 
 
-    let data = getCalendarData();
+
+    renderDailyChart(
+        data
+    );
 
 
-    renderDailyChart(data);
 
+    renderDayStatistics(
+        data
+    );
 
-    renderDayStatistics(data);
 
 
     createYearOptions();
+
 
 
     renderMonthlyChart();
 
+}
+
+
+
+// =========================================================
+// LẤY SỐ GIỜ HỌC
+// =========================================================
+
+
+function getItemHours(
+    item
+) {
+
+
+    const minutes =
+        Number(
+            item.minutes ||
+            0
+        );
+
+
+
+    return (
+        minutes /
+        60
+    );
 
 }
 
 
 
+// =========================================================
+// LẤY SỐ PHÚT HỌC
+// =========================================================
 
 
-/*
-==============================
-VERTICAL DAILY CHART
-==============================
-*/
+function getItemMinutes(
+    item
+) {
 
 
-function renderDailyChart(data){
+    return Number(
+        item.minutes ||
+        0
+    );
 
-
-    const chart =
-    document.getElementById("dailyChart");
-
-
-    const empty =
-    document.getElementById("dailyEmpty");
-
-
-
-    chart.innerHTML="";
+}
 
 
 
-    if(data.length===0){
+// =========================================================
+// CHUYỂN NGÀY THÀNH DATE AN TOÀN
+// =========================================================
 
 
-        chart.style.display="none";
+function getDateFromItem(
+    item
+) {
 
-        empty.style.display="block";
 
+    if (
+        !item ||
+        !item.date
+    ) {
 
-        return;
+        return null;
 
     }
 
 
 
-    chart.style.display="flex";
-
-    empty.style.display="none";
-
-
-
-
-
-    data.forEach(item=>{
-
-
-        let time =
-        Number(item.studyTime)||0;
+    const date =
+        new Date(
+            item.date +
+            "T00:00:00"
+        );
 
 
 
-        let box =
-        document.createElement("div");
+    if (
+        isNaN(
+            date.getTime()
+        )
+    ) {
 
+        return null;
 
-        box.className="vertical-item";
-
-
-
-        let bar =
-        document.createElement("div");
-
-
-        bar.className="vertical-bar";
+    }
 
 
 
-        let height =
-        Math.min(time*30,220);
+    return date;
+
+}
 
 
 
-        bar.style.height =
-        height+"px";
+// =========================================================
+// ĐỊNH DẠNG NGÀY
+// =========================================================
 
 
-
-        let label =
-        document.createElement("span");
-
-
-        label.className="chart-label";
+function formatDate(
+    date
+) {
 
 
-        let date =
-        new Date(item.date);
+    return (
 
-
-
-        label.innerHTML =
-        date.getDate()
+        String(
+            date.getDate()
+        )
         +
         "/"
         +
-        (date.getMonth()+1);
+        String(
+            date.getMonth() + 1
+        )
 
-
-
-        let hour =
-        document.createElement("small");
-
-
-        hour.innerHTML =
-        time+"h";
-
-
-
-        box.appendChild(bar);
-
-        box.appendChild(label);
-
-        box.appendChild(hour);
-
-
-
-        chart.appendChild(box);
-
-
-
-    });
-
-
+    );
 
 }
 
 
 
+// =========================================================
+// DAILY STUDY CHART
+// Chỉ hiển thị ngày thực tế đã học
+// =========================================================
 
 
-
-/*
-==============================
-STUDY DAYS STATISTICS
-==============================
-*/
-
-
-function renderDayStatistics(data){
+function renderDailyChart(
+    data
+) {
 
 
     const chart =
-    document.getElementById("dayChart");
+        document.getElementById(
+            "dailyChart"
+        );
 
 
     const empty =
-    document.getElementById("dayEmpty");
+        document.getElementById(
+            "dailyEmpty"
+        );
 
 
 
-    chart.innerHTML="";
+    if (
+        !chart ||
+        !empty
+    ) {
+
+        return;
+
+    }
 
 
 
-    if(data.length===0){
+    chart.innerHTML =
+        "";
 
 
-        chart.style.display="none";
 
-        empty.style.display="block";
+    if (
+        !data.length
+    ) {
+
+
+        chart.style.display =
+            "none";
+
+
+        empty.style.display =
+            "block";
 
 
         return;
@@ -271,486 +407,1189 @@ function renderDayStatistics(data){
 
 
 
-    empty.style.display="none";
-
-    chart.style.display="flex";
-
+    chart.style.display =
+        "flex";
 
 
-    let now =
-    new Date();
+    empty.style.display =
+        "none";
+
+
+
+    /* =============================================
+       CHỈ HIỂN THỊ TỐI ĐA 30 NGÀY HỌC GẦN NHẤT
+       Không tạo ngày giả.
+    ============================================= */
+
+
+    const recentData =
+        data.slice(
+            -30
+        );
+
+
+
+    const maxMinutes =
+        Math.max(
+
+            ...recentData.map(
+
+                function (
+                    item
+                ) {
+
+                    return getItemMinutes(
+                        item
+                    );
+
+                }
+
+            ),
+
+            1
+
+        );
+
+
+
+    recentData.forEach(
+
+        function (
+            item
+        ) {
+
+
+            const minutes =
+                getItemMinutes(
+                    item
+                );
+
+
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className =
+                "vertical-item";
+
+
+
+            const bar =
+                document.createElement(
+                    "div"
+                );
+
+
+            bar.className =
+                "vertical-bar";
+
+
+
+            /* =============================================
+               CHIỀU CAO BIỂU ĐỒ
+               Ngày học nhiều nhất = 220px
+            ============================================= */
+
+
+            const height =
+                Math.max(
+
+                    (
+                        minutes /
+                        maxMinutes
+                    )
+                    *
+                    220,
+
+                    15
+
+                );
+
+
+
+            bar.style.height =
+                height +
+                "px";
+
+
+
+            const label =
+                document.createElement(
+                    "span"
+                );
+
+
+            label.className =
+                "chart-label";
+
+
+
+            const date =
+                getDateFromItem(
+                    item
+                );
+
+
+
+            label.textContent =
+                date
+                ?
+                formatDate(
+                    date
+                )
+                :
+                "";
+
+
+
+            const hour =
+                document.createElement(
+                    "small"
+                );
+
+
+
+            hour.textContent =
+
+                getItemHours(
+                    item
+                )
+                .toFixed(
+                    1
+                )
+                +
+                "h";
+
+
+
+            box.appendChild(
+                bar
+            );
+
+
+            box.appendChild(
+                label
+            );
+
+
+            box.appendChild(
+                hour
+            );
+
+
+
+            chart.appendChild(
+                box
+            );
+
+
+        }
+
+    );
+
+}
+
+
+
+// =========================================================
+// STUDY DAYS STATISTICS
+// Thống kê số ngày học thực tế
+// =========================================================
+
+
+function renderDayStatistics(
+    data
+) {
+
+
+    const chart =
+        document.getElementById(
+            "dayChart"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "dayEmpty"
+        );
+
+
+
+    if (
+        !chart ||
+        !empty
+    ) {
+
+        return;
+
+    }
+
+
+
+    chart.innerHTML =
+        "";
+
+
+
+    if (
+        !data.length
+    ) {
+
+
+        chart.style.display =
+            "none";
+
+
+        empty.style.display =
+            "block";
+
+
+        return;
+
+    }
+
+
+
+    empty.style.display =
+        "none";
+
+
+    chart.style.display =
+        "flex";
+
+
+
+    const now =
+        new Date();
+
+
+
+    now.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+
+    /* =============================================
+       TÍNH NGÀY BẮT ĐẦU TUẦN
+       Thống kê 7 ngày gần nhất
+    ============================================= */
+
+
+    const sevenDaysAgo =
+        new Date(
+            now
+        );
+
+
+    sevenDaysAgo.setDate(
+
+        now.getDate()
+        -
+        6
+
+    );
+
+
+
+    sevenDaysAgo.setHours(
+        0,
+        0,
+        0,
+        0
+    );
 
 
 
     let week =
-    0;
-
+        0;
 
 
     let month =
-    0;
+        0;
 
 
 
-    data.forEach(item=>{
+    data.forEach(
+
+        function (
+            item
+        ) {
 
 
-        let d =
-        new Date(item.date);
+            const date =
+                getDateFromItem(
+                    item
+                );
 
 
 
-        let diff =
-        (now-d)
-        /
-        (1000*60*60*24);
+            if (
+                !date
+            ) {
+
+                return;
+
+            }
 
 
 
-        if(diff<=7){
+            date.setHours(
+                0,
+                0,
+                0,
+                0
+            );
 
-            week++;
+
+
+            /* =============================================
+               7 NGÀY GẦN NHẤT
+            ============================================= */
+
+
+            if (
+
+                date >=
+                sevenDaysAgo
+
+                &&
+
+                date <=
+                now
+
+            ) {
+
+                week++;
+
+            }
+
+
+
+            /* =============================================
+               THÁNG HIỆN TẠI
+            ============================================= */
+
+
+            if (
+
+                date.getMonth()
+                ===
+                now.getMonth()
+
+                &&
+
+                date.getFullYear()
+                ===
+                now.getFullYear()
+
+            ) {
+
+                month++;
+
+            }
+
 
         }
 
-
-
-        if(
-            d.getMonth()
-            ===
-            now.getMonth()
-            &&
-            d.getFullYear()
-            ===
-            now.getFullYear()
-        ){
-
-            month++;
-
-        }
-
-
-
-    });
+    );
 
 
 
     createHorizontalBar(
+
         chart,
-        "This Week",
-        week
+
+        "7 ngày gần nhất",
+
+        week,
+
+        7
+
     );
+
 
 
     createHorizontalBar(
+
         chart,
-        "This Month",
-        month
+
+        "Tháng này",
+
+        month,
+
+        getDaysInCurrentMonth()
+
     );
-
-
 
 }
 
 
 
+// =========================================================
+// LẤY SỐ NGÀY TRONG THÁNG HIỆN TẠI
+// =========================================================
+
+
+function getDaysInCurrentMonth() {
+
+
+    const now =
+        new Date();
+
+
+
+    return new Date(
+
+        now.getFullYear(),
+
+        now.getMonth() + 1,
+
+        0
+
+    )
+    .getDate();
+
+}
+
+
+
+// =========================================================
+// HORIZONTAL BAR
+// =========================================================
 
 
 function createHorizontalBar(
+
     parent,
+
     title,
-    value
-){
+
+    value,
+
+    maxValue
+
+) {
 
 
-
-    let item =
-    document.createElement("div");
+    const item =
+        document.createElement(
+            "div"
+        );
 
 
     item.className =
-    "horizontal-item";
+        "horizontal-item";
 
 
 
-    let max =
-    Math.max(value,30);
+    const percentage =
+
+        maxValue > 0
+
+        ?
+
+        Math.min(
+
+            (
+                value /
+                maxValue
+            )
+            *
+            100,
+
+            100
+
+        )
+
+        :
+
+        0;
 
 
 
     item.innerHTML = `
 
+        <div class="horizontal-title">
 
-    <div class="horizontal-title">
+            <span>
+                ${title}
+            </span>
 
-        <span>${title}</span>
-
-        <span>${value} days</span>
-
-    </div>
-
-
-    <div class="horizontal-bar">
-
-        <div class="horizontal-fill"
-        style="width:${value/max*100}%">
+            <span>
+                ${value} ngày
+            </span>
 
         </div>
 
-    </div>
 
+        <div class="horizontal-bar">
+
+            <div
+                class="horizontal-fill"
+                style="width:${percentage}%">
+
+            </div>
+
+        </div>
 
     `;
 
 
 
-    parent.appendChild(item);
-
-
+    parent.appendChild(
+        item
+    );
 
 }
 
 
 
+// =========================================================
+// YEAR SELECT
+// Chỉ tạo năm có dữ liệu học thực tế
+// =========================================================
 
 
-
-
-/*
-==============================
-YEAR SELECT
-==============================
-*/
-
-
-function createYearOptions(){
+function createYearOptions() {
 
 
     const select =
-    document.getElementById("yearSelect");
-
-
-    if(!select) return;
-
-
-
-    select.innerHTML="";
+        document.getElementById(
+            "yearSelect"
+        );
 
 
 
-    let data =
-    getCalendarData();
+    if (
+        !select
+    ) {
 
-
-
-    let years =
-    new Set();
-
-
-
-    data.forEach(item=>{
-
-
-        let y =
-        new Date(item.date)
-        .getFullYear();
-
-
-        years.add(y);
-
-
-    });
-
-
-
-    if(years.size===0){
-
-
-        let year =
-        new Date()
-        .getFullYear();
-
-
-
-        years.add(year);
-
+        return;
 
     }
 
 
 
-
-    years.forEach(y=>{
-
-
-        let option =
-        document.createElement("option");
-
-
-        option.value=y;
-
-
-        option.textContent=y;
-
-
-        select.appendChild(option);
-
-
-    });
+    const data =
+        getStudyData();
 
 
 
-}
+    const years =
+        new Set();
 
 
 
+    data.forEach(
+
+        function (
+            item
+        ) {
+
+
+            const date =
+                getDateFromItem(
+                    item
+                );
 
 
 
-/*
-==============================
-MONTH YEAR CHART
-==============================
-*/
+            if (
+                date
+            ) {
+
+                years.add(
+
+                    date.getFullYear()
+
+                );
+
+            }
 
 
-function renderMonthlyChart(){
+        }
 
-
-    const chart =
-    document.getElementById("monthChart");
-
-
-    const empty =
-    document.getElementById("monthEmpty");
-
-
-
-    chart.innerHTML="";
-
-
-
-    let data =
-    getCalendarData();
-
-
-
-    let year =
-    Number(
-        document.getElementById("yearSelect").value
     );
 
 
 
-    let month =
-    document.getElementById("monthSelect").value;
+    /* =============================================
+       Nếu chưa từng học
+       → Hiển thị năm hiện tại
+    ============================================= */
 
 
+    if (
+        years.size === 0
+    ) {
 
-    let filtered =
-    data.filter(item=>{
+        years.add(
 
+            new Date()
+                .getFullYear()
 
-        let d =
-        new Date(item.date);
-
-
-
-        if(
-            d.getFullYear()
-            !==
-            year
-        ){
-
-            return false;
-
-        }
-
-
-
-        if(month && 
-        d.getMonth()+1 !== Number(month)){
-
-            return false;
-
-        }
-
-
-
-        return true;
-
-
-
-    });
-
-
-
-
-
-    if(filtered.length===0){
-
-
-        chart.style.display="none";
-
-        empty.style.display="block";
-
-
-        return;
-
+        );
 
     }
 
 
 
-    chart.style.display="grid";
-
-    empty.style.display="none";
-
+    const currentValue =
+        select.value;
 
 
 
-    let months = {};
+    select.innerHTML =
+        "";
 
 
 
-    filtered.forEach(item=>{
+    Array.from(
+        years
+    )
+    .sort(
+
+        function (
+            a,
+            b
+        ) {
+
+            return b - a;
+
+        }
+
+    )
+    .forEach(
+
+        function (
+            year
+        ) {
 
 
-        let d =
-        new Date(item.date);
+            const option =
+                document.createElement(
+                    "option"
+                );
 
 
-
-        let m =
-        d.getMonth()+1;
-
+            option.value =
+                year;
 
 
-        months[m] =
-        (months[m]||0)
-        +
-        Number(item.studyTime);
-
-
-
-    });
-
-
-
-
-    Object.keys(months)
-    .forEach(m=>{
-
-
-        let box =
-        document.createElement("div");
-
-
-        box.className =
-        "month-item";
-
-
-
-        let h =
-        months[m];
+            option.textContent =
+                year;
 
 
 
-        let height =
-        Math.min(h*2,120);
+            select.appendChild(
+                option
+            );
+
+
+        }
+
+    );
 
 
 
-        box.innerHTML=`
-
-        <div>
-        ${getMonthName(m)}
-        </div>
+    /* =============================================
+       GIỮ LẠI NĂM ĐANG CHỌN
+    ============================================= */
 
 
-        <div class="month-bar">
+    if (
+        currentValue &&
+        years.has(
+            Number(
+                currentValue
+            )
+        )
+    ) {
 
-        <span style="
-        height:${height}px">
-        </span>
+        select.value =
+            currentValue;
 
-        </div>
-
-
-        <div>
-        ${h} hours
-        </div>
-
-        `;
+    }
 
 
 
-        chart.appendChild(box);
+    else {
 
+        select.value =
+            Array.from(
+                years
+            )
+            .sort(
 
+                function (
+                    a,
+                    b
+                ) {
 
-    });
+                    return b - a;
 
+                }
 
+            )[0];
+
+    }
 
 }
 
 
 
+// =========================================================
+// MONTHLY CHART
+// Thống kê dữ liệu học thực tế theo tháng
+// =========================================================
+
+
+function renderMonthlyChart() {
+
+
+    const chart =
+        document.getElementById(
+            "monthChart"
+        );
+
+
+    const empty =
+        document.getElementById(
+            "monthEmpty"
+        );
+
+
+    const yearSelect =
+        document.getElementById(
+            "yearSelect"
+        );
+
+
+    const monthSelect =
+        document.getElementById(
+            "monthSelect"
+        );
 
 
 
-function getMonthName(month){
+    if (
+        !chart ||
+        !empty ||
+        !yearSelect ||
+        !monthSelect
+    ) {
+
+        return;
+
+    }
 
 
-    let lang =
-    localStorage.getItem("language")
-    ||
-    "vi";
+
+    chart.innerHTML =
+        "";
 
 
 
-    const vn=[
+    const data =
+        getStudyData();
+
+
+
+    const year =
+        Number(
+            yearSelect.value
+        );
+
+
+
+    const selectedMonth =
+        monthSelect.value;
+
+
+
+    /* =============================================
+       LỌC THEO NĂM
+    ============================================= */
+
+
+    const filtered =
+        data.filter(
+
+            function (
+                item
+            ) {
+
+
+                const date =
+                    getDateFromItem(
+                        item
+                    );
+
+
+
+                if (
+                    !date
+                ) {
+
+                    return false;
+
+                }
+
+
+
+                if (
+
+                    date.getFullYear()
+                    !==
+                    year
+
+                ) {
+
+                    return false;
+
+                }
+
+
+
+                /* =====================================
+                   NẾU CHỌN THÁNG
+                ===================================== */
+
+
+                if (
+
+                    selectedMonth
+
+                    &&
+
+                    date.getMonth() + 1
+                    !==
+                    Number(
+                        selectedMonth
+                    )
+
+                ) {
+
+                    return false;
+
+                }
+
+
+
+                return true;
+
+            }
+
+        );
+
+
+
+    /* =============================================
+       KHÔNG CÓ DỮ LIỆU
+    ============================================= */
+
+
+    if (
+        filtered.length === 0
+    ) {
+
+
+        chart.style.display =
+            "none";
+
+
+        empty.style.display =
+            "block";
+
+
+        return;
+
+    }
+
+
+
+    chart.style.display =
+        "grid";
+
+
+    empty.style.display =
+        "none";
+
+
+
+    /* =============================================
+       GỘP THỜI GIAN THEO THÁNG
+    ============================================= */
+
+
+    const months = {};
+
+
+
+    filtered.forEach(
+
+        function (
+            item
+        ) {
+
+
+            const date =
+                getDateFromItem(
+                    item
+                );
+
+
+
+            const month =
+                date.getMonth() +
+                1;
+
+
+
+            months[month] =
+
+                (
+
+                    months[month]
+                    ||
+                    0
+
+                )
+
+                +
+
+                getItemHours(
+                    item
+                );
+
+
+        }
+
+    );
+
+
+
+    /* =============================================
+       TÌM GIỜ HỌC CAO NHẤT
+    ============================================= */
+
+
+    const maxHours =
+        Math.max(
+
+            ...Object.values(
+                months
+            ),
+
+            1
+
+        );
+
+
+
+    Object.keys(
+        months
+    )
+    .sort(
+
+        function (
+            a,
+            b
+        ) {
+
+            return (
+
+                Number(a)
+                -
+                Number(b)
+
+            );
+
+        }
+
+    )
+    .forEach(
+
+        function (
+            month
+        ) {
+
+
+            const box =
+                document.createElement(
+                    "div"
+                );
+
+
+            box.className =
+                "month-item";
+
+
+
+            const hours =
+                months[month];
+
+
+
+            const height =
+
+                Math.max(
+
+                    (
+
+                        hours /
+                        maxHours
+
+                    )
+                    *
+                    120,
+
+                    15
+
+                );
+
+
+
+            box.innerHTML = `
+
+                <div>
+                    ${getMonthName(month)}
+                </div>
+
+
+                <div class="month-bar">
+
+                    <span
+                        style="height:${height}px">
+                    </span>
+
+                </div>
+
+
+                <div>
+                    ${hours.toFixed(1)} giờ
+                </div>
+
+            `;
+
+
+
+            chart.appendChild(
+                box
+            );
+
+
+        }
+
+    );
+
+}
+
+
+
+// =========================================================
+// MONTH NAME
+// =========================================================
+
+
+function getMonthName(
+    month
+) {
+
+
+    const lang =
+        localStorage.getItem(
+            "language"
+        )
+        ||
+        "vi";
+
+
+
+    const vn = [
+
         "",
+
         "Tháng 1",
+
         "Tháng 2",
+
         "Tháng 3",
+
         "Tháng 4",
+
         "Tháng 5",
+
         "Tháng 6",
+
         "Tháng 7",
+
         "Tháng 8",
+
         "Tháng 9",
+
         "Tháng 10",
+
         "Tháng 11",
+
         "Tháng 12"
+
     ];
 
 
 
-    const en=[
+    const en = [
+
         "",
+
         "January",
+
         "February",
+
         "March",
+
         "April",
+
         "May",
+
         "June",
+
         "July",
+
         "August",
+
         "September",
+
         "October",
+
         "November",
+
         "December"
+
     ];
 
 
 
-    return lang==="en"
-    ?
-    en[month]
-    :
-    vn[month];
+    return (
 
+        lang ===
+        "en"
+
+        ?
+
+        en[month]
+
+        :
+
+        vn[month]
+
+    );
 
 }
