@@ -2,48 +2,25 @@ let minutes = 25;
 
 let seconds = 0;
 
-
 let timerInterval = null;
-
 
 let running = false;
 
 
 
-const timer =
-document.getElementById("timer");
+const timer = document.getElementById("timer");
 
+const studyTime = document.getElementById("studyTime");
 
+const startBtn = document.getElementById("startBtn");
 
-const studyTime =
-document.getElementById("studyTime");
+const pauseBtn = document.getElementById("pauseBtn");
 
+const resetBtn = document.getElementById("resetBtn");
 
+const plusTime = document.getElementById("plusTime");
 
-const startBtn =
-document.getElementById("startBtn");
-
-
-
-const pauseBtn =
-document.getElementById("pauseBtn");
-
-
-
-const resetBtn =
-document.getElementById("resetBtn");
-
-
-
-const plusTime =
-document.getElementById("plusTime");
-
-
-
-const minusTime =
-document.getElementById("minusTime");
-
-
+const minusTime = document.getElementById("minusTime");
 
 
 
@@ -52,27 +29,17 @@ document.getElementById("minusTime");
 function updateTimer(){
 
 
-let m =
-minutes < 10
-?
-"0"+minutes
-:
-minutes;
+    let m = String(minutes).padStart(2,"0");
+
+    let s = String(seconds).padStart(2,"0");
 
 
+    if(timer){
 
-let s =
-seconds < 10
-?
-"0"+seconds
-:
-seconds;
+        timer.innerHTML =
+        m + ":" + s;
 
-
-
-timer.innerHTML =
-m + ":" + s;
-
+    }
 
 
 }
@@ -86,89 +53,72 @@ m + ":" + s;
 function startTimer(){
 
 
-
-if(running)
-return;
-
+    if(running)
+        return;
 
 
-running=true;
+    running = true;
 
 
 
-timerInterval =
-setInterval(function(){
+    timerInterval =
+    setInterval(()=>{
+
+
+        if(seconds === 0){
+
+
+            if(minutes === 0){
+
+
+                clearInterval(timerInterval);
+
+
+                running = false;
+
+
+                alert(
+                    "Hoàn thành Pomodoro!"
+                );
+
+
+                localStorage.setItem(
+                    "pomodoroDone",
+                    "true"
+                );
+
+
+                return;
+
+
+            }
+
+
+            minutes--;
+
+            seconds = 59;
+
+
+        }
+        else{
+
+
+            seconds--;
+
+
+        }
 
 
 
-if(seconds===0){
+        updateTimer();
 
 
 
-if(minutes===0){
-
-
-
-clearInterval(timerInterval);
-
-
-
-running=false;
-
-
-
-alert(
-"Hoàn thành Pomodoro!"
-);
-
-
-
-localStorage.setItem(
-"pomodoroDone",
-"true"
-);
-
-
-
-return;
-
-
-}
-
-
-
-minutes--;
-
-
-seconds=59;
-
-
-
-}
-
-else{
-
-
-seconds--;
-
-
-}
-
-
-
-
-updateTimer();
-
-
-
-},1000);
-
+    },1000);
 
 
 
 }
-
-
 
 
 
@@ -180,20 +130,13 @@ updateTimer();
 function pauseTimer(){
 
 
-
-clearInterval(timerInterval);
-
+    clearInterval(timerInterval);
 
 
-running=false;
-
+    running=false;
 
 
 }
-
-
-
-
 
 
 
@@ -204,28 +147,55 @@ running=false;
 function resetTimer(){
 
 
-
-clearInterval(timerInterval);
-
+    clearInterval(timerInterval);
 
 
-running=false;
+    running=false;
+
+
+    minutes =
+    Number(
+        studyTime.innerHTML
+    );
+
+
+    seconds=0;
+
+
+    updateTimer();
+
+
+}
 
 
 
-minutes =
-Number(
-studyTime.innerHTML
-);
 
 
 
-seconds=0;
+
+if(plusTime){
 
 
+    plusTime.onclick=function(){
 
-updateTimer();
 
+        if(!running){
+
+
+            minutes += 5;
+
+
+            studyTime.innerHTML =
+            minutes;
+
+
+            updateTimer();
+
+
+        }
+
+
+    };
 
 
 }
@@ -237,121 +207,86 @@ updateTimer();
 
 
 
-
-plusTime.onclick=function(){
-
+if(minusTime){
 
 
-if(!running){
+    minusTime.onclick=function(){
 
 
-
-minutes +=5;
-
+        if(!running && minutes > 5){
 
 
-studyTime.innerHTML =
-minutes;
+            minutes -= 5;
 
 
-
-updateTimer();
-
-
-
-}
+            studyTime.innerHTML =
+            minutes;
 
 
-
-};
-
+            updateTimer();
 
 
+        }
 
 
-
-
-
-
-minusTime.onclick=function(){
-
-
-
-if(!running && minutes>5){
-
-
-
-minutes-=5;
-
-
-
-studyTime.innerHTML =
-minutes;
-
-
-
-updateTimer();
-
+    };
 
 
 }
 
 
 
-};
+
+
+
+
+
+if(startBtn){
+
+
+    startBtn.onclick=function(){
+
+        startTimer();
+
+    };
+
+
+}
 
 
 
 
 
 
+if(pauseBtn){
 
 
+    pauseBtn.onclick=function(){
+
+        pauseTimer();
+
+    };
 
 
-startBtn.onclick=function(){
-
-
-
-startTimer();
-
-
-
-};
-
-
-
-
-
-
-
-
-pauseBtn.onclick=function(){
-
-
-
-pauseTimer();
-
-
-
-};
+}
 
 
 
 
 
 
+if(resetBtn){
 
 
-resetBtn.onclick=function(){
+    resetBtn.onclick=function(){
+
+        resetTimer();
+
+    };
 
 
+}
 
-resetTimer();
-
-
-
-};
 
 
 

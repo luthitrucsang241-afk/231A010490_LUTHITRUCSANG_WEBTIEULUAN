@@ -1,716 +1,859 @@
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded", () => {
 
 
-function formatTime(seconds){
+    // ================= HÀM ĐỊNH DẠNG THỜI GIAN =================
 
-    if(isNaN(seconds))
-        return "00:00";
+    function formatTime(seconds) {
 
+        if (isNaN(seconds)) {
+            return "00:00";
+        }
 
-    let min=Math.floor(seconds/60);
 
-    let sec=Math.floor(seconds%60);
+        let min = Math.floor(seconds / 60);
 
+        let sec = Math.floor(seconds % 60);
 
-    return String(min).padStart(2,"0")
-    +":"
-    +String(sec).padStart(2,"0");
 
-}
+        return String(min).padStart(2, "0")
+            + ":"
+            + String(sec).padStart(2, "0");
 
+    }
 
 
 
-// ================= WHITE NOISE =================
 
 
-const noiseSelect=document.getElementById("noiseSelect");
+    // ================= WEATHER =================
+    // Vị trí: Phần tải và hiển thị thời tiết Dashboard
 
-const noisePlayer=document.getElementById("noisePlayer");
+    const weather = document.getElementById("weather");
 
-const noisePlay=document.getElementById("noisePlay");
 
-const noisePause=document.getElementById("noisePause");
+    if (weather) {
 
-const noiseStop=document.getElementById("noiseStop");
+        // Hiển thị trạng thái đang tải trong lúc chờ API
+        weather.innerHTML = "Đang tải thời tiết...";
 
-const noiseBack=document.getElementById("noiseBack");
 
-const noiseForward=document.getElementById("noiseForward");
+        fetch(
+            "https://api.open-meteo.com/v1/forecast?latitude=10.8231&longitude=106.6297&current=temperature_2m,weather_code&timezone=Asia%2FHo_Chi_Minh"
+        )
 
-const noiseVolumeDown=document.getElementById("noiseVolumeDown");
+        .then(response => {
 
-const noiseVolumeUp=document.getElementById("noiseVolumeUp");
+            if (!response.ok) {
+                throw new Error("Weather API Error");
+            }
 
-const noiseProgress=document.getElementById("noiseProgress");
+            return response.json();
 
-const noiseVolume=document.getElementById("noiseVolume");
+        })
 
-const noiseVolumeValue=document.getElementById("noiseVolumeValue");
+        .then(data => {
 
-const noiseSpeed=document.getElementById("noiseSpeed");
+            // Kiểm tra dữ liệu API có tồn tại hay không
+            if (
+                !data.current ||
+                typeof data.current.temperature_2m === "undefined"
+            ) {
 
-const noiseCurrent=document.getElementById("noiseCurrent");
+                throw new Error("Weather data not found");
 
-const noiseDuration=document.getElementById("noiseDuration");
+            }
 
 
+            const temp =
+                data.current.temperature_2m;
 
-if(noisePlayer){
 
-    noisePlayer.loop=true;
+            const code =
+                data.current.weather_code;
 
-    noisePlayer.volume=0.75;
 
-}
+            let status =
+                "☀️ Trời quang";
 
 
+            // Trời quang
+            if (code === 0) {
 
-if(noiseSelect){
+                status = "☀️ Trời quang";
 
+            }
 
-noiseSelect.onchange=()=>{
+            // Có mây nhẹ
+            else if (code === 1 || code === 2) {
 
+                status = "🌤 Có mây";
 
-    noisePlayer.src=noiseSelect.value;
+            }
 
-    noisePlayer.loop=true;
+            // Nhiều mây
+            else if (code === 3) {
 
-    noisePlayer.play();
+                status = "☁️ Nhiều mây";
 
+            }
 
-    localStorage.setItem(
-        "noise",
-        noiseSelect.value
-    );
+            // Sương mù
+            else if (
+                code === 45 ||
+                code === 48
+            ) {
 
+                status = "🌫 Có sương mù";
 
-};
+            }
 
+            // Mưa phùn
+            else if (
+                code >= 51 &&
+                code <= 57
+            ) {
 
+                status = "🌦 Mưa phùn";
 
-let savedNoise=localStorage.getItem("noise");
+            }
 
+            // Mưa
+            else if (
+                code >= 61 &&
+                code <= 67
+            ) {
 
-if(savedNoise){
+                status = "🌧 Có mưa";
 
-    noiseSelect.value=savedNoise;
+            }
 
-    noisePlayer.src=savedNoise;
+            // Tuyết
+            else if (
+                code >= 71 &&
+                code <= 77
+            ) {
 
-}
+                status = "❄️ Có tuyết";
 
+            }
 
-}
+            // Mưa rào
+            else if (
+                code >= 80 &&
+                code <= 82
+            ) {
 
+                status = "🌦 Mưa rào";
 
+            }
 
-if(noisePlay){
+            // Mưa lớn / dông
+            else if (
+                code >= 95 &&
+                code <= 99
+            ) {
 
-noisePlay.onclick=()=>{
+                status = "⛈ Có dông";
 
-    noisePlayer.play();
+            }
 
-};
 
-}
+            weather.innerHTML =
+                `${status}<br>${temp}°C`;
 
+        })
 
+        .catch(error => {
 
-if(noisePause){
+            console.error(
+                "Không thể tải dữ liệu thời tiết:",
+                error
+            );
 
-noisePause.onclick=()=>{
 
-    noisePlayer.pause();
+            weather.innerHTML =
+                "⚠️ Không thể tải thời tiết";
 
-};
+        });
 
-}
+    }
 
 
 
-if(noiseStop){
 
-noiseStop.onclick=()=>{
 
-    noisePlayer.pause();
+    // ================= WHITE NOISE =================
 
-    noisePlayer.currentTime=0;
+    const noiseSelect = document.getElementById("noiseSelect");
 
-};
+    const noisePlayer = document.getElementById("noisePlayer");
 
-}
+    const noisePlay = document.getElementById("noisePlay");
 
+    const noisePause = document.getElementById("noisePause");
 
+    const noiseStop = document.getElementById("noiseStop");
 
-if(noiseBack){
+    const noiseBack = document.getElementById("noiseBack");
 
-noiseBack.onclick=()=>{
+    const noiseForward = document.getElementById("noiseForward");
 
-    noisePlayer.currentTime-=10;
+    const noiseVolumeDown = document.getElementById("noiseVolumeDown");
 
-};
+    const noiseVolumeUp = document.getElementById("noiseVolumeUp");
 
-}
+    const noiseProgress = document.getElementById("noiseProgress");
 
+    const noiseVolume = document.getElementById("noiseVolume");
 
+    const noiseVolumeValue = document.getElementById("noiseVolumeValue");
 
-if(noiseForward){
+    const noiseSpeed = document.getElementById("noiseSpeed");
 
-noiseForward.onclick=()=>{
+    const noiseCurrent = document.getElementById("noiseCurrent");
 
-    noisePlayer.currentTime+=10;
+    const noiseDuration = document.getElementById("noiseDuration");
 
-};
 
-}
 
 
 
-if(noiseVolumeDown){
+    if (noisePlayer) {
 
-noiseVolumeDown.onclick=()=>{
+        noisePlayer.loop = true;
 
+        noisePlayer.volume = 0.75;
 
-    noisePlayer.volume=Math.max(
-        0,
-        noisePlayer.volume-0.1
-    );
+    }
 
 
-    noiseVolume.value=
-    noisePlayer.volume*100;
 
 
-    noiseVolumeValue.innerHTML=
-    Math.round(
-        noisePlayer.volume*100
-    )+"%";
 
+    if (noiseSelect) {
 
-};
+        noiseSelect.onchange = () => {
 
-}
+            noisePlayer.src =
+                noiseSelect.value;
 
 
+            noisePlayer.play();
 
-if(noiseVolumeUp){
 
-noiseVolumeUp.onclick=()=>{
+            localStorage.setItem(
+                "noise",
+                noiseSelect.value
+            );
 
+        };
 
-    noisePlayer.volume=Math.min(
-        1,
-        noisePlayer.volume+0.1
-    );
 
 
-    noiseVolume.value=
-    noisePlayer.volume*100;
+        let saved =
+            localStorage.getItem("noise");
 
 
-    noiseVolumeValue.innerHTML=
-    Math.round(
-        noisePlayer.volume*100
-    )+"%";
+        if (saved) {
 
+            noiseSelect.value = saved;
 
-};
+            noisePlayer.src = saved;
 
-}
+        }
 
+    }
 
 
 
-if(noiseVolume){
 
-noiseVolume.oninput=()=>{
 
+    if (noisePlay) {
 
-    noisePlayer.volume=
-    noiseVolume.value/100;
+        noisePlay.onclick = () =>
+            noisePlayer.play();
 
+    }
 
-    noiseVolumeValue.innerHTML=
-    noiseVolume.value+"%";
 
 
-};
 
-}
 
+    if (noisePause) {
 
+        noisePause.onclick = () =>
+            noisePlayer.pause();
 
+    }
 
-if(noiseSpeed){
 
-noiseSpeed.onchange=()=>{
 
 
-    noisePlayer.playbackRate=
-    noiseSpeed.value;
 
+    if (noiseStop) {
 
-};
+        noiseStop.onclick = () => {
 
-}
+            noisePlayer.pause();
 
+            noisePlayer.currentTime = 0;
 
+        };
 
+    }
 
-if(noisePlayer){
 
 
-noisePlayer.onloadedmetadata=()=>{
 
 
-    noiseDuration.innerHTML=
-    formatTime(
-        noisePlayer.duration
-    );
+    if (noiseBack) {
 
+        noiseBack.onclick = () => {
 
-};
+            noisePlayer.currentTime =
+                Math.max(
+                    0,
+                    noisePlayer.currentTime - 10
+                );
 
+        };
 
+    }
 
-noisePlayer.ontimeupdate=()=>{
 
 
-    noiseCurrent.innerHTML=
-    formatTime(
-        noisePlayer.currentTime
-    );
 
 
-    noiseProgress.value=
-    (
-        noisePlayer.currentTime/
-        noisePlayer.duration
-    )*100;
+    if (noiseForward) {
 
+        noiseForward.onclick = () => {
 
-};
+            noisePlayer.currentTime += 10;
 
+        };
 
-}
+    }
 
 
 
 
-if(noiseProgress){
 
-noiseProgress.oninput=()=>{
+    if (noiseVolumeDown) {
 
+        noiseVolumeDown.onclick = () => {
 
-    noisePlayer.currentTime=
-    (
-        noiseProgress.value/100
-    )
-    *
-    noisePlayer.duration;
+            let currentVolume =
+                Math.max(
+                    0,
+                    noisePlayer.volume - 0.1
+                );
 
 
-};
+            noisePlayer.volume =
+                currentVolume;
 
-}
 
+            noiseVolume.value =
+                Math.round(currentVolume * 100);
 
 
+            noiseVolumeValue.innerHTML =
+                noiseVolume.value + "%";
 
+        };
 
+    }
 
 
 
 
-// ================= VIDEO =================
 
+    if (noiseVolumeUp) {
 
-const videoSelect=document.getElementById("videoSelect");
+        noiseVolumeUp.onclick = () => {
 
-const studyVideo=document.getElementById("studyVideo");
+            let currentVolume =
+                Math.min(
+                    1,
+                    noisePlayer.volume + 0.1
+                );
 
-const youtubeVideo=document.getElementById("youtubeVideo");
 
+            noisePlayer.volume =
+                currentVolume;
 
-const videoPlay=document.getElementById("videoPlay");
 
-const videoPause=document.getElementById("videoPause");
+            noiseVolume.value =
+                Math.round(currentVolume * 100);
 
-const videoStop=document.getElementById("videoStop");
 
-const videoBack=document.getElementById("videoBack");
+            noiseVolumeValue.innerHTML =
+                noiseVolume.value + "%";
 
-const videoForward=document.getElementById("videoForward");
+        };
 
+    }
 
-const videoVolume=document.getElementById("videoVolume");
 
 
-const videoVolumeDown=
-document.getElementById("videoVolumeDown");
 
 
-const videoVolumeUp=
-document.getElementById("videoVolumeUp");
+    if (noiseVolume) {
 
+        noiseVolume.oninput = () => {
 
-const videoSpeed=document.getElementById("videoSpeed");
+            noisePlayer.volume =
+                noiseVolume.value / 100;
 
-const videoProgress=document.getElementById("videoProgress");
 
+            noiseVolumeValue.innerHTML =
+                noiseVolume.value + "%";
 
-const videoFullscreen=
-document.getElementById("videoFullscreen");
+        };
 
+    }
 
-const videoPip=
-document.getElementById("videoPip");
 
 
-const videoCurrent=
-document.getElementById("videoCurrent");
 
 
-const videoDuration=
-document.getElementById("videoDuration");
+    if (noiseSpeed) {
 
+        noiseSpeed.onchange = () => {
 
+            noisePlayer.playbackRate =
+                Number(noiseSpeed.value);
 
+        };
 
+    }
 
-if(studyVideo){
 
-    studyVideo.loop=true;
 
-    studyVideo.volume=1;
 
-}
 
+    if (noisePlayer) {
 
+        noisePlayer.onloadedmetadata = () => {
 
+            noiseDuration.innerHTML =
+                formatTime(
+                    noisePlayer.duration
+                );
 
-if(videoSelect){
+        };
 
 
-videoSelect.onchange=()=>{
 
 
-if(videoSelect.value==="youtube"){
+        noisePlayer.ontimeupdate = () => {
 
+            noiseCurrent.innerHTML =
+                formatTime(
+                    noisePlayer.currentTime
+                );
 
-    studyVideo.pause();
 
-    studyVideo.style.display="none";
+            if (noisePlayer.duration) {
 
-    youtubeVideo.style.display="block";
+                noiseProgress.value =
+                    (
+                        noisePlayer.currentTime /
+                        noisePlayer.duration
+                    ) * 100;
 
+            }
 
-    youtubeVideo.src=
-    "https://www.youtube.com/embed/jfKfPfyJRdk";
+        };
 
+    }
 
-}
 
-else{
 
 
-    youtubeVideo.src="";
 
+    if (noiseProgress) {
 
-    youtubeVideo.style.display="none";
+        noiseProgress.oninput = () => {
 
+            noisePlayer.currentTime =
+                (
+                    noiseProgress.value / 100
+                )
+                *
+                noisePlayer.duration;
 
-    studyVideo.style.display="block";
+        };
 
+    }
 
-    studyVideo.play();
 
 
-}
 
 
+    // ================= VIDEO =================
 
-};
+    const videoSelect =
+        document.getElementById("videoSelect");
 
+    const studyVideo =
+        document.getElementById("studyVideo");
 
+    const youtubeVideo =
+        document.getElementById("youtubeVideo");
 
-}
+    const videoPlay =
+        document.getElementById("videoPlay");
 
+    const videoPause =
+        document.getElementById("videoPause");
 
+    const videoStop =
+        document.getElementById("videoStop");
 
+    const videoBack =
+        document.getElementById("videoBack");
 
+    const videoForward =
+        document.getElementById("videoForward");
 
+    const videoVolume =
+        document.getElementById("videoVolume");
 
+    const videoVolumeDown =
+        document.getElementById("videoVolumeDown");
 
-if(videoPlay){
+    const videoVolumeUp =
+        document.getElementById("videoVolumeUp");
 
-videoPlay.onclick=()=>{
+    const videoSpeed =
+        document.getElementById("videoSpeed");
 
-    studyVideo.play();
+    const videoProgress =
+        document.getElementById("videoProgress");
 
-};
+    const videoFullscreen =
+        document.getElementById("videoFullscreen");
 
-}
+    const videoPip =
+        document.getElementById("videoPip");
 
+    const videoCurrent =
+        document.getElementById("videoCurrent");
 
+    const videoDuration =
+        document.getElementById("videoDuration");
 
-if(videoPause){
 
-videoPause.onclick=()=>{
 
-    studyVideo.pause();
 
-};
 
-}
+    if (studyVideo) {
 
+        studyVideo.loop = true;
 
+    }
 
-if(videoStop){
 
-videoStop.onclick=()=>{
 
-    studyVideo.pause();
 
-    studyVideo.currentTime=0;
 
-};
+    if (videoSelect) {
 
-}
+        videoSelect.onchange = () => {
 
 
+            if (videoSelect.value === "youtube") {
 
-if(videoBack){
 
-videoBack.onclick=()=>{
+                studyVideo.pause();
 
-    studyVideo.currentTime-=10;
+                studyVideo.style.display =
+                    "none";
 
-};
 
-}
+                youtubeVideo.style.display =
+                    "block";
 
 
+                youtubeVideo.src =
+                    "https://www.youtube.com/embed/jfKfPfyJRdk";
 
-if(videoForward){
 
-videoForward.onclick=()=>{
+            }
 
-    studyVideo.currentTime+=10;
+            else {
 
-};
 
-}
+                youtubeVideo.src =
+                    "";
 
 
+                youtubeVideo.style.display =
+                    "none";
 
 
+                studyVideo.style.display =
+                    "block";
 
+            }
 
+        };
 
-// VIDEO VOLUME BUTTON
+    }
 
 
-if(videoVolumeDown){
 
 
-videoVolumeDown.onclick=()=>{
 
+    if (videoPlay) {
 
-    studyVideo.volume=
-    Math.max(
-        0,
-        studyVideo.volume-0.1
-    );
+        videoPlay.onclick = () =>
+            studyVideo.play();
 
+    }
 
-    videoVolume.value=
-    studyVideo.volume*100;
 
 
-};
 
 
-}
+    if (videoPause) {
 
+        videoPause.onclick = () =>
+            studyVideo.pause();
 
+    }
 
 
-if(videoVolumeUp){
 
 
-videoVolumeUp.onclick=()=>{
 
+    if (videoStop) {
 
-    studyVideo.volume=
-    Math.min(
-        1,
-        studyVideo.volume+0.1
-    );
+        videoStop.onclick = () => {
 
+            studyVideo.pause();
 
-    videoVolume.value=
-    studyVideo.volume*100;
+            studyVideo.currentTime = 0;
 
+        };
 
-};
+    }
 
 
-}
 
 
 
+    if (videoBack) {
 
+        videoBack.onclick = () => {
 
+            studyVideo.currentTime -= 10;
 
-if(videoVolume){
+        };
 
+    }
 
-videoVolume.oninput=()=>{
 
 
-    studyVideo.volume=
-    videoVolume.value/100;
 
 
-};
+    if (videoForward) {
 
+        videoForward.onclick = () => {
 
-}
+            studyVideo.currentTime += 10;
 
+        };
 
+    }
 
 
 
-if(videoSpeed){
 
 
-videoSpeed.onchange=()=>{
+    if (videoVolume) {
 
+        videoVolume.oninput = () => {
 
-    studyVideo.playbackRate=
-    videoSpeed.value;
+            studyVideo.volume =
+                videoVolume.value / 100;
 
+        };
 
-};
+    }
 
 
-}
 
 
 
+    if (videoVolumeDown) {
 
+        videoVolumeDown.onclick = () => {
 
-if(videoProgress){
+            let currentVolume =
+                Math.max(
+                    0,
+                    studyVideo.volume - 0.1
+                );
 
 
-videoProgress.oninput=()=>{
+            studyVideo.volume =
+                currentVolume;
 
 
-    studyVideo.currentTime=
-    (
-        videoProgress.value/100
-    )
-    *
-    studyVideo.duration;
+            videoVolume.value =
+                Math.round(
+                    currentVolume * 100
+                );
 
+        };
 
-};
+    }
 
 
-}
 
 
 
+    if (videoVolumeUp) {
 
+        videoVolumeUp.onclick = () => {
 
-if(studyVideo){
+            let currentVolume =
+                Math.min(
+                    1,
+                    studyVideo.volume + 0.1
+                );
 
 
+            studyVideo.volume =
+                currentVolume;
 
-studyVideo.onloadedmetadata=()=>{
 
+            videoVolume.value =
+                Math.round(
+                    currentVolume * 100
+                );
 
-    videoDuration.innerHTML=
-    formatTime(
-        studyVideo.duration
-    );
+        };
 
+    }
 
-};
 
 
 
 
+    if (videoSpeed) {
 
-studyVideo.ontimeupdate=()=>{
+        videoSpeed.onchange = () => {
 
+            studyVideo.playbackRate =
+                Number(videoSpeed.value);
 
-    videoCurrent.innerHTML=
-    formatTime(
-        studyVideo.currentTime
-    );
+        };
 
+    }
 
 
-    videoProgress.value=
-    (
-        studyVideo.currentTime/
-        studyVideo.duration
-    )*100;
 
 
-};
 
+    if (studyVideo) {
 
+        studyVideo.onloadedmetadata = () => {
 
-}
+            videoDuration.innerHTML =
+                formatTime(
+                    studyVideo.duration
+                );
 
+        };
 
 
 
 
-if(videoFullscreen){
+        studyVideo.ontimeupdate = () => {
 
+            videoCurrent.innerHTML =
+                formatTime(
+                    studyVideo.currentTime
+                );
 
-videoFullscreen.onclick=()=>{
 
+            if (studyVideo.duration) {
 
-    studyVideo.requestFullscreen();
+                videoProgress.value =
+                    (
+                        studyVideo.currentTime /
+                        studyVideo.duration
+                    ) * 100;
 
+            }
 
-};
+        };
 
+    }
 
-}
 
 
 
 
+    if (videoProgress) {
 
+        videoProgress.oninput = () => {
 
-if(videoPip){
+            studyVideo.currentTime =
+                (
+                    videoProgress.value / 100
+                )
+                *
+                studyVideo.duration;
 
+        };
 
-videoPip.onclick=async()=>{
+    }
 
 
-try{
 
 
-await studyVideo.requestPictureInPicture();
 
+    if (videoFullscreen) {
 
-}
-catch(e){}
+        videoFullscreen.onclick = () => {
 
+            studyVideo.requestFullscreen();
 
-};
+        };
 
+    }
 
-}
 
+
+
+
+    if (videoPip) {
+
+        videoPip.onclick = async () => {
+
+
+            try {
+
+                await studyVideo.requestPictureInPicture();
+
+            }
+
+            catch (e) {
+
+                console.error(
+                    "Picture in Picture không khả dụng:",
+                    e
+                );
+
+            }
+
+        };
+
+    }
 
 
 });

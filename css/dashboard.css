@@ -1667,3 +1667,268 @@ body.dark .setting-dropdown button:hover {
     background:#dbeafe;
 
 }
+
+
+
+
+
+
+
+
+
+/* ================= MEDIA SELECT + SPEED BOX ================= */
+/* Vị trí: cuối file dashboard.css */
+
+
+/* Khung chọn âm thanh/video */
+
+.media-select-box,
+.media-speed-box {
+
+    width:100%;
+
+    background:#f8fafc;
+
+    padding:15px;
+
+    border-radius:18px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.media-select-box label,
+.media-speed-box label {
+
+    display:block;
+
+    font-weight:600;
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+.media-select-box select,
+.media-speed-box select {
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border-radius:15px;
+
+    border:1px solid #cbd5e1;
+
+    background:white;
+
+    cursor:pointer;
+
+    outline:none;
+
+}
+
+
+
+
+
+/* ================= QUOTE FIX ================= */
+
+
+.quote {
+
+    text-align:center;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+}
+
+
+
+#quoteText {
+
+    width:90%;
+
+    min-height:80px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+}
+
+
+
+
+
+#quoteText small {
+
+    margin-top:10px;
+
+    font-size:15px;
+
+    color:#64748b;
+
+}
+
+
+
+
+
+.quote button {
+
+    margin:5px;
+
+}
+
+
+
+
+
+#favoriteQuote.active {
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ef4444,
+        #fb7185
+    );
+
+}
+
+
+
+
+
+/* ================= TODO TEXT FIX ================= */
+
+
+#todoList li {
+
+    overflow:hidden;
+
+}
+
+
+
+.todo-text {
+
+    white-space:normal;
+
+    overflow-wrap:break-word;
+
+    word-break:normal;
+
+    line-height:1.5;
+
+}
+
+
+
+
+
+/* ================= POMODORO BUTTON FIX ================= */
+
+
+.time-control button {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:0;
+
+    font-size:22px;
+
+    line-height:1;
+
+}
+
+
+
+
+
+/* ================= DARK MODE MEDIA ================= */
+
+
+body.dark .media-select-box,
+body.dark .media-speed-box {
+
+
+    background:#1e293b;
+
+
+}
+
+
+
+body.dark .media-select-box select,
+body.dark .media-speed-box select {
+
+
+    background:#0f172a;
+
+    color:white;
+
+    border-color:#475569;
+
+
+}
+
+
+
+
+
+/* ================= RESPONSIVE ================= */
+
+
+@media(max-width:900px){
+
+
+    .media-select-box,
+    .media-speed-box {
+
+
+        padding:12px;
+
+
+    }
+
+
+
+    #quoteText {
+
+
+        width:100%;
+
+
+    }
+
+
+}

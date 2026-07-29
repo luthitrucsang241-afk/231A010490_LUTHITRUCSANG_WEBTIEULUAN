@@ -3,13 +3,13 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard - Study Focus</title>
+<title>Dashboard - Study Focus</title>
 
-    <link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/dashboard.css">
 
 </head>
 
@@ -17,967 +17,1050 @@
 <body>
 
 
-    <header class="header">
+<header class="header">
 
 
-        <div class="logo">
-            Study Focus
-        </div>
+<div class="logo">
+Study Focus
+</div>
 
 
+<nav class="menu">
 
-        <nav class="menu">
 
+<a href="index.html" data-vn="Trang chủ" data-en="Home">
+Trang chủ
+</a>
 
-            <a href="index.html" data-vn="Trang chủ" data-en="Home">
-                Trang chủ
-            </a>
 
+<a href="about.html" data-vn="Giới thiệu" data-en="About">
+Giới thiệu
+</a>
 
-            <a href="about.html" data-vn="Giới thiệu" data-en="About">
-                Giới thiệu
-            </a>
 
+<a href="contact.html" data-vn="Liên hệ" data-en="Contact">
+Liên hệ
+</a>
 
-            <a href="contact.html" data-vn="Liên hệ" data-en="Contact">
-                Liên hệ
-            </a>
 
+<a href="login.html" data-vn="Đăng nhập" data-en="Login">
+Đăng nhập
+</a>
 
-            <a href="login.html" data-vn="Đăng nhập" data-en="Login">
-                Đăng nhập
-            </a>
 
+<a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
+Đăng ký
+</a>
 
-            <a class="btn" href="register.html" data-vn="Đăng ký" data-en="Register">
-                Đăng ký
-            </a>
 
+</nav>
 
-        </nav>
 
 
 
-        <div class="setting-menu">
+<div class="setting-menu">
 
 
-            <button class="setting-btn">
-                ⚙
-            </button>
+<button class="setting-btn">
+⚙
+</button>
 
 
 
-            <div class="setting-dropdown">
+<div class="setting-dropdown">
 
 
-                <h4 data-vn="Giao diện" data-en="Theme">
-                    Giao diện
-                </h4>
+<h4 class="dropdown-title"
+data-vn="Giao diện"
+data-en="Theme">
+Giao diện
+</h4>
 
 
-                <button onclick="changeTheme('light')">
 
-                    <span data-vn="Sáng" data-en="Light">
-                        Sáng
-                    </span>
+<button onclick="changeTheme('light')">
 
-                </button>
+<span data-vn="Sáng" data-en="Light">
+Sáng
+</span>
 
+</button>
 
 
-                <button onclick="changeTheme('dark')">
 
-                    <span data-vn="Tối" data-en="Dark">
-                        Tối
-                    </span>
+<button onclick="changeTheme('dark')">
 
-                </button>
+<span data-vn="Tối" data-en="Dark">
+Tối
+</span>
 
+</button>
 
 
-                <hr>
 
+<hr>
 
 
-                <h4 data-vn="Ngôn ngữ" data-en="Language">
-                    Ngôn ngữ
-                </h4>
 
+<h4 class="dropdown-title"
+data-vn="Ngôn ngữ"
+data-en="Language">
+Ngôn ngữ
+</h4>
 
 
-                <button onclick="changeLanguage('vi')">
 
-                    🇻🇳
+<button onclick="changeLanguage('vi')">
 
-                    <span data-vn="Tiếng Việt" data-en="Vietnamese">
-                        Tiếng Việt
-                    </span>
+🇻🇳
 
-                </button>
+<span data-vn="Tiếng Việt" data-en="Vietnamese">
+Tiếng Việt
+</span>
 
+</button>
 
 
-                <button onclick="changeLanguage('en')">
 
-                    🇺🇸
+<button onclick="changeLanguage('en')">
 
-                    <span data-vn="Tiếng Anh" data-en="English">
-                        Tiếng Anh
-                    </span>
+🇺🇸
 
-                </button>
+<span data-vn="Tiếng Anh" data-en="English">
+Tiếng Anh
+</span>
 
+</button>
 
 
-            </div>
 
+</div>
 
-        </div>
 
+</div>
 
-    </header>
 
+</header>
 
 
 
 
-    <div class="dashboard-layout">
 
+<div class="dashboard-layout">
 
 
-        <aside class="sidebar">
 
+<aside class="sidebar">
 
-            <h2>
-                Study Focus
-            </h2>
 
+<h2>
+Study Focus
+</h2>
 
-            <a class="active" href="dashboard.html" data-vn="Dashboard" data-en="Dashboard">
-                Dashboard
-            </a>
 
+<a class="active"
+href="dashboard.html">
+Dashboard
+</a>
 
-            <a href="calendar.html" data-vn="Lịch" data-en="Calendar">
-                Calendar
-            </a>
 
+<a href="calendar.html"
+data-vn="Lịch"
+data-en="Calendar">
+Lịch
+</a>
 
-            <a href="statistics.html" data-vn="Thống kê" data-en="Statistics">
-                Statistics
-            </a>
 
+<a href="statistics.html"
+data-vn="Thống kê"
+data-en="Statistics">
+Thống kê
+</a>
 
-            <a href="achievement.html" data-vn="Thành tích" data-en="Achievement">
-                Achievement
-            </a>
 
+<a href="achievement.html"
+data-vn="Thành tích"
+data-en="Achievement">
+Thành tích
+</a>
 
-            <a href="settings.html" data-vn="Cài đặt" data-en="Settings">
-                Settings
-            </a>
 
+<a href="settings.html"
+data-vn="Cài đặt"
+data-en="Settings">
+Cài đặt
+</a>
 
-            <a href="login.html" data-vn="Đăng xuất" data-en="Logout">
-                Logout
-            </a>
 
+<a href="login.html"
+data-vn="Đăng xuất"
+data-en="Logout">
+Đăng xuất
+</a>
 
-        </aside>
 
+</aside>
 
 
 
-        <main class="main">
 
 
-            <section class="hero">
+<main class="main">
 
 
-                <div>
 
+<section class="hero">
 
-                    <h1 id="welcomeUser" data-vn="Xin chào 👋" data-en="Hello 👋">
-                        Xin chào 👋
-                    </h1>
 
+<div>
 
-                    <p data-vn="Chúc bạn học tập hiệu quả hôm nay." data-en="Wish you effective study today.">
-                        Chúc bạn học tập hiệu quả hôm nay.
-                    </p>
 
+<h1 id="welcomeUser">
+Xin chào 👋
+</h1>
 
-                    <span id="todayDate"></span>
 
+<p>
+Chúc bạn học tập hiệu quả hôm nay.
+</p>
 
 
-                    <div class="weather-box">
+<span id="todayDate"></span>
 
-                        <p data-vn="🌤 Thời tiết hôm nay" data-en="🌤 Today's weather">
-                            🌤 Thời tiết hôm nay
-                        </p>
 
 
-                        <h3 id="weather">
-                            Đang tải thời tiết...
-                        </h3>
+<div class="weather-box">
 
 
-                    </div>
+<p>
+🌤 Thời tiết hôm nay
+</p>
 
 
-                </div>
+<h3 id="weather">
+Đang tải thời tiết...
+</h3>
 
 
+</div>
 
-                <img id="avatar" src="images/avatar.png" alt="Avatar">
 
 
+</div>
 
-            </section>
 
 
+<img id="avatar"
+src="images/avatar.png">
 
 
-            <section class="double-card">
+</section>
 
 
-                <div class="card pomodoro-box">
 
-                    <h2 data-vn="Pomodoro" data-en="Pomodoro">
-                        Pomodoro
-                    </h2>
 
 
-                    <div class="timer" id="timer">
-                        25:00
-                    </div>
+<section class="double-card">
 
 
 
-                    <div class="time-control">
+<div class="card pomodoro-box">
 
 
-                        <button id="minusTime">
-                            -
-                        </button>
+<h2>
+Pomodoro
+</h2>
 
 
-                        <span id="studyTime">
-                            25
-                        </span>
 
+<div class="timer"
+id="timer">
+25:00
+</div>
 
-                        <span data-vn="phút" data-en="minutes">
-                            phút
-                        </span>
 
 
-                        <button id="plusTime">
-                            +
-                        </button>
 
+<div class="time-control">
 
-                    </div>
 
+<button id="minusTime">
+−
+</button>
 
 
-                    <div class="pomodoro-buttons">
+<span id="studyTime">
+25
+</span>
 
 
-                        <button id="startBtn" data-vn="Bắt đầu" data-en="Start">
-                            Bắt đầu
-                        </button>
+<span>
+phút
+</span>
 
 
-                        <button id="pauseBtn" data-vn="Dừng" data-en="Pause">
-                            Dừng
-                        </button>
+<button id="plusTime">
++
+</button>
 
 
-                        <button id="resetBtn" data-vn="Reset" data-en="Reset">
-                            Reset
-                        </button>
 
+</div>
 
-                    </div>
 
 
-                </div>
 
+<div class="pomodoro-buttons">
 
 
+<button id="startBtn">
+Bắt đầu
+</button>
 
-                <div class="card todo-box">
 
+<button id="pauseBtn">
+Dừng
+</button>
 
-                    <h2 data-vn="Todo" data-en="Todo">
-                        Todo
-                    </h2>
 
+<button id="resetBtn">
+Reset
+</button>
 
-                    <div class="todo-input">
 
+</div>
 
-                        <input id="todoInput" type="text" placeholder="Thêm công việc"
-                            data-vn-placeholder="Thêm công việc" data-en-placeholder="Add task">
 
 
+</div>
 
-                        <button id="addTodo" data-vn="Thêm" data-en="Add">
-                            Thêm
-                        </button>
 
 
-                    </div>
 
 
+<div class="card todo-box">
 
-                    <ul id="todoList"></ul>
 
 
-                </div>
+<h2>
+Todo
+</h2>
 
 
-            </section>
 
 
+<div class="todo-input">
 
 
-            <section class="card">
+<input 
+id="todoInput"
+type="text"
+placeholder="Thêm công việc">
 
 
-                <h2 data-vn="Mục tiêu hàng ngày" data-en="Daily Goals">
-                    Mục tiêu hàng ngày
-                </h2>
 
+<button id="addTodo">
+Thêm
+</button>
 
 
-                <div class="goal">
+</div>
 
-                    <label>
 
-                        <input id="goalStudy" type="checkbox" disabled>
 
+<ul id="todoList"></ul>
 
-                        <span data-vn="Học đủ 3 tiếng" data-en="Study 3 hours">
-                            Học đủ 3 tiếng
-                        </span>
 
 
-                    </label>
+</div>
 
 
-                </div>
 
+</section>
+<section class="card">
 
 
-                <div class="goal">
+<h2>
+Mục tiêu hàng ngày
+</h2>
 
 
-                    <label>
 
+<div class="goal">
 
-                        <input id="goalTodo" type="checkbox" disabled>
+<label>
 
+<input id="goalStudy"
+type="checkbox"
+disabled>
 
-                        <span data-vn="Hoàn thành 3 Todo" data-en="Complete 3 Todos">
-                            Hoàn thành 3 Todo
-                        </span>
 
+<span>
+Học đủ 3 tiếng
+</span>
 
-                    </label>
 
+</label>
 
-                </div>
+</div>
 
 
 
+<div class="goal">
 
-                <div class="goal">
+<label>
 
+<input id="goalTodo"
+type="checkbox"
+disabled>
 
-                    <label>
 
+<span>
+Hoàn thành 3 Todo
+</span>
 
-                        <input id="goalPomodoro" type="checkbox" disabled>
 
+</label>
 
-                        <span data-vn="Hoàn thành Pomodoro" data-en="Complete Pomodoro">
-                            Hoàn thành Pomodoro
-                        </span>
+</div>
 
 
-                    </label>
 
 
-                </div>
+<div class="goal">
 
+<label>
 
-            </section>
+<input id="goalPomodoro"
+type="checkbox"
+disabled>
 
 
+<span>
+Hoàn thành Pomodoro
+</span>
 
 
+</label>
 
+</div>
 
-            <!-- ================= WHITE NOISE ================= -->
 
 
-            <section class="card media-card white-noise-card">
+</section>
 
 
-                <h2 data-vn="Âm thanh thư giãn" data-en="White Noise">
-                    Âm thanh thư giãn
-                </h2>
 
 
 
-                <select id="noiseSelect">
 
 
-                    <option value="" data-vn="-- Chọn âm thanh --" data-en="-- Select sound --">
+<!-- ================= WHITE NOISE ================= -->
 
-                        -- Chọn âm thanh --
+<section class="card media-card white-noise-card">
 
-                    </option>
 
+<h2>
+Âm thanh thư giãn
+</h2>
 
 
-                    <option value="audio/Rain Sounds.mp3">
 
-                        🌧 Rain Sounds
 
-                    </option>
+<div class="media-select-box">
 
 
+<select id="noiseSelect">
 
-                    <option value="audio/Coffee Sounds.mp3">
 
-                        ☕ Coffee Sounds
+<option value="">
+-- Chọn âm thanh --
+</option>
 
-                    </option>
 
 
+<option value="audio/Rain Sounds.mp3">
 
-                    <option value="audio/Forest.mp3">
+🌧 Rain Sounds
 
-                        🌲 Forest
+</option>
 
-                    </option>
 
 
-                </select>
+<option value="audio/Coffee Sounds.mp3">
 
+☕ Coffee Sounds
 
+</option>
 
 
-                <audio id="noisePlayer"></audio>
 
+<option value="audio/Forest.mp3">
 
+🌲 Forest
 
+</option>
 
-                <div class="media-controls">
 
 
-                    <button id="noisePlay">
+</select>
 
-                        ▶
 
-                        <span data-vn="Phát" data-en="Play">
-                            Phát
-                        </span>
+</div>
 
-                    </button>
 
 
 
-                    <button id="noisePause">
 
-                        ⏸
+<audio id="noisePlayer"></audio>
 
-                        <span data-vn="Tạm dừng" data-en="Pause">
-                            Tạm dừng
-                        </span>
 
-                    </button>
 
 
+<div class="media-controls">
 
 
-                    <button id="noiseStop">
+<button id="noisePlay">
+▶ Phát
+</button>
 
-                        ⏹
 
-                        <span data-vn="Dừng" data-en="Stop">
-                            Dừng
-                        </span>
+<button id="noisePause">
+⏸ Tạm dừng
+</button>
 
-                    </button>
 
+<button id="noiseStop">
+⏹ Dừng
+</button>
 
 
-                    <button id="noiseBack">
+<button id="noiseBack">
+⏪ -10s
+</button>
 
-                        ⏪ -10s
 
-                    </button>
+<button id="noiseForward">
+⏩ +10s
+</button>
 
 
+<button id="noiseVolumeDown">
+🔉
+</button>
 
-                    <button id="noiseForward">
 
-                        ⏩ +10s
+<button id="noiseVolumeUp">
+🔊
+</button>
 
-                    </button>
 
+</div>
 
 
-                    <button id="noiseVolumeDown">
 
-                        🔉
 
-                    </button>
 
+<div class="media-time">
 
 
-                    <button id="noiseVolumeUp">
+<span id="noiseCurrent">
+00:00
+</span>
 
-                        🔊
 
-                    </button>
+/
 
 
-                </div>
+<span id="noiseDuration">
+00:00
+</span>
 
 
+</div>
 
 
-                <div class="media-time">
 
 
-                    <span id="noiseCurrent">
 
-                        00:00
+<input 
+type="range"
+id="noiseProgress"
+min="0"
+max="100"
+value="0">
 
-                    </span>
 
 
-                    /
 
 
-                    <span id="noiseDuration">
+<label>
+Âm lượng
+</label>
 
-                        00:00
 
-                    </span>
 
+<input 
+type="range"
+id="noiseVolume"
+min="0"
+max="100"
+value="75">
 
-                </div>
 
 
+<span id="noiseVolumeValue">
+75%
+</span>
 
 
 
-                <input type="range" id="noiseProgress" min="0" max="100" value="0">
 
 
+<label>
+Tốc độ phát
+</label>
 
 
 
-                <label data-vn="Âm lượng" data-en="Volume">
+<div class="media-select-box">
 
-                    Âm lượng
 
-                </label>
+<select id="noiseSpeed">
 
 
+<option value="0.5">
+0.5x
+</option>
 
 
-                <input type="range" id="noiseVolume" min="0" max="100" value="75">
+<option value="0.75">
+0.75x
+</option>
 
 
+<option value="1" selected>
+1x
+</option>
 
-                <span id="noiseVolumeValue">
 
-                    75%
+<option value="1.25">
+1.25x
+</option>
 
-                </span>
 
+<option value="1.5">
+1.5x
+</option>
 
 
+<option value="2">
+2x
+</option>
 
 
+</select>
 
-                <label data-vn="Tốc độ phát" data-en="Playback Speed">
 
-                    Tốc độ phát
+</div>
 
-                </label>
 
 
 
+</section>
 
-                <select id="noiseSpeed">
 
 
-                    <option value="0.5">
 
-                        0.5x
 
-                    </option>
 
 
-                    <option value="0.75">
 
-                        0.75x
+<!-- ================= VIDEO ================= -->
 
-                    </option>
+<section class="card media-card video-card">
 
 
-                    <option value="1" selected>
+<h2>
+Video học tập
+</h2>
 
-                        1x
 
-                    </option>
 
 
-                    <option value="1.25">
+<div class="media-select-box">
 
-                        1.25x
 
-                    </option>
+<select id="videoSelect">
 
 
-                    <option value="1.5">
+<option value="">
+-- Chọn video --
+</option>
 
-                        1.5x
 
-                    </option>
 
+<option value="local">
 
-                    <option value="2">
+Study Video (Local)
 
-                        2x
+</option>
 
-                    </option>
 
 
-                </select>
+<option value="youtube">
 
+Lo-fi Youtube
 
+</option>
 
-            </section>
 
 
+</select>
 
 
+</div>
 
 
 
 
-            <!-- ================= STUDY VIDEO ================= -->
 
+<video id="studyVideo"
+src="video/videoplayback.mp4"
+loop>
 
-            <section class="card media-card video-card">
+</video>
 
 
 
-                <h2 data-vn="Video học tập" data-en="Study Video">
 
-                    Video học tập
+<iframe 
+id="youtubeVideo"
+style="display:none"
+allowfullscreen>
+</iframe>
 
-                </h2>
 
 
 
 
-                <select id="videoSelect">
+<div class="media-controls">
 
 
-                    <option value="">
+<button id="videoPlay">
+▶ Play
+</button>
 
-                        -- Chọn video --
 
-                    </option>
 
+<button id="videoPause">
+⏸ Pause
+</button>
 
 
-                    <option value="local">
 
-                        Study Video (Local)
+<button id="videoStop">
+⏹ Stop
+</button>
 
-                    </option>
 
 
+<button id="videoBack">
+⏪ -10s
+</button>
 
-                    <option value="youtube">
 
-                        Lo-fi Youtube
 
-                    </option>
+<button id="videoForward">
+⏩ +10s
+</button>
 
 
 
-                </select>
+<button id="videoVolumeDown">
+🔉
+</button>
 
 
 
+<button id="videoVolumeUp">
+🔊
+</button>
 
 
-                <video id="studyVideo" src="video/videoplayback.mp4" loop controls>
 
-                </video>
+<button id="videoFullscreen">
+Fullscreen
+</button>
 
 
 
+<button id="videoPip">
+Picture in Picture
+</button>
 
-                <iframe id="youtubeVideo" style="display:none" src="" allowfullscreen>
 
-                </iframe>
+</div>
 
 
 
 
 
-                <div class="media-controls">
+<div class="media-time">
 
 
-                    <button id="videoPlay">
+<span id="videoCurrent">
+00:00
+</span>
 
-                        ▶ Play
 
-                    </button>
+/
 
 
+<span id="videoDuration">
+00:00
+</span>
 
-                    <button id="videoPause">
 
-                        ⏸ Pause
+</div>
 
-                    </button>
 
 
 
-                    <button id="videoStop">
 
-                        ⏹ Stop
+<input
+type="range"
+id="videoProgress"
+min="0"
+max="100"
+value="0">
 
-                    </button>
 
 
 
-                    <button id="videoBack">
 
-                        ⏪ -10s
+<label>
+Âm lượng
+</label>
 
-                    </button>
 
 
+<input
+type="range"
+id="videoVolume"
+min="0"
+max="100"
+value="100">
 
-                    <button id="videoForward">
 
-                        ⏩ +10s
 
-                    </button>
 
 
+<label>
+Tốc độ phát
+</label>
 
-                    <button id="videoVolumeDown">
 
-                        🔉
 
-                    </button>
+<div class="media-select-box">
 
 
+<select id="videoSpeed">
 
-                    <button id="videoVolumeUp">
 
-                        🔊
+<option value="0.5">
+0.5x
+</option>
 
-                    </button>
 
+<option value="0.75">
+0.75x
+</option>
 
 
-                    <button id="videoFullscreen">
+<option value="1" selected>
+1x
+</option>
 
-                        Fullscreen
 
-                    </button>
+<option value="1.25">
+1.25x
+</option>
 
 
+<option value="1.5">
+1.5x
+</option>
 
-                    <button id="videoPip">
 
-                        Picture in Picture
+<option value="2">
+2x
+</option>
 
-                    </button>
 
+</select>
 
 
-                </div>
+</div>
 
 
 
-                <div class="media-time">
 
+</section>
+<section class="card quote">
 
-                    <span id="videoCurrent">
 
-                        00:00
+<h2>
+Câu nói
+</h2>
 
-                    </span>
 
 
-                    /
 
+<p id="quoteText">
 
-                    <span id="videoDuration">
+"Success comes from consistency and focus."
 
-                        00:00
+</p>
 
-                    </span>
 
 
-                </div>
+<p id="quoteAuthor">
 
+— Study Focus
 
+</p>
 
 
-                <input type="range" id="videoProgress" min="0" max="100" value="0">
 
 
 
+<div class="quote-buttons">
 
 
-                <label data-vn="Âm lượng" data-en="Volume">
 
-                    Âm lượng
+<button id="randomQuote">
 
-                </label>
+Câu nói ngẫu nhiên
 
+</button>
 
 
 
-                <input type="range" id="videoVolume" min="0" max="100" value="100">
+<button id="favoriteQuote">
 
+Yêu thích
 
+</button>
 
 
 
-                <label data-vn="Tốc độ phát" data-en="Playback Speed">
+<button id="copyQuote">
 
-                    Tốc độ phát
+Sao chép
 
-                </label>
+</button>
 
 
 
+</div>
 
-                <select id="videoSpeed">
 
 
-                    <option value="0.5">
+</section>
 
-                        0.5x
 
-                    </option>
 
 
-                    <option value="0.75">
 
-                        0.75x
 
-                    </option>
+</main>
 
 
-                    <option value="1" selected>
+</div>
 
-                        1x
 
-                    </option>
 
 
-                    <option value="1.25">
 
-                        1.25x
 
-                    </option>
 
 
-                    <option value="1.5">
+<footer>
 
-                        1.5x
 
-                    </option>
+<div class="container">
 
 
-                    <option value="2">
+<h3>
+Study Focus
+</h3>
 
-                        2x
 
-                    </option>
 
 
-                </select>
+<p>
 
+Học tập hiệu quả với Pomodoro,
+quản lý thời gian và nâng cao khả năng tập trung.
 
+</p>
 
-            </section>
 
 
 
 
+<div class="footer-links">
 
 
+<a href="index.html">
 
-            <section class="card quote">
+Trang chủ
 
+</a>
 
-                <h2 data-vn="Câu nói" data-en="Quote">
 
-                    Quote
 
-                </h2>
+<a href="#">
 
+Tính năng
 
+</a>
 
-                <p id="quoteText">
 
-                    "Success comes from consistency and focus."
 
-                </p>
+<a href="about.html">
 
+Giới thiệu
 
+</a>
 
 
-                <button id="randomQuote" data-vn="Câu nói ngẫu nhiên" data-en="Random Quote">
 
-                    Random Quote
+</div>
 
-                </button>
 
 
 
 
-                <button id="favoriteQuote" data-vn="Yêu thích" data-en="Favorite">
+<hr>
 
-                    Favorite
 
-                </button>
 
 
+<p class="copyright">
 
-            </section>
+© 2026 Study Focus | Designed by Lữ Thị Trúc Sang
 
+</p>
 
 
 
-        </main>
 
+</div>
 
-    </div>
 
+</footer>
 
 
 
@@ -985,102 +1068,18 @@
 
 
 
-    <footer>
+<script src="js/main.js"></script>
 
+<script src="js/pomodoro.js"></script>
 
-        <div class="container">
+<script src="js/todo.js"></script>
 
+<script src="js/quote.js"></script>
 
-            <h3>
-
-                Study Focus
-
-            </h3>
-
-
-
-
-            <p data-vn="Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung."
-                data-en="Study effectively with Pomodoro, time management and improve concentration.">
-
-                Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
-
-            </p>
-
-
-
-
-
-            <div class="footer-links">
-
-
-                <a href="index.html" data-vn="Trang chủ" data-en="Home">
-
-                    Trang chủ
-
-                </a>
-
-
-
-                <a href="#" data-vn="Tính năng" data-en="Features">
-
-                    Tính năng
-
-                </a>
-
-
-
-
-                <a href="about.html" data-vn="Giới thiệu" data-en="About">
-
-                    Giới thiệu
-
-                </a>
-
-
-
-            </div>
-
-
-
-
-
-            <hr>
-
-
-
-
-            <p class="copyright">
-
-                © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
-
-            </p>
-
-
-
-
-        </div>
-
-
-    </footer>
-
-
-
-
-
-
-    <script src="js/main.js"></script>
-
-    <script src="js/pomodoro.js"></script>
-
-    <script src="js/todo.js"></script>
-
-    <script src="js/dashboard.js"></script>
-
+<script src="js/dashboard.js"></script>
 
 
 
 </body>
-
 
 </html>

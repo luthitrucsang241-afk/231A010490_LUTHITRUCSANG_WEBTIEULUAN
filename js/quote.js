@@ -571,7 +571,6 @@ const quotes = [
 
 
 
-
 /* ===============================
    CURRENT QUOTE
 ================================ */
@@ -582,115 +581,85 @@ let currentQuote = quotes[0];
 
 
 
-
-/* ===============================
-   INITIALIZE QUOTE
-================================ */
-
-
 document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
 
-    const quoteText =
-    document.getElementById(
-        "quote-text"
-    );
-
-
-    const quoteAuthor =
-    document.getElementById(
-        "quote-author"
-    );
-
-
-    const randomButton =
-    document.getElementById(
-        "random-quote"
-    );
-
-
-    const favoriteButton =
-    document.getElementById(
-        "favorite-quote"
-    );
-
-
-    const copyButton =
-    document.getElementById(
-        "copy-quote"
-    );
+const quoteText =
+document.getElementById(
+"quoteText"
+);
 
 
 
-    if(
-        !quoteText ||
-        !quoteAuthor ||
-        !randomButton ||
-        !favoriteButton ||
-        !copyButton
-    ){
-
-        return;
-
-    }
+const randomButton =
+document.getElementById(
+"randomQuote"
+);
 
 
 
-    currentQuote = {
-
-        text:
-        quoteText.textContent.trim()
-        .replace(/^["“]|["”]$/g,""),
-
-        author:
-        quoteAuthor.textContent
-        .replace(/^—\s*/,"")
-        .trim()
-
-    };
+const favoriteButton =
+document.getElementById(
+"favoriteQuote"
+);
 
 
 
-    updateFavoriteButton(
+
+if(!quoteText || !randomButton || !favoriteButton)
+    return;
+
+
+
+
+currentQuote =
+{
+    text:
+    quoteText.textContent
+    .replace(/^["“]|["”]$/g,"")
+    .trim(),
+
+    author:""
+};
+
+
+
+
+
+randomButton.onclick=()=>{
+
+
+    showRandomQuote(
+        quoteText,
         favoriteButton
     );
 
 
+};
 
-    randomButton.addEventListener(
-        "click",
-        ()=>{
-            showRandomQuote(
-                quoteText,
-                quoteAuthor,
-                favoriteButton
-            );
-        }
+
+
+
+
+favoriteButton.onclick=()=>{
+
+
+    toggleFavoriteQuote(
+        favoriteButton
     );
 
 
-
-    favoriteButton.addEventListener(
-        "click",
-        ()=>{
-            toggleFavoriteQuote(
-                favoriteButton
-            );
-        }
-    );
+};
 
 
 
-    copyButton.addEventListener(
-        "click",
-        ()=>{
-            copyCurrentQuote(
-                copyButton
-            );
-        }
-    );
+
+
+updateFavoriteButton(
+    favoriteButton
+);
 
 
 
@@ -700,60 +669,61 @@ document.addEventListener(
 
 
 
-/* ===============================
-   RANDOM QUOTE
-================================ */
+
 
 
 function showRandomQuote(
     quoteText,
-    quoteAuthor,
     favoriteButton
 ){
 
 
-    let randomIndex;
+
+let random;
 
 
 
-    do{
+do{
 
 
-        randomIndex =
-        Math.floor(
-            Math.random()
-            *
-            quotes.length
-        );
-
-
-    }
-    while(
-        quotes[randomIndex].text
-        ===
-        currentQuote.text
-    );
+random =
+Math.floor(
+Math.random()*quotes.length
+);
 
 
 
-    currentQuote =
-    quotes[randomIndex];
+}
+while(
+quotes[random].text === currentQuote.text
+);
 
 
 
-    quoteText.textContent =
-    `"${currentQuote.text}"`;
+
+currentQuote =
+quotes[random];
 
 
 
-    quoteAuthor.textContent =
-    `— ${currentQuote.author}`;
+
+quoteText.innerHTML =
+
+`
+"${currentQuote.text}"
+<br>
+<small>
+— ${currentQuote.author}
+</small>
+`;
 
 
 
-    updateFavoriteButton(
-        favoriteButton
-    );
+
+updateFavoriteButton(
+    favoriteButton
+);
+
 
 
 }
@@ -763,69 +733,66 @@ function showRandomQuote(
 
 
 
-
-/* ===============================
-   FAVORITE QUOTE
-================================ */
 
 
 function toggleFavoriteQuote(
-    favoriteButton
+    button
 ){
 
 
-    let favorites =
-    getFavoriteQuotes();
+
+let favorites =
+JSON.parse(
+localStorage.getItem("favoriteQuotes")
+)
+||
+[];
 
 
 
-    const quoteIndex =
-    favorites.findIndex(
-        quote =>
-        quote.text
-        ===
-        currentQuote.text
-        &&
-        quote.author
-        ===
-        currentQuote.author
-    );
+
+let index =
+favorites.findIndex(
+item=>
+item.text===currentQuote.text
+);
 
 
 
-    if(
-        quoteIndex !== -1
-    ){
+if(index!==-1){
 
 
-        favorites.splice(
-            quoteIndex,
-            1
-        );
+favorites.splice(
+index,
+1
+);
 
 
-    }
-    else{
+}
+else{
 
 
-        favorites.push(
-            currentQuote
-        );
+favorites.push(
+currentQuote
+);
 
 
-    }
-
-
-
-    saveFavoriteQuotes(
-        favorites
-    );
+}
 
 
 
-    updateFavoriteButton(
-        favoriteButton
-    );
+
+localStorage.setItem(
+"favoriteQuotes",
+JSON.stringify(favorites)
+);
+
+
+
+updateFavoriteButton(
+button
+);
+
 
 
 }
@@ -835,103 +802,59 @@ function toggleFavoriteQuote(
 
 
 
-
-/* ===============================
-   UPDATE FAVORITE BUTTON
-================================ */
 
 
 function updateFavoriteButton(
-    favoriteButton
+button
 ){
 
 
-    if(!favoriteButton)
-        return;
+
+let favorites =
+JSON.parse(
+localStorage.getItem("favoriteQuotes")
+)
+||
+[];
 
 
 
-    const favorites =
-    getFavoriteQuotes();
+
+let active =
+favorites.some(
+item=>
+item.text===currentQuote.text
+);
 
 
 
-    const isFavorite =
-    favorites.some(
-        quote =>
-        quote.text
-        ===
-        currentQuote.text
-        &&
-        quote.author
-        ===
-        currentQuote.author
-    );
+
+if(active){
 
 
-
-    const span =
-    favoriteButton.querySelector(
-        "span"
-    );
+button.innerHTML =
+"❤️ Đã yêu thích";
 
 
-
-    const language =
-    localStorage.getItem(
-        "language"
-    )
-    ||
-    "vi";
+button.classList.add(
+"active"
+);
 
 
-
-    if(isFavorite){
-
-
-        favoriteButton.classList.add(
-            "active"
-        );
+}
+else{
 
 
-        if(span){
+button.innerHTML =
+"♡ Yêu thích";
 
 
-            span.textContent =
-            language === "en"
-            ?
-            "Unfavorite"
-            :
-            "Bỏ yêu thích";
+button.classList.remove(
+"active"
+);
 
 
-        }
-
-
-    }
-    else{
-
-
-        favoriteButton.classList.remove(
-            "active"
-        );
-
-
-        if(span){
-
-
-            span.textContent =
-            language === "en"
-            ?
-            "Favorite"
-            :
-            "Yêu thích";
-
-
-        }
-
-
-    }
+}
 
 
 }
@@ -942,225 +865,22 @@ function updateFavoriteButton(
 
 
 
-/* ===============================
-   COPY QUOTE
-================================ */
 
-
-function copyCurrentQuote(
-    copyButton
-){
-
-
-    const textToCopy =
-    `"${currentQuote.text}" — ${currentQuote.author}`;
+function copyQuote(){
 
 
 
-    navigator.clipboard
-    .writeText(
-        textToCopy
-    )
-    .then(
-        ()=>{
-            showCopySuccess(
-                copyButton
-            );
-        }
-    )
-    .catch(
-        ()=>{
-            fallbackCopy(
-                textToCopy,
-                copyButton
-            );
-        }
-    );
+let text =
+
+`
+"${currentQuote.text}"
+— ${currentQuote.author}
+`;
+
+
+
+navigator.clipboard.writeText(text);
+
 
 
 }
-
-
-
-
-
-
-
-/* ===============================
-   COPY FALLBACK
-================================ */
-
-
-function fallbackCopy(
-    text,
-    copyButton
-){
-
-
-    const textarea =
-    document.createElement(
-        "textarea"
-    );
-
-
-
-    textarea.value =
-    text;
-
-
-
-    textarea.style.position =
-    "fixed";
-
-
-
-    textarea.style.opacity =
-    "0";
-
-
-
-    document.body.appendChild(
-        textarea
-    );
-
-
-
-    textarea.select();
-
-
-
-    try{
-
-
-        document.execCommand(
-            "copy"
-        );
-
-
-        showCopySuccess(
-            copyButton
-        );
-
-
-    }
-    catch(error){
-
-
-        console.error(
-            "Không thể sao chép câu nói:",
-            error
-        );
-
-
-    }
-
-
-
-    document.body.removeChild(
-        textarea
-    );
-
-
-}
-
-
-
-
-
-
-
-/* ===============================
-   COPY SUCCESS
-================================ */
-
-
-function showCopySuccess(
-    copyButton
-){
-
-
-    const span =
-    copyButton.querySelector(
-        "span"
-    );
-
-
-
-    if(!span)
-        return;
-
-
-
-    const language =
-    localStorage.getItem(
-        "language"
-    )
-    ||
-    "vi";
-
-
-
-    const originalText =
-    language === "en"
-    ?
-    "Copy Quote"
-    :
-    "Sao chép";
-
-
-
-    span.textContent =
-    language === "en"
-    ?
-    "Copied!"
-    :
-    "Đã sao chép!";
-
-
-
-    setTimeout(
-        ()=>{
-            span.textContent =
-            originalText;
-        },
-        1500
-    );
-
-
-}
-
-
-
-
-
-
-
-/* ===============================
-   SYNC LANGUAGE
-================================ */
-
-
-window.addEventListener(
-"languageChanged",
-()=>{
-
-
-    const favoriteButton =
-    document.getElementById(
-        "favorite-quote"
-    );
-
-
-
-    if(favoriteButton){
-
-
-        updateFavoriteButton(
-            favoriteButton
-        );
-
-
-    }
-
-
-});
