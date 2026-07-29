@@ -1,23 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
 
 
-    // ================= HÀM ĐỊNH DẠNG THỜI GIAN =================
+    // =========================================================
+    // HÀM ĐỊNH DẠNG THỜI GIAN
+    // =========================================================
+
 
     function formatTime(seconds) {
 
-        if (isNaN(seconds)) {
+
+        if (isNaN(seconds) || !isFinite(seconds)) {
+
             return "00:00";
+
         }
 
 
-        let min = Math.floor(seconds / 60);
+        let min =
+            Math.floor(seconds / 60);
 
-        let sec = Math.floor(seconds % 60);
+
+        let sec =
+            Math.floor(seconds % 60);
 
 
         return String(min).padStart(2, "0")
             + ":"
             + String(sec).padStart(2, "0");
+
 
     }
 
@@ -25,41 +35,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ================= WEATHER =================
-    // Vị trí: Phần tải và hiển thị thời tiết Dashboard
+    // =========================================================
+    // WEATHER
+    // =========================================================
 
-    const weather = document.getElementById("weather");
+
+    const weather =
+        document.getElementById("weather");
 
 
     if (weather) {
 
-        // Hiển thị trạng thái đang tải trong lúc chờ API
-        weather.innerHTML = "Đang tải thời tiết...";
+
+        weather.innerHTML =
+            "Đang tải thời tiết...";
 
 
         fetch(
             "https://api.open-meteo.com/v1/forecast?latitude=10.8231&longitude=106.6297&current=temperature_2m,weather_code&timezone=Asia%2FHo_Chi_Minh"
         )
 
+
         .then(response => {
 
+
             if (!response.ok) {
-                throw new Error("Weather API Error");
+
+                throw new Error(
+                    "Weather API Error"
+                );
+
             }
+
 
             return response.json();
 
+
         })
+
 
         .then(data => {
 
-            // Kiểm tra dữ liệu API có tồn tại hay không
+
             if (
                 !data.current ||
                 typeof data.current.temperature_2m === "undefined"
             ) {
 
-                throw new Error("Weather data not found");
+                throw new Error(
+                    "Weather data not found"
+                );
 
             }
 
@@ -76,94 +101,110 @@ document.addEventListener("DOMContentLoaded", () => {
                 "☀️ Trời quang";
 
 
-            // Trời quang
+
             if (code === 0) {
 
-                status = "☀️ Trời quang";
+                status =
+                    "☀️ Trời quang";
 
             }
 
-            // Có mây nhẹ
-            else if (code === 1 || code === 2) {
 
-                status = "🌤 Có mây";
+            else if (
+                code === 1 ||
+                code === 2
+            ) {
+
+                status =
+                    "🌤 Có mây";
 
             }
 
-            // Nhiều mây
+
             else if (code === 3) {
 
-                status = "☁️ Nhiều mây";
+                status =
+                    "☁️ Nhiều mây";
 
             }
 
-            // Sương mù
+
             else if (
                 code === 45 ||
                 code === 48
             ) {
 
-                status = "🌫 Có sương mù";
+                status =
+                    "🌫 Có sương mù";
 
             }
 
-            // Mưa phùn
+
             else if (
                 code >= 51 &&
                 code <= 57
             ) {
 
-                status = "🌦 Mưa phùn";
+                status =
+                    "🌦 Mưa phùn";
 
             }
 
-            // Mưa
+
             else if (
                 code >= 61 &&
                 code <= 67
             ) {
 
-                status = "🌧 Có mưa";
+                status =
+                    "🌧 Có mưa";
 
             }
 
-            // Tuyết
+
             else if (
                 code >= 71 &&
                 code <= 77
             ) {
 
-                status = "❄️ Có tuyết";
+                status =
+                    "❄️ Có tuyết";
 
             }
 
-            // Mưa rào
+
             else if (
                 code >= 80 &&
                 code <= 82
             ) {
 
-                status = "🌦 Mưa rào";
+                status =
+                    "🌦 Mưa rào";
 
             }
 
-            // Mưa lớn / dông
+
             else if (
                 code >= 95 &&
                 code <= 99
             ) {
 
-                status = "⛈ Có dông";
+                status =
+                    "⛈ Có dông";
 
             }
+
 
 
             weather.innerHTML =
                 `${status}<br>${temp}°C`;
 
+
         })
 
+
         .catch(error => {
+
 
             console.error(
                 "Không thể tải dữ liệu thời tiết:",
@@ -174,7 +215,9 @@ document.addEventListener("DOMContentLoaded", () => {
             weather.innerHTML =
                 "⚠️ Không thể tải thời tiết";
 
+
         });
+
 
     }
 
@@ -182,40 +225,78 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ================= WHITE NOISE =================
 
-    const noiseSelect = document.getElementById("noiseSelect");
-
-    const noisePlayer = document.getElementById("noisePlayer");
-
-    const noisePlay = document.getElementById("noisePlay");
-
-    const noisePause = document.getElementById("noisePause");
-
-    const noiseStop = document.getElementById("noiseStop");
-
-    const noiseBack = document.getElementById("noiseBack");
-
-    const noiseForward = document.getElementById("noiseForward");
-
-    const noiseVolumeDown = document.getElementById("noiseVolumeDown");
-
-    const noiseVolumeUp = document.getElementById("noiseVolumeUp");
-
-    const noiseProgress = document.getElementById("noiseProgress");
-
-    const noiseVolume = document.getElementById("noiseVolume");
-
-    const noiseVolumeValue = document.getElementById("noiseVolumeValue");
-
-    const noiseSpeed = document.getElementById("noiseSpeed");
-
-    const noiseCurrent = document.getElementById("noiseCurrent");
-
-    const noiseDuration = document.getElementById("noiseDuration");
+    // =========================================================
+    // WHITE NOISE / ÂM THANH THƯ GIÃN
+    // =========================================================
 
 
+    const noiseSelect =
+        document.getElementById("noiseSelect");
 
+
+    const noisePlayer =
+        document.getElementById("noisePlayer");
+
+
+    const noisePlay =
+        document.getElementById("noisePlay");
+
+
+    const noisePause =
+        document.getElementById("noisePause");
+
+
+    const noiseStop =
+        document.getElementById("noiseStop");
+
+
+    const noiseBack =
+        document.getElementById("noiseBack");
+
+
+    const noiseForward =
+        document.getElementById("noiseForward");
+
+
+    const noiseVolumeDown =
+        document.getElementById("noiseVolumeDown");
+
+
+    const noiseVolumeUp =
+        document.getElementById("noiseVolumeUp");
+
+
+    const noiseProgress =
+        document.getElementById("noiseProgress");
+
+
+    const noiseVolume =
+        document.getElementById("noiseVolume");
+
+
+    const noiseVolumeValue =
+        document.getElementById("noiseVolumeValue");
+
+
+    const noiseSpeed =
+        document.getElementById("noiseSpeed");
+
+
+    const noiseCurrent =
+        document.getElementById("noiseCurrent");
+
+
+    const noiseDuration =
+        document.getElementById("noiseDuration");
+
+
+
+
+
+    // =========================================================
+    // CÀI ĐẶT MẶC ĐỊNH
+    // =========================================================
 
 
     if (noisePlayer) {
@@ -224,91 +305,227 @@ document.addEventListener("DOMContentLoaded", () => {
 
         noisePlayer.volume = 0.75;
 
+        noisePlayer.playbackRate = 1;
+
     }
 
 
 
 
 
-    if (noiseSelect) {
-
-        noiseSelect.onchange = () => {
-
-            noisePlayer.src =
-                noiseSelect.value;
+    // =========================================================
+    // CHỌN ÂM THANH
+    // =========================================================
 
 
-            noisePlayer.play();
+    if (noiseSelect && noisePlayer) {
 
 
-            localStorage.setItem(
-                "noise",
-                noiseSelect.value
-            );
-
-        };
+        noiseSelect.addEventListener(
+            "change",
+            () => {
 
 
+                const selectedSound =
+                    noiseSelect.value;
 
-        let saved =
+
+                if (!selectedSound) {
+
+
+                    noisePlayer.pause();
+
+
+                    noisePlayer.removeAttribute(
+                        "src"
+                    );
+
+
+                    noisePlayer.load();
+
+
+                    return;
+
+
+                }
+
+
+
+                noisePlayer.src =
+                    selectedSound;
+
+
+                noisePlayer.load();
+
+
+                noisePlayer.play()
+                    .catch(error => {
+
+
+                        console.log(
+                            "Trình duyệt yêu cầu người dùng bấm Phát:",
+                            error
+                        );
+
+
+                    });
+
+
+
+                localStorage.setItem(
+                    "noise",
+                    selectedSound
+                );
+
+
+            }
+        );
+
+
+
+
+        const savedNoise =
             localStorage.getItem("noise");
 
 
-        if (saved) {
 
-            noiseSelect.value = saved;
+        if (savedNoise) {
 
-            noisePlayer.src = saved;
+
+            const savedOption =
+                noiseSelect.querySelector(
+                    `option[value="${CSS.escape(savedNoise)}"]`
+                );
+
+
+            if (savedOption) {
+
+
+                noiseSelect.value =
+                    savedNoise;
+
+
+                noisePlayer.src =
+                    savedNoise;
+
+
+            }
+
 
         }
 
+
     }
 
 
 
 
 
-    if (noisePlay) {
 
-        noisePlay.onclick = () =>
+    // =========================================================
+    // PHÁT
+    // =========================================================
+
+
+    if (noisePlay && noisePlayer) {
+
+
+        noisePlay.onclick = () => {
+
+
+            if (!noisePlayer.src) {
+
+
+                if (noiseSelect) {
+
+
+                    noiseSelect.focus();
+
+
+                }
+
+
+                return;
+
+
+            }
+
+
             noisePlayer.play();
 
-    }
-
-
-
-
-
-    if (noisePause) {
-
-        noisePause.onclick = () =>
-            noisePlayer.pause();
-
-    }
-
-
-
-
-
-    if (noiseStop) {
-
-        noiseStop.onclick = () => {
-
-            noisePlayer.pause();
-
-            noisePlayer.currentTime = 0;
 
         };
 
+
     }
 
 
 
 
 
-    if (noiseBack) {
+
+    // =========================================================
+    // TẠM DỪNG
+    // =========================================================
+
+
+    if (noisePause && noisePlayer) {
+
+
+        noisePause.onclick = () => {
+
+
+            noisePlayer.pause();
+
+
+        };
+
+
+    }
+
+
+
+
+
+
+    // =========================================================
+    // DỪNG
+    // =========================================================
+
+
+    if (noiseStop && noisePlayer) {
+
+
+        noiseStop.onclick = () => {
+
+
+            noisePlayer.pause();
+
+
+            noisePlayer.currentTime =
+                0;
+
+
+        };
+
+
+    }
+
+
+
+
+
+
+    // =========================================================
+    // TUA LÙI 10 GIÂY
+    // =========================================================
+
+
+    if (noiseBack && noisePlayer) {
+
 
         noiseBack.onclick = () => {
+
 
             noisePlayer.currentTime =
                 Math.max(
@@ -316,7 +533,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     noisePlayer.currentTime - 10
                 );
 
+
         };
+
 
     }
 
@@ -324,13 +543,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseForward) {
+
+    // =========================================================
+    // TUA TIẾN 10 GIÂY
+    // =========================================================
+
+
+    if (noiseForward && noisePlayer) {
+
 
         noiseForward.onclick = () => {
 
-            noisePlayer.currentTime += 10;
+
+            if (
+                isFinite(
+                    noisePlayer.duration
+                )
+            ) {
+
+
+                noisePlayer.currentTime =
+                    Math.min(
+                        noisePlayer.duration,
+                        noisePlayer.currentTime + 10
+                    );
+
+
+            }
+
 
         };
+
 
     }
 
@@ -338,9 +581,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseVolumeDown) {
+
+    // =========================================================
+    // GIẢM ÂM LƯỢNG
+    // =========================================================
+
+
+    if (
+        noiseVolumeDown &&
+        noisePlayer
+    ) {
+
 
         noiseVolumeDown.onclick = () => {
+
 
             let currentVolume =
                 Math.max(
@@ -353,14 +607,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentVolume;
 
 
-            noiseVolume.value =
-                Math.round(currentVolume * 100);
+
+            if (noiseVolume) {
 
 
-            noiseVolumeValue.innerHTML =
-                noiseVolume.value + "%";
+                noiseVolume.value =
+                    Math.round(
+                        currentVolume * 100
+                    );
+
+
+            }
+
+
+
+            if (noiseVolumeValue) {
+
+
+                noiseVolumeValue.innerHTML =
+                    Math.round(
+                        currentVolume * 100
+                    ) + "%";
+
+
+            }
+
 
         };
+
 
     }
 
@@ -368,9 +642,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseVolumeUp) {
+
+    // =========================================================
+    // TĂNG ÂM LƯỢNG
+    // =========================================================
+
+
+    if (
+        noiseVolumeUp &&
+        noisePlayer
+    ) {
+
 
         noiseVolumeUp.onclick = () => {
+
 
             let currentVolume =
                 Math.min(
@@ -383,14 +668,34 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentVolume;
 
 
-            noiseVolume.value =
-                Math.round(currentVolume * 100);
+
+            if (noiseVolume) {
 
 
-            noiseVolumeValue.innerHTML =
-                noiseVolume.value + "%";
+                noiseVolume.value =
+                    Math.round(
+                        currentVolume * 100
+                    );
+
+
+            }
+
+
+
+            if (noiseVolumeValue) {
+
+
+                noiseVolumeValue.innerHTML =
+                    Math.round(
+                        currentVolume * 100
+                    ) + "%";
+
+
+            }
+
 
         };
+
 
     }
 
@@ -398,18 +703,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseVolume) {
+
+    // =========================================================
+    // THANH ÂM LƯỢNG
+    // =========================================================
+
+
+    if (
+        noiseVolume &&
+        noisePlayer
+    ) {
+
 
         noiseVolume.oninput = () => {
 
+
+            const volume =
+                Number(
+                    noiseVolume.value
+                ) / 100;
+
+
             noisePlayer.volume =
-                noiseVolume.value / 100;
+                volume;
 
 
-            noiseVolumeValue.innerHTML =
-                noiseVolume.value + "%";
+
+            if (noiseVolumeValue) {
+
+
+                noiseVolumeValue.innerHTML =
+                    noiseVolume.value + "%";
+
+
+            }
+
 
         };
+
 
     }
 
@@ -417,54 +748,131 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseSpeed) {
+
+    // =========================================================
+    // TỐC ĐỘ PHÁT
+    // =========================================================
+
+
+    if (
+        noiseSpeed &&
+        noisePlayer
+    ) {
+
 
         noiseSpeed.onchange = () => {
 
+
             noisePlayer.playbackRate =
-                Number(noiseSpeed.value);
+                Number(
+                    noiseSpeed.value
+                );
+
+
+            localStorage.setItem(
+                "noiseSpeed",
+                noiseSpeed.value
+            );
+
 
         };
+
+
+
+        const savedSpeed =
+            localStorage.getItem(
+                "noiseSpeed"
+            );
+
+
+
+        if (savedSpeed) {
+
+
+            noiseSpeed.value =
+                savedSpeed;
+
+
+            noisePlayer.playbackRate =
+                Number(savedSpeed);
+
+
+        }
+
 
     }
 
 
 
+
+
+
+    // =========================================================
+    // KHI ÂM THANH TẢI XONG
+    // =========================================================
 
 
     if (noisePlayer) {
 
-        noisePlayer.onloadedmetadata = () => {
 
-            noiseDuration.innerHTML =
-                formatTime(
-                    noisePlayer.duration
-                );
-
-        };
+        noisePlayer.onloadedmetadata =
+            () => {
 
 
+                if (noiseDuration) {
 
 
-        noisePlayer.ontimeupdate = () => {
-
-            noiseCurrent.innerHTML =
-                formatTime(
-                    noisePlayer.currentTime
-                );
+                    noiseDuration.innerHTML =
+                        formatTime(
+                            noisePlayer.duration
+                        );
 
 
-            if (noisePlayer.duration) {
+                }
 
-                noiseProgress.value =
-                    (
-                        noisePlayer.currentTime /
+
+            };
+
+
+
+        noisePlayer.ontimeupdate =
+            () => {
+
+
+                if (noiseCurrent) {
+
+
+                    noiseCurrent.innerHTML =
+                        formatTime(
+                            noisePlayer.currentTime
+                        );
+
+
+                }
+
+
+
+                if (
+                    noiseProgress &&
+                    noisePlayer.duration &&
+                    isFinite(
                         noisePlayer.duration
-                    ) * 100;
+                    )
+                ) {
 
-            }
 
-        };
+                    noiseProgress.value =
+                        (
+                            noisePlayer.currentTime /
+                            noisePlayer.duration
+                        ) * 100;
+
+
+                }
+
+
+            };
+
 
     }
 
@@ -472,18 +880,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (noiseProgress) {
+
+    // =========================================================
+    // THANH TIẾN TRÌNH ÂM THANH
+    // =========================================================
+
+
+    if (
+        noiseProgress &&
+        noisePlayer
+    ) {
+
 
         noiseProgress.oninput = () => {
 
-            noisePlayer.currentTime =
-                (
-                    noiseProgress.value / 100
+
+            if (
+                noisePlayer.duration &&
+                isFinite(
+                    noisePlayer.duration
                 )
-                *
-                noisePlayer.duration;
+            ) {
+
+
+                noisePlayer.currentTime =
+                    (
+                        Number(
+                            noiseProgress.value
+                        ) / 100
+                    )
+                    *
+                    noisePlayer.duration;
+
+
+            }
+
 
         };
+
 
     }
 
@@ -491,58 +925,114 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    // ================= VIDEO =================
+
+
+    // =========================================================
+    // VIDEO
+    // =========================================================
+
 
     const videoSelect =
-        document.getElementById("videoSelect");
+        document.getElementById(
+            "videoSelect"
+        );
+
 
     const studyVideo =
-        document.getElementById("studyVideo");
+        document.getElementById(
+            "studyVideo"
+        );
+
 
     const youtubeVideo =
-        document.getElementById("youtubeVideo");
+        document.getElementById(
+            "youtubeVideo"
+        );
+
 
     const videoPlay =
-        document.getElementById("videoPlay");
+        document.getElementById(
+            "videoPlay"
+        );
+
 
     const videoPause =
-        document.getElementById("videoPause");
+        document.getElementById(
+            "videoPause"
+        );
+
 
     const videoStop =
-        document.getElementById("videoStop");
+        document.getElementById(
+            "videoStop"
+        );
+
 
     const videoBack =
-        document.getElementById("videoBack");
+        document.getElementById(
+            "videoBack"
+        );
+
 
     const videoForward =
-        document.getElementById("videoForward");
+        document.getElementById(
+            "videoForward"
+        );
+
 
     const videoVolume =
-        document.getElementById("videoVolume");
+        document.getElementById(
+            "videoVolume"
+        );
+
 
     const videoVolumeDown =
-        document.getElementById("videoVolumeDown");
+        document.getElementById(
+            "videoVolumeDown"
+        );
+
 
     const videoVolumeUp =
-        document.getElementById("videoVolumeUp");
+        document.getElementById(
+            "videoVolumeUp"
+        );
+
 
     const videoSpeed =
-        document.getElementById("videoSpeed");
+        document.getElementById(
+            "videoSpeed"
+        );
+
 
     const videoProgress =
-        document.getElementById("videoProgress");
+        document.getElementById(
+            "videoProgress"
+        );
+
 
     const videoFullscreen =
-        document.getElementById("videoFullscreen");
+        document.getElementById(
+            "videoFullscreen"
+        );
+
 
     const videoPip =
-        document.getElementById("videoPip");
+        document.getElementById(
+            "videoPip"
+        );
+
 
     const videoCurrent =
-        document.getElementById("videoCurrent");
+        document.getElementById(
+            "videoCurrent"
+        );
+
 
     const videoDuration =
-        document.getElementById("videoDuration");
+        document.getElementById(
+            "videoDuration"
+        );
+
 
 
 
@@ -550,55 +1040,104 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (studyVideo) {
 
+
         studyVideo.loop = true;
+
+
+        studyVideo.volume = 1;
+
+
+        studyVideo.playbackRate = 1;
+
 
     }
 
 
 
+
+
+
+    // =========================================================
+    // CHỌN VIDEO
+    // =========================================================
 
 
     if (videoSelect) {
 
+
         videoSelect.onchange = () => {
 
 
-            if (videoSelect.value === "youtube") {
+            if (
+                videoSelect.value ===
+                "youtube"
+            ) {
 
 
-                studyVideo.pause();
-
-                studyVideo.style.display =
-                    "none";
+                if (studyVideo) {
 
 
-                youtubeVideo.style.display =
-                    "block";
+                    studyVideo.pause();
 
 
-                youtubeVideo.src =
-                    "https://www.youtube.com/embed/jfKfPfyJRdk";
+                    studyVideo.style.display =
+                        "none";
+
+
+                }
+
+
+
+                if (youtubeVideo) {
+
+
+                    youtubeVideo.style.display =
+                        "block";
+
+
+                    youtubeVideo.src =
+                        "https://www.youtube.com/embed/jfKfPfyJRdk";
+
+
+                }
 
 
             }
+
 
             else {
 
 
-                youtubeVideo.src =
-                    "";
+                if (youtubeVideo) {
 
 
-                youtubeVideo.style.display =
-                    "none";
+                    youtubeVideo.src =
+                        "";
 
 
-                studyVideo.style.display =
-                    "block";
+                    youtubeVideo.style.display =
+                        "none";
+
+
+                }
+
+
+
+                if (studyVideo) {
+
+
+                    studyVideo.style.display =
+                        "block";
+
+
+                }
+
 
             }
 
+
         };
+
 
     }
 
@@ -606,37 +1145,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoPlay) {
+
+    // =========================================================
+    // VIDEO PLAY
+    // =========================================================
+
+
+    if (
+        videoPlay &&
+        studyVideo
+    ) {
+
 
         videoPlay.onclick = () =>
             studyVideo.play();
 
+
     }
 
 
 
 
 
-    if (videoPause) {
+
+    // =========================================================
+    // VIDEO PAUSE
+    // =========================================================
+
+
+    if (
+        videoPause &&
+        studyVideo
+    ) {
+
 
         videoPause.onclick = () =>
             studyVideo.pause();
 
+
     }
 
 
 
 
 
-    if (videoStop) {
+
+    // =========================================================
+    // VIDEO STOP
+    // =========================================================
+
+
+    if (
+        videoStop &&
+        studyVideo
+    ) {
+
 
         videoStop.onclick = () => {
 
+
             studyVideo.pause();
 
-            studyVideo.currentTime = 0;
+
+            studyVideo.currentTime =
+                0;
+
 
         };
+
 
     }
 
@@ -644,13 +1220,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoBack) {
+
+    // =========================================================
+    // VIDEO BACK
+    // =========================================================
+
+
+    if (
+        videoBack &&
+        studyVideo
+    ) {
+
 
         videoBack.onclick = () => {
 
-            studyVideo.currentTime -= 10;
+
+            studyVideo.currentTime =
+                Math.max(
+                    0,
+                    studyVideo.currentTime - 10
+                );
+
 
         };
+
 
     }
 
@@ -658,13 +1251,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoForward) {
+
+    // =========================================================
+    // VIDEO FORWARD
+    // =========================================================
+
+
+    if (
+        videoForward &&
+        studyVideo
+    ) {
+
 
         videoForward.onclick = () => {
 
-            studyVideo.currentTime += 10;
+
+            if (
+                isFinite(
+                    studyVideo.duration
+                )
+            ) {
+
+
+                studyVideo.currentTime =
+                    Math.min(
+                        studyVideo.duration,
+                        studyVideo.currentTime + 10
+                    );
+
+
+            }
+
 
         };
+
 
     }
 
@@ -672,14 +1292,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoVolume) {
+
+    // =========================================================
+    // VIDEO VOLUME
+    // =========================================================
+
+
+    if (
+        videoVolume &&
+        studyVideo
+    ) {
+
 
         videoVolume.oninput = () => {
 
+
             studyVideo.volume =
-                videoVolume.value / 100;
+                Number(
+                    videoVolume.value
+                ) / 100;
+
 
         };
+
 
     }
 
@@ -687,9 +1322,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoVolumeDown) {
+
+    // =========================================================
+    // VIDEO VOLUME DOWN
+    // =========================================================
+
+
+    if (
+        videoVolumeDown &&
+        studyVideo
+    ) {
+
 
         videoVolumeDown.onclick = () => {
+
 
             let currentVolume =
                 Math.max(
@@ -702,12 +1348,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentVolume;
 
 
-            videoVolume.value =
-                Math.round(
-                    currentVolume * 100
-                );
+            if (videoVolume) {
+
+
+                videoVolume.value =
+                    Math.round(
+                        currentVolume * 100
+                    );
+
+
+            }
+
 
         };
+
 
     }
 
@@ -715,9 +1369,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoVolumeUp) {
+
+    // =========================================================
+    // VIDEO VOLUME UP
+    // =========================================================
+
+
+    if (
+        videoVolumeUp &&
+        studyVideo
+    ) {
+
 
         videoVolumeUp.onclick = () => {
+
 
             let currentVolume =
                 Math.min(
@@ -730,12 +1395,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentVolume;
 
 
-            videoVolume.value =
-                Math.round(
-                    currentVolume * 100
-                );
+            if (videoVolume) {
+
+
+                videoVolume.value =
+                    Math.round(
+                        currentVolume * 100
+                    );
+
+
+            }
+
 
         };
+
 
     }
 
@@ -743,54 +1416,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoSpeed) {
+
+    // =========================================================
+    // VIDEO SPEED
+    // =========================================================
+
+
+    if (
+        videoSpeed &&
+        studyVideo
+    ) {
+
 
         videoSpeed.onchange = () => {
 
+
             studyVideo.playbackRate =
-                Number(videoSpeed.value);
+                Number(
+                    videoSpeed.value
+                );
+
 
         };
+
 
     }
 
 
 
+
+
+
+    // =========================================================
+    // VIDEO METADATA
+    // =========================================================
 
 
     if (studyVideo) {
 
-        studyVideo.onloadedmetadata = () => {
 
-            videoDuration.innerHTML =
-                formatTime(
-                    studyVideo.duration
-                );
-
-        };
+        studyVideo.onloadedmetadata =
+            () => {
 
 
+                if (videoDuration) {
 
 
-        studyVideo.ontimeupdate = () => {
-
-            videoCurrent.innerHTML =
-                formatTime(
-                    studyVideo.currentTime
-                );
+                    videoDuration.innerHTML =
+                        formatTime(
+                            studyVideo.duration
+                        );
 
 
-            if (studyVideo.duration) {
+                }
 
-                videoProgress.value =
-                    (
-                        studyVideo.currentTime /
+
+            };
+
+
+
+        studyVideo.ontimeupdate =
+            () => {
+
+
+                if (videoCurrent) {
+
+
+                    videoCurrent.innerHTML =
+                        formatTime(
+                            studyVideo.currentTime
+                        );
+
+
+                }
+
+
+
+                if (
+                    videoProgress &&
+                    studyVideo.duration &&
+                    isFinite(
                         studyVideo.duration
-                    ) * 100;
+                    )
+                ) {
 
-            }
 
-        };
+                    videoProgress.value =
+                        (
+                            studyVideo.currentTime /
+                            studyVideo.duration
+                        ) * 100;
+
+
+                }
+
+
+            };
+
 
     }
 
@@ -798,18 +1520,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoProgress) {
+
+    // =========================================================
+    // VIDEO PROGRESS
+    // =========================================================
+
+
+    if (
+        videoProgress &&
+        studyVideo
+    ) {
+
 
         videoProgress.oninput = () => {
 
-            studyVideo.currentTime =
-                (
-                    videoProgress.value / 100
+
+            if (
+                studyVideo.duration &&
+                isFinite(
+                    studyVideo.duration
                 )
-                *
-                studyVideo.duration;
+            ) {
+
+
+                studyVideo.currentTime =
+                    (
+                        Number(
+                            videoProgress.value
+                        ) / 100
+                    )
+                    *
+                    studyVideo.duration;
+
+
+            }
+
 
         };
+
 
     }
 
@@ -817,13 +1565,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoFullscreen) {
+
+    // =========================================================
+    // FULLSCREEN
+    // =========================================================
+
+
+    if (
+        videoFullscreen &&
+        studyVideo
+    ) {
+
 
         videoFullscreen.onclick = () => {
 
-            studyVideo.requestFullscreen();
+
+            if (
+                studyVideo.requestFullscreen
+            ) {
+
+
+                studyVideo.requestFullscreen();
+
+
+            }
+
 
         };
+
 
     }
 
@@ -831,27 +1600,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    if (videoPip) {
+
+    // =========================================================
+    // PICTURE IN PICTURE
+    // =========================================================
+
+
+    if (
+        videoPip &&
+        studyVideo
+    ) {
+
 
         videoPip.onclick = async () => {
 
 
             try {
 
-                await studyVideo.requestPictureInPicture();
+
+                if (
+                    document.pictureInPictureElement
+                ) {
+
+
+                    await document.exitPictureInPicture();
+
+
+                    return;
+
+
+                }
+
+
+
+                if (
+                    document.pictureInPictureEnabled &&
+                    studyVideo.requestPictureInPicture
+                ) {
+
+
+                    await studyVideo.requestPictureInPicture();
+
+
+                }
+
 
             }
 
-            catch (e) {
+
+            catch (error) {
+
 
                 console.error(
                     "Picture in Picture không khả dụng:",
-                    e
+                    error
                 );
+
 
             }
 
+
         };
+
 
     }
 

@@ -2133,3 +2133,303 @@ body.dark .media-speed-box select {
 
 
 }
+
+
+/* =========================================================
+   WHITE NOISE - KHUNG CHỌN ÂM THANH VÀ TỐC ĐỘ PHÁT
+========================================================= */
+
+
+/* ================= KHUNG CHUNG ================= */
+
+.white-noise-card {
+
+    width: 100%;
+
+}
+
+
+.media-select-box,
+.media-speed-box {
+
+    width: 100%;
+
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, .06);
+
+}
+
+
+
+/* ================= TIÊU ĐỀ TRONG KHUNG ================= */
+
+.media-select-box label,
+.media-speed-box label {
+
+    display: block;
+
+    width: 100%;
+
+    font-weight: 600;
+
+    color: #2563eb;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+/* ================= MENU DỌC ================= */
+
+.media-select-box select,
+.media-speed-box select {
+
+    display: block;
+
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    background: white;
+
+    color: #334155;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition: .2s;
+
+}
+
+
+
+/* Khi bấm vào menu */
+
+.media-select-box select:focus,
+.media-speed-box select:focus {
+
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .12);
+
+}
+
+
+
+/* ================= KHUNG ÂM LƯỢNG ================= */
+
+.range-control {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+
+.range-control input[type="range"] {
+
+    flex: 1;
+
+    width: auto;
+
+    margin: 0;
+
+}
+
+
+
+#noiseVolumeValue {
+
+    min-width: 45px;
+
+    text-align: center;
+
+    font-weight: 600;
+
+    color: #2563eb;
+
+}
+
+
+
+/* ================= THANH ÂM LƯỢNG ================= */
+
+#noiseVolume {
+
+    cursor: pointer;
+
+}
+
+
+
+/* ================= THANH TIẾN TRÌNH ================= */
+
+#noiseProgress {
+
+    width: 100%;
+
+    margin: 10px 0 20px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* ================= NÚT MEDIA ================= */
+
+.media-controls {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    margin: 15px 0;
+
+}
+
+
+
+.media-controls button {
+
+    margin: 0;
+
+}
+
+
+
+/* ================= THỜI GIAN ================= */
+
+.media-time {
+
+    text-align: center;
+
+    margin: 10px 0;
+
+    color: #64748b;
+
+    font-weight: 500;
+
+}
+
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+body.dark .media-select-box,
+body.dark .media-speed-box {
+
+    background: #1e293b;
+
+    border-color: #334155;
+
+}
+
+
+
+body.dark .media-select-box label,
+body.dark .media-speed-box label {
+
+    color: #38bdf8;
+
+}
+
+
+
+body.dark .media-select-box select,
+body.dark .media-speed-box select {
+
+    background: #0f172a;
+
+    color: white;
+
+    border-color: #475569;
+
+}
+
+
+
+body.dark #noiseVolumeValue {
+
+    color: #38bdf8;
+
+}
+
+
+
+body.dark .media-time {
+
+    color: #cbd5e1;
+
+}
+
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width: 600px) {
+
+
+    .media-controls {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 8px;
+
+    }
+
+
+
+    .media-controls button {
+
+        width: 100%;
+
+        margin: 0;
+
+    }
+
+
+
+    .range-control {
+
+        gap: 8px;
+
+    }
+
+
+}

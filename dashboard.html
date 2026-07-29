@@ -258,7 +258,7 @@
                     <div class="time-control">
 
 
-                        <button id="minusTime">
+                        <button id="minusTime" type="button">
                             -
                         </button>
 
@@ -273,7 +273,7 @@
                         </span>
 
 
-                        <button id="plusTime">
+                        <button id="plusTime" type="button">
                             +
                         </button>
 
@@ -285,17 +285,17 @@
                     <div class="pomodoro-buttons">
 
 
-                        <button id="startBtn" data-vn="Bắt đầu" data-en="Start">
+                        <button id="startBtn" type="button" data-vn="Bắt đầu" data-en="Start">
                             Bắt đầu
                         </button>
 
 
-                        <button id="pauseBtn" data-vn="Dừng" data-en="Pause">
+                        <button id="pauseBtn" type="button" data-vn="Dừng" data-en="Pause">
                             Dừng
                         </button>
 
 
-                        <button id="resetBtn" data-vn="Reset" data-en="Reset">
+                        <button id="resetBtn" type="button" data-vn="Reset" data-en="Reset">
                             Reset
                         </button>
 
@@ -324,7 +324,7 @@
 
 
 
-                        <button id="addTodo" data-vn="Thêm" data-en="Add">
+                        <button id="addTodo" type="button" data-vn="Thêm" data-en="Add">
                             Thêm
                         </button>
 
@@ -433,41 +433,56 @@
 
 
 
-                <select id="noiseSelect">
+                <div class="media-select-box">
 
 
-                    <option value="" data-vn="-- Chọn âm thanh --" data-en="-- Select sound --">
+                    <label for="noiseSelect"
+                        data-vn="🎵 Chọn âm thanh"
+                        data-en="🎵 Select sound">
 
-                        -- Chọn âm thanh --
+                        🎵 Chọn âm thanh
 
-                    </option>
-
-
-
-                    <option value="audio/Rain Sounds.mp3">
-
-                        🌧 Rain Sounds
-
-                    </option>
+                    </label>
 
 
+                    <select id="noiseSelect">
 
-                    <option value="audio/Coffee Sounds.mp3">
 
-                        ☕ Coffee Sounds
+                        <option value="" data-vn="-- Chọn âm thanh --" data-en="-- Select sound --">
 
-                    </option>
+                            -- Chọn âm thanh --
+
+                        </option>
 
 
 
-                    <option value="audio/Forest.mp3">
+                        <option value="audio/Rain Sounds.mp3">
 
-                        🌲 Forest
+                            🌧 Rain Sounds
 
-                    </option>
+                        </option>
 
 
-                </select>
+
+                        <option value="audio/Coffee Sounds.mp3">
+
+                            ☕ Coffee Sounds
+
+                        </option>
+
+
+
+                        <option value="audio/Forest.mp3">
+
+                            🌲 Forest
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
 
 
 
@@ -480,7 +495,7 @@
                 <div class="media-controls">
 
 
-                    <button id="noisePlay">
+                    <button id="noisePlay" type="button">
 
                         ▶
 
@@ -492,7 +507,7 @@
 
 
 
-                    <button id="noisePause">
+                    <button id="noisePause" type="button">
 
                         ⏸
 
@@ -505,7 +520,7 @@
 
 
 
-                    <button id="noiseStop">
+                    <button id="noiseStop" type="button">
 
                         ⏹
 
@@ -517,7 +532,7 @@
 
 
 
-                    <button id="noiseBack">
+                    <button id="noiseBack" type="button">
 
                         ⏪ -10s
 
@@ -525,7 +540,7 @@
 
 
 
-                    <button id="noiseForward">
+                    <button id="noiseForward" type="button">
 
                         ⏩ +10s
 
@@ -533,7 +548,7 @@
 
 
 
-                    <button id="noiseVolumeDown">
+                    <button id="noiseVolumeDown" type="button">
 
                         🔉
 
@@ -541,7 +556,7 @@
 
 
 
-                    <button id="noiseVolumeUp">
+                    <button id="noiseVolumeUp" type="button">
 
                         🔊
 
@@ -585,85 +600,105 @@
 
 
 
-                <label data-vn="Âm lượng" data-en="Volume">
-
-                    Âm lượng
-
-                </label>
+                <div class="media-speed-box">
 
 
+                    <label for="noiseVolume"
+                        data-vn="🔊 Âm lượng"
+                        data-en="🔊 Volume">
 
+                        🔊 Âm lượng
 
-                <input type="range" id="noiseVolume" min="0" max="100" value="75">
-
-
-
-                <span id="noiseVolumeValue">
-
-                    75%
-
-                </span>
+                    </label>
 
 
 
+                    <div class="range-control">
+
+
+                        <input type="range" id="noiseVolume" min="0" max="100" value="75">
+
+
+                        <span id="noiseVolumeValue">
+
+                            75%
+
+                        </span>
+
+
+                    </div>
+
+
+                </div>
 
 
 
-                <label data-vn="Tốc độ phát" data-en="Playback Speed">
-
-                    Tốc độ phát
-
-                </label>
 
 
 
-
-                <select id="noiseSpeed">
-
-
-                    <option value="0.5">
-
-                        0.5x
-
-                    </option>
+                <div class="media-speed-box">
 
 
-                    <option value="0.75">
+                    <label for="noiseSpeed"
+                        data-vn="⚡ Tốc độ phát"
+                        data-en="⚡ Playback Speed">
 
-                        0.75x
+                        ⚡ Tốc độ phát
 
-                    </option>
-
-
-                    <option value="1" selected>
-
-                        1x
-
-                    </option>
+                    </label>
 
 
-                    <option value="1.25">
-
-                        1.25x
-
-                    </option>
 
 
-                    <option value="1.5">
-
-                        1.5x
-
-                    </option>
+                    <select id="noiseSpeed">
 
 
-                    <option value="2">
+                        <option value="0.5">
 
-                        2x
+                            0.5x
 
-                    </option>
+                        </option>
 
 
-                </select>
+                        <option value="0.75">
+
+                            0.75x
+
+                        </option>
+
+
+                        <option value="1" selected>
+
+                            1x
+
+                        </option>
+
+
+                        <option value="1.25">
+
+                            1.25x
+
+                        </option>
+
+
+                        <option value="1.5">
+
+                            1.5x
+
+                        </option>
+
+
+                        <option value="2">
+
+                            2x
+
+                        </option>
+
+
+                    </select>
+
+
+                </div>
 
 
 
@@ -743,7 +778,7 @@
                 <div class="media-controls">
 
 
-                    <button id="videoPlay">
+                    <button id="videoPlay" type="button">
 
                         ▶ Play
 
@@ -751,7 +786,7 @@
 
 
 
-                    <button id="videoPause">
+                    <button id="videoPause" type="button">
 
                         ⏸ Pause
 
@@ -759,7 +794,7 @@
 
 
 
-                    <button id="videoStop">
+                    <button id="videoStop" type="button">
 
                         ⏹ Stop
 
@@ -767,7 +802,7 @@
 
 
 
-                    <button id="videoBack">
+                    <button id="videoBack" type="button">
 
                         ⏪ -10s
 
@@ -775,7 +810,7 @@
 
 
 
-                    <button id="videoForward">
+                    <button id="videoForward" type="button">
 
                         ⏩ +10s
 
@@ -783,7 +818,7 @@
 
 
 
-                    <button id="videoVolumeDown">
+                    <button id="videoVolumeDown" type="button">
 
                         🔉
 
@@ -791,7 +826,7 @@
 
 
 
-                    <button id="videoVolumeUp">
+                    <button id="videoVolumeUp" type="button">
 
                         🔊
 
@@ -799,7 +834,7 @@
 
 
 
-                    <button id="videoFullscreen">
+                    <button id="videoFullscreen" type="button">
 
                         Fullscreen
 
@@ -807,7 +842,7 @@
 
 
 
-                    <button id="videoPip">
+                    <button id="videoPip" type="button">
 
                         Picture in Picture
 
@@ -951,7 +986,7 @@
 
 
 
-                <button id="randomQuote" data-vn="Câu nói ngẫu nhiên" data-en="Random Quote">
+                <button id="randomQuote" type="button" data-vn="Câu nói ngẫu nhiên" data-en="Random Quote">
 
                     Random Quote
 
@@ -960,7 +995,7 @@
 
 
 
-                <button id="favoriteQuote" data-vn="Yêu thích" data-en="Favorite">
+                <button id="favoriteQuote" type="button" data-vn="Yêu thích" data-en="Favorite">
 
                     Favorite
 
@@ -977,7 +1012,6 @@
 
 
     </div>
-
 
 
 
