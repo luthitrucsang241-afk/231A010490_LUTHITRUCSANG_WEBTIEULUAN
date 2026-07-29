@@ -12,7 +12,6 @@
 
 <link rel="stylesheet" href="css/dashboard.css">
 
-
 </head>
 
 <body>
@@ -59,11 +58,19 @@
 
 
 
+    <!-- ================= SETTING MENU ================= -->
+
     <div class="setting-menu">
 
 
-        <button class="setting-btn">
+        <button
+            type="button"
+            class="setting-btn"
+            aria-label="Settings"
+            aria-expanded="false">
+
             ⚙
+
         </button>
 
 
@@ -76,7 +83,7 @@
             </h4>
 
 
-            <button onclick="changeTheme('light')">
+            <button type="button" onclick="changeTheme('light')">
 
                 <span data-vn="Sáng" data-en="Light">
                     Sáng
@@ -86,7 +93,7 @@
 
 
 
-            <button onclick="changeTheme('dark')">
+            <button type="button" onclick="changeTheme('dark')">
 
                 <span data-vn="Tối" data-en="Dark">
                     Tối
@@ -106,7 +113,7 @@
 
 
 
-            <button onclick="changeLanguage('vi')">
+            <button type="button" onclick="changeLanguage('vi')">
 
                 🇻🇳
 
@@ -118,7 +125,7 @@
 
 
 
-            <button onclick="changeLanguage('en')">
+            <button type="button" onclick="changeLanguage('en')">
 
                 🇺🇸
 
@@ -690,8 +697,6 @@
 
 
 
-
-
         <!-- ================= STUDY VIDEO ================= -->
 
 
@@ -973,8 +978,6 @@
 
 
 
-
-
         <!-- ================= QUOTE ================= -->
 
 
@@ -1077,9 +1080,6 @@
 
 
 </div>
-
-
-
 
 
 

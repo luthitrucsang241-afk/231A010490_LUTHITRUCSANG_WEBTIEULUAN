@@ -1,814 +1,1019 @@
-/* ================= RESET ================= */
+/* =========================================================
+STUDY FOCUS - CALENDAR CSS
+========================================================= */
+
+/* =========================================================
+RESET
+========================================================= */
 
 * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+  }
 
-    margin: 0;
-
-    padding: 0;
-
-    box-sizing: border-box;
-
-    font-family: "Segoe UI", sans-serif;
-
-}
-
-
-/* ================= BODY ================= */
+/* =========================================================
+BODY
+========================================================= */
 
 body {
+min-height: 100vh;
 
-    background:
+
+display: flex;
+flex-direction: column;
+
+background:
     linear-gradient(
         135deg,
         #dff6ff,
         #89cff0
     );
 
-    min-height: 100vh;
+color: #334155;
 
-    display: flex;
-
-    flex-direction: column;
-
-    color: #334155;
 
 }
 
-
-/* ================= HEADER ================= */
+/* =========================================================
+HEADER
+========================================================= */
 
 .header {
+position: relative;
+z-index: 1000;
 
-    height: 80px;
 
-    background: white;
+width: 100%;
+min-height: 80px;
 
-    display: flex;
+display: flex;
+align-items: center;
 
-    align-items: center;
+padding: 0 80px;
 
-    justify-content: space-between;
+background: white;
 
-    padding: 0 80px;
-
-    box-shadow:
+box-shadow:
     0 5px 20px rgba(0, 0, 0, .08);
 
+
 }
 
+/* =========================================================
+LOGO
+========================================================= */
 
 .logo {
+flex: 0 0 auto;
 
-    font-size: 27px;
 
-    font-weight: 700;
+font-size: 27px;
+font-weight: 700;
 
-    color: #2563eb;
+color: #2563eb;
+
+white-space: nowrap;
+
 
 }
 
+/* =========================================================
+HEADER MENU
+========================================================= */
 
 .menu {
+display: flex;
 
-    display: flex;
 
-    gap: 35px;
+align-items: center;
+justify-content: center;
+
+gap: 35px;
+
+margin-left: auto;
+margin-right: 25px;
+
 
 }
-
 
 .menu a {
+text-decoration: none;
 
-    text-decoration: none;
 
-    color: #334155;
+color: #334155;
+
+font-weight: 500;
+
+white-space: nowrap;
+
+transition:
+    color .2s ease;
+
 
 }
 
+.menu a:hover {
+color: #2563eb;
+}
 
 .menu .btn {
+padding: 10px 22px;
 
-    background:
+
+border-radius: 20px;
+
+background:
     linear-gradient(
         135deg,
         #2563eb,
         #38bdf8
     );
 
-    color: white;
+color: white;
 
-    padding: 10px 22px;
-
-    border-radius: 20px;
 
 }
 
+.menu .btn:hover {
+color: white;
+}
 
-/* ================= SETTING ================= */
+/* =========================================================
+SETTING MENU
+========================================================= */
 
 .setting-menu {
+position: relative;
 
-    position: relative;
+
+z-index: 99999;
+
+flex: 0 0 42px;
+
+width: 42px;
+height: 42px;
+
+display: flex;
+align-items: center;
+justify-content: center;
+
 
 }
 
+/* =========================================================
+SETTING BUTTON
+========================================================= */
 
 .setting-btn {
+width: 42px;
+height: 42px;
 
-    width: 42px;
 
-    height: 42px;
+margin: 0;
+padding: 0;
 
-    border: none;
+display: flex;
+align-items: center;
+justify-content: center;
 
-    border-radius: 50%;
+border: none;
+border-radius: 50%;
 
-    background:
+background:
     linear-gradient(
         135deg,
         #2563eb,
         #38bdf8
     );
 
-    color: white;
+color: white;
 
-    font-size: 20px;
+font-size: 20px;
+font-weight: 400;
 
-    cursor: pointer;
+line-height: 1;
+
+text-align: center;
+
+cursor: pointer;
+
+appearance: none;
+-webkit-appearance: none;
+
+position: relative;
+
+z-index: 100001;
+
+transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+
 
 }
 
+.setting-btn:hover {
+transform: translateY(-1px);
+
+
+box-shadow:
+    0 5px 15px rgba(37, 99, 235, .3);
+
+
+}
+
+.setting-btn:focus {
+outline: none;
+}
+
+.setting-btn:active {
+transform: scale(.95);
+}
+
+/* =========================================================
+SETTING DROPDOWN
+========================================================= */
 
 .setting-dropdown {
+position: absolute;
 
-    position: absolute;
 
-    right: 0;
+top: calc(100% + 10px);
+right: 0;
 
-    top: 50px;
+width: 220px;
+min-width: 220px;
 
-    width: 210px;
+padding: 15px;
 
-    background: white;
+display: none;
 
-    padding: 12px;
+flex-direction: column;
 
-    border-radius: 15px;
+gap: 5px;
 
-    box-shadow:
-    0 10px 30px rgba(0, 0, 0, .15);
+background: white;
 
-    display: none;
+border: 1px solid rgba(0, 0, 0, .08);
 
-    z-index: 999;
+border-radius: 15px;
+
+box-shadow:
+    0 10px 30px rgba(0, 0, 0, .25);
+
+z-index: 100000;
+
+visibility: hidden;
+opacity: 0;
+
+transform: translateY(-5px);
+
+transition:
+    opacity .2s ease,
+    transform .2s ease,
+    visibility .2s ease;
+
 
 }
 
+/* =========================================================
+OPEN DROPDOWN
+========================================================= */
 
 .setting-dropdown.show {
+display: flex;
 
-    display: block;
+
+visibility: visible;
+
+opacity: 1;
+
+transform: translateY(0);
+
 
 }
 
+/* =========================================================
+DROPDOWN TITLE
+========================================================= */
+
+.dropdown-title,
+.setting-dropdown h4 {
+display: block;
+
+
+width: 100%;
+
+margin: 4px 5px 6px;
+
+padding: 5px 0;
+
+color: #2563eb;
+
+font-size: 14px;
+
+font-weight: 700;
+
+text-align: left;
+
+
+}
+
+/* =========================================================
+DROPDOWN BUTTON
+========================================================= */
 
 .setting-dropdown button {
+width: 100%;
 
-    width: 100%;
 
-    padding: 10px;
+min-height: 40px;
 
-    border: none;
+margin: 0;
+padding: 10px;
 
-    background: white;
+display: flex;
 
-    cursor: pointer;
+align-items: center;
 
-    text-align: left;
+justify-content: flex-start;
 
-    border-radius: 10px;
+gap: 8px;
+
+border: none;
+
+border-radius: 10px;
+
+background: white;
+
+color: #334155;
+
+font-family: "Segoe UI", sans-serif;
+
+font-size: 14px;
+
+font-weight: 400;
+
+text-align: left;
+
+cursor: pointer;
+
+transition:
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
+
 
 }
-
 
 .setting-dropdown button:hover {
+background: #dbeafe;
 
-    background: #dbeafe;
+
+color: #2563eb;
+
+transform: translateX(2px);
+
 
 }
 
+.setting-dropdown button:focus {
+outline: none;
+}
 
-.dropdown-title {
+.setting-dropdown button:active {
+transform: scale(.98);
+}
 
-    font-weight: 600;
+/* =========================================================
+DROPDOWN HR
+========================================================= */
 
-    padding: 8px;
+.setting-dropdown hr {
+width: 100%;
+
+
+margin: 8px 0;
+
+border: none;
+
+border-top:
+    1px solid #ddd;
+
 
 }
 
-
-/* ================= LAYOUT ================= */
+/* =========================================================
+LAYOUT
+========================================================= */
 
 .layout {
+flex: 1;
 
-    display: flex;
 
-    flex: 1;
+display: flex;
+
+min-width: 0;
+
 
 }
 
+/* =========================================================
+SIDEBAR
+========================================================= */
 
 .sidebar {
+flex: 0 0 240px;
 
-    width: 240px;
 
-    background: white;
+width: 240px;
 
-    padding: 25px 15px;
+padding: 25px 15px;
 
-    box-shadow:
+background: white;
+
+box-shadow:
     5px 0 20px rgba(0, 0, 0, .08);
 
-}
 
+}
 
 .sidebar h2 {
+margin-bottom: 20px;
 
-    text-align: center;
 
-    color: #2563eb;
+text-align: center;
 
-    margin-bottom: 20px;
+color: #2563eb;
+
 
 }
-
 
 .sidebar a {
+display: block;
 
-    display: block;
 
-    padding: 12px 18px;
+padding: 12px 18px;
 
-    margin-bottom: 5px;
+margin-bottom: 5px;
 
-    border-radius: 12px;
+border-radius: 12px;
 
-    text-decoration: none;
+text-decoration: none;
 
-    color: #475569;
+color: #475569;
+
+transition:
+    background .2s ease,
+    color .2s ease;
+
 
 }
-
 
 .sidebar a:hover,
 .sidebar .active {
+background: #dff6ff;
 
-    background: #dff6ff;
 
-    color: #2563eb;
+color: #2563eb;
+
 
 }
 
-
-/* ================= MAIN ================= */
+/* =========================================================
+MAIN
+========================================================= */
 
 .main {
+flex: 1;
 
-    flex: 1;
 
-    padding: 25px;
+min-width: 0;
 
-    min-width: 0;
+padding: 25px;
+
 
 }
 
+/* =========================================================
+HERO + CARD
+========================================================= */
 
 .hero,
 .card {
+margin-bottom: 20px;
 
-    background: white;
 
-    padding: 20px;
+padding: 20px;
 
-    border-radius: 20px;
+background: white;
 
-    margin-bottom: 20px;
+border-radius: 20px;
 
-    box-shadow:
+box-shadow:
     0 10px 25px rgba(37, 99, 235, .12);
 
-}
 
+}
 
 .hero h1,
 .card h2 {
+margin-bottom: 15px;
 
-    color: #2563eb;
 
-    margin-bottom: 15px;
+color: #2563eb;
+
 
 }
-
 
 .card {
-
-    transition:
-    box-shadow .3s ease;
-
+transition:
+box-shadow .3s ease;
 }
-
 
 .card:hover {
-
-    box-shadow:
-    0 15px 35px rgba(37, 99, 235, .2);
-
+box-shadow:
+0 15px 35px rgba(37, 99, 235, .2);
 }
 
-
-/* ================= FORM ================= */
+/* =========================================================
+FORM
+========================================================= */
 
 .schedule-form {
+display: flex;
 
-    display: flex;
 
-    flex-direction: column;
+flex-direction: column;
 
-    gap: 12px;
+gap: 12px;
+
 
 }
-
 
 input,
 select,
 textarea {
+width: 100%;
 
-    width: 100%;
 
-    padding: 12px;
+padding: 12px;
 
-    border-radius: 12px;
+border:
+    1px solid #cbd5e1;
 
-    border: 1px solid #cbd5e1;
+border-radius: 12px;
 
-    outline: none;
+outline: none;
+
 
 }
-
 
 input:focus,
 select:focus,
 textarea:focus {
-
-    border-color: #2563eb;
-
+border-color: #2563eb;
 }
-
 
 textarea {
+min-height: 100px;
 
-    min-height: 100px;
 
-    resize: vertical;
+resize: vertical;
+
 
 }
 
+/* =========================================================
+GENERAL BUTTON
+========================================================= */
 
 button {
+border: none;
 
-    border: none;
 
-    cursor: pointer;
+padding: 10px 20px;
 
-    padding: 10px 20px;
+border-radius: 20px;
 
-    border-radius: 20px;
-
-    color: white;
-
-    background:
+background:
     linear-gradient(
         135deg,
         #2563eb,
         #38bdf8
     );
 
-}
+color: white;
 
+cursor: pointer;
+
+
+}
 
 button:hover {
-
-    opacity: .85;
-
+opacity: .85;
 }
 
-
-/* ================= WEEKLY STUDY SCHEDULE ================= */
+/* =========================================================
+WEEKLY SCHEDULE
+========================================================= */
 
 .schedule-table {
+width: 100%;
 
-    width: 100%;
 
-    overflow-x: auto;
+overflow-x: auto;
+
 
 }
-
 
 .schedule-table table {
+width: 100%;
 
-    width: 100%;
 
-    min-width: 700px;
+min-width: 700px;
 
-    border-collapse: separate;
+border-collapse: separate;
 
-    border-spacing: 8px;
+border-spacing: 8px;
+
 
 }
 
-
 .schedule-table th {
+padding: 15px;
 
-    background:
+
+background:
     linear-gradient(
         135deg,
         #2563eb,
         #38bdf8
     );
 
-    color: white;
+color: white;
 
-    padding: 15px;
+border-radius: 12px;
 
-    border-radius: 12px;
+text-align: center;
 
-    text-align: center;
 
 }
-
 
 .schedule-table td {
+min-height: 80px;
 
-    background: #f1faff;
 
-    padding: 15px;
+padding: 15px;
 
-    min-height: 80px;
+background: #f1faff;
 
-    text-align: center;
+border-radius: 12px;
 
-    border-radius: 12px;
+color: #334155;
 
-    color: #334155;
+text-align: center;
+
 
 }
-
 
 .schedule-table td:hover {
-
-    background: #dff6ff;
-
+background: #dff6ff;
 }
 
-
-/* ================= MONTH CALENDAR ================= */
+/* =========================================================
+MONTH CALENDAR
+========================================================= */
 
 .month-control {
+display: flex;
 
-    display: flex;
 
-    justify-content: center;
+align-items: center;
+justify-content: center;
 
-    align-items: center;
+gap: 20px;
 
-    gap: 20px;
+margin-bottom: 20px;
 
-    margin-bottom: 20px;
 
 }
-
 
 .month-control h3 {
+min-width: 180px;
 
-    color: #2563eb;
 
-    min-width: 180px;
+color: #2563eb;
 
-    text-align: center;
+text-align: center;
+
 
 }
-
 
 .month-calendar {
+display: grid;
 
-    display: grid;
 
-    grid-template-columns:
-    repeat(7, 1fr);
+grid-template-columns:
+    repeat(7, minmax(0, 1fr));
 
-    gap: 10px;
+gap: 10px;
+
 
 }
-
 
 .month-calendar .day {
+min-height: 80px;
 
-    min-height: 80px;
 
-    background: #f1faff;
+display: flex;
 
-    border-radius: 15px;
+flex-direction: column;
 
-    display: flex;
+align-items: center;
+justify-content: center;
 
-    align-items: center;
+background: #f1faff;
 
-    justify-content: center;
+border-radius: 15px;
 
-    flex-direction: column;
+font-weight: 700;
 
-    font-weight: bold;
+transition:
+    background .2s ease,
+    transform .2s ease;
 
-    transition:
-    background .2s ease;
 
 }
-
 
 .month-calendar .day.event {
+background:
+linear-gradient(
+135deg,
+#38bdf8,
+#2563eb
+);
 
-    background:
-    linear-gradient(
-        135deg,
-        #38bdf8,
-        #2563eb
-    );
 
-    color: white;
+color: white;
+
 
 }
-
 
 .month-calendar .day:hover {
-
-    transform: scale(1.02);
-
+transform: scale(1.02);
 }
 
-
-/* ================= STUDY STREAK ================= */
+/* =========================================================
+STUDY STREAK
+========================================================= */
 
 .streak {
+display: flex;
 
-    display: flex;
 
-    flex-wrap: wrap;
+flex-wrap: wrap;
 
-    gap: 15px;
+align-items: center;
+
+gap: 15px;
+
 
 }
-
 
 #streakFire {
+font-size: 35px;
 
-    font-size: 35px;
 
-    color: #ea580c;
+color: #ea580c;
 
-    word-break: break-word;
+word-break: break-word;
+
 
 }
-
 
 #streakText {
-
-    font-weight: 600;
-
-    align-self: center;
-
+font-weight: 600;
 }
 
-
-/* ================= STUDY TIME ================= */
+/* =========================================================
+STUDY TIME
+========================================================= */
 
 .time-box {
+display: grid;
 
-    display: grid;
 
-    grid-template-columns:
-    repeat(2, 1fr);
+grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
-    gap: 20px;
+gap: 20px;
+
 
 }
-
 
 .time-box div {
+padding: 20px;
 
-    background: #f1faff;
 
-    padding: 20px;
+background: #f1faff;
 
-    border-radius: 20px;
+border-radius: 20px;
 
-    text-align: center;
+text-align: center;
+
 
 }
-
 
 .time-box h3 {
-
-    color: #2563eb;
-
+color: #2563eb;
 }
-
 
 .time-box p {
+margin-top: 10px;
 
-    font-size: 25px;
 
-    font-weight: bold;
+font-size: 25px;
 
-    margin-top: 10px;
+font-weight: 700;
+
 
 }
 
-
-/* ================= EDIT MODAL ================= */
+/* =========================================================
+MODAL
+========================================================= */
 
 .modal {
+position: fixed;
 
-    position: fixed;
 
-    inset: 0;
+inset: 0;
 
-    background:
+z-index: 9999;
+
+display: none;
+
+align-items: center;
+justify-content: center;
+
+padding: 20px;
+
+background:
     rgba(0, 0, 0, .45);
 
-    display: none;
-
-    justify-content: center;
-
-    align-items: center;
-
-    z-index: 9999;
-
-    padding: 20px;
 
 }
-
 
 .modal.show {
-
-    display: flex;
-
+display: flex;
 }
-
 
 .modal-content {
+width: 90%;
+max-width: 450px;
 
-    width: 90%;
 
-    max-width: 450px;
+max-height: 90vh;
 
-    max-height: 90vh;
+overflow-y: auto;
 
-    overflow-y: auto;
+padding: 25px;
 
-    background: white;
+background: white;
 
-    padding: 25px;
+border-radius: 25px;
 
-    border-radius: 25px;
-
-    box-shadow:
+box-shadow:
     0 20px 50px rgba(0, 0, 0, .2);
 
-}
 
+}
 
 .modal-content h2 {
+margin-bottom: 20px;
 
-    color: #2563eb;
 
-    margin-bottom: 20px;
+color: #2563eb;
+
 
 }
-
 
 .modal-content input,
 .modal-content select,
 .modal-content textarea {
-
-    margin-bottom: 12px;
-
+margin-bottom: 12px;
 }
 
-
-/* ================= FOOTER ================= */
+/* =========================================================
+FOOTER
+========================================================= */
 
 footer {
+margin-top: auto;
 
-    background: white;
 
-    padding: 25px;
+padding: 25px;
 
-    text-align: center;
+background: white;
 
-    margin-top: auto;
+text-align: center;
 
-    box-shadow:
+box-shadow:
     0 -5px 20px rgba(0, 0, 0, .08);
 
-}
 
+}
 
 .footer-links {
+display: flex;
 
-    display: flex;
 
-    justify-content: center;
+align-items: center;
+justify-content: center;
 
-    gap: 25px;
+flex-wrap: wrap;
 
-    margin: 15px 0;
+gap: 25px;
+
+margin: 15px 0;
+
 
 }
-
 
 .footer-links a {
+color: #2563eb;
 
-    color: #2563eb;
 
-    text-decoration: none;
+text-decoration: none;
+
 
 }
-
 
 footer hr {
+margin: 15px 0;
 
-    border: none;
 
-    border-top: 1px solid #ddd;
+border: none;
 
-    margin: 15px 0;
+border-top:
+    1px solid #ddd;
+
 
 }
 
-
-/* ================= EVENT NOTE ================= */
-
-/* Chỉ phần Ghi chú giữ nguyên xuống dòng */
+/* =========================================================
+EVENT NOTE
+========================================================= */
 
 .event-box .event-note {
-
-    white-space: pre-line;
-
+white-space: pre-line;
 }
 
-
-/* ================= LIGHT THEME ================= */
+/* =========================================================
+LIGHT THEME
+========================================================= */
 
 body.light {
+background:
+linear-gradient(
+135deg,
+#dff6ff,
+#89cff0
+);
 
-    background:
-    linear-gradient(
-        135deg,
-        #dff6ff,
-        #89cff0
-    );
 
-    color: #334155;
+color: #334155;
+
 
 }
-
 
 body.light .header,
 body.light .sidebar,
 body.light .card,
 body.light .hero,
 body.light footer {
-
-    background: white;
-
+background: white;
 }
 
-
-/* ================= DARK MODE ================= */
+/* =========================================================
+DARK THEME
+========================================================= */
 
 body.dark {
+background:
+linear-gradient(
+135deg,
+#020617,
+#1e293b
+);
 
-    background:
-    linear-gradient(
-        135deg,
-        #020617,
-        #1e293b
-    );
 
-    color: white;
+color: white;
+
 
 }
-
 
 body.dark .header,
 body.dark .sidebar,
@@ -816,262 +1021,281 @@ body.dark .card,
 body.dark .hero,
 body.dark footer,
 body.dark .modal-content {
+background: #0f172a;
 
-    background: #0f172a;
 
-    color: white;
+color: white;
+
 
 }
-
 
 body.dark h1,
 body.dark h2,
 body.dark h3 {
-
-    color: #38bdf8;
-
+color: #38bdf8;
 }
-
 
 body.dark p {
-
-    color: #cbd5e1;
-
+color: #cbd5e1;
 }
-
 
 body.dark .menu a {
-
-    color: #e2e8f0;
-
+color: #e2e8f0;
 }
-
 
 body.dark .sidebar a {
-
-    color: #cbd5e1;
-
+color: #cbd5e1;
 }
-
 
 body.dark .sidebar a:hover,
 body.dark .sidebar .active {
+background: #1e40af;
 
-    background: #1e40af;
 
-    color: white;
+color: white;
+
 
 }
 
-
-/* ================= INPUT DARK ================= */
+/* =========================================================
+DARK INPUT
+========================================================= */
 
 body.dark input,
 body.dark select,
 body.dark textarea {
+background: #1e293b;
 
-    background: #1e293b;
 
-    color: white;
+color: white;
 
-    border-color: #475569;
+border-color: #475569;
+
 
 }
 
-
-/* ================= CALENDAR DARK ================= */
+/* =========================================================
+DARK CALENDAR
+========================================================= */
 
 body.dark .schedule-table td,
 body.dark .month-calendar .day,
 body.dark .time-box div {
+background: #1e293b;
 
-    background: #1e293b;
 
-    color: white;
+color: white;
+
 
 }
-
 
 body.dark .schedule-table td:hover {
-
-    background: #334155;
-
+background: #334155;
 }
-
 
 body.dark .month-calendar .day.event {
+background:
+linear-gradient(
+135deg,
+#2563eb,
+#38bdf8
+);
 
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #38bdf8
-    );
 
-    color: white;
+color: white;
+
 
 }
-
 
 body.dark .streak div {
+background: #451a03;
 
-    background: #451a03;
 
-    color: #fdba74;
+color: #fdba74;
+
 
 }
 
-
-/* ================= SETTING DROPDOWN DARK ================= */
+/* =========================================================
+DARK SETTING DROPDOWN
+========================================================= */
 
 body.dark .setting-dropdown {
+background: #0f172a;
 
-    background: #0f172a;
+
+border-color:
+    rgba(255, 255, 255, .1);
+
 
 }
-
 
 body.dark .setting-dropdown button {
+background: #0f172a;
 
-    background: #0f172a;
 
-    color: white;
+color: white;
+
 
 }
-
 
 body.dark .setting-dropdown button:hover {
+background: #1e40af;
 
-    background: #1e40af;
+
+color: white;
+
 
 }
 
+body.dark .setting-dropdown hr {
+border-top-color: #334155;
+}
 
-/* ================= RESPONSIVE TABLET ================= */
+body.dark .setting-dropdown h4,
+body.dark .setting-dropdown .dropdown-title {
+color: #38bdf8;
+}
 
-@media(max-width: 1000px) {
+/* =========================================================
+RESPONSIVE TABLET
+========================================================= */
 
-    .header {
-
-        padding: 0 30px;
-
-    }
-
-
-    .menu {
-
-        gap: 15px;
-
-    }
+@media (max-width: 1000px) {
 
 
-    .layout {
-
-        flex-direction: column;
-
-    }
-
-
-    .sidebar {
-
-        width: 100%;
-
-        display: flex;
-
-        overflow-x: auto;
-
-        padding: 15px;
-
-    }
-
-
-    .sidebar h2 {
-
-        display: none;
-
-    }
-
-
-    .sidebar a {
-
-        white-space: nowrap;
-
-    }
-
+.header {
+    padding: 0 30px;
 }
 
 
-/* ================= RESPONSIVE MOBILE ================= */
+.menu {
+    gap: 15px;
 
-@media(max-width: 600px) {
-
-    .header {
-
-        height: auto;
-
-        padding: 15px;
-
-        flex-wrap: wrap;
-
-        gap: 15px;
-
-    }
+    margin-right: 20px;
+}
 
 
-    .logo {
-
-        font-size: 22px;
-
-    }
+.layout {
+    flex-direction: column;
+}
 
 
-    .menu a:not(.btn) {
+.sidebar {
+    width: 100%;
 
-        display: none;
+    padding: 15px;
 
-    }
+    display: flex;
 
+    align-items: center;
 
-    .main {
+    gap: 5px;
 
-        padding: 15px;
-
-    }
-
-
-    .card {
-
-        padding: 15px;
-
-    }
+    overflow-x: auto;
+}
 
 
-    .month-calendar {
-
-        grid-template-columns:
-        repeat(3, 1fr);
-
-    }
+.sidebar h2 {
+    display: none;
+}
 
 
-    .time-box {
+.sidebar a {
+    flex: 0 0 auto;
 
-        grid-template-columns: 1fr;
+    margin-bottom: 0;
 
-    }
-
-
-    .schedule-table table {
-
-        min-width: 700px;
-
-    }
+    white-space: nowrap;
+}
 
 
-    .modal-content {
+}
 
-        width: 95%;
+/* =========================================================
+RESPONSIVE MOBILE
+========================================================= */
 
-    }
+@media (max-width: 600px) {
+
+
+.header {
+    min-height: auto;
+
+    padding: 15px;
+
+    flex-wrap: wrap;
+
+    gap: 15px;
+}
+
+
+.logo {
+    font-size: 22px;
+}
+
+
+.menu {
+    order: 3;
+
+    width: 100%;
+
+    margin: 0;
+
+    justify-content: center;
+}
+
+
+.menu a:not(.btn) {
+    display: none;
+}
+
+
+.setting-menu {
+    margin-left: auto;
+}
+
+
+.setting-dropdown {
+    top: calc(100% + 10px);
+
+    right: 0;
+
+    width: 210px;
+
+    min-width: 210px;
+}
+
+
+.main {
+    padding: 15px;
+}
+
+
+.card {
+    padding: 15px;
+}
+
+
+.month-calendar {
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+}
+
+
+.time-box {
+    grid-template-columns: 1fr;
+}
+
+
+.schedule-table table {
+    min-width: 700px;
+}
+
+
+.modal-content {
+    width: 95%;
+}
+
 
 }

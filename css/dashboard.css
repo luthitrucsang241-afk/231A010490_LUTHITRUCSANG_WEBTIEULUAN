@@ -1,173 +1,345 @@
-* {
+/* =========================================================
+   STUDY FOCUS - DASHBOARD CSS
+   ========================================================= */
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
-    font-family:
-        "Segoe UI",
-        sans-serif;
-
+    font-family: "Segoe UI", sans-serif;
 }
 
 
+/* =========================================================
+   BODY
+   ========================================================= */
 
 body {
-
-    background:
-        linear-gradient(135deg,
-            #dff6ff,
-            #89cff0);
-
-    color: #334155;
-
     min-height: 100vh;
-
     display: flex;
-
     flex-direction: column;
 
+    background:
+        linear-gradient(
+            135deg,
+            #dff6ff,
+            #89cff0
+        );
+
+    color: #334155;
 }
 
 
-
-/* HEADER */
-
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .header {
-
     position: relative;
-
-    height: 80px;
+    z-index: 1000;
 
     width: 100%;
-
-    background: white;
+    min-height: 80px;
 
     display: flex;
-
     align-items: center;
-
-    justify-content: space-between;
 
     padding: 0 80px;
 
+    background: white;
+
     box-shadow:
         0 5px 20px rgba(0, 0, 0, .08);
-
 }
 
 
+/* =========================================================
+   LOGO
+   ========================================================= */
 
 .logo {
+    flex: 0 0 auto;
 
     font-size: 27px;
-
     font-weight: 700;
 
     color: #2563eb;
 
+    white-space: nowrap;
 }
 
 
+/* =========================================================
+   MAIN MENU
+   ========================================================= */
 
 .menu {
-
     display: flex;
+    align-items: center;
+    justify-content: center;
 
     gap: 35px;
 
-    align-items: center;
-
+    margin-left: auto;
+    margin-right: 25px;
 }
 
 
-
 .menu a {
-
     text-decoration: none;
 
     color: #334155;
 
     font-weight: 500;
 
-}
+    white-space: nowrap;
 
+    transition:
+        color .2s ease;
+}
 
 
 .menu a:hover {
-
     color: #2563eb;
-
 }
 
 
-
 .menu .btn {
-
     padding: 10px 22px;
 
     border-radius: 20px;
 
     background:
-        linear-gradient(135deg,
+        linear-gradient(
+            135deg,
             #2563eb,
-            #38bdf8);
+            #38bdf8
+        );
+
+    color: white;
+}
+
+
+.menu .btn:hover {
+    color: white;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SETTING MENU
+   FIX ICON + DROPDOWN
+   ========================================================= */
+
+.setting-menu {
+    position: relative;
+    z-index: 10000;
+
+    flex: 0 0 42px;
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================================================
+   SETTING BUTTON
+   ========================================================= */
+
+.setting-btn {
+    width: 42px;
+    height: 42px;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #38bdf8
+        );
 
     color: white;
 
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    appearance: none;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
 
+.setting-btn:hover {
+    transform: translateY(-1px);
 
-
-
-
-/* DASHBOARD */
-
-
-.dashboard-layout {
-
-    display: flex;
-
-    flex: 1;
-
+    box-shadow:
+        0 5px 15px rgba(37, 99, 235, .3);
 }
 
 
+.setting-btn:focus {
+    outline: none;
+}
 
-/* SIDEBAR */
 
+/* =========================================================
+   SETTING DROPDOWN
+   ========================================================= */
 
-.sidebar {
+.setting-dropdown {
+    position: absolute;
 
-    width: 240px;
+    top: calc(100% + 10px);
+    right: 0;
+
+    width: 220px;
+
+    padding: 15px;
 
     background: white;
 
-    padding: 25px 15px;
+    border-radius: 15px;
 
     box-shadow:
-        5px 0 20px rgba(0, 0, 0, .08);
+        0 10px 30px rgba(0, 0, 0, .25);
 
+    display: none;
+
+    z-index: 99999;
 }
 
 
+.setting-dropdown.show {
+    display: block;
+}
+
+
+/* =========================================================
+   SETTING TITLE
+   ========================================================= */
+
+.setting-dropdown h4 {
+    padding: 8px;
+
+    color: #2563eb;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SETTING BUTTON INSIDE DROPDOWN
+   ========================================================= */
+
+.setting-dropdown button {
+    width: 100%;
+
+    min-height: 40px;
+
+    margin: 0;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: white;
+
+    color: #334155;
+
+    font-size: 14px;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.setting-dropdown button:hover {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+
+.setting-dropdown hr {
+    border: none;
+
+    border-top:
+        1px solid #ddd;
+
+    margin: 8px 0;
+}
+
+
+/* =========================================================
+   DASHBOARD LAYOUT
+   ========================================================= */
+
+.dashboard-layout {
+    flex: 1;
+
+    display: flex;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.sidebar {
+    flex: 0 0 240px;
+
+    width: 240px;
+
+    padding: 25px 15px;
+
+    background: white;
+
+    box-shadow:
+        5px 0 20px rgba(0, 0, 0, .08);
+}
+
 
 .sidebar h2 {
+    margin-bottom: 20px;
 
     text-align: center;
 
     color: #2563eb;
-
-    margin-bottom: 20px;
-
 }
 
 
-
 .sidebar a {
-
     display: block;
 
     padding: 12px 18px;
@@ -180,399 +352,121 @@ body {
 
     color: #475569;
 
+    transition:
+        background .2s ease,
+        color .2s ease;
 }
-
 
 
 .sidebar a:hover,
 .sidebar .active {
-
     background: #dff6ff;
-
     color: #2563eb;
-
 }
 
 
-
-
-
-
-/* MAIN */
-
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 .main {
-
     flex: 1;
 
-    padding: 25px;
+    min-width: 0;
 
+    padding: 25px;
 }
 
 
-
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 25px;
 
     background: white;
 
     border-radius: 20px;
 
-    padding: 25px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
     box-shadow:
         0 10px 25px rgba(37, 99, 235, .15);
-
 }
-
 
 
 .hero h1 {
-
-    color: #2563eb;
-
     margin-bottom: 8px;
 
+    color: #2563eb;
 }
 
 
-
 .hero img {
+    flex: 0 0 auto;
 
     width: 90px;
-
     height: 90px;
 
     border-radius: 50%;
 
     object-fit: cover;
-
 }
 
 
-
-
-
+/* =========================================================
+   CARD
+   ========================================================= */
 
 .card {
-
-    background: white;
-
     margin-top: 15px;
 
-    padding: 20px;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 10px 25px rgba(37, 99, 235, .12);
-
-}
-
-
-
-.card h2 {
-
-    color: #2563eb;
-
-    margin-bottom: 10px;
-
-}
-
-
-
-.timer {
-
-    font-size: 45px;
-
-    font-weight: 700;
-
-    color: #2563eb;
-
-    margin: 10px 0;
-
-}
-
-
-
-button {
-
-    border: none;
-
-    padding: 10px 20px;
-
-    border-radius: 20px;
-
-    background:
-        linear-gradient(135deg,
-            #2563eb,
-            #38bdf8);
-
-    color: white;
-
-    cursor: pointer;
-
-    margin-right: 5px;
-
-}
-
-
-
-input,
-textarea {
-
-    width: 100%;
-
-    padding: 10px;
-
-    border-radius: 10px;
-
-    border: 1px solid #cbd5e1;
-
-    margin-bottom: 10px;
-
-}
-
-
-
-textarea {
-
-    height: 100px;
-
-    resize: none;
-
-}
-
-
-
-ul {
-
-    padding-left: 20px;
-
-}
-
-
-
-video {
-
-    width: 100%;
-
-    max-height: 350px;
-
-    border-radius: 15px;
-
-}
-
-
-
-
-.quote {
-
-    text-align: center;
-
-    font-style: italic;
-
-}
-
-
-
-
-/* FOOTER */
-
-
-footer {
-
-    background: white;
-
-    margin-top: auto;
-
     padding: 25px;
-
-    text-align: center;
-
-    box-shadow:
-        0 -5px 20px rgba(0, 0, 0, .08);
-
-}
-
-
-
-.footer-links {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 25px;
-
-    margin: 10px;
-
-}
-
-
-
-.footer-links a {
-
-    text-decoration: none;
-
-    color: #2563eb;
-
-}
-
-
-
-footer hr {
-
-    border: none;
-
-    border-top: 1px solid #ddd;
-
-    margin: 15px 0;
-
-}
-
-
-
-
-
-
-/* RESPONSIVE */
-
-
-@media(max-width:900px) {
-
-
-    .header {
-
-        padding: 0 25px;
-
-    }
-
-
-    .menu {
-
-        gap: 12px;
-
-    }
-
-
-    .dashboard-layout {
-
-        flex-direction: column;
-
-    }
-
-
-
-    .sidebar {
-
-        width: 100%;
-
-        display: flex;
-
-        overflow: auto;
-
-    }
-
-
-
-    .sidebar h2 {
-
-        display: none;
-
-    }
-
-
-    .sidebar a {
-
-        white-space: nowrap;
-
-    }
-
-
-
-    .hero {
-
-        flex-direction: column;
-
-        gap: 15px;
-
-    }
-
-
-}
-
-
-
-
-
-
-/* ================= KHUNG 2 POMODORO + TODO ================= */
-
-
-.double-card {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
-
-    width: 100%;
-
-}
-
-
-
-
-
-
-/* ================= CARD CHUNG ================= */
-
-
-.card {
 
     background: white;
 
     border-radius: 25px;
 
-    padding: 25px;
-
     box-shadow:
         0 15px 35px rgba(37, 99, 235, .15);
-
 }
 
 
-
 .card h2 {
+    margin-bottom: 20px;
 
     text-align: center;
 
     color: #2563eb;
-
-    margin-bottom: 20px;
-
 }
 
 
+/* =========================================================
+   DOUBLE CARD
+   ========================================================= */
+
+.double-card {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 25px;
+}
 
 
-
-
-
-
-/* ================= POMODORO ================= */
-
+/* =========================================================
+   POMODORO
+   ========================================================= */
 
 .pomodoro-box {
-
     display: flex;
 
     flex-direction: column;
@@ -580,587 +474,93 @@ footer hr {
     align-items: center;
 
     justify-content: center;
-
 }
 
 
-
-
-
-
-
 .timer {
-
     width: 180px;
-
     height: 180px;
 
-    border-radius: 50%;
+    margin: 20px;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
+    border-radius: 50%;
+
     background:
-        linear-gradient(135deg,
+        linear-gradient(
+            135deg,
             #2563eb,
-            #38bdf8);
+            #38bdf8
+        );
 
     color: white;
 
     font-size: 45px;
-
-    font-weight: bold;
-
-    margin: 20px;
-
+    font-weight: 700;
 }
 
 
-
-
-
-
-
-
 .time-control {
-
     display: flex;
 
     align-items: center;
 
     gap: 15px;
 
-    font-size: 20px;
-
     margin-bottom: 20px;
 
+    font-size: 20px;
 }
-
-
 
 
 .time-control button {
-
     width: 40px;
-
     height: 40px;
 
-    border: none;
-
-    border-radius: 50%;
-
-    cursor: pointer;
-
-    color: white;
-
-    background: #2563eb;
-
-    font-size: 20px;
+    margin: 0;
+    padding: 0;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
-    padding: 0;
+    border: none;
+    border-radius: 50%;
 
-    line-height: 1;
+    background: #2563eb;
 
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
 }
-
-
-
-
-
-
 
 
 .pomodoro-buttons {
-
     display: flex;
 
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
     gap: 10px;
-
 }
-
-
 
 
 .pomodoro-buttons button {
-
-    border: none;
+    margin: 0;
 
     padding: 10px 20px;
 
+    border: none;
     border-radius: 20px;
-
-    color: white;
-
-    cursor: pointer;
-
-    background:
-        linear-gradient(135deg,
-            #2563eb,
-            #38bdf8);
-
-}
-
-
-
-
-.pomodoro-buttons button:hover {
-
-    transform: translateY(-2px);
-
-}
-
-
-
-
-
-
-
-
-
-/* ================= TODO ================= */
-
-
-.todo-box {
-
-    min-height: 350px;
-
-}
-
-
-
-
-
-.todo-input {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-
-}
-
-
-
-
-.todo-input input {
-
-    flex: 1;
-
-    padding: 12px;
-
-    border-radius: 15px;
-
-    border: 1px solid #cbd5e1;
-
-    outline: none;
-
-}
-
-
-
-
-.todo-input button {
-
-    width: 80px;
-
-    border: none;
-
-    border-radius: 15px;
-
-    color: white;
-
-    cursor: pointer;
-
-    background: #2563eb;
-
-}
-
-
-
-
-
-
-#todoList {
-
-    width: 100%;
-
-    padding-left: 0;
-
-    list-style: none;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 12px;
-
-}
-
-
-
-
-
-
-
-#todoList li {
-
-    width: 100%;
-
-    min-width: 0;
-
-    overflow: hidden;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    padding: 12px;
-
-    border-radius: 15px;
-
-    background: #f1f5f9;
-
-}
-
-
-
-
-
-
-
-#todoList label {
-
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 10px;
-
-    min-width: 0;
-
-    flex: 1;
-
-}
-
-
-
-
-
-
-
-#todoList label input[type="checkbox"] {
-
-    flex: 0 0 auto;
-
-    width: auto;
-
-    min-width: 16px;
-
-    margin-top: 4px;
-
-    margin-bottom: 0;
-
-}
-
-
-
-
-
-
-
-#todoList .todo-text {
-
-    display: block;
-
-    min-width: 0;
-
-    flex: 1;
-
-    color: #334155;
-
-    line-height: 1.5;
-
-    white-space: normal;
-
-    overflow-wrap: break-word;
-
-    word-break: normal;
-
-}
-
-
-
-
-
-
-
-#todoList li > button {
-
-    flex: 0 0 auto;
-
-    width: auto;
-
-    min-width: 40px;
-
-    padding: 7px 15px;
-
-    margin-right: 0;
-
-    border-radius: 15px;
-
-    background: #ef4444;
-
-    color: white;
-
-}
-
-
-
-
-
-
-
-/* ================= DARK MODE ================= */
-
-
-body.dark .card {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-
-body.dark #todoList li {
-
-    background: #1e293b;
-
-}
-
-
-
-body.dark #todoList span {
-
-    color: white;
-
-}
-
-
-
-
-
-
-
-
-/* ================= RESPONSIVE ================= */
-
-
-@media(max-width:900px) {
-
-
-    .double-card {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-}
-
-
-
-
-
-
-/* ================= THEME ================= */
-
-
-body.light {
-
-    background: #dff6ff;
-
-    color: #1e293b;
-
-}
-
-
-
-body.dark {
-
-    background: #020617;
-
-    color: white;
-
-}
-
-
-
-
-
-
-
-/* DARK CARD */
-
-
-body.dark .card,
-body.dark .hero,
-body.dark .sidebar {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-
-
-
-
-body.dark .sidebar a {
-
-    color: #e2e8f0;
-
-}
-
-
-
-body.dark .sidebar a:hover,
-body.dark .sidebar .active {
-
-    background: #2563eb;
-
-    color: white;
-
-}
-
-
-
-
-
-
-
-body.dark input,
-body.dark select,
-body.dark textarea {
-
-    background: #1e293b;
-
-    color: white;
-
-    border-color: #475569;
-
-}
-
-
-
-
-body.dark button {
-
-    background: #2563eb;
-
-    color: white;
-
-}
-
-
-
-
-body.light button {
-
-    background:
-        linear-gradient(135deg,
-            #2563eb,
-            #38bdf8);
-
-}
-
-
-
-
-
-
-
-/* TEXT */
-
-
-body.dark h1,
-body.dark h2,
-body.dark h3,
-body.dark p {
-
-    color: white;
-
-}
-
-
-
-
-
-body.dark footer {
-
-    background: #020617;
-
-}
-
-
-
-/* ================= SETTING MENU ================= */
-
-
-.setting-menu {
-
-    position: relative;
-
-    z-index: 10000;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-
-.setting-btn {
-
-    width: 42px;
-
-    height: 42px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 0;
-
-    line-height: 1;
-
-    font-size: 20px;
 
     background:
         linear-gradient(
@@ -1173,311 +573,92 @@ body.dark footer {
 
     cursor: pointer;
 
+    transition:
+        transform .2s ease;
 }
 
 
-
-
-
-.setting-dropdown {
-
-    position: absolute;
-
-    right: 0;
-
-    top: 50px;
-
-    width: 220px;
-
-    background: white;
-
-    padding: 15px;
-
-    border-radius: 15px;
-
-    box-shadow:
-        0 10px 30px rgba(0, 0, 0, .25);
-
-    display: none;
-
-    z-index: 99999;
-
+.pomodoro-buttons button:hover {
+    transform: translateY(-2px);
 }
 
 
+/* =========================================================
+   GENERAL BUTTON
+   ========================================================= */
 
-.setting-dropdown.show {
-
-    display: block !important;
-
-}
-
-
-
-.setting-dropdown h4 {
-
-    color: #2563eb;
-
-    padding: 8px;
-
-    font-size: 14px;
-
-}
-
-
-
-.setting-dropdown button {
-
-    display: block;
-
-    width: 100%;
-
-    color: #334155;
-
-    background: white;
-
+button {
     border: none;
 
-    padding: 10px;
+    padding: 10px 20px;
 
-    border-radius: 10px;
-
-    text-align: left;
-
-}
-
-
-
-.setting-dropdown button:hover {
-
-    background: #dbeafe;
-
-    color: #2563eb;
-
-}
-
-
-
-.setting-dropdown hr {
-
-    border: none;
-
-    border-top: 1px solid #ddd;
-
-    margin: 8px 0;
-
-}
-
-
-
-
-
-/* DARK MENU */
-
-
-body.dark .setting-dropdown {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-
-body.dark .setting-dropdown button {
-
-    background: #0f172a;
-
-    color: white;
-
-}
-
-
-
-body.dark .setting-dropdown button:hover {
-
-    background: #1e40af;
-
-    color: white;
-
-}
-
-
-
-
-
-
-/* ================= MEDIA SELECT + SPEED BOX ================= */
-
-
-.media-select-box,
-.media-speed-box {
-
-    width: 100%;
-
-    background: #f8fafc;
-
-    padding: 15px;
-
-    border-radius: 18px;
-
-    margin-bottom: 15px;
-
-}
-
-
-
-.media-select-box label,
-.media-speed-box label {
-
-    display: block;
-
-    font-weight: 600;
-
-    color: #2563eb;
-
-    margin-bottom: 10px;
-
-}
-
-
-
-
-
-.media-select-box select,
-.media-speed-box select {
-
-    width: 100%;
-
-    padding: 12px 15px;
-
-    border-radius: 15px;
-
-    border: 1px solid #cbd5e1;
-
-    background: white;
-
-    cursor: pointer;
-
-    outline: none;
-
-}
-
-
-
-.media-select-box select:focus,
-.media-speed-box select:focus {
-
-    border-color: #2563eb;
-
-    box-shadow:
-        0 0 0 3px rgba(37, 99, 235, .1);
-
-}
-
-
-
-
-
-
-
-/* ================= QUOTE FIX ================= */
-
-
-.quote {
-
-    text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 20px;
-
-}
-
-
-
-#quoteText {
-
-    width: 90%;
-
-    min-height: 80px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    line-height: 1.8;
-
-    font-size: 18px;
-
-}
-
-
-
-
-
-#quoteText small {
-
-    margin-top: 10px;
-
-    font-size: 15px;
-
-    color: #64748b;
-
-}
-
-
-
-
-
-.quote button {
-
-    margin: 5px;
-
-}
-
-
-
-
-#favoriteQuote.active {
+    border-radius: 20px;
 
     background:
         linear-gradient(
             135deg,
-            #ef4444,
-            #fb7185
+            #2563eb,
+            #38bdf8
         );
 
+    color: white;
+
+    cursor: pointer;
 }
 
 
+/* =========================================================
+   TODO
+   ========================================================= */
+
+.todo-box {
+    min-height: 350px;
+}
 
 
+.todo-input {
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 20px;
+}
 
 
+.todo-input input {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 15px;
+
+    outline: none;
+}
 
 
-/* ================= TODO TEXT FIX ================= */
+.todo-input button {
+    flex: 0 0 80px;
+
+    width: 80px;
+
+    margin: 0;
+
+    padding: 10px;
+
+    border-radius: 15px;
+
+    background: #2563eb;
+}
 
 
 #todoList {
-
     width: 100%;
 
-    padding-left: 0;
-
-    list-style: none;
+    padding: 0;
 
     display: flex;
 
@@ -1485,19 +666,14 @@ body.dark .setting-dropdown button:hover {
 
     gap: 12px;
 
+    list-style: none;
 }
 
 
-
-
-
 #todoList li {
-
     width: 100%;
 
     min-width: 0;
-
-    overflow: hidden;
 
     display: flex;
 
@@ -1509,59 +685,44 @@ body.dark .setting-dropdown button:hover {
 
     padding: 12px;
 
+    overflow: hidden;
+
     border-radius: 15px;
 
     background: #f1f5f9;
-
 }
 
 
-
-
-
 #todoList label {
+    flex: 1;
+
+    min-width: 0;
 
     display: flex;
 
     align-items: flex-start;
 
     gap: 10px;
-
-    min-width: 0;
-
-    flex: 1;
-
 }
-
-
-
 
 
 #todoList label input[type="checkbox"] {
-
     flex: 0 0 auto;
 
     width: auto;
-
     min-width: 16px;
 
     margin-top: 4px;
-
     margin-bottom: 0;
-
 }
 
 
-
-
-
 #todoList .todo-text {
-
-    display: block;
+    flex: 1;
 
     min-width: 0;
 
-    flex: 1;
+    display: block;
 
     color: #334155;
 
@@ -1570,166 +731,559 @@ body.dark .setting-dropdown button:hover {
     white-space: normal;
 
     overflow-wrap: break-word;
-
-    word-break: normal;
-
 }
 
 
-
-
-
 #todoList li > button {
-
     flex: 0 0 auto;
-
-    width: auto;
 
     min-width: 40px;
 
-    padding: 7px 15px;
+    margin: 0;
 
-    margin-right: 0;
+    padding: 7px 15px;
 
     border-radius: 15px;
 
     background: #ef4444;
 
     color: white;
-
 }
 
 
+/* =========================================================
+   FORM
+   ========================================================= */
+
+input,
+textarea,
+select {
+    width: 100%;
+
+    padding: 10px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 10px;
+}
 
 
+textarea {
+    height: 100px;
+
+    resize: none;
+}
 
 
+/* =========================================================
+   MEDIA SELECT
+   ========================================================= */
 
-/* ================= DARK MODE TODO ================= */
+.media-select-box,
+.media-speed-box {
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    padding: 15px;
+
+    background: #f8fafc;
+
+    border-radius: 18px;
+}
 
 
-body.dark #todoList li {
+.media-select-box label,
+.media-speed-box label {
+    display: block;
 
+    margin-bottom: 10px;
+
+    color: #2563eb;
+
+    font-weight: 600;
+}
+
+
+.media-select-box select,
+.media-speed-box select {
+    width: 100%;
+
+    padding: 12px 15px;
+
+    border:
+        1px solid #cbd5e1;
+
+    border-radius: 15px;
+
+    background: white;
+
+    cursor: pointer;
+
+    outline: none;
+}
+
+
+.media-select-box select:focus,
+.media-speed-box select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, .1);
+}
+
+
+/* =========================================================
+   VIDEO
+   ========================================================= */
+
+video {
+    width: 100%;
+
+    max-height: 350px;
+
+    border-radius: 15px;
+}
+
+
+/* =========================================================
+   QUOTE
+   ========================================================= */
+
+.quote {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    text-align: center;
+}
+
+
+#quoteText,
+#quote-text {
+    width: 90%;
+
+    min-height: 80px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    line-height: 1.8;
+
+    font-size: 18px;
+}
+
+
+#quoteText small,
+#quote-author {
+    margin-top: 10px;
+
+    color: #64748b;
+
+    font-size: 15px;
+}
+
+
+.quote button {
+    margin: 5px;
+}
+
+
+#favoriteQuote.active {
+    background:
+        linear-gradient(
+            135deg,
+            #ef4444,
+            #fb7185
+        );
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+    margin-top: auto;
+
+    padding: 25px;
+
+    background: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 -5px 20px rgba(0, 0, 0, .08);
+}
+
+
+.footer-links {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    margin: 15px 0;
+}
+
+
+.footer-links a {
+    color: #2563eb;
+
+    text-decoration: none;
+}
+
+
+footer hr {
+    margin: 15px 0;
+
+    border: none;
+
+    border-top:
+        1px solid #ddd;
+}
+
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+body.light {
+    background:
+        linear-gradient(
+            135deg,
+            #dff6ff,
+            #89cff0
+        );
+
+    color: #1e293b;
+}
+
+
+body.light .header,
+body.light .sidebar,
+body.light .card,
+body.light .hero,
+body.light footer {
+    background: white;
+}
+
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+body.dark {
+    background:
+        linear-gradient(
+            135deg,
+            #020617,
+            #1e293b
+        );
+
+    color: white;
+}
+
+
+body.dark .header,
+body.dark .sidebar,
+body.dark .card,
+body.dark .hero,
+body.dark footer {
+    background: #0f172a;
+
+    color: white;
+}
+
+
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark p {
+    color: white;
+}
+
+
+body.dark .menu a {
+    color: #e2e8f0;
+}
+
+
+body.dark .sidebar a {
+    color: #e2e8f0;
+}
+
+
+body.dark .sidebar a:hover,
+body.dark .sidebar .active {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+body.dark input,
+body.dark select,
+body.dark textarea {
     background: #1e293b;
-
-}
-
-
-
-body.dark #todoList .todo-text {
 
     color: white;
 
+    border-color: #475569;
 }
 
 
+body.dark #todoList li {
+    background: #1e293b;
+}
 
 
-
-
-
-/* ================= DARK MODE MEDIA ================= */
+body.dark #todoList .todo-text {
+    color: white;
+}
 
 
 body.dark .media-select-box,
 body.dark .media-speed-box {
-
     background: #1e293b;
-
 }
-
 
 
 body.dark .media-select-box label,
 body.dark .media-speed-box label {
-
     color: #38bdf8;
-
 }
-
 
 
 body.dark .media-select-box select,
 body.dark .media-speed-box select {
-
     background: #0f172a;
 
     color: white;
 
     border-color: #475569;
+}
+
+
+body.dark .setting-dropdown {
+    background: #0f172a;
+}
+
+
+body.dark .setting-dropdown button {
+    background: #0f172a;
+
+    color: white;
+}
+
+
+body.dark .setting-dropdown button:hover {
+    background: #1e40af;
+
+    color: white;
+}
+
+
+body.dark .setting-dropdown hr {
+    border-top-color: #334155;
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .header {
+        padding: 0 30px;
+    }
+
+
+    .menu {
+        gap: 15px;
+
+        margin-right: 20px;
+    }
+
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+
+    .sidebar {
+        width: 100%;
+
+        padding: 15px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 5px;
+
+        overflow-x: auto;
+    }
+
+
+    .sidebar h2 {
+        display: none;
+    }
+
+
+    .sidebar a {
+        flex: 0 0 auto;
+
+        margin-bottom: 0;
+
+        white-space: nowrap;
+    }
 
 }
 
 
+/* =========================================================
+   RESPONSIVE - 900px
+   ========================================================= */
 
+@media (max-width: 900px) {
 
-
-
-
-/* ================= RESPONSIVE ================= */
-
-
-@media(max-width:900px) {
-
-
-    .media-select-box,
-    .media-speed-box {
-
-        padding: 12px;
-
+    .double-card {
+        grid-template-columns: 1fr;
     }
 
 
+    .hero {
+        flex-direction: column;
 
-    #quoteText {
+        text-align: center;
+    }
+
+
+    .hero img {
+        margin: 0 auto;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        min-height: auto;
+
+        padding: 15px;
+
+        flex-wrap: wrap;
+
+        gap: 15px;
+    }
+
+
+    .logo {
+        font-size: 22px;
+    }
+
+
+    .menu {
+        order: 3;
 
         width: 100%;
 
+        margin: 0;
+
+        justify-content: center;
     }
 
 
-}
+    .menu a:not(.btn) {
+        display: none;
+    }
 
 
+    .setting-menu {
+        margin-left: auto;
+    }
 
 
+    .setting-dropdown {
+        right: 0;
+
+        width: 210px;
+    }
 
 
+    .main {
+        padding: 15px;
+    }
 
-/* ================= TODO RESPONSIVE FIX ================= */
+
+    .card {
+        padding: 15px;
+    }
 
 
-@media(max-width:600px) {
+    .double-card {
+        gap: 15px;
+    }
+
+
+    .timer {
+        width: 150px;
+        height: 150px;
+
+        font-size: 38px;
+    }
+
+
+    .todo-input {
+        flex-direction: column;
+    }
+
+
+    .todo-input button {
+        width: 100%;
+        flex: none;
+    }
 
 
     #todoList li {
-
         align-items: flex-start;
-
-    }
-
-
-    #todoList label {
-
-        align-items: flex-start;
-
-    }
-
-
-    #todoList .todo-text {
-
-        min-width: 0;
-
-        max-width: 100%;
-
     }
 
 
     #todoList li > button {
-
         flex-shrink: 0;
-
     }
 
+
+    #quoteText,
+    #quote-text {
+        width: 100%;
+    }
+
+
+    .footer-links {
+        gap: 15px;
+    }
 
 }
