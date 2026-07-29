@@ -37,7 +37,9 @@
         <a href="index.html"
         data-vn="Trang chủ"
         data-en="Home">
+
             Trang chủ
+
         </a>
 
 
@@ -45,7 +47,9 @@
         <a href="about.html"
         data-vn="Giới thiệu"
         data-en="About">
+
             Giới thiệu
+
         </a>
 
 
@@ -54,7 +58,9 @@
         href="contact.html"
         data-vn="Liên hệ"
         data-en="Contact">
+
             Liên hệ
+
         </a>
 
 
@@ -62,7 +68,9 @@
         <a href="login.html"
         data-vn="Đăng nhập"
         data-en="Login">
+
             Đăng nhập
+
         </a>
 
 
@@ -71,7 +79,9 @@
         href="register.html"
         data-vn="Đăng ký"
         data-en="Register">
+
             Đăng ký
+
         </a>
 
 
@@ -81,13 +91,15 @@
 
 
 
-    <!-- SETTING MENU -->
+    <!-- ================= SETTING MENU ================= -->
 
     <div class="setting-menu">
 
 
         <button type="button" class="setting-btn">
+
             ⚙
+
         </button>
 
 
@@ -105,7 +117,8 @@
 
 
 
-            <button onclick="changeTheme('light')">
+            <button type="button"
+            onclick="changeTheme('light')">
 
                 
                 <span
@@ -122,7 +135,8 @@
 
 
 
-            <button onclick="changeTheme('dark')">
+            <button type="button"
+            onclick="changeTheme('dark')">
 
                 
                 <span
@@ -154,7 +168,8 @@
 
 
 
-            <button onclick="changeLanguage('vi')">
+            <button type="button"
+            onclick="changeLanguage('vi')">
 
                 🇻🇳
 
@@ -173,7 +188,8 @@
 
 
 
-            <button onclick="changeLanguage('en')">
+            <button type="button"
+            onclick="changeLanguage('en')">
 
                 🇺🇸
 
@@ -202,12 +218,13 @@
 
 
 
-
-
+<!-- ================= MAIN ================= -->
 
 <main>
 
 
+
+    <!-- ================= CONTACT HERO ================= -->
 
     <section class="contact-hero">
 
@@ -215,7 +232,7 @@
         data-vn="Liên hệ với Study Focus"
         data-en="Contact Study Focus">
 
-        Liên hệ với Study Focus
+            Liên hệ với Study Focus
 
         </h1>
 
@@ -223,7 +240,8 @@
         data-vn="Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn."
         data-en="We are always ready to listen to your feedback.">
 
-        Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
+            Chúng tôi luôn sẵn sàng lắng nghe ý kiến của bạn.
+
         </p>
 
     </section>
@@ -234,8 +252,11 @@
 
 
 
+    <!-- ================= CONTACT CONTENT ================= -->
 
     <section class="contact-container">
+
+        <!-- ================= CONTACT INFORMATION ================= -->
 
         <div class="contact-info">
 
@@ -244,7 +265,7 @@
             data-vn="Thông tin"
             data-en="Information">
 
-            Thông tin
+                Thông tin
 
             </h2>
 
@@ -252,22 +273,15 @@
 
             <p>
 
-            📍 
-            <span
-            data-vn="Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh"
-            data-en="Address: 78/B1 Cao Lo, Chanh Hung Ward, Ho Chi Minh City">
+                📍
 
-            Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh
+                <span
+                data-vn="Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh"
+                data-en="Address: 78/B1 Cao Lo, Chanh Hung Ward, Ho Chi Minh City">
 
-            </span>
+                    Địa chỉ: 78/B1, Cao Lỗ, phường Chánh Hưng, Thành phố Hồ Chí Minh
 
-            </p>
-
-
-
-            <p>
-
-            📧 Email: luthitrucsang241@gmail.com
+                </span>
 
             </p>
 
@@ -275,7 +289,7 @@
 
             <p>
 
-            📞 Hotline: 0937 28 3546
+                📧 Email: luthitrucsang241@gmail.com
 
             </p>
 
@@ -283,13 +297,25 @@
 
             <p>
 
-            🌐 Website: Study Focus
+                📞 Hotline: 0937 28 3546
+
+            </p>
+
+
+
+            <p>
+
+                🌐 Website: Study Focus
 
             </p>
 
 
 
         </div>
+
+
+
+        <!-- ================= CONTACT FORM ================= -->
 
         <div class="contact-form">
 
@@ -298,70 +324,125 @@
             data-vn="Gửi liên hệ"
             data-en="Send Message">
 
-            Gửi liên hệ
+                Gửi liên hệ
 
             </h2>
 
-            <form>
 
 
-            <input 
-            type="text"
-
-            data-vn-placeholder="Họ và tên"
-            data-en-placeholder="Full Name"
-
-            placeholder="Họ và tên">
+            <form
+            id="contact-form"
+            action="https://formsubmit.co/luthitrucsang241@gmail.com"
+            method="POST">
 
 
+                <!-- ================= FORMSUBMIT CONFIGURATION ================= -->
+
+                <input
+                type="hidden"
+                name="_subject"
+                value="Liên hệ mới từ website Study Focus">
 
 
-
-            <input 
-            type="email"
-
-            data-vn-placeholder="Email"
-            data-en-placeholder="Email"
-
-            placeholder="Email">
+                <input
+                type="hidden"
+                name="_captcha"
+                value="false">
 
 
+                <input
+                type="hidden"
+                name="_template"
+                value="table">
 
 
-
-
-            <input 
-            type="text"
-
-            data-vn-placeholder="Tiêu đề"
-            data-en-placeholder="Subject"
-
-            placeholder="Tiêu đề">
+                <input
+                type="hidden"
+                name="_next"
+                value="https://luthitrucsang.online/contact.html">
 
 
 
 
 
-            <textarea
+                <!-- ================= SENDER NAME ================= -->
 
-            data-vn-placeholder="Nội dung"
-            data-en-placeholder="Message"
+                <input
+                type="text"
+                name="name"
+                autocomplete="name"
+                required
 
-            placeholder="Nội dung"></textarea>
+                data-vn-placeholder="Họ và tên"
+                data-en-placeholder="Full Name"
+
+                placeholder="Họ và tên">
+
+
+
+
+
+                <!-- ================= SENDER EMAIL ================= -->
+
+                <input
+                type="email"
+                name="email"
+                autocomplete="email"
+                required
+
+                data-vn-placeholder="Email"
+                data-en-placeholder="Email"
+
+                placeholder="Email">
+
+
+
+
+
+                <!-- ================= MESSAGE SUBJECT ================= -->
+
+                <input
+                type="text"
+                name="subject"
+                required
+
+                data-vn-placeholder="Tiêu đề"
+                data-en-placeholder="Subject"
+
+                placeholder="Tiêu đề">
+
+
+
+
+
+                <!-- ================= MESSAGE CONTENT ================= -->
+
+                <textarea
+                name="message"
+                rows="6"
+                required
+
+                data-vn-placeholder="Nội dung"
+                data-en-placeholder="Message"
+
+                placeholder="Nội dung"></textarea>
 
 
 
 
 
 
-            <button
+                <!-- ================= SEND BUTTON ================= -->
 
-            data-vn="Gửi liên hệ"
-            data-en="Send">
+                <button
+                type="submit"
 
-            Gửi liên hệ
+                data-vn="Gửi liên hệ"
+                data-en="Send">
 
-            </button>
+                    Gửi liên hệ
+
+                </button>
 
 
 
@@ -378,6 +459,7 @@
 
 
 
+    <!-- ================= GOOGLE MAP ================= -->
 
     <section class="map">
 
@@ -385,7 +467,7 @@
         data-vn="Google Map"
         data-en="Google Map">
 
-        Google Map
+            Google Map
 
         </h2>
 
@@ -414,13 +496,14 @@
 
 
 
-
+<!-- ================= FOOTER ================= -->
 
 <footer>
 
     <div class="container">
+
         <h3>
-        Study Focus
+            Study Focus
         </h3>
 
         <p
@@ -429,7 +512,7 @@
 
         data-en="Study effectively with Pomodoro, manage time and improve concentration.">
 
-        Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
+            Học tập hiệu quả với Pomodoro, quản lý thời gian và nâng cao khả năng tập trung.
 
         </p>
 
@@ -440,7 +523,7 @@
             data-vn="Trang chủ"
             data-en="Home">
 
-            Trang chủ
+                Trang chủ
 
             </a>
 
@@ -448,7 +531,7 @@
             data-vn="Giới thiệu"
             data-en="About">
 
-            Giới thiệu
+                Giới thiệu
 
             </a>
 
@@ -456,11 +539,9 @@
             data-vn="Liên hệ"
             data-en="Contact">
 
-            Liên hệ
+                Liên hệ
 
             </a>
-
-
 
         </div>
 
@@ -473,7 +554,7 @@
 
         <p>
 
-        © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
+            © 2026 Study Focus | Designed by Lữ Thị Trúc Sang
 
         </p>
 
@@ -487,6 +568,8 @@
 
 
 
+
+<!-- ================= MAIN SCRIPT ================= -->
 
 <script src="js/main.js"></script>
 
