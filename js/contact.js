@@ -4,10 +4,16 @@
 // ===============================
 
 
+// Kiểm tra file đã chạy
+console.log("CONTACT JS RUNNING");
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
 
 
-    // EmailJS Public Key
+
+    // Khởi tạo EmailJS bằng Public Key
 
     emailjs.init({
         publicKey: "Xj_bGg8CkOkgIJn3j"
@@ -15,15 +21,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+    // Lấy form liên hệ
+
     const contactForm = document.getElementById("contact-form");
 
 
 
+
+
+    // Kiểm tra có form không
+
     if (!contactForm) {
+
 
         console.log("Không tìm thấy form contact");
 
+
         return;
+
 
     }
 
@@ -31,10 +48,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+    // Xử lý khi bấm gửi
+
     contactForm.addEventListener("submit", function (event) {
 
 
+
         event.preventDefault();
+
+
+
+
+
+        console.log("Đang gửi EmailJS...");
+
+
+
 
 
 
@@ -48,37 +79,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
         )
 
-        .then(function(response){
 
 
-            console.log("SUCCESS", response);
+        .then(function(response) {
+
+
+
+            console.log("SUCCESS:", response);
+
 
 
             alert("Gửi liên hệ thành công!");
 
+
+
             contactForm.reset();
+
+
 
 
 
         })
 
 
-        .catch(function(error){
+
+        .catch(function(error) {
 
 
-            console.log("FAILED", error);
+
+            console.log("FAILED FULL ERROR:", error);
+
 
 
             alert(
-                "Gửi liên hệ thất bại! Kiểm tra lại EmailJS."
+                "Gửi liên hệ thất bại: " + error.text
             );
+
 
 
         });
 
 
 
+
     });
+
 
 
 
