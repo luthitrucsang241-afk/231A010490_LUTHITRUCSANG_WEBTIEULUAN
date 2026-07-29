@@ -548,6 +548,7 @@ footer hr {
 
     box-shadow:
 
+
         0 15px 35px rgba(37, 99, 235, .15);
 
 
@@ -604,6 +605,8 @@ footer hr {
 
 
 
+
+
 .timer {
 
 
@@ -627,9 +630,12 @@ footer hr {
 
     background:
 
+
         linear-gradient(135deg,
 
+
             #2563eb,
+
 
             #38bdf8);
 
@@ -648,6 +654,8 @@ footer hr {
 
 
 }
+
+
 
 
 
@@ -745,9 +753,12 @@ footer hr {
 
     background:
 
+
         linear-gradient(135deg,
 
+
             #2563eb,
+
 
             #38bdf8);
 
@@ -764,6 +775,8 @@ footer hr {
 
 
 }
+
+
 
 
 
@@ -880,6 +893,8 @@ footer hr {
 
 
 
+
+
 #todoList li {
 
 
@@ -902,6 +917,8 @@ footer hr {
 
 
 }
+
+
 
 
 
@@ -934,6 +951,8 @@ footer hr {
 
 
 }
+
+
 
 
 
@@ -1098,6 +1117,8 @@ body.dark .sidebar .active {
 
 
 
+
+
 body.dark input,
 body.dark select,
 body.dark textarea {
@@ -1132,12 +1153,15 @@ body.light button {
 
 
     background:
+
         linear-gradient(135deg,
             #2563eb,
             #38bdf8);
 
 
 }
+
+
 
 
 
@@ -1281,6 +1305,8 @@ body.dark footer {
     cursor: pointer;
 
 }
+
+
 
 
 
@@ -1680,8 +1706,6 @@ body.dark .setting-dropdown button:hover {
 /* Vị trí: cuối file dashboard.css */
 
 
-/* Khung chọn âm thanh/video */
-
 .media-select-box,
 .media-speed-box {
 
@@ -1824,28 +1848,159 @@ body.dark .setting-dropdown button:hover {
 
 
 
+
 /* ================= TODO TEXT FIX ================= */
 
 
+/* Khung danh sách Todo */
+
+#todoList {
+
+    width: 100%;
+
+    padding-left: 0;
+
+    list-style: none;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+
+/* Khung từng Todo */
+
 #todoList li {
 
-    overflow:hidden;
+    width: 100%;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    background: #f1f5f9;
 
 }
 
 
 
-.todo-text {
+/* Khu vực checkbox + nội dung */
 
-    white-space:normal;
+#todoList label {
 
-    overflow-wrap:break-word;
+    display: flex;
 
-    word-break:normal;
+    align-items: flex-start;
 
-    line-height:1.5;
+    gap: 10px;
+
+    min-width: 0;
+
+    flex: 1;
 
 }
+
+
+
+/* Checkbox */
+
+#todoList label input[type="checkbox"] {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 16px;
+
+    margin-top: 4px;
+
+    margin-bottom: 0;
+
+}
+
+
+
+/* Nội dung Todo */
+
+#todoList .todo-text {
+
+    display: block;
+
+    min-width: 0;
+
+    flex: 1;
+
+    color: #334155;
+
+    line-height: 1.5;
+
+    white-space: normal;
+
+    overflow-wrap: break-word;
+
+    word-break: normal;
+
+}
+
+
+
+/* Nút xóa */
+
+#todoList li > button {
+
+    flex: 0 0 auto;
+
+    width: auto;
+
+    min-width: 40px;
+
+    padding: 7px 15px;
+
+    margin-right: 0;
+
+    border-radius: 15px;
+
+    background: #ef4444;
+
+    color: white;
+
+}
+
+
+
+/* ================= DARK MODE TODO ================= */
+
+body.dark #todoList li {
+
+    background: #1e293b;
+
+}
+
+
+
+body.dark #todoList .todo-text {
+
+    color: white;
+
+}
+
+
 
 
 
@@ -1869,6 +2024,8 @@ body.dark .setting-dropdown button:hover {
     line-height:1;
 
 }
+
+
 
 
 
@@ -1905,6 +2062,8 @@ body.dark .media-speed-box select {
 
 
 
+
+
 /* ================= RESPONSIVE ================= */
 
 
@@ -1927,6 +2086,48 @@ body.dark .media-speed-box select {
 
         width:100%;
 
+
+    }
+
+
+}
+
+
+
+
+
+/* ================= TODO RESPONSIVE FIX ================= */
+
+
+@media(max-width:600px) {
+
+
+    #todoList li {
+
+        align-items: flex-start;
+
+    }
+
+
+    #todoList label {
+
+        align-items: flex-start;
+
+    }
+
+
+    #todoList .todo-text {
+
+        min-width: 0;
+
+        max-width: 100%;
+
+    }
+
+
+    #todoList li > button {
+
+        flex-shrink: 0;
 
     }
 

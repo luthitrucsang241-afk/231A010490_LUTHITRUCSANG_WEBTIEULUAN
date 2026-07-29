@@ -1,13 +1,23 @@
 const todoInput = document.getElementById("todoInput");
+
 const addTodo = document.getElementById("addTodo");
+
 const todoList = document.getElementById("todoList");
 
 
-let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+let todos =
+    JSON.parse(
+        localStorage.getItem("todos")
+    ) || [];
 
 
 
-function saveTodo(){
+
+
+// ================= LƯU TODO =================
+
+function saveTodo() {
 
     localStorage.setItem(
         "todos",
@@ -19,70 +29,140 @@ function saveTodo(){
 
 
 
-function renderTodo(){
+
+// ================= HIỂN THỊ TODO =================
+
+function renderTodo() {
 
     todoList.innerHTML = "";
 
 
-    todos.forEach(function(todo,index){
+    todos.forEach(function (todo, index) {
 
 
-        const li = document.createElement("li");
+        const li =
+            document.createElement("li");
 
 
-        li.innerHTML = `
+        // ================= TẠO CẤU TRÚC TODO =================
 
-        <label>
-
-            <input 
-            type="checkbox"
-            ${todo.done ? "checked":""}
-            >
-
-            <span class="todo-text">
-                ${todo.text}
-            </span>
-
-        </label>
+        const label =
+            document.createElement("label");
 
 
-        <button>
-            X
-        </button>
+        const checkbox =
+            document.createElement("input");
 
-        `;
+
+        const todoText =
+            document.createElement("span");
+
+
+        const deleteButton =
+            document.createElement("button");
 
 
 
-        li.querySelector("input").onchange=function(){
 
 
-            todos[index].done=this.checked;
+        // ================= CHECKBOX =================
 
-            saveTodo();
-
-            checkTodoGoal();
-
-
-        };
+        checkbox.type =
+            "checkbox";
 
 
-
-        li.querySelector("button").onclick=function(){
-
-            deleteTodo(index);
-
-        };
+        checkbox.checked =
+            todo.done;
 
 
 
-        todoList.appendChild(li);
 
+
+        // ================= NỘI DUNG TODO =================
+
+        // Dùng textContent để giữ nguyên chính xác
+        // nội dung người dùng nhập vào.
+
+        todoText.className =
+            "todo-text";
+
+
+        todoText.textContent =
+            todo.text;
+
+
+
+
+
+        // ================= NÚT XÓA =================
+
+        deleteButton.textContent =
+            "X";
+
+
+
+
+
+        // ================= GHÉP CÁC PHẦN =================
+
+        label.appendChild(
+            checkbox
+        );
+
+
+        label.appendChild(
+            todoText
+        );
+
+
+        li.appendChild(
+            label
+        );
+
+
+        li.appendChild(
+            deleteButton
+        );
+
+
+        todoList.appendChild(
+            li
+        );
+
+
+
+
+
+        // ================= ĐÁNH DẤU HOÀN THÀNH =================
+
+        checkbox.onchange =
+            function () {
+
+                todos[index].done =
+                    this.checked;
+
+
+                saveTodo();
+
+                checkTodoGoal();
+
+            };
+
+
+
+
+
+        // ================= XÓA TODO =================
+
+        deleteButton.onclick =
+            function () {
+
+                deleteTodo(index);
+
+            };
 
 
     });
-
-
 
 }
 
@@ -90,8 +170,9 @@ function renderTodo(){
 
 
 
-function deleteTodo(index){
+// ================= XÓA TODO =================
 
+function deleteTodo(index) {
 
     todos.splice(
         index,
@@ -105,47 +186,53 @@ function deleteTodo(index){
 
     checkTodoGoal();
 
-
 }
 
 
 
 
 
+// ================= THÊM TODO =================
 
-
-function addTask(){
-
+function addTask() {
 
     let text =
-    todoInput.value.trim();
+        todoInput.value.trim();
 
 
+    // Không thêm Todo nếu ô nhập rỗng
 
-    if(text==="")
+    if (text === "") {
+
         return;
 
+    }
 
+
+    // Thêm công việc mới
 
     todos.push({
 
-        text:text,
+        text: text,
 
-        done:false
+        done: false
 
     });
 
 
+    // Xóa nội dung ô nhập
 
-    todoInput.value="";
+    todoInput.value = "";
 
+
+    // Lưu dữ liệu
 
     saveTodo();
 
 
+    // Hiển thị lại danh sách
+
     renderTodo();
-
-
 
 }
 
@@ -153,54 +240,78 @@ function addTask(){
 
 
 
+// ================= NÚT THÊM =================
 
-addTodo.onclick=function(){
+if (addTodo) {
 
-    addTask();
-
-};
-
-
-
-
-
-todoInput.addEventListener(
-    "keydown",
-    function(event){
-
-
-        if(event.key==="Enter"){
-
-
-            event.preventDefault();
-
+    addTodo.onclick =
+        function () {
 
             addTask();
 
+        };
+
+}
+
+
+
+
+
+// ================= NHẤN ENTER ĐỂ THÊM TODO =================
+
+if (todoInput) {
+
+    todoInput.addEventListener(
+        "keydown",
+        function (event) {
+
+
+            // Khi nhấn Enter
+
+            if (event.key === "Enter") {
+
+
+                // Không cho Enter tạo hành động mặc định
+
+                event.preventDefault();
+
+
+                // Thêm Todo giống nút Thêm
+
+                addTask();
+
+
+            }
 
         }
+    );
 
-
-    }
-);
-
-
+}
 
 
 
 
 
-function checkTodoGoal(){
+// ================= KIỂM TRA MỤC TIÊU TODO =================
 
+function checkTodoGoal() {
+
+
+    // Đếm số Todo đã hoàn thành
 
     let count =
-    todos.filter(
-        t=>t.done
-    ).length;
+        todos.filter(
+            function (todo) {
+
+                return todo.done;
+
+            }
+        ).length;
 
 
+    // Hoàn thành từ 3 Todo trở lên
 
-    if(count>=3){
+    if (count >= 3) {
 
 
         localStorage.setItem(
@@ -210,7 +321,8 @@ function checkTodoGoal(){
 
 
     }
-    else{
+
+    else {
 
 
         localStorage.removeItem(
@@ -220,11 +332,12 @@ function checkTodoGoal(){
 
     }
 
-
 }
 
 
 
 
+
+// ================= KHỞI TẠO TODO =================
 
 renderTodo();
